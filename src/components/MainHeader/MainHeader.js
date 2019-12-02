@@ -18,7 +18,7 @@ const MainHeader = ({ links }) => (
                     </Link>
                 </li>
                 <li>
-                    <Button link to={routes.signUp} size="large">
+                    <Button link to={routes.signUp}>
                         <FormattedMessage id="signUp" />
                     </Button>
                 </li>
