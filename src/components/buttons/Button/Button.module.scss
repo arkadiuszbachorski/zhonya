@@ -1,0 +1,26 @@
+.button {
+  padding: 1rem 3.5rem;
+  border: none;
+  border-top-left-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+  font-weight: 500;
+}
+
+.large {
+  font-size: 1.2rem;
+}
+
+.round {
+  padding: 0;
+  border-radius: 100%;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary {
+  background-color: var(--primary);
+  color: var(--secondary-font);
+}
