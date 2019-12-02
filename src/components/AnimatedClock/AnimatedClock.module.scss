@@ -1,0 +1,44 @@
+$borderSize: 6px;
+
+.wrapper {
+  --counter: 0;
+  --transitionTime: 200ms;
+  width: 40vw;
+  height: 40vw;
+  position: fixed;
+  left: 45vw;
+  top: 15vh;
+  border: $borderSize solid var(--accent);
+  border-radius: 100%;
+  opacity: .25;
+}
+
+.handHours, .handMinutes {
+  position: absolute;
+  width: $borderSize;
+  left: calc(50% - #{$borderSize});
+  transition: transform var(--transitionTime);
+  transition-timing-function: linear;
+  will-change: transform;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: $borderSize;
+    height: 50%;
+    background: var(--accent);
+  }
+}
+
+.handHours {
+  height: 40%;
+  top: 30%;
+  transform: rotate(calc(var(--counter) * 2.5deg)) translate3d(0, 0, 0);
+}
+
+.handMinutes {
+  height: 80%;
+  top: 10%;
+  transform: rotate(calc(var(--counter) * 30deg)) translate3d(0, 0, 0);
+}
