@@ -1,19 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from '../buttons/Button/Button';
-import { FormattedMessage } from 'react-intl';
-import routes from '../../routes';
+import JumbotronTitle from './JumbotronTitle';
+import styles from './Jumbotron.module.scss';
 
-const Jumbotron = props => (
-    <div>
-        <h2>
-            <FormattedMessage id="main.jumbotron.first" /> <br />
-            <FormattedMessage id="main.jumbotron.second" />
-        </h2>
-        <Button link to={routes.signUp}>
-            <FormattedMessage id="main.jumbotron.button" />
-        </Button>
-    </div>
-);
+const Jumbotron = ({ children, className }) => <div className={styles.jumbotron}>{children}</div>;
+
+Jumbotron.Title = JumbotronTitle;
+
+Jumbotron.Action = Button;
 
 export default Jumbotron;
