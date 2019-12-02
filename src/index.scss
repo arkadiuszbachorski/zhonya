@@ -12,7 +12,6 @@
 }
 
 body {
-  font-family: 'Lato', sans-serif;
   --primary: #8C5DD9;
   --secondary: #ffffff;
   --accent: #C2C2C2;
@@ -20,5 +19,10 @@ body {
   --success: #5DD99D;
   --primary-font: #000000;
   --secondary-font: #ffffff;
+
 }
 
+body {
+  font-family: 'Lato', sans-serif;
+  color: var(--primary-font);
+}
