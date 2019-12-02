@@ -1,0 +1,38 @@
+.wrapper {
+  width: 100%;
+  padding: 2rem 4rem;
+  display: flex;
+  height: 150px;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 0;
+  font-size: 1.4rem;
+
+  li {
+    list-style: none;
+    margin-left: 3rem;
+  }
+
+  li:not(:last-child) a {
+    font-weight: 300;
+    color: var(--primary-font);
+  }
+
+  li a {
+    display: block;
+    text-decoration: none;
+    transition: transform .3s, opacity .3s;
+
+    &:hover {
+      backface-visibility: hidden;
+      transform: translate3d(0, -.5rem, 0);
+      opacity: .8;
+    }
+  }
+}
+
