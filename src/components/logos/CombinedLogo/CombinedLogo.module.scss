@@ -1,0 +1,15 @@
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+
+  svg {
+    width: auto;
+    height: 100%;
+  }
+
+  span {
+    margin-left: 2rem;
+  }
+}
