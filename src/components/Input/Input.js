@@ -17,6 +17,8 @@ const Input = ({ onChange, disabled, readOnly, textarea, type, value, className,
         id: parsedId,
     };
 
+    const hasErrors = errors.length > 0;
+
     let input;
 
     if (textarea) {
@@ -27,17 +29,17 @@ const Input = ({ onChange, disabled, readOnly, textarea, type, value, className,
     }
 
     return (
-        <div className={cn(styles.group, value ? styles.active : null, className)}>
+        <div className={cn(styles.group, value ? styles.active : null, className, hasErrors ? styles.hasErrors : null)}>
             {icon && <FontAwesomeIcon icon={icon} />}
             <label htmlFor={parsedId}>
                 <FormattedMessage id={label} />
             </label>
             {input}
-            {errors &&
+            {hasErrors &&
                 errors.map(item => (
-                    <span key={item} className={styles.error}>
+                    <div key={item} className={styles.error}>
                         {item}
-                    </span>
+                    </div>
                 ))}
         </div>
     );
