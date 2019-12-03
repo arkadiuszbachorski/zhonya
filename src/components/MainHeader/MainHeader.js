@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 import styles from './MainHeader.module.scss';
 import CombinedLogo from '../logos/CombinedLogo/CombinedLogo';
-import { Link } from 'react-router-dom';
 import routes from '../../routes';
 import Button from '../buttons/Button/Button';
-import { FormattedMessage } from 'react-intl';
 
 const MainHeader = ({ links }) => (
     <header className={styles.wrapper}>
