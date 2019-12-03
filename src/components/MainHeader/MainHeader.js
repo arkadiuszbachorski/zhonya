@@ -7,32 +7,22 @@ import CombinedLogo from '../logos/CombinedLogo/CombinedLogo';
 import routes from '../../routes';
 import Button from '../buttons/Button/Button';
 
-const MainHeader = ({ links }) => (
+const MainHeader = () => (
     <header className={styles.wrapper}>
         <CombinedLogo />
-        {links && (
-            <ul className={styles.links}>
-                <li>
-                    <Link to={routes.logIn}>
-                        <FormattedMessage id="logIn" />
-                    </Link>
-                </li>
-                <li>
-                    <Button link to={routes.signUp}>
-                        <FormattedMessage id="signUp" />
-                    </Button>
-                </li>
-            </ul>
-        )}
+        <ul className={styles.links}>
+            <li>
+                <Link to={routes.logIn}>
+                    <FormattedMessage id="logIn" />
+                </Link>
+            </li>
+            <li>
+                <Button link to={routes.signUp}>
+                    <FormattedMessage id="signUp" />
+                </Button>
+            </li>
+        </ul>
     </header>
 );
-
-MainHeader.propTypes = {
-    links: PropTypes.bool,
-};
-
-MainHeader.defaultProps = {
-    links: false,
-};
 
 export default MainHeader;

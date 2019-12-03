@@ -4,10 +4,10 @@ import MainHeader from '../components/MainHeader/MainHeader';
 import AnimatedClock from '../components/AnimatedClock/AnimatedClock';
 import Jumbotron from '../components/Jumbotron/Jumbotron';
 import routes from '../routes';
+import MainTemplate from '../components/MainTemplate/MainTemplate';
 
 const MainPage = () => (
-    <>
-        <MainHeader links />
+    <MainTemplate>
         <AnimatedClock />
         <Jumbotron>
             <Jumbotron.Title>
@@ -18,7 +18,7 @@ const MainPage = () => (
                 <FormattedMessage id="main.jumbotron.button" />
             </Jumbotron.Action>
         </Jumbotron>
-    </>
+    </MainTemplate>
 );
 
 export default MainPage;
