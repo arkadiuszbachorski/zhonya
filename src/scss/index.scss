@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,500,700&display=swap&subset=latin-ext');
+
+@import 'package';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  --primary: #{map-get($light, 'primary')};
+  --background: #{map-get($light, 'background')};
+  --accent: #{map-get($light, 'accent')};
+  --danger: #{map-get($light, 'danger')};
+  --success: #{map-get($light, 'success')};
+  --primary-font: #{map-get($light, 'primary-font')};
+  --secondary-font: #{map-get($light, 'secondary-font')};
+}
+
+body.dark-theme {
+  --primary: #{map-get($dark, 'primary')};
+  --background: #{map-get($dark, 'background')};
+  --accent: #{map-get($dark, 'accent')};
+  --danger: #{map-get($dark, 'danger')};
+  --success: #{map-get($dark, 'success')};
+  --primary-font: #{map-get($dark, 'primary-font')};
+  --secondary-font: #{map-get($dark, 'secondary-font')};
+}
+
+body {
+  font-family: $main-font;
+  color: var(--primary-font);
+  background-color: var(--background);
+}
+
+html, body, #root {
+  width: 100%;
+}

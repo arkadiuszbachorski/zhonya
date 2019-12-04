@@ -1,0 +1,52 @@
+@import '../../scss/package';
+
+.wrapper {
+  --counter: 0;
+  --transitionTime: 200ms;
+  --borderSize: 6px;
+  width: 40vw;
+  height: 40vw;
+  position: absolute;
+  left: 45vw;
+  top: 10rem;
+  border: var(--borderSize) solid var(--accent);
+  border-radius: 100%;
+  opacity: .25;
+  z-index: -5;
+}
+
+.handHours, .handMinutes {
+  position: absolute;
+  width: var(--borderSize);
+  left: calc(50% - var(--borderSize));
+  transition: transform var(--transitionTime);
+  transition-timing-function: linear;
+  will-change: transform;
+  background: var(--accent);
+  transform-origin: 50% 100%;
+}
+
+.handHours {
+  height: 20%;
+  top: 30%;
+  transform: rotate(calc(var(--counter) * 2.5deg)) translate3d(0, 0, 0);
+}
+
+.handMinutes {
+  height: 40%;
+  top: 10%;
+  transform: rotate(calc(var(--counter) * 30deg)) translate3d(0, 0, 0);
+}
+
+@include media-breakpoint-down(md) {
+  .wrapper {
+    top: 8rem;
+    left: 30vw;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .wrapper {
+    --borderSize: 3px;
+  }
+}

@@ -1,0 +1,12 @@
+@import '../../scss/package';
+
+
+.wrapper {
+  padding: 0 2rem;
+}
+
+@include media-breakpoint-up(md) {
+  .wrapper {
+    padding: 0 4rem;
+  }
+}
