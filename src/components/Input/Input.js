@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import styles from './Input.module.scss';
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styles from './Input.module.scss';
 
 const Input = ({ onChange, disabled, readOnly, textarea, type, value, className, name, id, label, icon, errors }) => {
     const parsedId = id || name;
