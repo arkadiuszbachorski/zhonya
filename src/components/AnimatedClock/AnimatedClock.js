@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './AnimatedClock.module.scss';
+import useInterval from '../../hooks/useInterval';
 
 const AnimatedClock = ({ transitionTime }) => {
-    const [counter, setCounter] = useState(0);
-
-    useEffect(() => {
-        const clockInterval = setInterval(() => {
-            setCounter(counter => counter + 1);
-        }, transitionTime);
-
-        return () => clearInterval(clockInterval);
-    }, []);
+    const [counter] = useInterval(transitionTime);
 
     const style = {
         '--counter': counter,
