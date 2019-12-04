@@ -38,3 +38,7 @@ body {
   color: var(--primary-font);
   background-color: var(--background);
 }
+
+html, body, #root {
+  width: 100%;
+}

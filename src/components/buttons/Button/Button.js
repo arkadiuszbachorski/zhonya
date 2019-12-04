@@ -35,7 +35,7 @@ Button.propTypes = {
     round: PropTypes.bool,
     size: PropTypes.oneOf(['small', 'large', null]),
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    variant: PropTypes.oneOf(['primary']),
+    variant: PropTypes.oneOf(['primary', 'blank']),
     className: PropTypes.string,
     onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.exact(null)]),
 };

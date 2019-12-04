@@ -1,22 +1,24 @@
-$borderSize: 6px;
+@import '../../scss/package';
 
 .wrapper {
   --counter: 0;
   --transitionTime: 200ms;
+  --borderSize: 6px;
   width: 40vw;
   height: 40vw;
-  position: fixed;
+  position: absolute;
   left: 45vw;
-  top: 15vh;
-  border: $borderSize solid var(--accent);
+  top: 10rem;
+  border: var(--borderSize) solid var(--accent);
   border-radius: 100%;
   opacity: .25;
+  z-index: -5;
 }
 
 .handHours, .handMinutes {
   position: absolute;
-  width: $borderSize;
-  left: calc(50% - #{$borderSize});
+  width: var(--borderSize);
+  left: calc(50% - var(--borderSize));
   transition: transform var(--transitionTime);
   transition-timing-function: linear;
   will-change: transform;
@@ -34,4 +36,17 @@ $borderSize: 6px;
   height: 40%;
   top: 10%;
   transform: rotate(calc(var(--counter) * 30deg)) translate3d(0, 0, 0);
+}
+
+@include media-breakpoint-down(md) {
+  .wrapper {
+    top: 8rem;
+    left: 30vw;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .wrapper {
+    --borderSize: 3px;
+  }
 }

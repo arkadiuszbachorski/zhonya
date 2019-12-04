@@ -1,3 +1,6 @@
+@import '../../../scss/package';
+
+
 .logo {
   display: flex;
   align-items: center;
@@ -10,6 +13,14 @@
   }
 
   span {
-    margin-left: 2rem;
+    margin-left: 1rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .logo {
+    span {
+      margin-left: 3rem;
+    }
   }
 }

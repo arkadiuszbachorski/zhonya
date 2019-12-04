@@ -1,8 +1,42 @@
+@import '../../scss/package';
+
 .jumbotron {
-  margin-top: 16rem;
+  margin-top: 15rem;
+  text-align: center;
 
   h2 {
     font-weight: 300;
-    font-size: 4rem;
+    font-size: 1.2em;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .jumbotron {
+    margin-top: 7rem;
+    text-align: center;
+
+    h2 {
+      font-weight: 300;
+      font-size: 2em;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .jumbotron {
+    text-align: left;
+    margin-top: 16rem;
+
+    h2 {
+      font-size: 3rem;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .jumbotron {
+    h2 {
+      font-size: 4rem;
+    }
   }
 }
