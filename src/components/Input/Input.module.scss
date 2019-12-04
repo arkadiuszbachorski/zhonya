@@ -31,6 +31,10 @@ $padding-x: .5rem;
   }
 }
 
+.groupLarge {
+  margin-bottom: 2rem;
+}
+
 .active {
   label {
     transform: translate($padding-x, 0rem) scale(.8);

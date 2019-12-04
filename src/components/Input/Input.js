@@ -5,7 +5,21 @@ import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Input.module.scss';
 
-const Input = ({ onChange, disabled, readOnly, textarea, type, value, className, name, id, label, icon, errors }) => {
+const Input = ({
+    onChange,
+    disabled,
+    readOnly,
+    textarea,
+    type,
+    value,
+    className,
+    name,
+    id,
+    labelId,
+    icon,
+    errors,
+    groupSize,
+}) => {
     const parsedId = id || name;
 
     let inputAttrs = {
@@ -29,10 +43,18 @@ const Input = ({ onChange, disabled, readOnly, textarea, type, value, className,
     }
 
     return (
-        <div className={cn(styles.group, value ? styles.active : null, className, hasErrors ? styles.hasErrors : null)}>
+        <div
+            className={cn(
+                styles.group,
+                value ? styles.active : null,
+                className,
+                hasErrors ? styles.hasErrors : null,
+                groupSize ? styles.groupLarge : null,
+            )}
+        >
             {icon && <FontAwesomeIcon icon={icon} />}
             <label htmlFor={parsedId}>
-                <FormattedMessage id={label} />
+                <FormattedMessage id={labelId} />
             </label>
             {input}
             {hasErrors &&
@@ -47,14 +69,15 @@ const Input = ({ onChange, disabled, readOnly, textarea, type, value, className,
 
 Input.propTypes = {
     onChange: PropTypes.func,
-    type: PropTypes.oneOf(['text']),
+    groupSize: PropTypes.oneOf(['large', 'small']),
+    type: PropTypes.oneOf(['text', 'password']),
     textarea: PropTypes.bool,
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,
     value: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string,
+    labelId: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string,
     icon: PropTypes.oneOfType([PropTypes.object]),
     errors: PropTypes.arrayOf(PropTypes.string),
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
@@ -67,9 +90,10 @@ Input.defaultProps = {
     disabled: false,
     readOnly: false,
     className: null,
-    name: null,
     errors: [],
     icon: null,
+    id: null,
+    groupSize: null,
 };
 
 export default Input;
