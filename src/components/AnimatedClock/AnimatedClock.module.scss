@@ -20,25 +20,18 @@ $borderSize: 6px;
   transition: transform var(--transitionTime);
   transition-timing-function: linear;
   will-change: transform;
-
-  &::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    width: $borderSize;
-    height: 50%;
-    background: var(--accent);
-  }
+  background: var(--accent);
+  transform-origin: 50% 100%;
 }
 
 .handHours {
-  height: 40%;
+  height: 20%;
   top: 30%;
   transform: rotate(calc(var(--counter) * 2.5deg)) translate3d(0, 0, 0);
 }
 
 .handMinutes {
-  height: 80%;
+  height: 40%;
   top: 10%;
   transform: rotate(calc(var(--counter) * 30deg)) translate3d(0, 0, 0);
 }
