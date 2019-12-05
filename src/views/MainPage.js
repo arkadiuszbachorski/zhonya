@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import MainHeader from '../components/MainHeader/MainHeader';
 import AnimatedClock from '../components/AnimatedClock/AnimatedClock';
 import Jumbotron from '../components/Jumbotron/Jumbotron';
 import routes from '../routes';

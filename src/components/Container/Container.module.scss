@@ -1,0 +1,25 @@
+@import '../../scss/package';
+
+
+.container {
+  display: flex;
+}
+
+.center {
+  justify-content: center;
+}
+
+.smallItems {
+  > * {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
+.marginTopLarge {
+  margin-top: 6rem;
+
+  @include media-breakpoint-down(sm) {
+    margin-top: 4rem;
+  }
+}

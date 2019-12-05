@@ -1,10 +1,10 @@
 @import '../../../scss/package';
 
 .card {
-  padding: 1rem $falling-border-radius;
+  padding: 1rem $falling-border-radius - 2rem;
   border: 1px solid transparent;
-  border-bottom-left-radius: $falling-border-radius;
-  border-top-right-radius: $falling-border-radius;
+  border-bottom-left-radius: $falling-border-radius - 1rem;
+  border-top-right-radius: $falling-border-radius - 1rem;
 }
 
 .primary {
