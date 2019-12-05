@@ -1,22 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import MainTemplate from '../components/MainTemplate/MainTemplate';
 import Input from '../components/Input/Input';
 import CardForm from '../components/cards/CardForm/CardForm';
 import Container from '../components/Container/Container';
 import useForm from '../hooks/useForm';
-import { apiTest } from '../api/api';
-
-Input.defaultProps.groupSize = 'large';
+import { apiLogIn } from '../api/api';
+import useAuth from '../hooks/useAuth';
+import useRedirect from '../hooks/useRedirect';
+import routes from '../routes';
+import useGuestOnly from '../hooks/middlewares/useGuestOnly';
 
 const LogIn = () => {
+    useGuestOnly();
+
     const [form, handleChange, setErrors, setLoading] = useForm({
         email: '',
         password: '',
     });
 
+    const setRedirect = useRedirect();
+
+    const [, setAuth] = useAuth();
+
     const handleSubmit = e => {
         e.preventDefault();
-        apiTest(form.data, setErrors, setLoading).then(response => console.log(response));
+        apiLogIn(form.data, setErrors, setLoading).then(response => {
+            const { data } = response;
+            setAuth(data);
+            setRedirect(routes.settings);
+        });
     };
 
     return (
@@ -26,6 +38,7 @@ const LogIn = () => {
                     <Input
                         labelId="input.email"
                         name="email"
+                        groupSize="large"
                         value={form.data.email}
                         errors={form.errors.email}
                         onChange={handleChange}
@@ -33,6 +46,7 @@ const LogIn = () => {
                     <Input
                         labelId="input.password"
                         name="password"
+                        groupSize="large"
                         value={form.data.password}
                         errors={form.errors.password}
                         type="password"

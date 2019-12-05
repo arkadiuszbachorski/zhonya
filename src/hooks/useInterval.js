@@ -9,7 +9,7 @@ export default transitionTime => {
         }, transitionTime);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [transitionTime]);
 
     return [counter];
 };

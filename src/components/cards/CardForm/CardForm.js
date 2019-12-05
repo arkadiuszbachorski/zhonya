@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input from '../../Input/Input';
+import { FormattedMessage } from 'react-intl';
 import Card from '../Card/Card';
 import Button from '../../buttons/Button/Button';
-import { FormattedMessage } from 'react-intl';
 import styles from './CardForm.module.scss';
 
 const CardForm = ({ onSubmit, buttonMessageId, children, loading }) => {
