@@ -7,7 +7,7 @@ export const apiLogIn = (data, errorsSetter, loadingSetter) => {
     return instance.post(`${defaultUrl}/api/auth/login`, data);
 };
 
-export const apiSignUp = (data, errorsSetter, loadingSetter) => {
-    const instance = instanceWithErrorsAndLoading(errorsSetter, loadingSetter);
+export const apiSignUp = (data, errorsSetter, loadingSetter, formatMessage, userMessages = null) => {
+    const instance = instanceWithErrorsAndLoading(errorsSetter, loadingSetter, formatMessage, userMessages);
     return instance.post(`${defaultUrl}/api/auth/register`, data);
 };
