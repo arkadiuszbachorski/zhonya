@@ -1,15 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-export default transitionTime => {
-    const [counter, setCounter] = useState(0);
-
+export default (action, clock) => () => {
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCounter(counter => counter + 1);
-        }, transitionTime);
+        const interval = setInterval(action, clock);
 
         return () => clearInterval(interval);
-    }, [transitionTime]);
-
-    return [counter];
+    }, []);
 };
