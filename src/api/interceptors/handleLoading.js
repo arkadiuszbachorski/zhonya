@@ -6,7 +6,7 @@ export default (instance, loadingSetter) => {
         },
         error => {
             loadingSetter(false);
-            return error;
+            return Promise.reject(error);
         },
     );
 };

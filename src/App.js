@@ -1,14 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
+import { Slide, ToastContainer } from 'react-toastify';
 import MainPage from './views/MainPage';
 import routes from './routes';
 import locale from './locale';
-import LogIn from './views/LogIn';
 import AuthContext from './contexts/AuthContext';
 import useAuthProvider from './hooks/providers/useAuthProvider';
 import RedirectContext from './contexts/RedirectContext';
 import useRedirectProvider from './hooks/providers/useRedirectProvider';
+import LogIn from './views/LogIn';
+import SignUp from './views/SignUp';
 
 const currentLocale = 'pl';
 
@@ -20,11 +22,13 @@ const App = () => {
         <IntlProvider locale={currentLocale} messages={locale[currentLocale]}>
             <RedirectContext.Provider value={setRedirect}>
                 <AuthContext.Provider value={auth}>
+                    <ToastContainer newestOnTop position="bottom-right" transition={Slide} />
                     <Router>
                         <Switch>
                             {redirect && <Redirect to={redirect} />}
                             <Route path={routes.index} exact component={MainPage} />
                             <Route path={routes.logIn} exact component={LogIn} />
+                            <Route path={routes.signUp} exact component={SignUp} />
                         </Switch>
                     </Router>
                 </AuthContext.Provider>

@@ -1,12 +1,12 @@
 import axios from 'axios';
 import handleErrors from '../interceptors/handleErrors';
-import handlePending from '../interceptors/handleLoading';
+import handleLoading from '../interceptors/handleLoading';
 
-export default (errorSetter, loadingSetter) => {
+export default (errorSetter, loadingSetter, formatMessage, userMessages = null) => {
     loadingSetter(true);
     const instance = axios.create();
-    handleErrors(instance, errorSetter);
-    handlePending(instance, loadingSetter);
+    handleErrors(instance, errorSetter, formatMessage, userMessages);
+    handleLoading(instance, loadingSetter);
 
     return instance;
 };
