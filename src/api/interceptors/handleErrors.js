@@ -10,7 +10,7 @@ export default (instance, errorsSetter) => {
                     errorsSetter(error.response.data.errors);
                 }
             }
-            return error;
+            return Promise.reject(error);
         },
     );
 };
