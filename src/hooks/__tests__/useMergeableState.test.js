@@ -28,7 +28,7 @@ describe('Hook - useMergeableState', () => {
             });
         });
 
-        expect(Object.keys(result.current[0].lorem).length).toBe(2);
+        expect(Object.keys(result.current[0]).length).toBe(2);
         expect(result.current[0].ipsum).toBe('new');
     });
 });
