@@ -8,7 +8,7 @@ export default (scope = null) => {
     const redirect = useRedirect();
 
     useEffect(() => {
-        if (auth.token === null || (scope && !auth.scope.contains(scope))) {
+        if (auth.token === null || (scope && auth.scope && !auth.scope.includes(scope))) {
             redirect(routes.logIn);
         }
     }, [auth.token, auth.scope, redirect, scope]);
