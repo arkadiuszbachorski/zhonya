@@ -16,6 +16,7 @@ const Input = ({
     name,
     id,
     labelId,
+    label,
     icon,
     errors,
     groupSize,
@@ -53,9 +54,17 @@ const Input = ({
             )}
         >
             {icon && <FontAwesomeIcon icon={icon} />}
-            <label htmlFor={parsedId}>
-                <FormattedMessage id={labelId} />
-            </label>
+            {(() => {
+                if (labelId) {
+                    return (
+                        <label htmlFor={parsedId}>
+                            <FormattedMessage id={labelId} />
+                        </label>
+                    );
+                } else {
+                    return <label htmlFor={parsedId}>{label}</label>;
+                }
+            })()}
             {input}
             {hasErrors &&
                 errors.map(item => (
@@ -75,7 +84,8 @@ Input.propTypes = {
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,
     value: PropTypes.string.isRequired,
-    labelId: PropTypes.string.isRequired,
+    labelId: PropTypes.string,
+    label: PropTypes.string,
     name: PropTypes.string.isRequired,
     id: PropTypes.string,
     icon: PropTypes.oneOfType([PropTypes.object]),
@@ -94,6 +104,8 @@ Input.defaultProps = {
     icon: null,
     id: null,
     groupSize: null,
+    labelId: null,
+    label: null,
 };
 
 export default Input;
