@@ -1,0 +1,37 @@
+.mainMenu {
+  height: 100%;
+  width: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--primary);
+  padding: 2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 3px 0 3px #00000050;
+}
+
+.logo {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 50%;
+  height: auto;
+}
+
+.buttonsWrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  align-items: center;
+
+  > * {
+    margin: 0.2rem 0;
+  }
+}
+
+.bottomButtons {
+  margin-top: auto;
+  margin-bottom: 1rem;
+}
+
