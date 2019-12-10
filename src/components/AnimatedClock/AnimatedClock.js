@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './AnimatedClock.module.scss';
-import useInterval from '../../hooks/useInterval';
+import useIntervalCounter from '../../hooks/useIntervalCounter';
 
 const AnimatedClock = ({ transitionTime }) => {
-    const [counter] = useInterval(transitionTime);
+    const counter = useIntervalCounter(transitionTime);
 
     const style = {
         '--counter': counter,
