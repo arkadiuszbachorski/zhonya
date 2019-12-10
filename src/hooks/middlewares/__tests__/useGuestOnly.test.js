@@ -43,19 +43,17 @@ const SimulatedApp = () => {
     const [redirect, setRedirect] = useRedirectProvider();
     const auth = useAuthProvider();
     return (
-        <Router>
-            <AuthContext.Provider value={auth}>
-                <RedirectContext.Provider value={setRedirect}>
-                    <Router>
-                        <Switch>
-                            {redirect && <Redirect to={redirect} />}
-                            <Route path="/" exact component={Index} />
-                            <Route path="/guest-only" exact component={GuestOnly} />
-                        </Switch>
-                    </Router>
-                </RedirectContext.Provider>
-            </AuthContext.Provider>
-        </Router>
+        <AuthContext.Provider value={auth}>
+            <RedirectContext.Provider value={setRedirect}>
+                <Router>
+                    <Switch>
+                        {redirect && <Redirect to={redirect} />}
+                        <Route path="/" exact component={Index} />
+                        <Route path="/guest-only" exact component={GuestOnly} />
+                    </Switch>
+                </Router>
+            </RedirectContext.Provider>
+        </AuthContext.Provider>
     );
 };
 

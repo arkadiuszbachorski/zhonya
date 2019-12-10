@@ -31,7 +31,7 @@ const SignUp = () => {
         apiSignUp(form.data, setErrors, setLoading, intl.formatMessage).then(response => {
             const { data } = response;
             setAuth(data);
-            setRedirect(routes.settings);
+            setRedirect(routes.userSettings);
         });
     };
 

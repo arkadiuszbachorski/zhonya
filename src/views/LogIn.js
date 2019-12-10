@@ -27,7 +27,7 @@ const LogIn = () => {
         apiLogIn(form.data, setErrors, setLoading).then(response => {
             const { data } = response;
             setAuth(data);
-            setRedirect(routes.settings);
+            setRedirect(routes.userSettings);
         });
     };
 

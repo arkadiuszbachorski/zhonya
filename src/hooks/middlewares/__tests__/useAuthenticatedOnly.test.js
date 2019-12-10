@@ -72,7 +72,6 @@ describe('Hooks - useAuthenticatedOnly', () => {
 
         fireEvent.click(redirect);
 
-        console.log(document.location.pathname);
         expect(document.location.pathname).not.toBe('/admin-only');
         expect(queryByText('Only admins are allowed to be here')).not.toBeInTheDocument();
     });

@@ -9,7 +9,7 @@ export default () => {
 
     useEffect(() => {
         if (auth.token !== null) {
-            setRedirect(routes.settings);
+            setRedirect(routes.userSettings);
         }
     }, [auth.token, auth.scope, setRedirect]);
 };
