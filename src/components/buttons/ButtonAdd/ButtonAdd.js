@@ -1,12 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import Button from '../Button/Button';
+import ButtonRoundIcon from '../ButtonRoundIcon/ButtonRoundIcon';
 
-const ButtonAdd = props => (
-    <Button round {...props}>
-        <FontAwesomeIcon icon={faPlus} />
-    </Button>
-);
+const ButtonAdd = props => <ButtonRoundIcon icon={faPlus} {...props} />;
 
 export default ButtonAdd;
