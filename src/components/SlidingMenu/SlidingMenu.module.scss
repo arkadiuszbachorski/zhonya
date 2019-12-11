@@ -1,0 +1,48 @@
+.main {
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  transform: translateX(-110%);
+  box-shadow: 3px 0 3px rgba(0, 0, 0, .25);
+  transition: transform .3s;
+  z-index: 100;
+  background: var(--background);
+  padding: 1rem;
+
+  &.active {
+    transform: translateX(0);
+  }
+}
+
+.menuClose {
+  display: block;
+  color: transparent;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity .3s;
+  position: fixed;
+  width: 100%;
+  right: 0;
+  top: -1.2rem;
+  height: calc(100% + 2rem);
+  background: var(--primary);
+  pointer-events: none;
+
+  &.active {
+    opacity: .25;
+    pointer-events: all;
+  }
+}
+
+.typographyLogo {
+  padding-top: 2rem;
+  width: 100%;
+  text-align: center;
+  font-size: 2.6rem;
+  margin-top: auto;
+}
