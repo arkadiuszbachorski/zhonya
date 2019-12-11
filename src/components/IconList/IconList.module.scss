@@ -1,0 +1,24 @@
+@import '../../scss/package';
+
+
+.list {
+  @include list-clear();
+}
+
+.item {
+  padding: .6rem 1rem;
+  transition: transform .3s, opacity .3s;
+
+  svg {
+    margin-right: 1.2rem;
+  }
+  a {
+    color: var(--primary-font) !important;
+    text-decoration: none;
+  }
+
+  &:hover {
+    transform: translateX(1rem);
+    opacity: $transition-opacity;
+  }
+}
