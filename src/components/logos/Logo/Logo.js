@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const Logo = ({ inverted, className, stroke, to }) => (
-    <Link to={to}>
+const Logo = ({ inverted, className, stroke, to, linkClassName }) => (
+    <Link to={to} className={linkClassName}>
         <svg
             width="121"
             height="147"
@@ -24,13 +24,15 @@ const Logo = ({ inverted, className, stroke, to }) => (
 Logo.propTypes = {
     inverted: PropTypes.bool,
     className: PropTypes.string,
+    linkClassName: PropTypes.string,
     stroke: PropTypes.number,
     to: PropTypes.string,
 };
 
 Logo.defaultProps = {
     inverted: false,
-    className: '',
+    className: null,
+    linkClassName: null,
     stroke: 3,
     to: '/',
 };
