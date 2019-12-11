@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 const useToggle = (init = false) => {
     const [state, setState] = useState(init);

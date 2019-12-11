@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
 /*
  * To be used only once in the highest component, near RedirectContext.Provider
