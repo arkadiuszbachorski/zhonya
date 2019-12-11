@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
 /*
  * To be used only once in the highest component, near RedirectContext.Provider
  * */
 
-export default () => {
+const useRedirectProvider = () => {
     const [redirect, setRedirect] = useState(null);
 
     useEffect(() => {
@@ -15,3 +15,5 @@ export default () => {
 
     return [redirect, setRedirect];
 };
+
+export default useRedirectProvider;

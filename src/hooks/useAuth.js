@@ -6,4 +6,6 @@ import AuthContext from '../contexts/AuthContext';
  * Returns [authData, authSet];
  * */
 
-export default () => useContext(AuthContext);
+const useAuth = () => useContext(AuthContext);
+
+export default useAuth;

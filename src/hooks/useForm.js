@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useMergeableState from './useMergeableState';
 
-export default initial => {
+const useForm = initial => {
     const [data, setData] = useMergeableState(initial);
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
@@ -21,3 +21,5 @@ export default initial => {
 
     return [form, updateFormByName, setErrors, setLoading];
 };
+
+export default useForm;

@@ -3,7 +3,7 @@ import useAuth from '../useAuth';
 import useRedirect from '../useRedirect';
 import routes from '../../routes';
 
-export default () => {
+const useGuestOnly = () => {
     const [auth] = useAuth();
     const setRedirect = useRedirect();
 
@@ -13,3 +13,5 @@ export default () => {
         }
     }, [auth.token, auth.scope, setRedirect]);
 };
+
+export default useGuestOnly;

@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 
-export default (action, clock) => () => {
+const useInterval = (action, clock) => {
     useEffect(() => {
         const interval = setInterval(action, clock);
 
         return () => clearInterval(interval);
     }, []);
 };
+
+export default useInterval;

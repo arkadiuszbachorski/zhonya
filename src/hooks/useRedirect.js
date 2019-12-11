@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import {useContext} from 'react';
 import RedirectContext from '../contexts/RedirectContext';
 
 /*
@@ -6,4 +6,6 @@ import RedirectContext from '../contexts/RedirectContext';
  * Returns setRedirect function
  * */
 
-export default () => useContext(RedirectContext);
+const useRedirect = () => useContext(RedirectContext);
+
+export default useRedirect;

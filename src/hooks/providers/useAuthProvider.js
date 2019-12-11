@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import {useState} from 'react';
 
 /*
  * To be used only once in the highest component, near AuthContext.Provider
  * */
 
-export default () => {
+const useAuthProvider = () => {
     const [auth, setAuth] = useState(() => {
         return JSON.parse(localStorage.getItem('auth')) || { token: null, scope: null };
     });
@@ -16,3 +16,5 @@ export default () => {
 
     return [auth, setAuthAndSaveToLocalStorage];
 };
+
+export default useAuthProvider;
