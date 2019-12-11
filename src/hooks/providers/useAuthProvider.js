@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 /*
  * To be used only once in the highest component, near AuthContext.Provider
