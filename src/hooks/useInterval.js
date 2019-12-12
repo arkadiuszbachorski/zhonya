@@ -5,7 +5,7 @@ const useInterval = (action, clock) => {
         const interval = setInterval(action, clock);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [action, clock]);
 };
 
 export default useInterval;
