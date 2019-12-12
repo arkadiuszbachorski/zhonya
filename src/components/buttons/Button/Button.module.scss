@@ -49,6 +49,16 @@
   color: var(--primary-font);
 }
 
+.danger {
+  background-color: var(--danger);
+  color: var(--secondary-font);
+}
+
+.success {
+  background-color: var(--success);
+  color: var(--secondary-font);
+}
+
 
 @include media-breakpoint-down(xs) {
   .button {
