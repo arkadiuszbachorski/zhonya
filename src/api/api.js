@@ -2,8 +2,8 @@ import instanceWithErrorsAndLoading from './instances/instanceWithErrorsAndLoadi
 
 const defaultUrl = 'http://localhost:8000';
 
-export const apiLogIn = (data, errorsSetter, loadingSetter) => {
-    const instance = instanceWithErrorsAndLoading(errorsSetter, loadingSetter);
+export const apiLogIn = (data, errorsSetter, loadingSetter, formatMessage, userMessages = null) => {
+    const instance = instanceWithErrorsAndLoading(errorsSetter, loadingSetter, formatMessage, userMessages);
     return instance.post(`${defaultUrl}/api/auth/login`, data);
 };
 
