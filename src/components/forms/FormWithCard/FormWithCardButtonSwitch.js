@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ButtonCreate from '../../buttons/ButtonCreate/ButtonCreate';
 import ButtonEdit from '../../buttons/ButtonEdit/ButtonEdit';
 
-const FormButtonSwitch = ({ variant, loading }) => {
+const FormWithCardButtonSwitch = ({ variant, loading }) => {
     switch (variant) {
         case 'create':
             return <ButtonCreate disabled={loading} type="submit" />;
@@ -17,13 +17,13 @@ const FormButtonSwitch = ({ variant, loading }) => {
     }
 };
 
-FormButtonSwitch.propTypes = {
+FormWithCardButtonSwitch.propTypes = {
     variant: PropTypes.oneOf(['create', 'edit', 'delete']).isRequired,
     loading: PropTypes.bool,
 };
 
-FormButtonSwitch.defaultProps = {
+FormWithCardButtonSwitch.defaultProps = {
     loading: false,
 };
 
-export default FormButtonSwitch;
+export default FormWithCardButtonSwitch;
