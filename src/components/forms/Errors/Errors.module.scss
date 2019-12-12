@@ -1,0 +1,7 @@
+@import '../../../scss/package';
+
+.error {
+  padding: 0 $form-padding-x;
+  margin-top: .3rem;
+  color: var(--danger);
+}

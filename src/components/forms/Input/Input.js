@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
-import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Input.module.scss';
+import Label from '../Label/Label';
+import Errors from '../Errors/Errors';
+import Group from '../Group/Group';
 
 const Input = ({
     onChange,
@@ -25,14 +26,11 @@ const Input = ({
 
     let inputAttrs = {
         onChange,
-        className,
         disabled,
         readOnly,
         name,
         id: parsedId,
     };
-
-    const hasErrors = errors.length > 0;
 
     let input;
 
@@ -44,35 +42,21 @@ const Input = ({
     }
 
     return (
-        <div
-            className={cn(
+        <Group
+            value={value}
+            groupSize={groupSize}
+            className={[
                 styles.group,
                 value ? styles.active : null,
+                errors.length > 0 ? styles.hasErrors : null,
                 className,
-                hasErrors ? styles.hasErrors : null,
-                groupSize ? styles.groupLarge : null,
-            )}
+            ]}
         >
             {icon && <FontAwesomeIcon icon={icon} />}
-            {(() => {
-                if (labelId) {
-                    return (
-                        <label htmlFor={parsedId}>
-                            <FormattedMessage id={labelId} />
-                        </label>
-                    );
-                } else {
-                    return <label htmlFor={parsedId}>{label}</label>;
-                }
-            })()}
+            <Label labelId={labelId} id={parsedId} label={label} />
             {input}
-            {hasErrors &&
-                errors.map(item => (
-                    <div key={item} className={styles.error}>
-                        {item}
-                    </div>
-                ))}
-        </div>
+            <Errors errors={errors} />
+        </Group>
     );
 };
 
@@ -94,7 +78,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-    onChange: () => {},
+    onChange: null,
     type: 'text',
     textarea: false,
     disabled: false,
