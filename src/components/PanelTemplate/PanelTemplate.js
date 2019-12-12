@@ -5,12 +5,17 @@ import PanelHeader from '../PanelHeader/PanelHeader';
 import styles from './PanelTemplate.module.scss';
 import IconList from '../IconList/IconList';
 
-const PanelTemplate = ({ children, titleId, secondaryTitleId, actionButton, sideMenuItems }) => {
+const PanelTemplate = ({ children, titleId, secondaryTitleId, actionButton, sideMenuItems, title }) => {
     return (
         <>
             <PanelMenu />
             <div className={styles.wrapper}>
-                <PanelHeader titleId={titleId} secondaryTitleId={secondaryTitleId} actionButton={actionButton} />
+                <PanelHeader
+                    titleId={titleId}
+                    title={title}
+                    secondaryTitleId={secondaryTitleId}
+                    actionButton={actionButton}
+                />
                 <div className={styles.mainWrapper}>
                     {sideMenuItems !== null && (
                         <div className={styles.sideMenu}>
@@ -38,6 +43,7 @@ PanelTemplate.propTypes = {
     ),
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element]).isRequired,
     titleId: PropTypes.string,
+    title: PropTypes.string,
     secondaryTitleId: PropTypes.string,
     actionButton: PropTypes.element,
 };
@@ -45,6 +51,7 @@ PanelTemplate.propTypes = {
 PanelTemplate.defaultProps = {
     sideMenuItems: null,
     titleId: null,
+    title: null,
     secondaryTitleId: null,
     actionButton: null,
 };

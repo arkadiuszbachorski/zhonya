@@ -4,7 +4,7 @@ import styles from './PanelHeader.module.scss';
 import PageTitle from '../typography/PageTitle/PageTitle';
 import PageSecondaryTitle from '../typography/PageSecondaryTitle/PageSecondaryTitle';
 
-const PanelHeader = ({ secondaryTitleId, actionButton, titleId }) => (
+const PanelHeader = ({ secondaryTitleId, actionButton, titleId, title }) => (
     <div className={styles.headerRow}>
         {titleId && (
             <div>
