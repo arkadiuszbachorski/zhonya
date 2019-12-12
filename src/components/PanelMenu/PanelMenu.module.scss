@@ -19,6 +19,7 @@
   height: auto;
 }
 
+
 .buttonsWrapper {
   display: flex;
   flex-direction: column;
@@ -35,3 +36,6 @@
   margin-bottom: 1rem;
 }
 
+.itemList {
+  padding-left: 1rem !important;
+}
