@@ -9,9 +9,12 @@ import useAuth from '../hooks/useAuth';
 import useRedirect from '../hooks/useRedirect';
 import routes from '../routes';
 import useGuestOnly from '../hooks/middlewares/useGuestOnly';
+import { useIntl } from 'react-intl';
 
 const LogIn = () => {
     useGuestOnly();
+
+    const intl = useIntl();
 
     const [form, handleChange, setErrors, setLoading] = useForm({
         email: '',
@@ -24,7 +27,7 @@ const LogIn = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        apiLogIn(form.data, setErrors, setLoading).then(response => {
+        apiLogIn(form.data, setErrors, setLoading, intl.formatMessage).then(response => {
             const { data } = response;
             setAuth(data);
             setRedirect(routes.userSettings);
