@@ -25,7 +25,7 @@ const SlidingMenu = ({ children, titleId, visible, toggle }) => {
 };
 
 SlidingMenu.propTypes = {
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element]).isRequired,
+    children: PropTypes.node.isRequired,
     titleId: PropTypes.string.isRequired,
     visible: PropTypes.bool.isRequired,
     toggle: PropTypes.func.isRequired,

@@ -21,7 +21,7 @@ const Group = ({ className, groupSize, children }) => {
 Group.propTypes = {
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
     groupSize: PropTypes.oneOf(['large', 'small']),
-    children: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]).isRequired,
+    children: PropTypes.node.isRequired,
 };
 
 Group.defaultProps = {

@@ -20,7 +20,7 @@ const IconListItem = ({ to, icon, children, messageId }) => {
 };
 
 IconListItem.propTypes = {
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element, PropTypes.string]),
+    children: PropTypes.node,
     messageId: PropTypes.string,
     to: PropTypes.string.isRequired,
     icon: PropTypes.oneOfType([PropTypes.object]).isRequired,

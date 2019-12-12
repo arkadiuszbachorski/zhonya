@@ -11,7 +11,7 @@ const FormattedOrChildren = ({ children, messageId }) => {
 };
 
 FormattedOrChildren.propTypes = {
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element, PropTypes.string]),
+    children: PropTypes.node,
     messageId: PropTypes.string,
 };
 

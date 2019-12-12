@@ -1,8 +1,8 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import MainTemplate from '../components/MainTemplate/MainTemplate';
-import Input from '../components/Input/Input';
-import CardForm from '../components/cards/CardForm/CardForm';
+import Input from '../components/forms/Input/Input';
+import FormInCard from '../components/forms/FormInCard/FormInCard';
 import Container from '../components/Container/Container';
 import useForm from '../hooks/useForm';
 import { apiSignUp } from '../api/api';
@@ -26,8 +26,7 @@ const SignUp = () => {
 
     const [, setAuth] = useAuth();
 
-    const handleSubmit = e => {
-        e.preventDefault();
+    const handleSubmit = () => {
         apiSignUp(form.data, setErrors, setLoading, intl.formatMessage).then(response => {
             const { data } = response;
             setAuth(data);
@@ -38,7 +37,7 @@ const SignUp = () => {
     return (
         <MainTemplate>
             <Container variant={['center', 'smallItems', 'marginTopLarge']}>
-                <CardForm buttonMessageId="signUp" onSubmit={handleSubmit} loading={form.loading}>
+                <FormInCard buttonMessageId="signUp" onSubmit={handleSubmit} loading={form.loading}>
                     <Input
                         labelId="input.email"
                         name="email"
@@ -65,7 +64,7 @@ const SignUp = () => {
                         type="password"
                         onChange={handleChange}
                     />
-                </CardForm>
+                </FormInCard>
             </Container>
         </MainTemplate>
     );

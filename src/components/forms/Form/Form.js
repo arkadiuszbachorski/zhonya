@@ -1,26 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Form = ({ onChange, noPrevent, children }) => {
-    let handleChange = e => {
+const Form = ({ onSubmit, noPrevent, children, className }) => {
+    let handleSubmit = e => {
         e.preventDefault();
-        onChange(e);
+        onSubmit(e);
     };
     if (noPrevent) {
-        handleChange = onChange;
+        handleSubmit = onSubmit;
     }
-    return <form onChange={handleChange}>{children}</form>;
+    return (
+        <form onSubmit={handleSubmit} className={className}>
+            {children}
+        </form>
+    );
 };
 
 Form.propTypes = {
     noPrevent: PropTypes.bool,
-    onChange: PropTypes.func.isRequired,
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element, PropTypes.string])
-        .isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired,
+    className: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 };
 
 Form.defaultProps = {
     noPrevent: false,
+    className: null,
 };
 
 export default Form;

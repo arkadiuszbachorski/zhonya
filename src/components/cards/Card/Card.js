@@ -8,7 +8,7 @@ const Card = ({ children, variant, className }) => (
 );
 
 Card.propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.node,
     variant: PropTypes.oneOf(['primary', 'danger']),
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import MainTemplate from '../components/MainTemplate/MainTemplate';
-import Input from '../components/Input/Input';
-import CardForm from '../components/cards/CardForm/CardForm';
+import Input from '../components/forms/Input/Input';
+import FormInCard from '../components/forms/FormInCard/FormInCard';
 import Container from '../components/Container/Container';
 import useForm from '../hooks/useForm';
 import { apiLogIn } from '../api/api';
@@ -25,8 +25,7 @@ const LogIn = () => {
 
     const [, setAuth] = useAuth();
 
-    const handleSubmit = e => {
-        e.preventDefault();
+    const handleSubmit = () => {
         apiLogIn(form.data, setErrors, setLoading, intl.formatMessage).then(response => {
             const { data } = response;
             setAuth(data);
@@ -37,7 +36,7 @@ const LogIn = () => {
     return (
         <MainTemplate>
             <Container variant={['center', 'smallItems', 'marginTopLarge']}>
-                <CardForm buttonMessageId="logIn" onSubmit={handleSubmit} loading={form.loading}>
+                <FormInCard buttonMessageId="logIn" onSubmit={handleSubmit} loading={form.loading}>
                     <Input
                         labelId="input.email"
                         name="email"
@@ -55,7 +54,7 @@ const LogIn = () => {
                         type="password"
                         onChange={handleChange}
                     />
-                </CardForm>
+                </FormInCard>
             </Container>
         </MainTemplate>
     );

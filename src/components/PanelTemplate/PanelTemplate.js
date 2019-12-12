@@ -41,7 +41,7 @@ PanelTemplate.propTypes = {
             icon: PropTypes.object,
         }),
     ),
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element]).isRequired,
+    children: PropTypes.node.isRequired,
     titleId: PropTypes.string,
     title: PropTypes.string,
     secondaryTitleId: PropTypes.string,
