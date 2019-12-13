@@ -10,15 +10,16 @@
   font-size: 1.2rem;
   transition: opacity .3s, background-color .3s;
 
-  &:hover {
+  &:disabled {
+    background-color: var(--accent);
+  }
+
+  &:not(:disabled):hover {
     opacity: $transition-opacity;
     cursor: pointer;
   }
 }
 
-.button:disabled {
-  background-color: var(--accent);
-}
 
 .large {
   font-size: 1.6rem;
