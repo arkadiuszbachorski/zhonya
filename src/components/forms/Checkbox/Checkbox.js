@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Checkbox.module.scss';
 import Label from '../Label/Label';
 import Errors from '../Errors/Errors';
@@ -15,10 +14,11 @@ const Checkbox = ({
     id,
     labelId,
     label,
-    icon,
     errors,
     groupSize,
     radio,
+    finalValue,
+    checked,
 }) => {
     const parsedId = id || name;
 
@@ -26,17 +26,23 @@ const Checkbox = ({
 
     return (
         <Group
-            value={value}
             groupSize={groupSize}
             className={[
                 styles.group,
-                value ? styles.checked : null,
                 errors.length > 0 ? styles.hasErrors : null,
                 radio ? styles.radio : null,
                 className,
             ]}
         >
-            <input type={type} onChange={onChange} disabled={disabled} name={name} id={parsedId} />
+            <input
+                type={type}
+                onChange={onChange}
+                disabled={disabled}
+                checked={finalValue ? finalValue === value : checked}
+                name={name}
+                id={parsedId}
+                value={value}
+            />
             <Label labelId={labelId} id={parsedId} label={label} />
             <Errors errors={errors} />
         </Group>
@@ -48,12 +54,13 @@ Checkbox.propTypes = {
     onChange: PropTypes.func,
     groupSize: PropTypes.oneOf(['large', 'small']),
     disabled: PropTypes.bool,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
+    checked: PropTypes.bool,
+    finalValue: PropTypes.bool,
     labelId: PropTypes.string,
     label: PropTypes.string,
     name: PropTypes.string.isRequired,
     id: PropTypes.string,
-    icon: PropTypes.oneOfType([PropTypes.object]),
     errors: PropTypes.arrayOf(PropTypes.string),
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
 };
@@ -64,11 +71,13 @@ Checkbox.defaultProps = {
     disabled: false,
     className: null,
     errors: [],
-    icon: null,
     id: null,
     groupSize: null,
     labelId: null,
     label: null,
+    value: undefined,
+    checked: undefined,
+    finalValue: undefined,
 };
 
 export default Checkbox;

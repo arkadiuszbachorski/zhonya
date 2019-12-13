@@ -6,24 +6,24 @@ import '@testing-library/jest-dom/extend-expect';
 const TestContainer = props => {
     const [value, setValue] = useState('');
 
-    return <Checkbox value={value} onChange={e => setValue(e.target.value)} name="name" label="Email" {...props} />;
+    return <Checkbox value={value} onChange={e => setValue(e.target.checked)} name="name" label="Email" {...props} />;
 };
 
-describe('Component - Input', () => {
+describe('Component - Checkbox', () => {
     it('onChange method', () => {
         const { getByLabelText } = render(<TestContainer />);
         const input = getByLabelText('Email');
 
-        expect(input.value).toBe('');
+        expect(input.checked).toBe(false);
 
         const fakeEvent = {
             target: {
-                value: 'newValue',
+                checked: true,
             },
         };
         fireEvent.change(input, fakeEvent);
 
-        expect(input.value).toBe('newValue');
+        expect(input.checked).toBe(true);
     });
 
     it('disabled', () => {
@@ -33,40 +33,25 @@ describe('Component - Input', () => {
         expect(input.disabled).toBe(true);
     });
 
-    it('readOnly', () => {
-        const { getByLabelText } = render(<TestContainer readOnly />);
-        const input = getByLabelText('Email');
-
-        expect(input.readOnly).toBe(true);
-    });
-
     it('prints errors', () => {
-        const { getByText } = render(<TestContainer errors={['Something is wrong']} />);
-        const input = getByText('Something is wrong');
+        const { getByText } = render(<TestContainer errors={['Something broke']} />);
+        const input = getByText('Something broke');
 
         expect(input).toBeInTheDocument();
     });
 
-    it('has type', () => {
-        const { getByLabelText } = render(<TestContainer type="password" />);
-        const input = getByLabelText('Email');
-
-        expect(input.type).toBe('password');
-    });
-
-    it('has same name and id', () => {
-        const { getByLabelText } = render(<TestContainer type="password" />);
-        const input = getByLabelText('Email');
-
-        expect(input.name).toBe('name');
-        expect(input.id).toBe('name');
-    });
-
     it('has different name and id when it is provided', () => {
-        const { getByLabelText } = render(<TestContainer id="id" type="password" />);
+        const { getByLabelText } = render(<TestContainer id="id" />);
         const input = getByLabelText('Email');
 
         expect(input.name).toBe('name');
         expect(input.id).toBe('id');
+    });
+
+    it('radio', () => {
+        const { getByLabelText } = render(<TestContainer radio />);
+        const input = getByLabelText('Email');
+
+        expect(input.type).toBe('radio');
     });
 });
