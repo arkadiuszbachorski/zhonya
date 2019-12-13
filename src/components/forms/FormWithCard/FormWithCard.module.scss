@@ -1,0 +1,26 @@
+@import '../../../scss/package';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  width: 100%;
+}
+
+.card {
+  width: 42%;
+  text-align: center;
+  font-weight: 300;
+}
+
+.inputsWrapper {
+  flex-grow: 1;
+  margin-left: 2rem;
+  padding-top: 1rem;
+}
+
+@include media-breakpoint-up(md) {
+  .wrapper {
+    flex-direction: row;
+  }
+}

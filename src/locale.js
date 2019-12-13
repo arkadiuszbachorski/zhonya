@@ -2,6 +2,7 @@ export default {
     pl: {
         logIn: 'Zaloguj się',
         signUp: 'Zarejestruj się',
+        deleteConfirmation: 'Jesteś pewny?',
         'main.jumbotron.first': 'Zmierz swoje codzienne zadania',
         'main.jumbotron.second': 'i planuj swój dzień lepiej!',
         'main.jumbotron.button': 'Spróbuj za darmo już teraz',
@@ -31,6 +32,7 @@ export default {
     en: {
         logIn: 'Log In',
         signUp: 'Sign Up',
+        deleteConfirmation: 'Are you sure?',
         'main.jumbotron.first': 'Measure your everyday tasks',
         'main.jumbotron.second': 'and plan your day even better!',
         'main.jumbotron.button': 'Try now for free',
