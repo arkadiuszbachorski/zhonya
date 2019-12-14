@@ -1,5 +1,6 @@
-import { useContext } from 'react';
-import StoreContext from '../StoreContext';
+import React, { useContext } from 'react';
+
+export const StoreContext = React.createContext(null);
 
 const useStore = key => {
     const store = useContext(StoreContext);
@@ -8,3 +9,9 @@ const useStore = key => {
 };
 
 export default useStore;
+
+export const storeKeys = {
+    useAuth: 'auth',
+    useLocale: 'locale',
+    useRedirect: 'redirect',
+};

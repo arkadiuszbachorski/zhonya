@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
+import axios from 'axios';
 import useAuth from '../useAuth';
 import useRedirect from '../useRedirect';
 import routes from '../../routes';
-import axios from 'axios';
 
 const useAuthenticatedOnly = (scope = null) => {
     const [auth] = useAuth();

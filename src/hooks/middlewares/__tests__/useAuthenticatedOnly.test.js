@@ -1,13 +1,11 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import useRedirectProvider from '../../providers/useRedirectProvider';
-import useRedirect from '../../useRedirect';
+import useRedirect, { useRedirectProvider } from '../../useRedirect';
 import '@testing-library/jest-dom/extend-expect';
-import useAuth from '../../useAuth';
-import useAuthProvider from '../../providers/useAuthProvider';
+import useAuth, { useAuthProvider } from '../../useAuth';
 import useAuthenticatedOnly from '../useAuthenticatedOnly';
-import StoreContext from '../../../StoreContext';
+import { storeKeys, StoreContext } from '../../useStore';
 
 const Index = () => {
     const redirect = useRedirect();
@@ -49,8 +47,8 @@ const SimulatedApp = () => {
         <Router>
             <StoreContext.Provider
                 value={{
-                    auth,
-                    redirect: setRedirect,
+                    [storeKeys.useAuth]: auth,
+                    [storeKeys.useRedirect]: setRedirect,
                 }}
             >
                 <Router>

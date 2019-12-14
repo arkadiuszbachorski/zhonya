@@ -1,9 +1,8 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import useAuthProvider from '../providers/useAuthProvider';
-import useAuth from '../useAuth';
-import StoreContext from '../../StoreContext';
+import useAuth, { useAuthProvider } from '../useAuth';
+import { StoreContext, storeKeys } from '../useStore';
 
 const Changer = () => {
     const [auth, setAuth] = useAuth();
@@ -24,7 +23,7 @@ const SimulatedApp = () => {
     return (
         <StoreContext.Provider
             value={{
-                auth,
+                [storeKeys.useAuth]: auth,
             }}
         >
             <Changer />
