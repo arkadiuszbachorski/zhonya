@@ -5,6 +5,7 @@ export default {
     userSettings: '/user/settings',
     userData: '/user/data',
     userDelete: '/user/delete',
+    userLogout: '/user/logout',
     taskIndex: '/task',
     taskCreate: '/task/create',
     tagIndex: '/tag',
