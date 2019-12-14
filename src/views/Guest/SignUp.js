@@ -1,15 +1,13 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import MainTemplate from '../components/MainTemplate/MainTemplate';
-import Input from '../components/forms/Input/Input';
-import FormInCard from '../components/forms/FormInCard/FormInCard';
-import Container from '../components/Container/Container';
-import useForm from '../hooks/useForm';
-import { apiSignUp } from '../api/api';
-import useAuth from '../hooks/useAuth';
-import useRedirect from '../hooks/useRedirect';
-import routes from '../routes';
-import useGuestOnly from '../hooks/middlewares/useGuestOnly';
+import MainTemplate from '../../components/MainTemplate/MainTemplate';
+import Input from '../../components/forms/Input/Input';
+import FormInCard from '../../components/forms/FormInCard/FormInCard';
+import Container from '../../components/Container/Container';
+import useForm from '../../hooks/useForm';
+import { apiSignUp } from '../../api/api';
+import useAuth from '../../hooks/useAuth';
+import useGuestOnly from '../../hooks/middlewares/useGuestOnly';
 
 const SignUp = () => {
     useGuestOnly();
@@ -22,15 +20,15 @@ const SignUp = () => {
         password_confirmation: '',
     });
 
-    const setRedirect = useRedirect();
-
     const [, setAuth] = useAuth();
 
     const handleSubmit = () => {
         apiSignUp(form.data, setErrors, setLoading, intl.formatMessage).then(response => {
             const { data } = response;
-            setAuth(data);
-            setRedirect(routes.userSettings);
+            setAuth({
+                token: data.access_token,
+                scope: data.scope,
+            });
         });
     };
 
