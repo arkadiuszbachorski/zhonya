@@ -13,13 +13,15 @@ const useForm = initial => {
         });
     };
 
+    const resetDataToInit = () => setData(initial);
+
     const form = {
         data,
         errors,
         loading,
     };
 
-    return [form, updateFormByName, setErrors, setLoading];
+    return [form, updateFormByName, setErrors, setLoading, resetDataToInit];
 };
 
 export default useForm;
