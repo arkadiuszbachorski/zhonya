@@ -2,8 +2,10 @@ import useStore, { storeKeys } from './useStore';
 import useStateWithLocalStorage from './useStateWithLocalStorage';
 import { useEffect } from 'react';
 
+const prefersDark = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
 export const useThemeProvider = () => {
-    const [theme, setTheme] = useStateWithLocalStorage(storeKeys.useTheme, 'light');
+    const [theme, setTheme] = useStateWithLocalStorage(storeKeys.useTheme, prefersDark() ? 'dark' : 'light');
 
     useEffect(() => {
         document.body.dataset.theme = theme;
