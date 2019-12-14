@@ -6,7 +6,10 @@ import { useState } from 'react';
 
 const useStateWithLocalStorage = (key, initial) => {
     const [state, setState] = useState(() => {
-        return JSON.parse(localStorage.getItem(key)) || initial;
+        const item = JSON.parse(localStorage.getItem(key));
+        if (item) return item;
+        if (typeof initial === 'function') return initial();
+        return initial;
     });
 
     const setStateAndSaveToLocalStorage = newValue => {

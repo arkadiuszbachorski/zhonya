@@ -8,6 +8,19 @@ describe('Hook - useStateWithLocalStorage', () => {
         expect(result.current[0].lorem).toBe('value');
     });
 
+    it('executes function when provided as default value', () => {
+        const value = 'value';
+        const { result } = renderHook(() => {
+            return useStateWithLocalStorage('test', () => {
+                return {
+                    lorem: value,
+                };
+            });
+        });
+
+        expect(result.current[0].lorem).toBe('value');
+    });
+
     it('keeps data in hook', () => {
         const { result } = renderHook(() => useStateWithLocalStorage('test', { lorem: 'value' }));
 
