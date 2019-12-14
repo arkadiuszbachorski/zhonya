@@ -2,8 +2,8 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import useAuthProvider from '../providers/useAuthProvider';
-import AuthContext from '../../contexts/AuthContext';
 import useAuth from '../useAuth';
+import StoreContext from '../../StoreContext';
 
 const Changer = () => {
     const [auth, setAuth] = useAuth();
@@ -22,9 +22,13 @@ const SimulatedApp = () => {
     const auth = useAuthProvider();
 
     return (
-        <AuthContext.Provider value={auth}>
+        <StoreContext.Provider
+            value={{
+                auth,
+            }}
+        >
             <Changer />
-        </AuthContext.Provider>
+        </StoreContext.Provider>
     );
 };
 

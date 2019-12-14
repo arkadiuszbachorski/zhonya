@@ -1,10 +1,10 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { BrowserRouter as Router, MemoryRouter, Redirect, Route, Switch } from 'react-router-dom';
-import RedirectContext from '../../contexts/RedirectContext';
 import useRedirectProvider from '../providers/useRedirectProvider';
 import useRedirect from '../useRedirect';
 import '@testing-library/jest-dom/extend-expect';
+import StoreContext from '../../StoreContext';
 
 const SimulatedIndex = () => {
     const redirect = useRedirect();
@@ -21,7 +21,11 @@ const SimulatedApp = () => {
     const [redirect, setRedirect] = useRedirectProvider();
     return (
         <MemoryRouter>
-            <RedirectContext.Provider value={setRedirect}>
+            <StoreContext.Provider
+                value={{
+                    redirect: setRedirect,
+                }}
+            >
                 <Router>
                     <Switch>
                         {redirect && <Redirect to={redirect} />}
@@ -29,7 +33,7 @@ const SimulatedApp = () => {
                         <Route path="/result" exact component={SimulatedResult} />
                     </Switch>
                 </Router>
-            </RedirectContext.Provider>
+            </StoreContext.Provider>
         </MemoryRouter>
     );
 };
