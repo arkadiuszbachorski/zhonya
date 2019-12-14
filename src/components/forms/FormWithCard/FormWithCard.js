@@ -7,7 +7,7 @@ import Card from '../../cards/Card/Card';
 import Form from '../Form/Form';
 import FormWithCardButtonSwitch from './FormWithCardButtonSwitch/FormWithCardButtonSwitch';
 
-const FormWithCard = ({ titleId, paragraphIds, children, onSubmit, variant, loading }) => {
+const FormWithCard = ({ titleId, paragraphIds, children, onSubmit, variant, loading, buttonSwitch }) => {
     return (
         <div className={styles.wrapper}>
             <Card inverted variant={variant === 'delete' ? 'danger' : 'primary'} className={styles.card}>
@@ -21,7 +21,7 @@ const FormWithCard = ({ titleId, paragraphIds, children, onSubmit, variant, load
             <div className={styles.inputsWrapper}>
                 <Form onSubmit={onSubmit}>
                     {children}
-                    <FormWithCardButtonSwitch loading={loading} variant={variant} />
+                    {buttonSwitch && <FormWithCardButtonSwitch loading={loading} variant={variant} />}
                 </Form>
             </div>
         </div>
@@ -35,6 +35,7 @@ FormWithCard.propTypes = {
     loading: PropTypes.bool,
     children: PropTypes.node,
     onSubmit: PropTypes.func,
+    buttonSwitch: PropTypes.bool,
 };
 
 FormWithCard.defaultProps = {
@@ -42,6 +43,7 @@ FormWithCard.defaultProps = {
     children: undefined,
     paragraphIds: [],
     loading: false,
+    buttonSwitch: true,
 };
 
 export default FormWithCard;

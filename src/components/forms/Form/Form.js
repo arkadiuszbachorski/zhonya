@@ -18,7 +18,7 @@ const Form = ({ onSubmit, noPrevent, children, className }) => {
 
 Form.propTypes = {
     noPrevent: PropTypes.bool,
-    onSubmit: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func,
     children: PropTypes.node.isRequired,
     className: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 };
@@ -26,6 +26,7 @@ Form.propTypes = {
 Form.defaultProps = {
     noPrevent: false,
     className: null,
+    onSubmit: undefined,
 };
 
 export default Form;

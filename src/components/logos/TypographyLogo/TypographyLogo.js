@@ -11,7 +11,7 @@ const TypographyLogo = ({ classNames }) => (
 );
 
 TypographyLogo.propTypes = {
-    classNames: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
+    classNames: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.array]),
 };
 
 TypographyLogo.defaultProps = {
