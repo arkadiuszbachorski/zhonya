@@ -8,7 +8,6 @@
 }
 
 .card {
-  width: 42%;
   text-align: center;
   font-weight: 300;
 }
@@ -16,11 +15,16 @@
 .inputsWrapper {
   flex-grow: 1;
   margin-left: 2rem;
-  padding-top: 1rem;
+  padding-top: 2rem;
 }
 
 @include media-breakpoint-up(md) {
   .wrapper {
     flex-direction: row;
+  }
+
+  .card {
+    min-width: 250px;
+    width: 42%;
   }
 }

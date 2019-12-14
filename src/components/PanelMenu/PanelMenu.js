@@ -41,211 +41,211 @@ const PanelMenu = () => {
             </SlidingMenu>
             <SlidingMenu toggle={toggleSearchMenu} titleId="action.search" visible={searchMenuActive}>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
                 <p>
-                    todo
+                    test
                     <br />
                 </p>
             </SlidingMenu>
