@@ -14,4 +14,5 @@ export const storeKeys = {
     useAuth: 'auth',
     useLocale: 'locale',
     useRedirect: 'redirect',
+    useTheme: 'theme',
 };
