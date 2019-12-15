@@ -24,6 +24,7 @@ const Input = ({
     groupSize,
     children,
 }) => {
+    const isColor = type === 'color';
     const parsedId = id || name;
 
     let inputAttrs = {
@@ -39,6 +40,9 @@ const Input = ({
     if (textarea) {
         input = <textarea {...inputAttrs}>{value}</textarea>;
     } else {
+        if (isColor) {
+            inputAttrs.value = inputAttrs.value || '#ffffff';
+        }
         inputAttrs = { ...inputAttrs, type, value };
         input = <input {...inputAttrs} />;
     }
@@ -51,7 +55,7 @@ const Input = ({
                 styles.group,
                 value ? styles.active : null,
                 errors.length > 0 ? styles.hasErrors : null,
-                type === 'color' ? styles.color : null,
+                isColor ? styles.color : null,
                 className,
             ]}
         >
@@ -59,7 +63,7 @@ const Input = ({
             {icon && <FontAwesomeIcon icon={icon} />}
             <Label labelId={labelId} id={parsedId} label={label} />
             {input}
-            {type === 'color' && (
+            {isColor && (
                 <>
                     <span className={styles.colorCode}>{value}</span>
                     <ColorPill className={styles.colorPill} color={value} />
