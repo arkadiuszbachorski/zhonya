@@ -1,0 +1,12 @@
+@import '../../scss/package';
+
+.pill {
+  background-color: var(--pillColor);
+  border-radius: 1rem;
+
+  &.horizontal {
+    height: 5px;
+    width: 25px;
+  }
+
+}
