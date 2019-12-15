@@ -5,6 +5,7 @@ import styles from './Input.module.scss';
 import Label from '../Label/Label';
 import Errors from '../Errors/Errors';
 import Group from '../Group/Group';
+import ColorPill from '../../ColorPill/ColorPill';
 
 const Input = ({
     onChange,
@@ -21,6 +22,7 @@ const Input = ({
     icon,
     errors,
     groupSize,
+    children,
 }) => {
     const parsedId = id || name;
 
@@ -49,12 +51,20 @@ const Input = ({
                 styles.group,
                 value ? styles.active : null,
                 errors.length > 0 ? styles.hasErrors : null,
+                type === 'color' ? styles.color : null,
                 className,
             ]}
         >
+            {children}
             {icon && <FontAwesomeIcon icon={icon} />}
             <Label labelId={labelId} id={parsedId} label={label} />
             {input}
+            {type === 'color' && (
+                <>
+                    <span className={styles.colorCode}>{value}</span>
+                    <ColorPill className={styles.colorPill} variant="input" color={value} />
+                </>
+            )}
             <Errors errors={errors} />
         </Group>
     );
@@ -63,7 +73,7 @@ const Input = ({
 Input.propTypes = {
     onChange: PropTypes.func,
     groupSize: PropTypes.oneOf(['large', 'small']),
-    type: PropTypes.oneOf(['text', 'password']),
+    type: PropTypes.oneOf(['text', 'password', 'color']),
     textarea: PropTypes.bool,
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,
@@ -75,9 +85,11 @@ Input.propTypes = {
     icon: PropTypes.oneOfType([PropTypes.object]),
     errors: PropTypes.arrayOf(PropTypes.string),
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    children: PropTypes.node,
 };
 
 Input.defaultProps = {
+    children: undefined,
     onChange: null,
     type: 'text',
     textarea: false,

@@ -37,3 +37,38 @@
     border-color: var(--danger);
   }
 }
+
+.color {
+  input {
+    opacity: 0;
+  }
+
+  input:focus + .colorCode {
+    border-bottom-color: var(--primary);
+  }
+
+  .colorPill {
+    pointer-events: none;
+    z-index: 1;
+    height: 10px;
+    width: 30px;
+    position: absolute;
+    right: $form-padding-x;
+    top: 50%;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .25);
+  }
+
+  .colorCode {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding-top: 1.1rem;
+    padding-left: $form-padding-x;
+    border-bottom: 1px solid var(--accent);
+    width: 100%;
+    height: 100%;
+    transition: border-bottom-color .3s;
+  }
+}
+
