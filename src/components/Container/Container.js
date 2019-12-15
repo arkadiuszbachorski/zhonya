@@ -9,7 +9,8 @@ const Container = ({ children, variant }) => {
 
 Container.propTypes = {
     children: PropTypes.node.isRequired,
-    variant: PropTypes.arrayOf(PropTypes.oneOf(['center', 'smallItems', 'marginTopLarge'])).isRequired,
+    variant: PropTypes.arrayOf(PropTypes.oneOf(['center', 'smallItems', 'filters', 'marginTopLarge', 'marginBottom']))
+        .isRequired,
 };
 
 export default Container;
