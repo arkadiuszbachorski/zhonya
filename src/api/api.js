@@ -26,3 +26,8 @@ export const apiUserChangeEmail = (data, errorsSetter, loadingSetter, formatMess
     const instance = instanceWithErrorsAndLoading(errorsSetter, loadingSetter, formatMessage);
     return instance.put(`${defaultUrl}/user/email`, data);
 };
+
+export const apiTagCreate = (data, errorsSetter, loadingSetter, formatMessage) => {
+    const instance = instanceWithErrorsAndLoading(errorsSetter, loadingSetter, formatMessage);
+    return instance.post(`${defaultUrl}/tag`, data);
+};

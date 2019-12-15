@@ -62,7 +62,7 @@ const Input = ({
             {type === 'color' && (
                 <>
                     <span className={styles.colorCode}>{value}</span>
-                    <ColorPill className={styles.colorPill} variant="input" color={value} />
+                    <ColorPill className={styles.colorPill} color={value} />
                 </>
             )}
             <Errors errors={errors} />

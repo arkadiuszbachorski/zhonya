@@ -10,4 +10,5 @@ export default {
     taskCreate: '/task/create',
     tagIndex: '/tag',
     tagCreate: '/tag/create',
+    tagEdit: (id = ':id') => `/tag/${id}`,
 };

@@ -18,6 +18,7 @@ import { useLocaleProvider } from './hooks/useLocale';
 import { storeKeys, StoreContext } from './hooks/useStore';
 import { useThemeProvider } from './hooks/useTheme';
 import UserSettings from './views/Authenticated/User/Settings/UserSettings';
+import TagCreate from './views/Authenticated/Tag/Create/TagCreate';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -46,6 +47,7 @@ const App = () => {
                         <Route path={routes.userData} exact component={UserData} />
                         <Route path={routes.userDelete} exact component={UserDelete} />
                         <Route path={routes.userLogout} exact component={UserLogout} />
+                        <Route path={routes.tagCreate} exact component={TagCreate} />
                     </Switch>
                 </Router>
             </StoreContext.Provider>
