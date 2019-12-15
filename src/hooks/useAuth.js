@@ -1,9 +1,13 @@
-import { useContext } from 'react';
-import AuthContext from '../contexts/AuthContext';
+import useStore, { storeKeys } from './useStore';
+import useStateWithLocalStorage from './useStateWithLocalStorage';
 
-/*
- * To be used everywhere you need Auth data and setting Auth data
- * Returns [authData, authSet];
- * */
+export const useAuthProvider = () => {
+    return useStateWithLocalStorage(storeKeys.useAuth, {
+        token: null,
+        scope: null,
+    });
+};
 
-export default () => useContext(AuthContext);
+const useAuth = () => useStore(storeKeys.useAuth);
+
+export default useAuth;

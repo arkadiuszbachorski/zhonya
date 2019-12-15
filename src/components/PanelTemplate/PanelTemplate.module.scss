@@ -1,0 +1,33 @@
+@import '../../scss/package';
+
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 60px;
+  padding: 0 2rem;
+  width: calc(100% - 60px);
+}
+
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.iconList {
+  margin-top: 0;
+}
+
+@include media-breakpoint-up(lg) {
+  .mainWrapper {
+    flex-direction: row;
+  }
+
+  .sideMenu {
+    width: 200px;
+  }
+}

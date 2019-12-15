@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default initial => {
+const useMergeableState = initial => {
     const [state, setState] = useState(initial);
 
     const mergeAndSetState = newState => {
@@ -14,3 +14,5 @@ export default initial => {
 
     return [state, mergeAndSetState];
 };
+
+export default useMergeableState;

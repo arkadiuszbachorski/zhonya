@@ -7,19 +7,19 @@
   height: 100%;
   margin: 0;
 
-  svg {
+  .logo {
     width: auto;
     height: 100%;
   }
 
-  span {
+  .typographyLogo {
     margin-left: 1rem;
   }
 }
 
 @include media-breakpoint-up(md) {
   .logo {
-    span {
+    .typographyLogo {
       margin-left: 3rem;
     }
   }

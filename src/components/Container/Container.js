@@ -8,7 +8,7 @@ const Container = ({ children, variant }) => {
 };
 
 Container.propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.node.isRequired,
     variant: PropTypes.arrayOf(PropTypes.oneOf(['center', 'smallItems', 'marginTopLarge'])).isRequired,
 };
 

@@ -10,22 +10,23 @@
   font-size: 1.2rem;
   transition: opacity .3s, background-color .3s;
 
-  &:hover {
+  &:disabled {
+    background-color: var(--accent);
+  }
+
+  &:not(:disabled):hover {
     opacity: $transition-opacity;
     cursor: pointer;
   }
 }
 
-.button:disabled {
-  background-color: var(--accent);
-}
 
 .large {
   font-size: 1.6rem;
 }
 
 .round {
-  padding: 0;
+  padding: 0 !important;
   border-radius: 100%;
   width: 2.4rem;
   height: 2.4rem;
@@ -47,6 +48,16 @@
 .blank {
   background-color: var(--background);
   color: var(--primary-font);
+}
+
+.danger {
+  background-color: var(--danger);
+  color: var(--secondary-font);
+}
+
+.success {
+  background-color: var(--success);
+  color: var(--secondary-font);
 }
 
 

@@ -1,0 +1,39 @@
+@import '../../../scss/package';
+
+.group {
+  input, textarea {
+    border: none;
+    border-bottom: 1px solid var(--accent);
+    transition: border-color .3s;
+    width: 100%;
+    height: 2rem;
+    margin-top: .55rem;
+    padding: 0 $form-padding-x;
+
+    &:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+  }
+
+  label {
+    position: absolute;
+    transform: translate($form-padding-x, 1rem);
+    color: var(--accent);
+    transition: transform .3s;
+    transform-origin: 0 0;
+  }
+}
+
+
+.active {
+  label {
+    transform: translate($form-padding-x, 0rem) scale(.8);
+  }
+}
+
+.hasErrors {
+  input, textarea {
+    border-color: var(--danger);
+  }
+}

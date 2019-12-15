@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useInterval from './useInterval';
 
-export default clock => {
+const useIntervalCounter = clock => {
     const [counter, setCounter] = useState(0);
 
     useInterval(() => {
@@ -10,3 +10,5 @@ export default clock => {
 
     return counter;
 };
+
+export default useIntervalCounter;

@@ -15,7 +15,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+body[data-theme="light"] {
   --primary: #{map-get($light, 'primary')};
   --background: #{map-get($light, 'background')};
   --accent: #{map-get($light, 'accent')};
@@ -25,7 +25,7 @@ body {
   --secondary-font: #{map-get($light, 'secondary-font')};
 }
 
-body.dark-theme {
+body[data-theme="dark"] {
   --primary: #{map-get($dark, 'primary')};
   --background: #{map-get($dark, 'background')};
   --accent: #{map-get($dark, 'accent')};

@@ -57,4 +57,26 @@ describe('Hook - useForm', () => {
 
         expect(result.current[0].loading).toBe(true);
     });
+
+    it('resets data to initial', () => {
+        const { result } = renderHook(() => useForm(initialData));
+
+        act(() => {
+            const fakeEvent = {
+                target: {
+                    name: 'lorem',
+                    value: 'new',
+                },
+            };
+            result.current[1](fakeEvent);
+        });
+
+        expect(result.current[0].data.lorem).toBe('new');
+
+        act(() => {
+            result.current[4]();
+        });
+
+        expect(result.current[0].data.lorem).toBe('test');
+    });
 });

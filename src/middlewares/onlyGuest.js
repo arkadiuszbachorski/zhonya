@@ -7,7 +7,7 @@ export default wrappedComponent => {
     const [auth] = useAuth();
 
     if (auth.token !== null) {
-        return <Redirect to={routes.settings} />;
+        return <Redirect to={routes.userSettings} />;
     }
 
     return wrappedComponent;
