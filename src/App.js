@@ -44,12 +44,12 @@ const App = () => {
                         <Route path={routes.index} exact component={MainPage} />
                         <Route path={routes.logIn} exact component={LogIn} />
                         <Route path={routes.signUp} exact component={SignUp} />
-                        <Route path={routes.userSettings} exact component={UserSettings} />
-                        <Route path={routes.userData} exact component={UserData} />
-                        <Route path={routes.userDelete} exact component={UserDelete} />
-                        <Route path={routes.userLogout} exact component={UserLogout} />
-                        <Route path={routes.tagCreate} exact component={TagCreate} />
-                        <Route path={routes.tagIndex} exact component={TagIndex} />
+                        <Route path={routes.user.settings} exact component={UserSettings} />
+                        <Route path={routes.user.data} exact component={UserData} />
+                        <Route path={routes.user.delete} exact component={UserDelete} />
+                        <Route path={routes.user.logout} exact component={UserLogout} />
+                        <Route path={routes.tag.create} exact component={TagCreate} />
+                        <Route path={routes.tag.index} exact component={TagIndex} />
                     </Switch>
                 </Router>
             </StoreContext.Provider>

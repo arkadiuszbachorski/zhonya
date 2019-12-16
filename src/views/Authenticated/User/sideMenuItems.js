@@ -3,22 +3,22 @@ import routes from '../../../routes';
 
 const sideMenuItems = [
     {
-        to: routes.userSettings,
+        to: routes.user.settings,
         messageId: 'action.settings',
         icon: faCog,
     },
     {
-        to: routes.userData,
+        to: routes.user.data,
         messageId: 'action.dataEdit',
         icon: faPen,
     },
     {
-        to: routes.userDelete,
+        to: routes.user.delete,
         messageId: 'action.delete',
         icon: faTrash,
     },
     {
-        to: routes.userLogout,
+        to: routes.user.logout,
         messageId: 'action.logout',
         icon: faSignOutAlt,
     },

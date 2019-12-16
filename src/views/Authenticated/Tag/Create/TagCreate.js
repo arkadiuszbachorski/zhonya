@@ -28,7 +28,7 @@ const TagCreate = () => {
         apiTagCreate(form.data, setErrors, setLoading, formatMessage).then(response => {
             const id = response.data;
             toast.success(formatMessage({ id: 'toast.success.tag.create' }));
-            redirectTo(routes.tagEdit(id));
+            redirectTo(routes.tag.edit(id));
         });
     };
 

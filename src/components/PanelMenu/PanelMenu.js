@@ -24,19 +24,19 @@ const PanelMenu = () => {
                     <ButtonRoundIcon icon={faSearch} onClick={toggleSearchMenu} />
                 </div>
                 <div className={cn(styles.buttonsWrapper, styles.bottomButtons)}>
-                    <ButtonRoundIcon icon={faUser} link to={routes.userSettings} />
+                    <ButtonRoundIcon icon={faUser} link to={routes.user.settings} />
                 </div>
             </nav>
             <SlidingMenu toggle={toggleListMenu} titleId="action.lists" visible={listMenuActive}>
                 <IconList className={styles.itemList}>
-                    <IconList.Item icon={faCheckSquare} to={routes.taskIndex} messageId="model.task.plural" />
-                    <IconList.Item icon={faTag} to={routes.tagIndex} messageId="model.tag.plural" />
+                    <IconList.Item icon={faCheckSquare} to={routes.task.index} messageId="model.task.plural" />
+                    <IconList.Item icon={faTag} to={routes.tag.index} messageId="model.tag.plural" />
                 </IconList>
             </SlidingMenu>
             <SlidingMenu toggle={toggleCreateMenu} titleId="action.create" visible={createMenuActive}>
                 <IconList className={styles.itemList}>
-                    <IconList.Item icon={faCheckSquare} to={routes.taskCreate} messageId="model.task.singular" />
-                    <IconList.Item icon={faTag} to={routes.tagCreate} messageId="model.tag.singular" />
+                    <IconList.Item icon={faCheckSquare} to={routes.task.create} messageId="model.task.singular" />
+                    <IconList.Item icon={faTag} to={routes.tag.create} messageId="model.tag.singular" />
                 </IconList>
             </SlidingMenu>
             <SlidingMenu toggle={toggleSearchMenu} titleId="action.search" visible={searchMenuActive}>

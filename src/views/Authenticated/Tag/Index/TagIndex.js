@@ -39,7 +39,7 @@ const TagIndex = () => {
     }, [debouncedFilters]);
 
     return (
-        <PanelTemplate titleId="model.tag.plural" actionButton={<ButtonCreate link to={routes.tagCreate} />}>
+        <PanelTemplate titleId="model.tag.plural" actionButton={<ButtonCreate link to={routes.tag.create} />}>
             <Container variant={['marginBottom', 'filters']}>
                 <Input
                     icon={faSearch}
@@ -57,7 +57,7 @@ const TagIndex = () => {
                     <GridTable.Header messageId="tag.index.header.taskCount" />
                 </GridTable.Row>
                 {tags.map(({ id, name, description, color, tasks_count }) => (
-                    <GridTable.Row className={styles.row} key={id} to={routes.tagEdit(id)}>
+                    <GridTable.Row className={styles.row} key={id} to={routes.tag.edit(id)}>
                         <GridTable.Cell>
                             <ColorPill color={`#${color}`} variant="horizontal" />
                         </GridTable.Cell>
