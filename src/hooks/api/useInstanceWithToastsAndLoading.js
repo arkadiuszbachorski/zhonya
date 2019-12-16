@@ -17,7 +17,7 @@ const useInstanceWithToastsAndLoading = (userMessages = null) => {
         inst.defaults.headers.common.Authorization = `Bearer ${auth.token}`;
 
         return inst;
-    }, []);
+    }, [formatMessage, userMessages, auth.token]);
 
     return [instance, loading];
 };

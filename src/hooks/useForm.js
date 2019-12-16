@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import useMergeableState from './useMergeableState';
 
 const useForm = initial => {
