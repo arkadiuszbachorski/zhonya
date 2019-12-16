@@ -1,18 +1,17 @@
 import React from 'react';
-import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
-import sideMenuItems from '../sideMenuItems';
 import ChangeThemeForm from './ChangeThemeForm';
 import ChangeLocaleForm from './ChangeLocaleForm';
+import UserPanelTemplate from '../UserPanelTemplate';
 
 const UserSettings = () => {
     useAuthenticatedOnly();
 
     return (
-        <PanelTemplate titleId="model.user" sideMenuItems={sideMenuItems}>
+        <UserPanelTemplate>
             <ChangeThemeForm />
             <ChangeLocaleForm />
-        </PanelTemplate>
+        </UserPanelTemplate>
     );
 };
 
