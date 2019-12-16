@@ -1,0 +1,25 @@
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  opacity: .4;
+  width: 100px;
+  height: auto;
+  animation: rotating 2s;
+  animation-iteration-count: infinite;
+
+  path {
+    stroke: var(--primary);
+  }
+
+}
+
+.link {
+  pointer-events: none;
+}
