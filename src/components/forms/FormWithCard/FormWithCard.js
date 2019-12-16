@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import styles from './FormWithCard.module.scss';
 import PageTitle from '../../typography/PageTitle/PageTitle';
-import Card from '../../cards/Card/Card';
+import Card from '../../Card/Card';
 import Form from '../Form/Form';
 import FormWithCardButtonSwitch from './FormWithCardButtonSwitch/FormWithCardButtonSwitch';
 
@@ -40,7 +40,7 @@ FormWithCard.propTypes = {
 
 FormWithCard.defaultProps = {
     onSubmit: undefined,
-    children: undefined,
+    children: null,
     paragraphIds: [],
     loading: false,
     buttonSwitch: true,

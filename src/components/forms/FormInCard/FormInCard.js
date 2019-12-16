@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import Card from '../../cards/Card/Card';
+import Card from '../../Card/Card';
 import Button from '../../buttons/Button/Button';
 import styles from './FormInCard.module.scss';
 import Form from '../Form/Form';

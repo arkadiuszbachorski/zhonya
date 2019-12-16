@@ -93,7 +93,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-    children: undefined,
+    children: null,
     onChange: null,
     type: 'text',
     textarea: false,
