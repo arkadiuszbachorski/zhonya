@@ -1,0 +1,45 @@
+.table {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  max-height: 60vh;
+}
+
+.row {
+  width: 100%;
+  display: grid;
+
+  &:not(.headerRow):not(.header) {
+    transition: background-color .3s;
+
+    &:hover {
+      .cell {
+        background-color: var(--opaque-primary);
+      }
+    }
+  }
+
+}
+
+.headerRow {
+  position: sticky;
+  top: 0;
+}
+
+.rowLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cell {
+  transition: border-bottom-color .3s;
+  border-bottom: 1px solid var(--accent);
+  padding: .6rem .25rem .6rem 0;
+}
+
+.header {
+  background: var(--background);
+  font-weight: bold;
+  border-bottom-width: 2px;
+}
