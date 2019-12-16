@@ -4,25 +4,26 @@ import Input from '../../components/forms/Input/Input';
 import FormInCard from '../../components/forms/FormInCard/FormInCard';
 import Container from '../../components/Container/Container';
 import useForm from '../../hooks/useForm';
-import { apiLogIn } from '../../api/api';
+import api from '../../api';
 import useAuth from '../../hooks/useAuth';
-import useGuestOnly from '../../hooks/middlewares/useGuestOnly';
-import { useIntl } from 'react-intl';
+import useGuestOnly from '../../hooks/useGuestOnly';
+import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 
 const LogIn = () => {
     useGuestOnly();
 
-    const intl = useIntl();
-
-    const [form, handleChange, setErrors, setLoading] = useForm({
+    const [form, handleChange] = useForm({
         email: '',
         password: '',
     });
 
     const [, setAuth] = useAuth();
 
+    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
+
     const handleSubmit = () => {
-        apiLogIn(form.data, setErrors, setLoading, intl.formatMessage).then(response => {
+        console.log(form);
+        instance.post(api.auth.logIn, form).then(response => {
             const { data } = response;
             setAuth({
                 token: data.access_token,
@@ -34,21 +35,21 @@ const LogIn = () => {
     return (
         <MainTemplate>
             <Container variant={['center', 'smallItems', 'marginTopLarge']}>
-                <FormInCard buttonMessageId="logIn" onSubmit={handleSubmit} loading={form.loading}>
+                <FormInCard buttonMessageId="logIn" onSubmit={handleSubmit} loading={loading}>
                     <Input
                         labelId="input.email"
                         name="email"
                         groupSize="large"
-                        value={form.data.email}
-                        errors={form.errors.email}
+                        value={form.email}
+                        errors={errors.email}
                         onChange={handleChange}
                     />
                     <Input
                         labelId="input.password"
                         name="password"
                         groupSize="large"
-                        value={form.data.password}
-                        errors={form.errors.password}
+                        value={form.password}
+                        errors={errors.password}
                         type="password"
                         onChange={handleChange}
                     />

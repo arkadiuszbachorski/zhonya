@@ -11,8 +11,6 @@ const useAuthenticatedOnly = (scope = null) => {
     useEffect(() => {
         if (auth.token === null || (scope && auth.scope && !auth.scope.includes(scope))) {
             redirect(routes.logIn);
-        } else {
-            axios.defaults.headers.common.Authorization = `Bearer ${auth.token}`;
         }
     }, [auth.token, auth.scope, redirect, scope]);
 };

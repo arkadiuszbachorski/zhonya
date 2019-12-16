@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-export default (instance, errorsSetter, formatMessage, userMessages = null) => {
+export default (instance, formatMessage, userMessages = null) => {
     const defualtMessages = {
         validation: () => formatMessage({ id: 'toast.error.validation' }),
         notFound: () => formatMessage({ id: 'toast.error.notFound' }),
@@ -13,14 +13,12 @@ export default (instance, errorsSetter, formatMessage, userMessages = null) => {
     const messages = userMessages ? { ...defualtMessages, ...userMessages } : defualtMessages;
     instance.interceptors.response.use(
         response => {
-            errorsSetter({});
             return response;
         },
         error => {
             if (error.response) {
                 const { status } = error.response;
                 if (status === 422) {
-                    errorsSetter(error.response.data.errors);
                     toast.error(messages.validation());
                 } else if (status === 404) {
                     toast.error(messages.notFound());

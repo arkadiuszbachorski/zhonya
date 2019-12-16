@@ -1,6 +1,6 @@
 import React from 'react';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
-import useAuthenticatedOnly from '../../../../hooks/middlewares/useAuthenticatedOnly';
+import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import sideMenuItems from '../sideMenuItems';
 import ChangePasswordForm from './ChangePasswordForm';
 import ChangeEmailForm from './ChangeEmailForm';

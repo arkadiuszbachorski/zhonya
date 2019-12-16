@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
-import useAuthenticatedOnly from '../../../../hooks/middlewares/useAuthenticatedOnly';
+import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import sideMenuItems from '../sideMenuItems';
 import useAuth from '../../../../hooks/useAuth';
 

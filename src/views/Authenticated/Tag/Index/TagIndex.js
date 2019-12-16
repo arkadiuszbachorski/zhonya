@@ -1,41 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { useIntl } from 'react-intl';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
-import useAuthenticatedOnly from '../../../../hooks/middlewares/useAuthenticatedOnly';
-import { apiTagIndex } from '../../../../api/api';
+import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+import api from '../../../../api';
 import routes from '../../../../routes';
 import ButtonCreate from '../../../../components/buttons/ButtonCreate/ButtonCreate';
 import Input from '../../../../components/forms/Input/Input';
 import Container from '../../../../components/Container/Container';
-import useFilter from '../../../../hooks/useFilter';
+import useDebouncedForm from '../../../../hooks/useDebouncedForm';
 import GridTable from '../../../../components/GridTable/GridTable';
 import ColorPill from '../../../../components/ColorPill/ColorPill';
 import styles from './TaxIndex.module.scss';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 
 const TagIndex = () => {
     useAuthenticatedOnly();
 
-    const { formatMessage } = useIntl();
-
-    const [filters, debouncedFilters, handleChange] = useFilter({
+    const [debouncedFilters, filters, handleChange] = useDebouncedForm({
         search: '',
     });
 
+    const [instance, loading] = useInstanceWithToastsAndLoading();
+
     const [tags, setTags] = useState([]);
 
-    const [loading, setLoading] = useState(true);
-
-    /*
-     * Todo:
-     *   1. Finish tag index
-     *   2. Encapsulate fetching with some hook like useFetchList
-     *   3. Component that renders GridTable
-     *   4. Create Edit
-     * */
-
     useEffect(() => {
-        apiTagIndex(debouncedFilters, setLoading, formatMessage).then(response => setTags(response.data));
+        instance.get(api.tag.index, { params: debouncedFilters }).then(response => {
+            setTags(response.data);
+        });
     }, [debouncedFilters]);
 
     return (

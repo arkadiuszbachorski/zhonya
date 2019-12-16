@@ -10,9 +10,9 @@ describe('Hook - useForm', () => {
     it('preserves initial data', () => {
         const { result } = renderHook(() => useForm(initialData));
 
-        expect(Object.keys(result.current[0].data).length).toBe(2);
-        expect(result.current[0].data.lorem).toBe('test');
-        expect(result.current[0].data.ipsum).toBe('value');
+        expect(Object.keys(result.current[0]).length).toBe(2);
+        expect(result.current[0].lorem).toBe('test');
+        expect(result.current[0].ipsum).toBe('value');
     });
 
     it('updates data with event handling', () => {
@@ -28,34 +28,7 @@ describe('Hook - useForm', () => {
             result.current[1](fakeEvent);
         });
 
-        expect(result.current[0].data.lorem).toBe('new');
-    });
-
-    it('sets errors', () => {
-        const { result } = renderHook(() => useForm(initialData));
-
-        expect(Object.keys(result.current[0].errors).length).toBe(0);
-
-        act(() => {
-            result.current[2]({
-                lorem: ['Required'],
-            });
-        });
-
-        expect(Object.keys(result.current[0].errors).length).toBe(1);
-        expect(result.current[0].errors.lorem).toBeInstanceOf(Array);
-    });
-
-    it('sets loading', () => {
-        const { result } = renderHook(() => useForm(initialData));
-
-        expect(result.current[0].loading).toBe(false);
-
-        act(() => {
-            result.current[3](true);
-        });
-
-        expect(result.current[0].loading).toBe(true);
+        expect(result.current[0].lorem).toBe('new');
     });
 
     it('resets data to initial', () => {
@@ -71,12 +44,12 @@ describe('Hook - useForm', () => {
             result.current[1](fakeEvent);
         });
 
-        expect(result.current[0].data.lorem).toBe('new');
+        expect(result.current[0].lorem).toBe('new');
 
         act(() => {
-            result.current[4]();
+            result.current[2]();
         });
 
-        expect(result.current[0].data.lorem).toBe('test');
+        expect(result.current[0].lorem).toBe('test');
     });
 });

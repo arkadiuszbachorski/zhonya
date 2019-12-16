@@ -2,14 +2,15 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
-import useAuthenticatedOnly from '../../../../hooks/middlewares/useAuthenticatedOnly';
+import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import Input from '../../../../components/forms/Input/Input';
 import FormWithCard from '../../../../components/forms/FormWithCard/FormWithCard';
 import useForm from '../../../../hooks/useForm';
-import { apiTagCreate } from '../../../../api/api';
+import api from '../../../../api';
 import Container from '../../../../components/Container/Container';
 import useRedirect from '../../../../hooks/useRedirect';
 import routes from '../../../../routes';
+import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 
 const TagCreate = () => {
     useAuthenticatedOnly();
@@ -18,14 +19,16 @@ const TagCreate = () => {
 
     const redirectTo = useRedirect();
 
-    const [form, handleChange, setErrors, setLoading] = useForm({
+    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
+
+    const [form, handleChange] = useForm({
         name: '',
         description: '',
         color: '',
     });
 
     const submit = () => {
-        apiTagCreate(form.data, setErrors, setLoading, formatMessage).then(response => {
+        instance.post(api.tag.create, form).then(response => {
             const id = response.data;
             toast.success(formatMessage({ id: 'toast.success.tag.create' }));
             redirectTo(routes.tag.edit(id));
@@ -37,7 +40,7 @@ const TagCreate = () => {
             <Container variant={['center', 'marginTopLarge']}>
                 <FormWithCard
                     onSubmit={submit}
-                    loading={form.loading}
+                    loading={loading}
                     variant="create"
                     titleId="tag.create.title"
                     paragraphIds={['tag.create.text1', 'tag.create.text2']}
@@ -45,23 +48,23 @@ const TagCreate = () => {
                     <Input
                         labelId="input.name"
                         name="name"
-                        value={form.data.name}
-                        errors={form.errors.name}
+                        value={form.name}
+                        errors={errors.name}
                         onChange={handleChange}
                     />
                     <Input
                         labelId="input.description"
                         name="description"
-                        value={form.data.description}
-                        errors={form.errors.description}
+                        value={form.description}
+                        errors={errors.description}
                         onChange={handleChange}
                     />
                     <Input
                         labelId="input.color"
                         type="color"
                         name="color"
-                        value={form.data.color}
-                        errors={form.errors.color}
+                        value={form.color}
+                        errors={errors.color}
                         onChange={handleChange}
                     />
                 </FormWithCard>

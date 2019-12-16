@@ -5,17 +5,20 @@ import useForm from '../../../../hooks/useForm';
 import Container from '../../../../components/Container/Container';
 import FormWithCard from '../../../../components/forms/FormWithCard/FormWithCard';
 import Input from '../../../../components/forms/Input/Input';
-import { apiUserChangeEmail } from '../../../../api/api';
+import api from '../../../../api';
+import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 
 const ChangeEmailForm = () => {
     const { formatMessage } = useIntl();
 
-    const [form, handleChange, setErrors, setLoading] = useForm({
+    const [form, handleChange] = useForm({
         email: '',
     });
 
+    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
+
     const submit = () => {
-        apiUserChangeEmail(form.data, setErrors, setLoading, formatMessage).then(() => {
+        instance.put(api.user.changeEmail, form).then(() => {
             toast.success(formatMessage({ id: 'toast.success.changeEmail' }));
         });
     };
@@ -24,7 +27,7 @@ const ChangeEmailForm = () => {
         <Container variant={['center', 'marginTopLarge']}>
             <FormWithCard
                 onSubmit={submit}
-                loading={form.loading}
+                loading={loading}
                 variant="edit"
                 titleId="user.data.email.title"
                 paragraphIds={['user.data.email.text1', 'user.data.email.text2']}
@@ -32,8 +35,8 @@ const ChangeEmailForm = () => {
                 <Input
                     labelId="input.newEmail"
                     name="email"
-                    value={form.data.email}
-                    errors={form.errors.email}
+                    value={form.email}
+                    errors={errors.email}
                     onChange={handleChange}
                 />
             </FormWithCard>

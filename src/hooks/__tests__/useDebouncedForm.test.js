@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import useFilter from '../useFilter';
+import useDebouncedForm from '../useDebouncedForm';
 
 const initialData = {
     lorem: 'test',
@@ -14,17 +14,9 @@ const timeout = async delay => {
     });
 };
 
-describe('Hook - useFilter', () => {
-    it('preserves initial data', () => {
-        const { result } = renderHook(() => useFilter(initialData));
-
-        expect(Object.keys(result.current[1]).length).toBe(2);
-        expect(result.current[1].lorem).toBe('test');
-        expect(result.current[1].ipsum).toBe('value');
-    });
-
+describe('Hook - useDebouncedForm', () => {
     it('updates data with debounce', async () => {
-        const { result } = renderHook(() => useFilter(initialData, 200));
+        const { result } = renderHook(() => useDebouncedForm(initialData, 200));
 
         act(() => {
             const fakeEvent = {
@@ -36,14 +28,14 @@ describe('Hook - useFilter', () => {
             result.current[2](fakeEvent);
         });
 
-        expect(result.current[1].lorem).toBe('test');
+        expect(result.current[0].lorem).toBe('test');
 
         await timeout(50).then(() => {
-            expect(result.current[1].lorem).toBe('test');
+            expect(result.current[0].lorem).toBe('test');
         });
 
         await timeout(200).then(() => {
-            expect(result.current[1].lorem).toBe('new');
+            expect(result.current[0].lorem).toBe('new');
         });
     });
 });
