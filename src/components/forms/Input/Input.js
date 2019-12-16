@@ -56,11 +56,12 @@ const Input = ({
                 value ? styles.active : null,
                 errors.length > 0 ? styles.hasErrors : null,
                 isColor ? styles.color : null,
+                input ? styles.hasIcon : null,
                 className,
             ]}
         >
             {children}
-            {icon && <FontAwesomeIcon icon={icon} />}
+            {icon && <FontAwesomeIcon icon={icon} className={styles.icon} />}
             <Label labelId={labelId} id={parsedId} label={label} />
             {input}
             {isColor && (

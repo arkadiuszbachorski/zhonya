@@ -72,3 +72,21 @@
   }
 }
 
+.hasIcon {
+  input, textarea {
+    padding-right: 1.6rem;
+  }
+
+  .icon {
+    pointer-events: none;
+    position: absolute;
+    bottom: .5rem;
+    right: $form-padding-x;
+    color: var(--accent);
+    background: var(--background);
+  }
+
+}
+
+
+
