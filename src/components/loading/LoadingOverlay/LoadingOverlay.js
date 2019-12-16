@@ -7,7 +7,7 @@ const LoadingOverlay = ({ loading }) => {
     if (loading) {
         return (
             <div className={styles.overlay}>
-                <Loading />
+                <Loading loading={loading} />
             </div>
         );
     }

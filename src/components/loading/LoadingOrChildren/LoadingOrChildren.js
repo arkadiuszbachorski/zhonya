@@ -7,7 +7,7 @@ const LoadingOrChildren = ({ loading, children }) => {
     if (loading) {
         return (
             <Container variant={['marginTopLarge', 'center']}>
-                <Loading />
+                <Loading loading={loading} />
             </Container>
         );
     }

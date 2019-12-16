@@ -52,7 +52,7 @@ export default {
         'tag.index.header.name': 'Nazwa',
         'tag.index.header.description': 'Opis',
         'tag.index.header.color': 'Kolor',
-        'tag.index.header.taskCounter': 'Liczba zadań',
+        'tag.index.header.taskCount': 'Liczba zadań',
         'tag.create.title': 'Stwórz etykietę',
         'tag.create.text1': 'Etykiety są świetnym sposobem na połączenie w grupę podobnych zadań',
         'tag.create.text2':
@@ -120,7 +120,7 @@ export default {
         'tag.index.header.name': 'Name',
         'tag.index.header.description': 'Description',
         'tag.index.header.color': 'Color',
-        'tag.index.header.taskCounter': 'Tasks',
+        'tag.index.header.taskCount': 'Tasks',
         'tag.create.title': 'Create a tag',
         'tag.create.text1': 'Tags are great way to organise similar tasks',
         'tag.create.text2':
