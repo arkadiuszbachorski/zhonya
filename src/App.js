@@ -20,6 +20,7 @@ import { useThemeProvider } from './hooks/useTheme';
 import UserSettings from './views/Authenticated/User/Settings/UserSettings';
 import TagCreate from './views/Authenticated/Tag/Create/TagCreate';
 import TagIndex from './views/Authenticated/Tag/Index/TagIndex';
+import TagEdit from './views/Authenticated/Tag/Edit/TagEdit';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -50,6 +51,7 @@ const App = () => {
                         <Route path={routes.user.logout} exact component={UserLogout} />
                         <Route path={routes.tag.create} exact component={TagCreate} />
                         <Route path={routes.tag.index} exact component={TagIndex} />
+                        <Route path={routes.tag.edit()} exact component={TagEdit} />
                     </Switch>
                 </Router>
             </StoreContext.Provider>

@@ -54,8 +54,9 @@ export default {
         'tag.index.header.color': 'Kolor',
         'tag.index.header.taskCount': 'Liczba zadań',
         'tag.create.title': 'Stwórz etykietę',
-        'tag.create.text1': 'Etykiety są świetnym sposobem na połączenie w grupę podobnych zadań',
-        'tag.create.text2':
+        'tag.edit.title': 'Edytuj etykietę',
+        'tag.form.text1': 'Etykiety są świetnym sposobem na połączenie w grupę podobnych zadań',
+        'tag.form.text2':
             'Najważniejszym elementem każdej etykiety jest kolor. Wybierz dobry kolor, ponieważ to on będzie identyfikował zadania w różnych miejscach.',
         'user.settings.theme.title': 'Zmień motyw',
         'user.settings.locale.title': 'Zmień język',
@@ -122,8 +123,9 @@ export default {
         'tag.index.header.color': 'Color',
         'tag.index.header.taskCount': 'Tasks',
         'tag.create.title': 'Create a tag',
-        'tag.create.text1': 'Tags are great way to organise similar tasks',
-        'tag.create.text2':
+        'tag.edit.title': 'Edit a tag',
+        'tag.form.text1': 'Tags are great way to organise similar tasks',
+        'tag.form.text2':
             'The most important element of tag is color. You should choose unique ones because you will recognize your tag with it',
         'user.settings.theme.title': 'Change theme',
         'user.settings.locale.title': 'Change language',

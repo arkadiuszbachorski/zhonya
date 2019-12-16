@@ -12,6 +12,8 @@ export default {
     },
     tag: {
         index: `${url}/tag`,
-        create: `${url}/tag`,
+        store: `${url}/tag`,
+        edit: id => `${url}/tag/${id}/edit`,
+        update: id => `${url}/tag/${id}`,
     },
 };

@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
-import sideMenuItems from '../sideMenuItems';
 import useAuth from '../../../../hooks/useAuth';
+import UserPanelTemplate from '../UserPanelTemplate';
 
 const UserLogout = () => {
     useAuthenticatedOnly();
@@ -16,7 +15,7 @@ const UserLogout = () => {
         });
     }, [setAuth]);
 
-    return <PanelTemplate titleId="model.user" sideMenuItems={sideMenuItems} />;
+    return <UserPanelTemplate />;
 };
 
 export default UserLogout;

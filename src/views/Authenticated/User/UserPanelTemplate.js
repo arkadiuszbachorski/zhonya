@@ -1,5 +1,8 @@
+import PropTypes from 'prop-types';
 import { faCog, faPen, faSignOutAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
 import routes from '../../../routes';
+import PanelTemplate from '../../../components/PanelTemplate/PanelTemplate';
 
 const sideMenuItems = [
     {
@@ -24,4 +27,18 @@ const sideMenuItems = [
     },
 ];
 
-export default sideMenuItems;
+const UserPanelTemplate = ({ children }) => (
+    <PanelTemplate titleId="model.user" sideMenuItems={sideMenuItems}>
+        {children}
+    </PanelTemplate>
+);
+
+UserPanelTemplate.propTypes = {
+    children: PropTypes.node,
+};
+
+UserPanelTemplate.defaultProps = {
+    children: null,
+};
+
+export default UserPanelTemplate;
