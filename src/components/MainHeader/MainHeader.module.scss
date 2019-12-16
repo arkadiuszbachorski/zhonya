@@ -93,12 +93,13 @@
     right: 0;
     top: -1.2rem;
     height: calc(100% + 2rem);
-    background: var(--opaque-primary);
+    background-color: var(--primary);
     pointer-events: none;
   }
 
   .wrapper.open {
     .menuClose {
+      opacity: .25;
       pointer-events: all;
     }
 
