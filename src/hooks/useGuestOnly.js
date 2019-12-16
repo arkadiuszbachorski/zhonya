@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import useAuth from '../useAuth';
-import useRedirect from '../useRedirect';
-import routes from '../../routes';
+import useAuth from './useAuth';
+import useRedirect from './useRedirect';
+import routes from '../routes';
 
 const useGuestOnly = () => {
     const [auth] = useAuth();

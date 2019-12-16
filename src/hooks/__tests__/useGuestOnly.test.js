@@ -1,11 +1,11 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import useRedirect, { useRedirectProvider } from '../../useRedirect';
+import useRedirect, { useRedirectProvider } from '../useRedirect';
 import '@testing-library/jest-dom/extend-expect';
 import useGuestOnly from '../useGuestOnly';
-import useAuth, { useAuthProvider } from '../../useAuth';
-import { StoreContext, storeKeys } from '../../useStore';
+import useAuth, { useAuthProvider } from '../useAuth';
+import { StoreContext, storeKeys } from '../useStore';
 
 const Index = () => {
     const redirect = useRedirect();
