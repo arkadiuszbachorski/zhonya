@@ -1,0 +1,24 @@
+@import '../../../../scss/package';
+
+.row {
+  grid-template-columns: 80px minmax(100px, 1fr) minmax(200px, 2fr) 125px;
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 80px minmax(100px, 1fr) minmax(200px, 2fr);
+
+    > div:nth-child(4) {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-down(xs) {
+    grid-template-columns: 60px 1fr;
+
+    > div:nth-child(3) {
+      display: none;
+    }
+  }
+
+
+}
+
