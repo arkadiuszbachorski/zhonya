@@ -27,6 +27,13 @@ export const apiUserChangeEmail = (data, errorsSetter, loadingSetter, formatMess
     return instance.put(`${defaultUrl}/user/email`, data);
 };
 
+export const apiTagIndex = (filters, loadingSetter, formatMessage) => {
+    const instance = instanceWithErrorsAndLoading(() => undefined, loadingSetter, formatMessage);
+    return instance.get(`${defaultUrl}/tag`, {
+        params: filters,
+    });
+};
+
 export const apiTagCreate = (data, errorsSetter, loadingSetter, formatMessage) => {
     const instance = instanceWithErrorsAndLoading(errorsSetter, loadingSetter, formatMessage);
     return instance.post(`${defaultUrl}/tag`, data);

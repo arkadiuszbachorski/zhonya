@@ -33,7 +33,7 @@ Typography.propTypes = {
             'subtleSpacing',
         ]),
     ),
-    tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
+    tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span']),
     children: PropTypes.node,
     messageId: PropTypes.string,
     className: PropTypes.string,
