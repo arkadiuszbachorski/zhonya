@@ -11,6 +11,10 @@ export const useModelTitleProvider = () => {
             id: null,
             name: null,
         },
+        task: {
+            id: null,
+            name: null,
+        },
     });
 };
 
