@@ -19,7 +19,7 @@ const FormWithCard = ({ titleId, paragraphIds, children, onSubmit, variant, load
                 ))}
             </Card>
             <div className={styles.inputsWrapper}>
-                <Form onSubmit={onSubmit}>
+                <Form onSubmit={onSubmit} loading={loading}>
                     {children}
                     {buttonSwitch && <FormWithCardButtonSwitch loading={loading} variant={variant} />}
                 </Form>

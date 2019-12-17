@@ -9,7 +9,7 @@ import Form from '../Form/Form';
 const FormInCard = ({ onSubmit, buttonMessageId, children, loading }) => {
     return (
         <Card className={styles.card}>
-            <Form onSubmit={onSubmit} className={styles.formWrapper}>
+            <Form onSubmit={onSubmit} className={styles.formWrapper} loading={loading}>
                 {children}
                 <Button type="submit" className={styles.submitButton} disabled={loading}>
                     <FormattedMessage id={buttonMessageId} />
