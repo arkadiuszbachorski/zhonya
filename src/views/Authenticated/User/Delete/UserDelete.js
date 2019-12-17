@@ -12,7 +12,7 @@ import UserPanelTemplate from '../UserPanelTemplate';
 const UserDelete = () => {
     useAuthenticatedOnly();
 
-    const [instance, loading] = useInstanceWithToastsAndLoading(api.user.delete);
+    const [instance, loading] = useInstanceWithToastsAndLoading();
 
     const { formatMessage } = useIntl();
 
