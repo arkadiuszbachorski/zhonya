@@ -23,6 +23,8 @@ import TagIndex from './views/Authenticated/Tag/Index/TagIndex';
 import TagEdit from './views/Authenticated/Tag/Edit/TagEdit';
 import TagDelete from './views/Authenticated/Tag/Delete/TagDelete';
 import { useModelTitleProvider } from './hooks/useModelTitle';
+import TaskIndex from './views/Authenticated/Task/Index/TaskIndex';
+import TaskCreate from './views/Authenticated/Task/Create/TaskCreate';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -53,10 +55,14 @@ const App = () => {
                         <Route path={routes.user.data} exact component={UserData} />
                         <Route path={routes.user.delete} exact component={UserDelete} />
                         <Route path={routes.user.logout} exact component={UserLogout} />
-                        <Route path={routes.tag.create} exact component={TagCreate} />
                         <Route path={routes.tag.index} exact component={TagIndex} />
+                        <Route path={routes.tag.create} exact component={TagCreate} />
                         <Route path={routes.tag.edit()} exact component={TagEdit} />
                         <Route path={routes.tag.delete()} exact component={TagDelete} />
+                        <Route path={routes.task.index} exact component={TaskIndex} />
+                        <Route path={routes.task.create} exact component={TaskCreate} />
+                        {/*<Route path={routes.task.edit()} exact component={TaskEdit} />*/}
+                        {/*<Route path={routes.task.delete()} exact component={TaskDelete} />*/}
                     </Switch>
                 </Router>
             </StoreContext.Provider>
