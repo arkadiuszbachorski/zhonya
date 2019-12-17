@@ -8,12 +8,13 @@ const Cell = ({ children, header, className }) => {
 };
 
 Cell.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     header: PropTypes.bool,
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
 };
 
 Cell.defaultProps = {
+    children: null,
     header: false,
     className: null,
 };

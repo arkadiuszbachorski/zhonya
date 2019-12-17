@@ -22,7 +22,6 @@ const LogIn = () => {
     const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
 
     const handleSubmit = () => {
-        console.log(form);
         instance.post(api.auth.logIn, form).then(response => {
             const { data } = response;
             setAuth({
