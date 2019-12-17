@@ -25,6 +25,7 @@ import TagDelete from './views/Authenticated/Tag/Delete/TagDelete';
 import { useModelTitleProvider } from './hooks/useModelTitle';
 import TaskIndex from './views/Authenticated/Task/Index/TaskIndex';
 import TaskCreate from './views/Authenticated/Task/Create/TaskCreate';
+import TaskEdit from './views/Authenticated/Task/Edit/TaskEdit';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -61,7 +62,7 @@ const App = () => {
                         <Route path={routes.tag.delete()} exact component={TagDelete} />
                         <Route path={routes.task.index} exact component={TaskIndex} />
                         <Route path={routes.task.create} exact component={TaskCreate} />
-                        {/*<Route path={routes.task.edit()} exact component={TaskEdit} />*/}
+                        <Route path={routes.task.edit()} exact component={TaskEdit} />
                         {/*<Route path={routes.task.delete()} exact component={TaskDelete} />*/}
                     </Switch>
                 </Router>
