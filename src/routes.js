@@ -11,6 +11,8 @@ export default {
     task: {
         index: '/task',
         create: '/task/create',
+        edit: (id = ':id') => `/task/${id}/edit`,
+        delete: (id = ':id') => `/task/${id}/delete`,
     },
     tag: {
         index: '/tag',
