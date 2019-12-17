@@ -40,7 +40,7 @@ const TagEdit = () => {
             setForm(nullToEmptyString(pick(tag, ['name', 'description', 'color'])));
             setName(id, tag.name);
         });
-    }, [id]);
+    }, [id, instance]);
 
     const submit = () => {
         instance.put(api.tag.update(id), form).then(() => {

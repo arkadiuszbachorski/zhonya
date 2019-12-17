@@ -41,7 +41,7 @@ PanelTemplate.propTypes = {
             icon: PropTypes.object,
         }),
     ),
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     titleId: PropTypes.string,
     title: PropTypes.string,
     secondaryTitleId: PropTypes.string,
@@ -49,6 +49,7 @@ PanelTemplate.propTypes = {
 };
 
 PanelTemplate.defaultProps = {
+    children: null,
     sideMenuItems: null,
     titleId: null,
     title: null,

@@ -28,7 +28,7 @@ const TagIndex = () => {
         instance.get(api.tag.index, { params: debouncedFilters }).then(response => {
             setTags(response.data);
         });
-    }, [debouncedFilters]);
+    }, [debouncedFilters, instance]);
 
     return (
         <PanelTemplate titleId="model.tag.plural" actionButton={<ButtonCreate link to={routes.tag.create} />}>
