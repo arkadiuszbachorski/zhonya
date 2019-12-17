@@ -45,6 +45,7 @@ const TagEdit = () => {
     const submit = () => {
         instance.put(api.tag.update(id), form).then(() => {
             toast.success(formatMessage({ id: 'toast.success.tag.update' }));
+            setName(id, form.name);
         });
     };
 
