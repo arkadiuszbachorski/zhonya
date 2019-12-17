@@ -21,12 +21,15 @@ import UserSettings from './views/Authenticated/User/Settings/UserSettings';
 import TagCreate from './views/Authenticated/Tag/Create/TagCreate';
 import TagIndex from './views/Authenticated/Tag/Index/TagIndex';
 import TagEdit from './views/Authenticated/Tag/Edit/TagEdit';
+import TagDelete from './views/Authenticated/Tag/Delete/TagDelete';
+import { useModelTitleProvider } from './hooks/useModelTitle';
 
 const App = () => {
     const auth = useAuthProvider();
     const [redirect, setRedirect] = useRedirectProvider();
     const theme = useThemeProvider();
     const [currentLocale, setLocale] = useLocaleProvider();
+    const modelTitle = useModelTitleProvider();
 
     return (
         <IntlProvider locale={currentLocale} messages={locale[currentLocale]}>
@@ -36,6 +39,7 @@ const App = () => {
                     [storeKeys.useRedirect]: setRedirect,
                     [storeKeys.useTheme]: theme,
                     [storeKeys.useLocale]: [currentLocale, setLocale],
+                    [storeKeys.useModelTitle]: modelTitle,
                 }}
             >
                 <ToastContainer newestOnTop position="bottom-right" transition={Slide} />
@@ -52,6 +56,7 @@ const App = () => {
                         <Route path={routes.tag.create} exact component={TagCreate} />
                         <Route path={routes.tag.index} exact component={TagIndex} />
                         <Route path={routes.tag.edit()} exact component={TagEdit} />
+                        <Route path={routes.tag.delete()} exact component={TagDelete} />
                     </Switch>
                 </Router>
             </StoreContext.Provider>

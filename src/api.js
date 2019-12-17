@@ -15,5 +15,6 @@ export default {
         store: `${url}/tag`,
         edit: id => `${url}/tag/${id}/edit`,
         update: id => `${url}/tag/${id}`,
+        delete: id => `${url}/tag/${id}`,
     },
 };
