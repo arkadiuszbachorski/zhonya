@@ -1,11 +1,5 @@
-const nullToEmptyString = object => {
-    const newObject = {};
-    Object.keys(object).forEach(key => {
-        const value = object[key];
-        newObject[key] = value === null ? '' : value;
-    });
+import objectParser from './objectParser';
 
-    return newObject;
-};
+const nullToEmptyString = object => objectParser(object, value => (value === null ? '' : value));
 
 export default nullToEmptyString;
