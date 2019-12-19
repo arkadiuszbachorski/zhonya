@@ -13,4 +13,12 @@ describe('utility - objectParser', () => {
             ipsum: 'new',
         });
     });
+
+    it('injects value to function', () => {
+        const newObj = objectParser(obj, value => `${value}new`);
+        expect(newObj).toStrictEqual({
+            lorem: 'testnew',
+            ipsum: 'testnew',
+        });
+    });
 });
