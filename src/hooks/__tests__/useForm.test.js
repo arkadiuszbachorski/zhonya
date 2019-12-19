@@ -52,4 +52,25 @@ describe('Hook - useForm', () => {
 
         expect(result.current[0].lorem).toBe('test');
     });
+
+    it('works with checkboxes', () => {
+        const checkboxInitialData = {
+            ...initialData,
+            checkbox: false,
+        };
+        const { result } = renderHook(() => useForm(checkboxInitialData));
+
+        act(() => {
+            const fakeEvent = {
+                target: {
+                    type: 'checkbox',
+                    name: 'checkbox',
+                    checked: true,
+                },
+            };
+            result.current[1](fakeEvent);
+        });
+
+        expect(result.current[0].checkbox).toBe(true);
+    });
 });
