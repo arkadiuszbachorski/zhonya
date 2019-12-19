@@ -1,7 +1,7 @@
 @import '../../../scss/package';
 
 .group {
-  input, textarea {
+  input, textarea, select {
     border: none;
     border-bottom: 1px solid var(--accent);
     transition: border-color .3s;
@@ -13,6 +13,16 @@
     &:focus {
       border-color: var(--primary);
       outline: none;
+    }
+  }
+
+  //Disable ugly select arrow
+  select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+    &::-ms-expand {
+      display: none;
     }
   }
 
@@ -33,7 +43,7 @@
 }
 
 .hasErrors {
-  input, textarea {
+  select, input, textarea {
     border-color: var(--danger);
   }
 }
@@ -76,19 +86,9 @@
 }
 
 .hasIcon {
-  input, textarea {
+  select, input, textarea {
     padding-right: 1.6rem;
   }
-
-  .icon {
-    pointer-events: none;
-    position: absolute;
-    bottom: .5rem;
-    right: $form-padding-x;
-    color: var(--accent);
-    background: var(--background);
-  }
-
 }
 
 
