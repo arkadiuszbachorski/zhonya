@@ -4,9 +4,10 @@ const useForm = initial => {
     const [data, setData] = useMergeableState(initial);
 
     const updateFormByName = e => {
-        const { name, value } = e.target;
+        const { name, value, type, checked } = e.target;
+        const parsedValue = type === 'checkbox' ? checked : value;
         setData({
-            [name]: value,
+            [name]: parsedValue,
         });
     };
 

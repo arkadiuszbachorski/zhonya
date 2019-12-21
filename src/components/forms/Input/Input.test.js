@@ -69,4 +69,25 @@ describe('Component - Input', () => {
         expect(input.name).toBe('name');
         expect(input.id).toBe('id');
     });
+
+    it('renders color input', () => {
+        const { queryByText, getByLabelText } = render(<TestContainer id="id" type="color" />);
+        const input = getByLabelText('Email');
+
+        const fakeEvent = {
+            target: {
+                value: '#0000ff',
+            },
+        };
+        fireEvent.change(input, fakeEvent);
+
+        expect(queryByText('#0000ff')).toBeInTheDocument();
+    });
+
+    it('renders select', () => {
+        const { getByLabelText } = render(<TestContainer id="id" select options={[{ value: 0, label: 'Test' }]} />);
+        const input = getByLabelText('Email');
+
+        expect(input.tagName).toBe('SELECT');
+    });
 });

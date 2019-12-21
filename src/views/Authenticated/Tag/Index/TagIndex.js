@@ -13,6 +13,11 @@ import ColorPill from '../../../../components/ColorPill/ColorPill';
 import styles from './TaxIndex.module.scss';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 
+const prepareParams = ({ search, ...rest }) => ({
+    search: search === '' ? undefined : search,
+    ...rest,
+});
+
 const TagIndex = () => {
     useAuthenticatedOnly();
 
@@ -25,7 +30,7 @@ const TagIndex = () => {
     const [tags, setTags] = useState([]);
 
     useEffect(() => {
-        instance.get(api.tag.index, { params: debouncedFilters }).then(response => {
+        instance.get(api.tag.index, { params: prepareParams(debouncedFilters) }).then(response => {
             setTags(response.data);
         });
     }, [debouncedFilters, instance]);
