@@ -12,11 +12,14 @@ import useDebouncedForm from '../../../../hooks/useDebouncedForm';
 import GridTable from '../../../../components/GridTable/GridTable';
 import styles from './TaskIndex.module.scss';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
+import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
+import formattedRelativeTimeFromDate from '../../../../utils/formattedRelativeTimeCount';
 
-const prepareParams = ({ search, active, tag, ...rest }) => ({
+const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
     search: search === '' ? undefined : search,
     tag: tag === '' ? undefined : tag,
     active: active === false ? undefined : search,
+    withTags: withTags ? true : undefined,
     ...rest,
 });
 
@@ -25,8 +28,6 @@ const TaskIndex = () => {
 
     /*
      * Todo:
-     *  Create filters input
-     *  Figure out how to parse filters
      *  Data headings
      *  Check if element is currently active
      * */
@@ -41,13 +42,19 @@ const TaskIndex = () => {
 
     const [tasks, setTasks] = useState([]);
 
+    const [tags, setTags] = useState([]);
+
     useEffect(() => {
+        const hasNoTags = tags.length === 0;
         instance
             .get(api.task.index, {
-                params: prepareParams(debouncedFilters),
+                params: prepareParams(debouncedFilters, hasNoTags),
             })
             .then(response => {
-                setTasks(response.data);
+                setTasks(response.data.tasks);
+                if (hasNoTags) {
+                    setTags(response.data.tags);
+                }
             });
     }, [debouncedFilters, instance]);
 
@@ -61,6 +68,15 @@ const TaskIndex = () => {
                     value={filters.search}
                     onChange={handleChange}
                 />
+                <Input
+                    select
+                    labelId="model.tag.singular"
+                    name="tag"
+                    value={filters.tag}
+                    onChange={handleChange}
+                    options={tags.map(({ id, name }) => ({ value: id, label: name }))}
+                />
+                <Checkbox labelId="input.active" name="active" checked={filters.active} onChange={handleChange} />
             </Container>
             <GridTable loading={loading} empty={!tasks.length}>
                 <GridTable.Row header className={styles.row}>
@@ -74,7 +90,7 @@ const TaskIndex = () => {
                         <GridTable.Cell>{description}</GridTable.Cell>
                         <GridTable.Cell>
                             <FormattedRelativeTime
-                                value={(new Date(updated_at).getTime() - new Date().getTime()) / 1000}
+                                value={formattedRelativeTimeFromDate(updated_at)}
                                 numeric="auto"
                                 updateIntervalInSeconds={10}
                             />
