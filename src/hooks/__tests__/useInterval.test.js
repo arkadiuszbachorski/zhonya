@@ -9,18 +9,18 @@ describe('Hook - useInterval', () => {
         expect(fn).toBeCalledTimes(0);
     });
 
-    it('action is called exactly 3 times', () => {
+    it('action is called exactly 3 times', async () => {
         const fn = jest.fn();
-        renderHook(() => useInterval(fn, 150));
+        renderHook(() => useInterval(fn, 100));
 
         const promise = new Promise(resolve => {
             setTimeout(() => {
                 fn();
                 resolve();
-            }, 500);
+            }, 300);
         });
 
-        promise.then(() => {
+        await promise.then(() => {
             expect(fn).toBeCalledTimes(3);
         });
     });

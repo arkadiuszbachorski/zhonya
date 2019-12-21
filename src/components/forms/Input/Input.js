@@ -5,6 +5,7 @@ import styles from './Input.module.scss';
 import Label from '../Label/Label';
 import Errors from '../Errors/Errors';
 import Group from '../Group/Group';
+import ColorPill from '../../ColorPill/ColorPill';
 
 const Input = ({
     onChange,
@@ -21,7 +22,9 @@ const Input = ({
     icon,
     errors,
     groupSize,
+    children,
 }) => {
+    const isColor = type === 'color';
     const parsedId = id || name;
 
     let inputAttrs = {
@@ -37,6 +40,9 @@ const Input = ({
     if (textarea) {
         input = <textarea {...inputAttrs}>{value}</textarea>;
     } else {
+        if (isColor) {
+            inputAttrs.value = inputAttrs.value || '#ffffff';
+        }
         inputAttrs = { ...inputAttrs, type, value };
         input = <input {...inputAttrs} />;
     }
@@ -49,12 +55,21 @@ const Input = ({
                 styles.group,
                 value ? styles.active : null,
                 errors.length > 0 ? styles.hasErrors : null,
+                isColor ? styles.color : null,
+                input ? styles.hasIcon : null,
                 className,
             ]}
         >
-            {icon && <FontAwesomeIcon icon={icon} />}
+            {children}
+            {icon && <FontAwesomeIcon icon={icon} className={styles.icon} />}
             <Label labelId={labelId} id={parsedId} label={label} />
             {input}
+            {isColor && (
+                <>
+                    <span className={styles.colorCode}>{value}</span>
+                    <ColorPill className={styles.colorPill} color={value} />
+                </>
+            )}
             <Errors errors={errors} />
         </Group>
     );
@@ -63,7 +78,7 @@ const Input = ({
 Input.propTypes = {
     onChange: PropTypes.func,
     groupSize: PropTypes.oneOf(['large', 'small']),
-    type: PropTypes.oneOf(['text', 'password']),
+    type: PropTypes.oneOf(['text', 'password', 'color']),
     textarea: PropTypes.bool,
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,
@@ -75,9 +90,11 @@ Input.propTypes = {
     icon: PropTypes.oneOfType([PropTypes.object]),
     errors: PropTypes.arrayOf(PropTypes.string),
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    children: PropTypes.node,
 };
 
 Input.defaultProps = {
+    children: null,
     onChange: null,
     type: 'text',
     textarea: false,

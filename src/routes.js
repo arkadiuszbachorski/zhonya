@@ -2,12 +2,20 @@ export default {
     index: '/',
     signUp: '/sign-up',
     logIn: '/log-in',
-    userSettings: '/user/settings',
-    userData: '/user/data',
-    userDelete: '/user/delete',
-    userLogout: '/user/logout',
-    taskIndex: '/task',
-    taskCreate: '/task/create',
-    tagIndex: '/tag',
-    tagCreate: '/tag/create',
+    user: {
+        settings: '/user/settings',
+        data: '/user/data',
+        delete: '/user/delete',
+        logout: '/user/logout',
+    },
+    task: {
+        index: '/task',
+        create: '/task/create',
+    },
+    tag: {
+        index: '/tag',
+        create: '/tag/create',
+        edit: (id = ':id') => `/tag/${id}/edit`,
+        delete: (id = ':id') => `/tag/${id}/delete`,
+    },
 };

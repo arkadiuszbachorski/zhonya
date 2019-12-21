@@ -1,22 +1,26 @@
-$light: (
-        "primary": #8C5DD9,
-        "background": #ffffff,
-        "accent": #C2C2C2,
-        "danger": #D95D5D,
-        "success": #5DD99D,
-        "primary-font": #000000,
-        "secondary-font": #ffffff,
+$themes: (
+        "light": (
+                "primary": #8C5DD9,
+                "opaque-primary": rgba(140, 93, 217, .25),
+                "background": #ffffff,
+                "accent": #C2C2C2,
+                "danger": #D95D5D,
+                "success": #5DD99D,
+                "primary-font": #000000,
+                "secondary-font": #ffffff,
+        ),
+        "dark": (
+                "primary": #8C5DD9,
+                "opaque-primary": rgba(140, 93, 217, .25),
+                "background": #000000,
+                "accent": #C2C2C2,
+                "danger": #D95D5D,
+                "success": #5DD99D,
+                "primary-font": #ffffff,
+                "secondary-font": #000000,
+        ),
 );
 
-$dark: (
-        "primary": #8C5DD9,
-        "background": #000000,
-        "accent": #C2C2C2,
-        "danger": #D95D5D,
-        "success": #5DD99D,
-        "primary-font": #ffffff,
-        "secondary-font": #000000,
-);
 
 $main-font: 'Lato', sans-serif;
 

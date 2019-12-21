@@ -15,4 +15,5 @@ export const storeKeys = {
     useLocale: 'locale',
     useRedirect: 'redirect',
     useTheme: 'theme',
+    useModelTitle: 'useModelTitle',
 };

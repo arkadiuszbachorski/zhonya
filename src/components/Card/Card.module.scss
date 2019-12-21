@@ -1,0 +1,23 @@
+@import '../../scss/package';
+
+.card {
+  padding: 1rem $falling-border-radius - 2rem;
+  border: 1px solid transparent;
+  border-bottom-left-radius: $falling-border-radius - 1rem;
+  border-top-right-radius: $falling-border-radius - 1rem;
+}
+
+.bordersInverted {
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: $falling-border-radius - 1rem;
+  border-bottom-right-radius: $falling-border-radius - 1rem;
+}
+
+.primary {
+  border-color: var(--primary);
+}
+
+.danger {
+  border-color: var(--danger);
+}

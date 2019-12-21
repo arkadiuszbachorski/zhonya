@@ -6,9 +6,9 @@ import PageSecondaryTitle from '../typography/PageSecondaryTitle/PageSecondaryTi
 
 const PanelHeader = ({ secondaryTitleId, actionButton, titleId, title }) => (
     <div className={styles.headerRow}>
-        {titleId && (
+        {(titleId || title) && (
             <div>
-                <PageTitle messageId={titleId} />
+                <PageTitle messageId={titleId}>{title}</PageTitle>
                 {secondaryTitleId && <PageSecondaryTitle messageId={secondaryTitleId} />}
             </div>
         )}
@@ -17,12 +17,14 @@ const PanelHeader = ({ secondaryTitleId, actionButton, titleId, title }) => (
 );
 
 PanelHeader.propTypes = {
+    title: PropTypes.string,
     titleId: PropTypes.string,
     secondaryTitleId: PropTypes.string,
     actionButton: PropTypes.element,
 };
 
 PanelHeader.defaultProps = {
+    title: null,
     actionButton: null,
     titleId: null,
     secondaryTitleId: null,

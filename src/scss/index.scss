@@ -15,24 +15,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body[data-theme="light"] {
-  --primary: #{map-get($light, 'primary')};
-  --background: #{map-get($light, 'background')};
-  --accent: #{map-get($light, 'accent')};
-  --danger: #{map-get($light, 'danger')};
-  --success: #{map-get($light, 'success')};
-  --primary-font: #{map-get($light, 'primary-font')};
-  --secondary-font: #{map-get($light, 'secondary-font')};
-}
-
-body[data-theme="dark"] {
-  --primary: #{map-get($dark, 'primary')};
-  --background: #{map-get($dark, 'background')};
-  --accent: #{map-get($dark, 'accent')};
-  --danger: #{map-get($dark, 'danger')};
-  --success: #{map-get($dark, 'success')};
-  --primary-font: #{map-get($dark, 'primary-font')};
-  --secondary-font: #{map-get($dark, 'secondary-font')};
+@each $themeName, $colorsMap in $themes {
+  body[data-theme="#{$themeName}"] {
+    @each $propertyName, $color in $colorsMap {
+      --#{$propertyName}: #{$color};
+    }
+  }
 }
 
 body {

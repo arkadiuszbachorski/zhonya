@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
-import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
+import React from 'react';
+import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import Container from '../../../../components/Container/Container';
 import FormWithCard from '../../../../components/forms/FormWithCard/FormWithCard';
-import sideMenuItems from '../sideMenuItems';
-import { useIntl } from 'react-intl';
-import { apiUserDelete } from '../../../../api/api';
-import { toast } from 'react-toastify';
+import api from '../../../../api';
+import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import useAuth from '../../../../hooks/useAuth';
-import useAuthenticatedOnly from '../../../../hooks/middlewares/useAuthenticatedOnly';
+import UserPanelTemplate from '../UserPanelTemplate';
 
 const UserDelete = () => {
     useAuthenticatedOnly();
 
-    const { formatMessage } = useIntl();
-    const [, setAuth] = useAuth();
-    const [loading, setLoading] = useState(false);
+    const [instance, loading] = useInstanceWithToastsAndLoading();
 
-    const submit = () => {
-        apiUserDelete(setLoading, formatMessage).then(() => {
+    const { formatMessage } = useIntl();
+
+    const [, setAuth] = useAuth();
+
+    const handleSubmit = () => {
+        instance.delete(api.user.delete).then(() => {
             toast.success(formatMessage({ id: 'toast.success.deleteAccount' }));
             setAuth({
                 token: null,
@@ -27,17 +29,17 @@ const UserDelete = () => {
     };
 
     return (
-        <PanelTemplate titleId="model.user" sideMenuItems={sideMenuItems}>
+        <UserPanelTemplate>
             <Container variant={['center', 'marginTopLarge']}>
                 <FormWithCard
-                    onSubmit={submit}
+                    onSubmit={handleSubmit}
                     loading={loading}
                     variant="delete"
                     titleId="user.delete.title"
                     paragraphIds={['actionCannotBeUndone', 'user.delete.text2']}
                 />
             </Container>
-        </PanelTemplate>
+        </UserPanelTemplate>
     );
 };
 
