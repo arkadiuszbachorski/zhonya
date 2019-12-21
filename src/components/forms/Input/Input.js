@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import styles from './Input.module.scss';
 import Label from '../Label/Label';
 import Errors from '../Errors/Errors';
 import Group from '../Group/Group';
 import ColorPill from '../../ColorPill/ColorPill';
+import InputIcon from '../InputIcon/InputIcon';
 
 const Input = ({
     onChange,
@@ -23,8 +25,10 @@ const Input = ({
     errors,
     groupSize,
     children,
+    select,
+    options,
 }) => {
-    const isColor = type === 'color';
+    const typeColor = type === 'color';
     const parsedId = id || name;
 
     let inputAttrs = {
@@ -39,8 +43,23 @@ const Input = ({
 
     if (textarea) {
         input = <textarea {...inputAttrs}>{value}</textarea>;
+    } else if (select) {
+        input = {
+            ...inputAttrs,
+            value,
+        };
+        input = (
+            <select {...inputAttrs}>
+                <option disabled selected style={{ display: 'none' }} />
+                {options.map(option => (
+                    <option value={option.value} key={option.value}>
+                        {option.label}
+                    </option>
+                ))}
+            </select>
+        );
     } else {
-        if (isColor) {
+        if (typeColor) {
             inputAttrs.value = inputAttrs.value || '#ffffff';
         }
         inputAttrs = { ...inputAttrs, type, value };
@@ -55,16 +74,16 @@ const Input = ({
                 styles.group,
                 value ? styles.active : null,
                 errors.length > 0 ? styles.hasErrors : null,
-                isColor ? styles.color : null,
+                typeColor ? styles.color : null,
                 input ? styles.hasIcon : null,
                 className,
             ]}
         >
             {children}
-            {icon && <FontAwesomeIcon icon={icon} className={styles.icon} />}
+            <InputIcon icon={icon} select={select} />
             <Label labelId={labelId} id={parsedId} label={label} />
             {input}
-            {isColor && (
+            {typeColor && (
                 <>
                     <span className={styles.colorCode}>{value}</span>
                     <ColorPill className={styles.colorPill} color={value} />
@@ -91,6 +110,13 @@ Input.propTypes = {
     errors: PropTypes.arrayOf(PropTypes.string),
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
     children: PropTypes.node,
+    select: PropTypes.bool,
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            value: PropTypes.any,
+            label: PropTypes.any,
+        }),
+    ),
 };
 
 Input.defaultProps = {
@@ -100,6 +126,7 @@ Input.defaultProps = {
     textarea: false,
     disabled: false,
     readOnly: false,
+    select: false,
     className: null,
     errors: [],
     icon: null,
@@ -107,6 +134,7 @@ Input.defaultProps = {
     groupSize: null,
     labelId: null,
     label: null,
+    options: [],
 };
 
 export default Input;

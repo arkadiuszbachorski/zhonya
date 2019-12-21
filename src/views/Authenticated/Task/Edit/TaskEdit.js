@@ -6,13 +6,13 @@ import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import useForm from '../../../../hooks/useForm';
 import api from '../../../../api';
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
-import TagForm from '../TagForm';
+import TaskForm from '../TaskForm';
 import pick from '../../../../utils/pick';
-import TagPanelTemplate from '../TagPanelTemplate';
+import TaskPanelTemplate from '../TaskPanelTemplate';
 import nullToEmptyString from '../../../../utils/nullToEmptyString';
 import useModelTitle from '../../../../hooks/useModelTitle';
 
-const TagEdit = () => {
+const TaskEdit = () => {
     useAuthenticatedOnly();
 
     const { id } = useParams();
@@ -24,34 +24,28 @@ const TagEdit = () => {
     const [form, handleChange, , setForm] = useForm({
         name: '',
         description: '',
-        color: '',
     });
 
-    const [, setName] = useModelTitle('tag', id);
-
-    /*
-     * TODO:
-     *  Assign tasks to gas
-     * */
+    const [, setName] = useModelTitle('task', id);
 
     useEffect(() => {
-        instance.get(api.tag.edit(id)).then(response => {
-            const { tasks, tag } = response.data;
-            setForm(nullToEmptyString(pick(tag, ['name', 'description', 'color'])));
-            setName(id, tag.name);
+        instance.get(api.task.edit(id)).then(response => {
+            const { task } = response.data;
+            setForm(nullToEmptyString(pick(task, ['name', 'description'])));
+            setName(id, task.name);
         });
     }, [id, instance]);
 
     const submit = () => {
-        instance.put(api.tag.update(id), form).then(() => {
-            toast.success(formatMessage({ id: 'toast.success.tag.update' }));
+        instance.put(api.task.update(id), form).then(() => {
+            toast.success(formatMessage({ id: 'toast.success.task.update' }));
             setName(id, form.name);
         });
     };
 
     return (
-        <TagPanelTemplate>
-            <TagForm
+        <TaskPanelTemplate>
+            <TaskForm
                 variant="edit"
                 handleChange={handleChange}
                 errors={errors}
@@ -59,8 +53,8 @@ const TagEdit = () => {
                 submit={submit}
                 form={form}
             />
-        </TagPanelTemplate>
+        </TaskPanelTemplate>
     );
 };
 
-export default TagEdit;
+export default TaskEdit;

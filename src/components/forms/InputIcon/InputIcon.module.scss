@@ -1,0 +1,11 @@
+@import '../../../scss/package';
+
+
+.icon {
+  pointer-events: none;
+  position: absolute;
+  bottom: .5rem;
+  right: $form-padding-x;
+  color: var(--accent);
+  background: var(--background);
+}

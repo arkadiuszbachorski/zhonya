@@ -17,4 +17,11 @@ export default {
         update: id => `${url}/tag/${id}`,
         delete: id => `${url}/tag/${id}`,
     },
+    task: {
+        index: `${url}/task`,
+        store: `${url}/task`,
+        edit: id => `${url}/task/${id}/edit`,
+        update: id => `${url}/task/${id}`,
+        delete: id => `${url}/task/${id}`,
+    },
 };
