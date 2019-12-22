@@ -69,6 +69,8 @@ export default {
         'tag.form.text2':
             'Najważniejszym elementem każdej etykiety jest kolor. Wybierz dobry kolor, ponieważ to on będzie identyfikował zadania w różnych miejscach.',
         'tag.delete.title': 'Usuń etykietę',
+        'tag.assign.title': 'Przypisz zadania',
+        'tag.assign.text': 'Jedna etykieta może być przypisana do wielu zadań',
         'task.create.title': 'Stwórz zadanie',
         'task.edit.title': 'Edytuj zadanie',
         'task.form.text1': 'Zadania są podstawowymi elementami pomiaru',
@@ -154,6 +156,8 @@ export default {
         'tag.form.text2':
             'The most important element of tag is color. You should choose unique ones because you will recognize your tag with it',
         'tag.delete.title': 'Delete a tag',
+        'tag.assign.title': 'Assign tasks',
+        'tag.assign.text': 'One tag can have many tags',
         'task.create.title': 'Create a task',
         'task.edit.title': 'Edit a task',
         'task.form.text1': 'Tasks are basic measurement unit',

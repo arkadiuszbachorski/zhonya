@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheckSquare, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router';
 import routes from '../../../routes';
@@ -7,6 +7,11 @@ import PanelTemplate from '../../../components/PanelTemplate/PanelTemplate';
 import useModelTitle from '../../../hooks/useModelTitle';
 
 const generateSideMenuItems = id => [
+    {
+        to: routes.tag.tasks(id),
+        messageId: 'model.task.plural',
+        icon: faCheckSquare,
+    },
     {
         to: routes.tag.edit(id),
         messageId: 'action.edit',
