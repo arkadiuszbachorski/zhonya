@@ -33,7 +33,6 @@ const TagEdit = () => {
         instance.get(api.tag.edit(id)).then(response => {
             const { data: tag } = response;
             setForm(nullToEmptyString(pick(tag, ['name', 'description', 'color'])));
-            setName(id, tag.name);
         });
     }, [id, instance]);
 
