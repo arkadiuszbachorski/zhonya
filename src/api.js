@@ -32,4 +32,5 @@ export default {
         attach: (tagId, taskId) => `${url}/tag/${tagId}/task/${taskId}/attach`,
         detach: (tagId, taskId) => `${url}/tag/${tagId}/task/${taskId}/detach`,
     },
+    search: `${url}/search`,
 };
