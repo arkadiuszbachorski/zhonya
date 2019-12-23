@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import routes from '../../../routes';
 import PanelTemplate from '../../../components/PanelTemplate/PanelTemplate';
 import useModelTitle from '../../../hooks/useModelTitle';
+import api from '../../../api';
 
 const generateSideMenuItems = id => [
     {
@@ -27,7 +28,7 @@ const generateSideMenuItems = id => [
 const TaskPanelTemplate = ({ children }) => {
     const { id } = useParams();
 
-    const [name] = useModelTitle('task', id);
+    const [name] = useModelTitle('task', id, api.task.name(id));
 
     const sideMenuItems = useMemo(() => {
         return generateSideMenuItems(id);
