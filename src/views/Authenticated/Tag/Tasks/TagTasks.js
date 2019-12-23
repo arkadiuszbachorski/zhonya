@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router';
+import { toast } from 'react-toastify';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import useForm from '../../../../hooks/useForm';
 import api from '../../../../api';
@@ -45,6 +46,7 @@ const TagTasks = () => {
                 setForm({
                     task: '',
                 });
+                toast.success(formatMessage({ id: 'toast.success.tag.tasks.attach' }));
             });
         }
     }, [form.task]);
@@ -58,6 +60,7 @@ const TagTasks = () => {
 
                 return newTasks;
             });
+            toast.success(formatMessage({ id: 'toast.success.tag.tasks.detach' }));
         });
     };
 
