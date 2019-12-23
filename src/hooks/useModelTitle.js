@@ -1,5 +1,7 @@
 import useStore, { storeKeys } from './useStore';
 import useMergeableState from './useMergeableState';
+import useInstanceWithToastsAndLoading from './api/useInstanceWithToastsAndLoading';
+import { useEffect } from 'react';
 
 /*
  * TODO: Write unit test
@@ -18,8 +20,10 @@ export const useModelTitleProvider = () => {
     });
 };
 
-const useModelTitle = (model, id) => {
+const useModelTitle = (model, id, url = null) => {
     const [modelTitle, setModelTitle] = useStore(storeKeys.useModelTitle);
+
+    const [instance] = useInstanceWithToastsAndLoading();
 
     const name = modelTitle[model].id === id ? modelTitle[model].name : null;
 
@@ -32,6 +36,14 @@ const useModelTitle = (model, id) => {
             },
         });
     };
+
+    useEffect(() => {
+        if (!name && url) {
+            instance.get(url).then(response => {
+                setModelData(id, response.data);
+            });
+        }
+    }, [id, name]);
 
     return [name, setModelData];
 };
