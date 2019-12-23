@@ -1,9 +1,4 @@
-@import '../../scss/package';
-
-
-.list {
-  @include list-clear();
-}
+@import '../../../scss/package';
 
 .item {
   padding: .85rem 0;
