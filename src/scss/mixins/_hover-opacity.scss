@@ -1,0 +1,8 @@
+@mixin hover-opacity($from: 1, $to: .6) {
+  opacity: $from;
+  transition: opacity .3s;
+
+  &:hover {
+    opacity: $to;
+  }
+}
