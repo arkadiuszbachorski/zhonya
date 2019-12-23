@@ -2,8 +2,13 @@
 
 .item {
   display: flex;
+  margin-top: .8rem;
 
   @include hover-opacity();
+
+  &:first-child {
+    margin-top: 0;
+  }
 
   a {
     display: flex;
