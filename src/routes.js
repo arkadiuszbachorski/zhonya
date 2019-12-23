@@ -13,6 +13,7 @@ export default {
         create: '/task/create',
         edit: (id = ':id') => `/task/${id}/edit`,
         delete: (id = ':id') => `/task/${id}/delete`,
+        tags: (id = ':id') => `/task/${id}/attach-tags`,
     },
     tag: {
         index: '/tag',

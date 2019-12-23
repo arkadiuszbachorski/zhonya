@@ -23,6 +23,8 @@ export default {
         index: `${url}/task`,
         store: `${url}/task`,
         edit: id => `${url}/task/${id}/edit`,
+        name: id => `${url}/task/${id}/name`,
+        tags: id => `${url}/task/${id}/attach-tags`,
         update: id => `${url}/task/${id}`,
         delete: id => `${url}/task/${id}`,
     },
