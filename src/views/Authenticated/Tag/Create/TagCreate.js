@@ -29,7 +29,7 @@ const TagCreate = () => {
         instance.post(api.tag.store, form).then(response => {
             const id = response.data;
             toast.success(formatMessage({ id: 'toast.success.tag.create' }));
-            redirectTo(routes.tag.edit(id));
+            redirectTo(routes.tag.tasks(id));
         });
     };
 

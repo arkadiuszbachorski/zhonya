@@ -50,7 +50,7 @@ const Input = ({
         };
         input = (
             <select {...inputAttrs}>
-                <option disabled selected style={{ display: 'none' }} />
+                <option hidden selected="selected" style={{ display: 'none' }} />
                 {options.map(option => (
                     <option value={option.value} key={option.value}>
                         {option.label}
