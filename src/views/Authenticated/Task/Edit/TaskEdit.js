@@ -30,7 +30,7 @@ const TaskEdit = () => {
 
     useEffect(() => {
         instance.get(api.task.edit(id)).then(response => {
-            const { task } = response.data;
+            const { data: task } = response;
             setForm(nullToEmptyString(pick(task, ['name', 'description'])));
             setName(id, task.name);
         });
