@@ -4,3 +4,17 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
+.name {
+  display: flex;
+
+
+  .pills {
+    margin-right: 8px;
+    display: flex;
+
+    > * {
+      margin-right: 3px;
+    }
+  }
+}
+

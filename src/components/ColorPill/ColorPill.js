@@ -14,7 +14,7 @@ const ColorPill = ({ color, variant, className }) => {
 
 ColorPill.propTypes = {
     color: PropTypes.string,
-    variant: PropTypes.oneOf(['horizontal']),
+    variant: PropTypes.oneOf(['horizontal', 'vertical']),
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
 };
 
