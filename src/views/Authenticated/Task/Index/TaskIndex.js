@@ -14,6 +14,7 @@ import styles from './TaskIndex.module.scss';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
 import formattedRelativeTimeFromDate from '../../../../utils/formattedRelativeTimeCount';
+import ColorPill from '../../../../components/ColorPill/ColorPill';
 
 const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
     search: search === '' ? undefined : search,
@@ -84,13 +85,22 @@ const TaskIndex = () => {
                     <GridTable.Header messageId="task.index.header.description" />
                     <GridTable.Header messageId="task.index.header.lastUpdated" />
                 </GridTable.Row>
-                {tasks.map(({ id, name, description, updated_at }) => (
-                    <GridTable.Row className={styles.row} key={id} to={routes.task.edit(id)}>
-                        <GridTable.Cell>{name}</GridTable.Cell>
-                        <GridTable.Cell>{description}</GridTable.Cell>
+                {tasks.map(task => (
+                    <GridTable.Row className={styles.row} key={task.id} to={routes.task.edit(task.id)}>
+                        <GridTable.Cell className={styles.name}>
+                            {task.tags.length > 0 && (
+                                <div className={styles.pills}>
+                                    {task.tags.map(tag => (
+                                        <ColorPill key={tag.id} color={`#${tag.color}`} variant="vertical" />
+                                    ))}
+                                </div>
+                            )}
+                            {task.name}
+                        </GridTable.Cell>
+                        <GridTable.Cell>{task.description}</GridTable.Cell>
                         <GridTable.Cell>
                             <FormattedRelativeTime
-                                value={formattedRelativeTimeFromDate(updated_at)}
+                                value={formattedRelativeTimeFromDate(task.updated_at)}
                                 numeric="auto"
                                 updateIntervalInSeconds={10}
                             />
