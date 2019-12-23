@@ -1,0 +1,27 @@
+@import '../../../scss/package';
+
+.item {
+  display: flex;
+
+  @include hover-opacity();
+
+  a {
+    display: flex;
+    align-items: stretch;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .color {
+    margin-right: .5rem;
+
+    .colorPill {
+      height: 100%;
+    }
+  }
+
+  .fonts {
+    display: flex;
+    flex-direction: column;
+  }
+}
