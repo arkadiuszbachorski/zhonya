@@ -19,5 +19,6 @@ export default {
         create: '/tag/create',
         edit: (id = ':id') => `/tag/${id}/edit`,
         delete: (id = ':id') => `/tag/${id}/delete`,
+        tasks: (id = ':id') => `/tag/${id}/attach-tasks`,
     },
 };

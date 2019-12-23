@@ -14,6 +14,8 @@ export default {
         index: `${url}/tag`,
         store: `${url}/tag`,
         edit: id => `${url}/tag/${id}/edit`,
+        name: id => `${url}/tag/${id}/name`,
+        tasks: id => `${url}/tag/${id}/attach-tasks`,
         update: id => `${url}/tag/${id}`,
         delete: id => `${url}/tag/${id}`,
     },
@@ -23,5 +25,9 @@ export default {
         edit: id => `${url}/task/${id}/edit`,
         update: id => `${url}/task/${id}`,
         delete: id => `${url}/task/${id}`,
+    },
+    tagTask: {
+        attach: (tagId, taskId) => `${url}/tag/${tagId}/task/${taskId}/attach`,
+        detach: (tagId, taskId) => `${url}/tag/${tagId}/task/${taskId}/detach`,
     },
 };

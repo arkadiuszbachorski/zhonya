@@ -29,16 +29,10 @@ const TagEdit = () => {
 
     const [, setName] = useModelTitle('tag', id);
 
-    /*
-     * TODO:
-     *  Assign tasks to gas
-     * */
-
     useEffect(() => {
         instance.get(api.tag.edit(id)).then(response => {
-            const { tasks, tag } = response.data;
+            const { data: tag } = response;
             setForm(nullToEmptyString(pick(tag, ['name', 'description', 'color'])));
-            setName(id, tag.name);
         });
     }, [id, instance]);
 
