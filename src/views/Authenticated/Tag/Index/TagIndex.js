@@ -10,7 +10,7 @@ import Container from '../../../../components/Container/Container';
 import useDebouncedForm from '../../../../hooks/useDebouncedForm';
 import GridTable from '../../../../components/GridTable/GridTable';
 import ColorPill from '../../../../components/ColorPill/ColorPill';
-import styles from './TaxIndex.module.scss';
+import styles from './TagIndex.module.scss';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 
 const prepareParams = ({ search, ...rest }) => ({
