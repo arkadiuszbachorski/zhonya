@@ -1,12 +1,12 @@
 import React from 'react';
 import Typography from '../Typography/Typography';
 
-const PageSecondaryTitle = props => {
+const AccentSubtitle = props => {
     return <Typography variants={['small', 'noMargin', 'uppercase', 'weightLight', 'muted']} {...props} />;
 };
 
-PageSecondaryTitle.defaultProps = {
+AccentSubtitle.defaultProps = {
     tag: 'h3',
 };
 
-export default PageSecondaryTitle;
+export default AccentSubtitle;
