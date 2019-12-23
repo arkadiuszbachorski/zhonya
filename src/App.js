@@ -28,6 +28,7 @@ import TaskCreate from './views/Authenticated/Task/Create/TaskCreate';
 import TaskEdit from './views/Authenticated/Task/Edit/TaskEdit';
 import TaskDelete from './views/Authenticated/Task/Delete/TaskDelete';
 import TagTasks from './views/Authenticated/Tag/Tasks/TagTasks';
+import TaskTags from './views/Authenticated/Task/Tags/TaskTags';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -66,6 +67,7 @@ const App = () => {
                         <Route path={routes.task.index} exact component={TaskIndex} />
                         <Route path={routes.task.create} exact component={TaskCreate} />
                         <Route path={routes.task.edit()} exact component={TaskEdit} />
+                        <Route path={routes.task.tags()} exact component={TaskTags} />
                         <Route path={routes.task.delete()} exact component={TaskDelete} />
                     </Switch>
                 </Router>

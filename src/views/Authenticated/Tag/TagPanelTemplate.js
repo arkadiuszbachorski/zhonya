@@ -29,21 +29,11 @@ const generateSideMenuItems = id => [
 const TagPanelTemplate = ({ children }) => {
     const { id } = useParams();
 
-    const [name, setName] = useModelTitle('tag', id);
-
-    const [instance] = useInstanceWithToastsAndLoading();
+    const [name] = useModelTitle('tag', id, api.tag.name(id));
 
     const sideMenuItems = useMemo(() => {
         return generateSideMenuItems(id);
     }, [id]);
-
-    useEffect(() => {
-        if (!name) {
-            instance.get(api.tag.name(id)).then(response => {
-                setName(id, response.data);
-            });
-        }
-    }, [id, name]);
 
     return (
         <PanelTemplate
