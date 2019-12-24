@@ -60,6 +60,11 @@
   color: var(--secondary-font);
 }
 
+.accent {
+  background-color: var(--accent);
+  color: var(--secondary-font);
+}
+
 
 @include media-breakpoint-down(xs) {
   .button {
