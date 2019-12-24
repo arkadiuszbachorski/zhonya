@@ -23,9 +23,9 @@ export default {
         tasks: (tagId = ':tagId') => `/tag/${tagId}/attach-tasks`,
     },
     attempt: {
-        index: (tagId = ':tagId') => `/tag/${tagId}/attempt`,
-        create: (tagId = ':tagId') => `/tag/${tagId}/attempt/create`,
-        edit: (tagId = ':tagId', attemptId = ':attemptId') => `/tag/${tagId}/attempt/${attemptId}/edit`,
-        delete: (tagId = ':tagId', attemptId = ':attemptId') => `/tag/${tagId}/attempt/${attemptId}/delete`,
+        index: (taskId = ':taskId') => `/task/${taskId}/attempt`,
+        create: (taskId = ':taskId') => `/task/${taskId}/attempt/create`,
+        edit: (taskId = ':taskId', attemptId = ':attemptId') => `/task/${taskId}/attempt/${attemptId}/edit`,
+        delete: (taskId = ':taskId', attemptId = ':attemptId') => `/task/${taskId}/attempt/${attemptId}/delete`,
     },
 };
