@@ -32,5 +32,12 @@ export default {
         attach: (tagId, taskId) => `${url}/tag/${tagId}/task/${taskId}/attach`,
         detach: (tagId, taskId) => `${url}/tag/${tagId}/task/${taskId}/detach`,
     },
+    attempt: {
+        index: taskId => `${url}/task/${taskId}/attempt`,
+        store: taskId => `${url}/task/${taskId}/attempt`,
+        edit: (taskId, attemptId) => `${url}/task/${taskId}/attempt/${attemptId}/edit`,
+        update: (taskId, attemptId) => `${url}/task/${taskId}/attempt/${attemptId}`,
+        delete: (taskId, attemptId) => `${url}/task/${taskId}/attempt/${attemptId}`,
+    },
     search: `${url}/search`,
 };

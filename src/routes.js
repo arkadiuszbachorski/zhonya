@@ -22,4 +22,10 @@ export default {
         delete: (tagId = ':tagId') => `/tag/${tagId}/delete`,
         tasks: (tagId = ':tagId') => `/tag/${tagId}/attach-tasks`,
     },
+    attempt: {
+        index: (tagId = ':tagId') => `/tag/${tagId}/attempt`,
+        create: (tagId = ':tagId') => `/tag/${tagId}/attempt/create`,
+        edit: (tagId = ':tagId', attemptId = ':attemptId') => `/tag/${tagId}/attempt/${attemptId}/edit`,
+        delete: (tagId = ':tagId', attemptId = ':attemptId') => `/tag/${tagId}/attempt/${attemptId}/delete`,
+    },
 };
