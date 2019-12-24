@@ -1,6 +1,3 @@
-import GridTable from './components/GridTable/GridTable';
-import React from 'react';
-
 export const defaultLocale = 'en';
 
 export default {
@@ -39,6 +36,9 @@ export default {
         'toast.success.task.create': 'Pomyślnie stworzono zadanie',
         'toast.success.task.update': 'Pomyślnie zaktualizowano zadanie',
         'toast.success.task.delete': 'Pomyślnie usunięto zadanie',
+        'toast.success.attempt.create': 'Pomyślnie stworzono próbę',
+        'toast.success.attempt.update': 'Pomyślnie zaktualizowano próbę',
+        'toast.success.attempt.delete': 'Pomyślnie usunięto próbę',
         'toast.success.task.tags.attach': 'Pomyślnie przypisano etykietę',
         'toast.success.task.tags.detach': 'Pomyślnie odłączono etykietę',
         'toast.error.validation': 'Sprawdź błędy i wyślij ponownie',
@@ -93,6 +93,10 @@ export default {
         'task.delete.title': 'Usuń zadanie',
         'task.assign.title': 'Przypisz etykiety',
         'task.assign.text': 'Zadanie może mieć wiele etykiet',
+        'attempt.create.title': 'Stwórz próbę',
+        'attempt.edit.title': 'Edytuj próbę',
+        'attempt.form.text1': 'Próby odzblablabla',
+        'attempt.delete.title': 'Usuń próbę',
         'user.settings.theme.title': 'Zmień motyw',
         'user.settings.locale.title': 'Zmień język',
         'user.delete.title': 'Usuń konto',
@@ -143,6 +147,9 @@ export default {
         'toast.success.task.create': 'Task created successfully',
         'toast.success.task.update': 'Task updated successfully',
         'toast.success.task.delete': 'Task deleted successfully',
+        'toast.success.attempt.create': 'Attempt created successfully',
+        'toast.success.attempt.update': 'Attempt updated successfully',
+        'toast.success.attempt.delete': 'Attempt deleted successfully',
         'toast.success.task.tags.attach': 'Tag attached successfully',
         'toast.success.task.tags.detach': 'Tag detached successfully',
         'toast.error.validation': 'Check errors and try again',
@@ -195,6 +202,10 @@ export default {
         'task.delete.title': 'Delete a task',
         'task.assign.title': 'Assign tags',
         'task.assign.text': 'One task can have many tags',
+        'attempt.create.title': 'Create an attempt',
+        'attempt.edit.title': 'Edit an attempt',
+        'attempt.form.text1': 'Attempts are isolated tries of your task',
+        'attempt.delete.title': 'Delete an attempt',
         'user.settings.theme.title': 'Change theme',
         'user.settings.locale.title': 'Change language',
         'user.delete.title': 'Delete account',
