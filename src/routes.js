@@ -11,15 +11,15 @@ export default {
     task: {
         index: '/task',
         create: '/task/create',
-        edit: (id = ':id') => `/task/${id}/edit`,
-        delete: (id = ':id') => `/task/${id}/delete`,
-        tags: (id = ':id') => `/task/${id}/attach-tags`,
+        edit: (taskId = ':taskId') => `/task/${taskId}/edit`,
+        delete: (taskId = ':taskId') => `/task/${taskId}/delete`,
+        tags: (taskId = ':taskId') => `/task/${taskId}/attach-tags`,
     },
     tag: {
         index: '/tag',
         create: '/tag/create',
-        edit: (id = ':id') => `/tag/${id}/edit`,
-        delete: (id = ':id') => `/tag/${id}/delete`,
-        tasks: (id = ':id') => `/tag/${id}/attach-tasks`,
+        edit: (tagId = ':tagId') => `/tag/${tagId}/edit`,
+        delete: (tagId = ':tagId') => `/tag/${tagId}/delete`,
+        tasks: (tagId = ':tagId') => `/tag/${tagId}/attach-tasks`,
     },
 };
