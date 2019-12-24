@@ -66,7 +66,7 @@ const AttemptIndex = () => {
             </Container>
             <GridTable loading={loading} empty={!attempts.length}>
                 <GridTable.Row header className={styles.row}>
-                    <GridTable.Header messageId="attempt.index.header.name" />
+                    <GridTable.Header messageId="attempt.index.header.description" />
                     <GridTable.Header messageId="attempt.index.header.time" />
                     <GridTable.Header messageId="attempt.index.header.lastUpdated" />
                 </GridTable.Row>
