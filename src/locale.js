@@ -1,3 +1,6 @@
+import GridTable from './components/GridTable/GridTable';
+import React from 'react';
+
 export const defaultLocale = 'en';
 
 export default {
@@ -65,6 +68,9 @@ export default {
         }`,
         'model.tag.singular': 'Etykieta',
         'model.tag.plural': 'Etykiety',
+        'attempt.index.header.description': 'Opis',
+        'attempt.index.header.time': 'Czas',
+        'attempt.index.header.lastUpdated': 'Zaktualizowano',
         'task.index.header.name': 'Nazwa',
         'task.index.header.description': 'Opis',
         'task.index.header.lastUpdated': 'Zaktualizowano',
@@ -164,6 +170,9 @@ export default {
         }`,
         'model.tag.singular': 'Tag',
         'model.tag.plural': 'Tags',
+        'attempt.index.header.description': 'Description',
+        'attempt.index.header.time': 'Time',
+        'attempt.index.header.lastUpdated': 'Last updated',
         'task.index.header.name': 'Name',
         'task.index.header.description': 'Description',
         'task.index.header.lastUpdated': 'Last updated',
