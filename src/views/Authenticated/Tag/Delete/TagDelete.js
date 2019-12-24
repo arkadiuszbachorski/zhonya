@@ -14,7 +14,7 @@ import routes from '../../../../routes';
 const TagDelete = () => {
     useAuthenticatedOnly();
 
-    const { id } = useParams();
+    const { tagId } = useParams();
 
     const redirectTo = useRedirect();
 
@@ -23,7 +23,7 @@ const TagDelete = () => {
     const { formatMessage } = useIntl();
 
     const handleSubmit = () => {
-        instance.delete(api.tag.delete(id)).then(() => {
+        instance.delete(api.tag.delete(tagId)).then(() => {
             toast.success(formatMessage({ id: 'toast.success.tag.delete' }));
             redirectTo(routes.tag.index);
         });

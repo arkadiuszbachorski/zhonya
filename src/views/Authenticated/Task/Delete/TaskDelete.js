@@ -14,7 +14,7 @@ import routes from '../../../../routes';
 const TaskDelete = () => {
     useAuthenticatedOnly();
 
-    const { id } = useParams();
+    const { taskId } = useParams();
 
     const redirectTo = useRedirect();
 
@@ -23,7 +23,7 @@ const TaskDelete = () => {
     const { formatMessage } = useIntl();
 
     const handleSubmit = () => {
-        instance.delete(api.task.delete(id)).then(() => {
+        instance.delete(api.task.delete(taskId)).then(() => {
             toast.success(formatMessage({ id: 'toast.success.task.delete' }));
             redirectTo(routes.task.index);
         });

@@ -27,13 +27,13 @@ const generateSideMenuItems = id => [
 ];
 
 const TagPanelTemplate = ({ children }) => {
-    const { id } = useParams();
+    const { tagId } = useParams();
 
-    const [name] = useModelTitle('tag', id, api.tag.name(id));
+    const [name] = useModelTitle('tag', tagId, api.tag.name(tagId));
 
     const sideMenuItems = useMemo(() => {
-        return generateSideMenuItems(id);
-    }, [id]);
+        return generateSideMenuItems(tagId);
+    }, [tagId]);
 
     return (
         <PanelTemplate

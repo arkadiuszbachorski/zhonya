@@ -15,7 +15,7 @@ import useModelTitle from '../../../../hooks/useModelTitle';
 const TagEdit = () => {
     useAuthenticatedOnly();
 
-    const { id } = useParams();
+    const { tagId } = useParams();
 
     const { formatMessage } = useIntl();
 
@@ -27,19 +27,19 @@ const TagEdit = () => {
         color: '',
     });
 
-    const [, setName] = useModelTitle('tag', id);
+    const [, setName] = useModelTitle('tag', tagId);
 
     useEffect(() => {
-        instance.get(api.tag.edit(id)).then(response => {
+        instance.get(api.tag.edit(tagId)).then(response => {
             const { data: tag } = response;
             setForm(nullToEmptyString(pick(tag, ['name', 'description', 'color'])));
         });
-    }, [id, instance]);
+    }, [tagId, instance]);
 
     const submit = () => {
-        instance.put(api.tag.update(id), form).then(() => {
+        instance.put(api.tag.update(tagId), form).then(() => {
             toast.success(formatMessage({ id: 'toast.success.tag.update' }));
-            setName(id, form.name);
+            setName(tagId, form.name);
         });
     };
 
