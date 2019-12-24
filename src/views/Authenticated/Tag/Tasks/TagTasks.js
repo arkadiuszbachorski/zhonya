@@ -15,7 +15,7 @@ import DeleteList from '../../../../components/DeleteList/DeleteList';
 const TagTasks = () => {
     useAuthenticatedOnly();
 
-    const { id } = useParams();
+    const { tagId } = useParams();
 
     const { formatMessage } = useIntl();
 
@@ -28,14 +28,14 @@ const TagTasks = () => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        instance.get(api.tag.tasks(id)).then(response => {
+        instance.get(api.tag.tasks(tagId)).then(response => {
             setTasks(response.data);
         });
-    }, [id, instance]);
+    }, [tagId, instance]);
 
     useEffect(() => {
         if (form.task !== '') {
-            instance.post(api.tagTask.attach(id, form.task)).then(() => {
+            instance.post(api.tagTask.attach(tagId, form.task)).then(() => {
                 setTasks(prevTasks => {
                     const newTasks = [...prevTasks];
                     const index = newTasks.findIndex(item => item.id === parseInt(form.task, 10));
@@ -52,7 +52,7 @@ const TagTasks = () => {
     }, [form.task]);
 
     const detach = taskId => {
-        instance.post(api.tagTask.detach(id, taskId)).then(() => {
+        instance.post(api.tagTask.detach(tagId, taskId)).then(() => {
             setTasks(prevTasks => {
                 const newTasks = [...prevTasks];
                 const index = newTasks.findIndex(item => item.id === taskId);

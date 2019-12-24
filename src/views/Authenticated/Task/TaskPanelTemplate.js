@@ -26,13 +26,13 @@ const generateSideMenuItems = id => [
 ];
 
 const TaskPanelTemplate = ({ children }) => {
-    const { id } = useParams();
+    const { taskId } = useParams();
 
-    const [name] = useModelTitle('task', id, api.task.name(id));
+    const [name] = useModelTitle('task', taskId, api.task.name(taskId));
 
     const sideMenuItems = useMemo(() => {
-        return generateSideMenuItems(id);
-    }, [id]);
+        return generateSideMenuItems(taskId);
+    }, [taskId]);
 
     return (
         <PanelTemplate
