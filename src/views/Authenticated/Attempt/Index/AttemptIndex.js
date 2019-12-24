@@ -53,7 +53,7 @@ const AttemptIndex = () => {
     }, [debouncedFilters, instance]);
 
     return (
-        <TaskPanelTemplate actionButton={<ButtonCreate link to={routes.attempt.create} />}>
+        <TaskPanelTemplate actionButton={<ButtonCreate link to={routes.attempt.create(taskId)} />}>
             <Container variant={['marginBottom', 'filters']}>
                 <Input
                     icon={faSearch}
