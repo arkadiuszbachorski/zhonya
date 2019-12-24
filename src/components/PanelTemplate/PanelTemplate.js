@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PanelMenu from '../PanelMenu/PanelMenu';
 import PanelHeader from '../PanelHeader/PanelHeader';
 import styles from './PanelTemplate.module.scss';
-import IconList from '../IconList/IconList';
+import ListIcon from '../lists/ListIcon/ListIcon';
 
 const PanelTemplate = ({ children, titleId, secondaryTitleId, actionButton, sideMenuItems, title }) => {
     return (
@@ -19,11 +19,11 @@ const PanelTemplate = ({ children, titleId, secondaryTitleId, actionButton, side
                 <div className={styles.mainWrapper}>
                     {sideMenuItems !== null && (
                         <div className={styles.sideMenu}>
-                            <IconList className={styles.iconList}>
+                            <ListIcon className={styles.iconList}>
                                 {sideMenuItems.map(({ to, messageId, icon }) => (
-                                    <IconList.Item to={to} messageId={messageId} icon={icon} key={to} />
+                                    <ListIcon.Item to={to} messageId={messageId} icon={icon} key={to} />
                                 ))}
-                            </IconList>
+                            </ListIcon>
                         </div>
                     )}
                     <div className={styles.content}>{children}</div>

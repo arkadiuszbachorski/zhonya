@@ -4,21 +4,14 @@ import cs from 'classnames';
 import styles from './GridTable.module.scss';
 import Cell from './Cell';
 import Header from './Header';
-import Empty from '../typography/Empty/Empty';
 import Row from './Row';
-import LoadingOrChildren from '../loading/LoadingOrChildren/LoadingOrChildren';
-import LoadingOverlay from '../loading/LoadingOverlay/LoadingOverlay';
+import LoadingComplete from '../loading/LoadingComplete/LoadingComplete';
 
 const GridTable = ({ children, empty, emptyId, loading, className }) => {
-    if (empty && !loading) return <Empty messageId={emptyId} />;
-
     return (
-        <LoadingOrChildren loading={empty && loading}>
-            <div className={cs(styles.table, className)}>
-                <LoadingOverlay loading={!empty && loading} />
-                {children}
-            </div>
-        </LoadingOrChildren>
+        <LoadingComplete loading={loading} empty={empty} className={cs(className, styles.table)} emptyId={emptyId}>
+            {children}
+        </LoadingComplete>
     );
 };
 

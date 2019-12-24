@@ -7,6 +7,7 @@ export default {
         deleteConfirmation: 'Jesteś pewny?',
         actionCannotBeUndone: 'Ta akcja nie może zostać cofnięta',
         notFound: 'Nie znaleziono',
+        edited: 'Edytowano',
         'main.jumbotron.first': 'Zmierz swoje codzienne zadania',
         'main.jumbotron.second': 'i planuj swój dzień lepiej!',
         'main.jumbotron.button': 'Spróbuj za darmo już teraz',
@@ -56,6 +57,12 @@ export default {
         'model.user': 'Użytkownik',
         'model.task.singular': 'Zadanie',
         'model.task.plural': 'Zadania',
+        'model.task.pluralCounter': `{tasks, plural, 
+            =0 {Brak zadań} 
+            one {{tasks} zadanie} 
+            few {{tasks} zadania} 
+            many {{tasks} zadań}
+        }`,
         'model.tag.singular': 'Etykieta',
         'model.tag.plural': 'Etykiety',
         'task.index.header.name': 'Nazwa',
@@ -99,6 +106,7 @@ export default {
         deleteConfirmation: 'Are you sure?',
         actionCannotBeUndone: 'This action cannot be undone',
         notFound: 'Not found',
+        edited: 'Edited',
         'main.jumbotron.first': 'Measure your everyday tasks',
         'main.jumbotron.second': 'and plan your day even better!',
         'main.jumbotron.button': 'Try now for free',
@@ -149,6 +157,11 @@ export default {
         'model.user': 'User',
         'model.task.singular': 'Task',
         'model.task.plural': 'Tasks',
+        'model.task.pluralCounter': `{tasks, plural, 
+            =0 {No tasks} 
+            one {{tasks} task} 
+            other {{tasks} tasks} 
+        }`,
         'model.tag.singular': 'Tag',
         'model.tag.plural': 'Tags',
         'task.index.header.name': 'Name',

@@ -1,0 +1,9 @@
+@mixin hover-opacity-translateX($opacityFrom: 1, $opacityTo: .6, $translateTo: .5rem) {
+  opacity: $opacityFrom;
+  transition: opacity .3s, transform .3s;
+
+  &:hover {
+    opacity: $opacityTo;
+    transform: translateX($translateTo);
+  }
+}

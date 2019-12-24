@@ -1,0 +1,13 @@
+.wrapper {
+  padding: 0 .5rem;
+}
+
+.input {
+  margin-bottom: 2rem;
+}
+
+.captionLowercase {
+  > a > div > *:last-child:first-letter {
+    text-transform: lowercase;
+  }
+}
