@@ -25,7 +25,7 @@ const generateSideMenuItems = id => [
     },
 ];
 
-const TaskPanelTemplate = ({ children }) => {
+const TaskPanelTemplate = ({ children, actionButton }) => {
     const { taskId } = useParams();
 
     const [name] = useModelTitle('task', taskId, api.task.name(taskId));
@@ -40,6 +40,7 @@ const TaskPanelTemplate = ({ children }) => {
             secondaryTitleId="model.task.singular"
             titleId={name ? null : 'model.task.singular'}
             sideMenuItems={sideMenuItems}
+            actionButton={actionButton}
         >
             {children}
         </PanelTemplate>
@@ -48,10 +49,12 @@ const TaskPanelTemplate = ({ children }) => {
 
 TaskPanelTemplate.propTypes = {
     children: PropTypes.node,
+    actionButton: PropTypes.node,
 };
 
 TaskPanelTemplate.defaultProps = {
     children: null,
+    actionButton: null,
 };
 
 export default TaskPanelTemplate;
