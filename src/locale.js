@@ -50,6 +50,7 @@ export default {
         'toast.error.client':
             'Wystąpił niezidentyfikowany błąd. Spróbuj ponownie później lub skontaktuj się z administratorem',
         'action.create': 'Stwórz',
+        'action.timer': 'Mierz czas',
         'action.edit': 'Edytuj',
         'action.settings': 'Ustawienia',
         'action.dataEdit': 'Edytuj dane',
@@ -163,6 +164,7 @@ export default {
         'toast.error.client': 'Undefined error occurred. Try again or contact the administrator',
         'action.create': 'Create',
         'action.edit': 'Edit',
+        'action.timer': 'Timer',
         'action.settings': 'Settings',
         'action.dataEdit': 'Edit data',
         'action.delete': 'Delete',

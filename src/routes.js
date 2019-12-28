@@ -27,5 +27,6 @@ export default {
         create: (taskId = ':taskId') => `/task/${taskId}/attempt/create`,
         edit: (taskId = ':taskId', attemptId = ':attemptId') => `/task/${taskId}/attempt/${attemptId}/edit`,
         delete: (taskId = ':taskId', attemptId = ':attemptId') => `/task/${taskId}/attempt/${attemptId}/delete`,
+        timer: (taskId = ':taskId', attemptId = ':attemptId') => `/task/${taskId}/attempt/${attemptId}/timer`,
     },
 };
