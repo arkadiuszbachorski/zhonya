@@ -71,7 +71,7 @@ const AttemptIndex = () => {
                     <GridTable.Header messageId="attempt.index.header.lastUpdated" />
                 </GridTable.Row>
                 {attempts.map(attempt => (
-                    <GridTable.Row className={styles.row} key={attempt.id} to={routes.attempt.edit(attempt.id)}>
+                    <GridTable.Row className={styles.row} key={attempt.id} to={routes.attempt.edit(taskId, attempt.id)}>
                         <GridTable.Cell>{attempt.description}</GridTable.Cell>
                         <GridTable.Cell>czas here</GridTable.Cell>
                         <GridTable.Cell>
