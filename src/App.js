@@ -32,6 +32,7 @@ import TaskTags from './views/Authenticated/Task/Tags/TaskTags';
 import AttemptIndex from './views/Authenticated/Attempt/Index/AttemptIndex';
 import AttemptCreate from './views/Authenticated/Attempt/Create/AttemptCreate';
 import AttemptEdit from './views/Authenticated/Attempt/Edit/AttemptEdit';
+import AttemptDelete from './views/Authenticated/Attempt/Delete/AttemptDelete';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -75,6 +76,7 @@ const App = () => {
                         <Route path={routes.attempt.index()} exact component={AttemptIndex} />
                         <Route path={routes.attempt.create()} exact component={AttemptCreate} />
                         <Route path={routes.attempt.edit()} exact component={AttemptEdit} />
+                        <Route path={routes.attempt.delete()} exact component={AttemptDelete} />
                     </Switch>
                 </Router>
             </StoreContext.Provider>
