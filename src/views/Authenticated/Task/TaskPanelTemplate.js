@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { faPen, faTag, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faPen, faTag, faTrash } from '@fortawesome/free-solid-svg-icons';
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router';
 import routes from '../../../routes';
@@ -7,19 +7,24 @@ import PanelTemplate from '../../../components/PanelTemplate/PanelTemplate';
 import useModelTitle from '../../../hooks/useModelTitle';
 import api from '../../../api';
 
-const generateSideMenuItems = id => [
+const generateSideMenuItems = taskId => [
     {
-        to: routes.task.tags(id),
+        to: routes.attempt.index(taskId),
+        messageId: 'model.attempt.plural',
+        icon: faClock,
+    },
+    {
+        to: routes.task.tags(taskId),
         messageId: 'model.tag.plural',
         icon: faTag,
     },
     {
-        to: routes.task.edit(id),
+        to: routes.task.edit(taskId),
         messageId: 'action.edit',
         icon: faPen,
     },
     {
-        to: routes.task.delete(id),
+        to: routes.task.delete(taskId),
         messageId: 'action.delete',
         icon: faTrash,
     },
