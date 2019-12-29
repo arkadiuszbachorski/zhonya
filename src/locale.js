@@ -8,6 +8,26 @@ export default {
         actionCannotBeUndone: 'Ta akcja nie może zostać cofnięta',
         notFound: 'Nie znaleziono',
         edited: 'Edytowano',
+        'timer.seconds': `{value, plural, 
+            one {Sekunda} 
+            few {Sekundy} 
+            many {Sekund}
+        }`,
+        'timer.minutes': `{value, plural, 
+            one {Minuta} 
+            few {Minuty} 
+            many {Minut}
+        }`,
+        'timer.hours': `{value, plural, 
+            one {Godzina} 
+            few {Godziny} 
+            many {Godzin}
+        }`,
+        'timer.days': `{value, plural, 
+            one {Dzień} 
+            few {Dni} 
+            many {Dni}
+        }`,
         'main.jumbotron.first': 'Zmierz swoje codzienne zadania',
         'main.jumbotron.second': 'i planuj swój dzień lepiej!',
         'main.jumbotron.button': 'Spróbuj za darmo już teraz',
@@ -120,6 +140,22 @@ export default {
         actionCannotBeUndone: 'This action cannot be undone',
         notFound: 'Not found',
         edited: 'Edited',
+        'timer.seconds': `{value, plural, 
+            one {second} 
+            other {seconds} 
+        }`,
+        'timer.minutes': `{value, plural, 
+            one {minute} 
+            other {minutes} 
+        }`,
+        'timer.hours': `{value, plural, 
+            one {hour} 
+            other {hours} 
+        }`,
+        'timer.days': `{value, plural, 
+            one {day} 
+            other {days} 
+        }`,
         'main.jumbotron.first': 'Measure your everyday tasks',
         'main.jumbotron.second': 'and plan your day even better!',
         'main.jumbotron.button': 'Try now for free',
