@@ -1,32 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import styles from './Timer.module.scss';
 import AccentSubtitle from '../typography/AccentSubtitle/AccentSubtitle';
-import { FormattedMessage } from 'react-intl';
-
-const secondsInDay = 86400;
-const secondsInHour = 3600;
-const secondsInMinute = 60;
-
-const addZeroBefore = value => (value < 10 ? `0${value}` : value);
+import digitalTimer from '../../utils/digitalTimer';
 
 const Timer = ({ time }) => {
-    let workTime = time;
-
-    const days = Math.floor(workTime / secondsInDay);
-    workTime -= days * secondsInDay;
-
-    const hours = addZeroBefore(Math.floor(workTime / secondsInHour));
-    workTime -= hours * secondsInHour;
-
-    const minutes = addZeroBefore(Math.floor(workTime / secondsInMinute));
-    workTime -= minutes * secondsInMinute;
-
-    const seconds = addZeroBefore(workTime);
-
+    const { days, hours, seconds, minutes } = digitalTimer(time);
     return (
         <div className={styles.wrapper}>
-            {time >= secondsInDay && (
+            {time >= 86400 && (
                 <>
                     <div className={styles.unit}>
                         <div className={styles.value}>{days}</div>
@@ -39,7 +22,7 @@ const Timer = ({ time }) => {
                     <div className={styles.separator}>:</div>
                 </>
             )}
-            {time >= secondsInHour && (
+            {time >= 3600 && (
                 <>
                     <div className={styles.unit}>
                         <div className={styles.value}>{hours}</div>
@@ -52,7 +35,7 @@ const Timer = ({ time }) => {
                     <div className={styles.separator}>:</div>
                 </>
             )}
-            {time >= secondsInMinute && (
+            {time >= 60 && (
                 <>
                     <div className={styles.unit}>
                         <div className={styles.value}>{minutes}</div>
