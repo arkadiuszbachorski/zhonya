@@ -53,6 +53,8 @@ export default {
         'toast.success.tag.create': 'Pomyślnie stworzono etykietę',
         'toast.success.tag.update': 'Pomyślnie zaktualizowano etykietę',
         'toast.success.tag.delete': 'Pomyślnie usunięto etykietę',
+        'toast.success.tag.tasks.attach': 'Pomyślnie przypisano zadanie',
+        'toast.success.tag.tasks.detach': 'Pomyślnie odłączono zadanie',
         'toast.success.task.create': 'Pomyślnie stworzono zadanie',
         'toast.success.task.update': 'Pomyślnie zaktualizowano zadanie',
         'toast.success.task.delete': 'Pomyślnie usunięto zadanie',
