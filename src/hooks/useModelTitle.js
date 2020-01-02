@@ -3,10 +3,6 @@ import useMergeableState from './useMergeableState';
 import useInstanceWithToastsAndLoading from './api/useInstanceWithToastsAndLoading';
 import { useEffect } from 'react';
 
-/*
- * TODO: Write unit test
- * */
-
 export const useModelTitleProvider = () => {
     return useMergeableState({
         tag: {
