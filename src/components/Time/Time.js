@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import digitalTimer from '../../utils/digitalTimer';
+import secondsToTime from '../../utils/secondsToTime';
 import styles from './Time.module.scss';
 
 const Time = ({ time }) => {
-    const { days, hours, seconds, minutes } = digitalTimer(time);
+    const { days, hours, seconds, minutes } = secondsToTime(time);
     return (
         <span className={styles.time}>
             {time >= 86400 && (

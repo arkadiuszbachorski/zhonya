@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import styles from './Timer.module.scss';
 import AccentSubtitle from '../typography/AccentSubtitle/AccentSubtitle';
-import digitalTimer from '../../utils/digitalTimer';
+import secondsToTime from '../../utils/secondsToTime';
 
 const Timer = ({ time }) => {
-    const { days, hours, seconds, minutes } = digitalTimer(time);
+    const { days, hours, seconds, minutes } = secondsToTime(time);
     return (
         <div className={styles.wrapper}>
             {time >= 86400 && (
