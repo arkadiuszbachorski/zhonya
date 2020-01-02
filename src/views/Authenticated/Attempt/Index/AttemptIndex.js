@@ -15,6 +15,8 @@ import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWi
 import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
 import formattedRelativeTimeFromDate from '../../../../utils/formattedRelativeTimeCount';
 import TaskPanelTemplate from '../../Task/TaskPanelTemplate';
+import Time from '../../../../components/Time/Time';
+import Active from '../../../../components/typography/Active/Active';
 
 const prepareParams = ({ search, active, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -26,12 +28,6 @@ const AttemptIndex = () => {
     useAuthenticatedOnly();
 
     const { taskId } = useParams();
-
-    /*
-     * Todo:
-     *  Data headings
-     *  Check if element is currently active
-     * */
 
     const [debouncedFilters, filters, handleChange] = useDebouncedForm({
         search: '',
@@ -73,13 +69,18 @@ const AttemptIndex = () => {
                 {attempts.map(attempt => (
                     <GridTable.Row className={styles.row} key={attempt.id} to={routes.attempt.edit(taskId, attempt.id)}>
                         <GridTable.Cell>{attempt.description}</GridTable.Cell>
-                        <GridTable.Cell>czas here</GridTable.Cell>
                         <GridTable.Cell>
-                            <FormattedRelativeTime
-                                value={formattedRelativeTimeFromDate(attempt.updated_at)}
-                                numeric="auto"
-                                updateIntervalInSeconds={10}
-                            />
+                            <Time time={attempt.relative_time} />
+                        </GridTable.Cell>
+                        <GridTable.Cell>
+                            {attempt.active && <Active />}
+                            {!attempt.active && (
+                                <FormattedRelativeTime
+                                    value={formattedRelativeTimeFromDate(attempt.updated_at)}
+                                    numeric="auto"
+                                    updateIntervalInSeconds={10}
+                                />
+                            )}
                         </GridTable.Cell>
                     </GridTable.Row>
                 ))}
