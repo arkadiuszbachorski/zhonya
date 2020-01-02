@@ -48,10 +48,13 @@
   }
 }
 
-/*
-  TODO: Take care about errors displaying
-*/
 .color {
+  &.hasErrors {
+    input + .colorCode {
+      border-bottom-color: var(--danger);
+    }
+  }
+
   input {
     opacity: 0;
   }
