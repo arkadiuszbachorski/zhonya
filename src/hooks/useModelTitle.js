@@ -36,7 +36,6 @@ const useModelTitle = (model, id, url = null) => {
             [model]: {
                 id: providedId,
                 name: providedName,
-                default: modelTitle[model].default,
             },
         });
     };
