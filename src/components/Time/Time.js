@@ -5,7 +5,7 @@ import secondsToTime from '../../utils/secondsToTime';
 import styles from './Time.module.scss';
 
 const Time = ({ time }) => {
-    const { days, hours, seconds, minutes } = secondsToTime(time, true);
+    const { days, hours, seconds, minutes } = secondsToTime(time, false);
     return (
         <span className={styles.time}>
             {time >= 86400 && (
