@@ -16,8 +16,10 @@ const Typography = ({ tag, children, messageId, variants, className }) => {
 Typography.propTypes = {
     variants: PropTypes.arrayOf(
         PropTypes.oneOf([
-            'uppercase',
+            'primary',
             'muted',
+            'uppercase',
+            'lowercase',
             'center',
             'medium',
             'small',
