@@ -4,21 +4,27 @@ const secondsInMinute = 60;
 
 const addZeroBefore = value => (value < 10 ? `0${value}` : value);
 
-const digitalTimer = time => {
+const secondsToTime = (time, prefix = true) => {
     let workTime = time;
 
     const days = Math.floor(workTime / secondsInDay);
     workTime -= days * secondsInDay;
 
-    const hours = addZeroBefore(Math.floor(workTime / secondsInHour));
+    let hours = Math.floor(workTime / secondsInHour);
     workTime -= hours * secondsInHour;
 
-    const minutes = addZeroBefore(Math.floor(workTime / secondsInMinute));
+    let minutes = Math.floor(workTime / secondsInMinute);
     workTime -= minutes * secondsInMinute;
 
-    const seconds = addZeroBefore(workTime);
+    let seconds = workTime;
+
+    if (prefix) {
+        hours = addZeroBefore(hours);
+        minutes = addZeroBefore(minutes);
+        seconds = addZeroBefore(seconds);
+    }
 
     return { days, hours, minutes, seconds };
 };
 
-export default digitalTimer;
+export default secondsToTime;
