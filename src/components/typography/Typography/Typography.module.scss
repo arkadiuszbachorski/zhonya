@@ -33,3 +33,11 @@
 .subtleSpacing {
   letter-spacing: 1px;
 }
+
+.primary {
+  color: var(--primary);
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
