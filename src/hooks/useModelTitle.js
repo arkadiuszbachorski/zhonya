@@ -17,6 +17,10 @@ export const useModelTitleProvider = () => {
             id: null,
             name: null,
         },
+        attempt: {
+            id: null,
+            name: null,
+        },
     });
 };
 

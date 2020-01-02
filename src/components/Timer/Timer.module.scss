@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+}
+
+.unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.value, .separator {
+  font-size: 8rem;
+  font-weight: 300;
+}
+
+.caption * {
+  text-transform: lowercase;
+}
+

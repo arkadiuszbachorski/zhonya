@@ -8,6 +8,26 @@ export default {
         actionCannotBeUndone: 'Ta akcja nie może zostać cofnięta',
         notFound: 'Nie znaleziono',
         edited: 'Edytowano',
+        'timer.seconds': `{value, plural, 
+            one {Sekunda} 
+            few {Sekundy} 
+            many {Sekund}
+        }`,
+        'timer.minutes': `{value, plural, 
+            one {Minuta} 
+            few {Minuty} 
+            many {Minut}
+        }`,
+        'timer.hours': `{value, plural, 
+            one {Godzina} 
+            few {Godziny} 
+            many {Godzin}
+        }`,
+        'timer.days': `{value, plural, 
+            one {Dzień} 
+            few {Dni} 
+            many {Dni}
+        }`,
         'main.jumbotron.first': 'Zmierz swoje codzienne zadania',
         'main.jumbotron.second': 'i planuj swój dzień lepiej!',
         'main.jumbotron.button': 'Spróbuj za darmo już teraz',
@@ -33,9 +53,14 @@ export default {
         'toast.success.tag.create': 'Pomyślnie stworzono etykietę',
         'toast.success.tag.update': 'Pomyślnie zaktualizowano etykietę',
         'toast.success.tag.delete': 'Pomyślnie usunięto etykietę',
+        'toast.success.tag.tasks.attach': 'Pomyślnie przypisano zadanie',
+        'toast.success.tag.tasks.detach': 'Pomyślnie odłączono zadanie',
         'toast.success.task.create': 'Pomyślnie stworzono zadanie',
         'toast.success.task.update': 'Pomyślnie zaktualizowano zadanie',
         'toast.success.task.delete': 'Pomyślnie usunięto zadanie',
+        'toast.success.attempt.create': 'Pomyślnie stworzono próbę',
+        'toast.success.attempt.update': 'Pomyślnie zaktualizowano próbę',
+        'toast.success.attempt.delete': 'Pomyślnie usunięto próbę',
         'toast.success.task.tags.attach': 'Pomyślnie przypisano etykietę',
         'toast.success.task.tags.detach': 'Pomyślnie odłączono etykietę',
         'toast.error.validation': 'Sprawdź błędy i wyślij ponownie',
@@ -47,6 +72,7 @@ export default {
         'toast.error.client':
             'Wystąpił niezidentyfikowany błąd. Spróbuj ponownie później lub skontaktuj się z administratorem',
         'action.create': 'Stwórz',
+        'action.timer': 'Mierz czas',
         'action.edit': 'Edytuj',
         'action.settings': 'Ustawienia',
         'action.dataEdit': 'Edytuj dane',
@@ -65,6 +91,11 @@ export default {
         }`,
         'model.tag.singular': 'Etykieta',
         'model.tag.plural': 'Etykiety',
+        'model.attempt.singular': 'Próba',
+        'model.attempt.plural': 'Próby',
+        'attempt.index.header.description': 'Opis',
+        'attempt.index.header.time': 'Czas',
+        'attempt.index.header.lastUpdated': 'Zaktualizowano',
         'task.index.header.name': 'Nazwa',
         'task.index.header.description': 'Opis',
         'task.index.header.lastUpdated': 'Zaktualizowano',
@@ -87,6 +118,10 @@ export default {
         'task.delete.title': 'Usuń zadanie',
         'task.assign.title': 'Przypisz etykiety',
         'task.assign.text': 'Zadanie może mieć wiele etykiet',
+        'attempt.create.title': 'Stwórz próbę',
+        'attempt.edit.title': 'Edytuj próbę',
+        'attempt.form.text1': 'Próby odzblablabla',
+        'attempt.delete.title': 'Usuń próbę',
         'user.settings.theme.title': 'Zmień motyw',
         'user.settings.locale.title': 'Zmień język',
         'user.delete.title': 'Usuń konto',
@@ -107,6 +142,22 @@ export default {
         actionCannotBeUndone: 'This action cannot be undone',
         notFound: 'Not found',
         edited: 'Edited',
+        'timer.seconds': `{value, plural, 
+            one {second} 
+            other {seconds} 
+        }`,
+        'timer.minutes': `{value, plural, 
+            one {minute} 
+            other {minutes} 
+        }`,
+        'timer.hours': `{value, plural, 
+            one {hour} 
+            other {hours} 
+        }`,
+        'timer.days': `{value, plural, 
+            one {day} 
+            other {days} 
+        }`,
         'main.jumbotron.first': 'Measure your everyday tasks',
         'main.jumbotron.second': 'and plan your day even better!',
         'main.jumbotron.button': 'Try now for free',
@@ -137,6 +188,9 @@ export default {
         'toast.success.task.create': 'Task created successfully',
         'toast.success.task.update': 'Task updated successfully',
         'toast.success.task.delete': 'Task deleted successfully',
+        'toast.success.attempt.create': 'Attempt created successfully',
+        'toast.success.attempt.update': 'Attempt updated successfully',
+        'toast.success.attempt.delete': 'Attempt deleted successfully',
         'toast.success.task.tags.attach': 'Tag attached successfully',
         'toast.success.task.tags.detach': 'Tag detached successfully',
         'toast.error.validation': 'Check errors and try again',
@@ -148,6 +202,7 @@ export default {
         'toast.error.client': 'Undefined error occurred. Try again or contact the administrator',
         'action.create': 'Create',
         'action.edit': 'Edit',
+        'action.timer': 'Timer',
         'action.settings': 'Settings',
         'action.dataEdit': 'Edit data',
         'action.delete': 'Delete',
@@ -164,6 +219,11 @@ export default {
         }`,
         'model.tag.singular': 'Tag',
         'model.tag.plural': 'Tags',
+        'model.attempt.singular': 'Attempt',
+        'model.attempt.plural': 'Attempts',
+        'attempt.index.header.description': 'Description',
+        'attempt.index.header.time': 'Time',
+        'attempt.index.header.lastUpdated': 'Last updated',
         'task.index.header.name': 'Name',
         'task.index.header.description': 'Description',
         'task.index.header.lastUpdated': 'Last updated',
@@ -186,6 +246,10 @@ export default {
         'task.delete.title': 'Delete a task',
         'task.assign.title': 'Assign tags',
         'task.assign.text': 'One task can have many tags',
+        'attempt.create.title': 'Create an attempt',
+        'attempt.edit.title': 'Edit an attempt',
+        'attempt.form.text1': 'Attempts are isolated tries of your task',
+        'attempt.delete.title': 'Delete an attempt',
         'user.settings.theme.title': 'Change theme',
         'user.settings.locale.title': 'Change language',
         'user.delete.title': 'Delete account',

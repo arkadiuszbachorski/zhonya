@@ -32,5 +32,15 @@ export default {
         attach: (tagId, taskId) => `${url}/tag/${tagId}/task/${taskId}/attach`,
         detach: (tagId, taskId) => `${url}/tag/${tagId}/task/${taskId}/detach`,
     },
+    attempt: {
+        index: taskId => `${url}/task/${taskId}/attempt`,
+        store: taskId => `${url}/task/${taskId}/attempt`,
+        edit: (taskId, attemptId) => `${url}/task/${taskId}/attempt/${attemptId}/edit`,
+        name: (taskId, attemptId) => `${url}/task/${taskId}/attempt/${attemptId}/name`,
+        update: (taskId, attemptId) => `${url}/task/${taskId}/attempt/${attemptId}`,
+        delete: (taskId, attemptId) => `${url}/task/${taskId}/attempt/${attemptId}`,
+        measurement: (taskId, attemptId) => `${url}/task/${taskId}/attempt/${attemptId}/measurement`,
+        measurementSave: (taskId, attemptId) => `${url}/task/${taskId}/attempt/${attemptId}/measurement/save`,
+    },
     search: `${url}/search`,
 };
