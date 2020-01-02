@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Typography from '../Typography/Typography';
 
 const Active = ({ messageId, ...restProps }) => {
-    return <Typography variants={['primary', 'lowercase']} messageId={messageId} {...restProps} />;
+    return <Typography variants={['primary', 'lowercase', 'weightBold']} messageId={messageId} {...restProps} />;
 };
 
 Active.defaultProps = {
