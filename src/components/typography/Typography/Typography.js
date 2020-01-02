@@ -26,6 +26,7 @@ Typography.propTypes = {
             'noMargin',
             'weightNormal',
             'weightLight',
+            'weightBold',
             'subtleSpacing',
         ]),
     ),

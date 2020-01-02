@@ -8,6 +8,7 @@ export default {
         actionCannotBeUndone: 'Ta akcja nie może zostać cofnięta',
         notFound: 'Nie znaleziono',
         edited: 'Edytowano',
+        active: 'Aktywne',
         'timer.seconds': `{value, plural, 
             one {Sekunda} 
             few {Sekundy} 
@@ -142,6 +143,7 @@ export default {
         actionCannotBeUndone: 'This action cannot be undone',
         notFound: 'Not found',
         edited: 'Edited',
+        active: 'Active',
         'timer.seconds': `{value, plural, 
             one {second} 
             other {seconds} 
