@@ -3,10 +3,6 @@ import useMergeableState from './useMergeableState';
 import useInstanceWithToastsAndLoading from './api/useInstanceWithToastsAndLoading';
 import { useEffect } from 'react';
 
-/*
- * TODO: Write unit test
- * */
-
 export const useModelTitleProvider = () => {
     return useMergeableState({
         tag: {
@@ -36,7 +32,6 @@ const useModelTitle = (model, id, url = null) => {
             [model]: {
                 id: providedId,
                 name: providedName,
-                default: modelTitle[model].default,
             },
         });
     };
