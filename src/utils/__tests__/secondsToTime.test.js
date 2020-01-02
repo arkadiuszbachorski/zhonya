@@ -23,4 +23,12 @@ describe('utility - secondsToTime', () => {
         expect(timer.hours).toBe(18);
         expect(timer.days).toBe(1);
     });
+
+    it('doesnt prefix when flag provided', () => {
+        const timer = secondsToTime(time - (25 * 60 * 60 + 1 * 60 + 94), false);
+        expect(timer.seconds).toBe(1);
+        expect(timer.minutes).toBe(8);
+        expect(timer.hours).toBe(18);
+        expect(timer.days).toBe(1);
+    });
 });
