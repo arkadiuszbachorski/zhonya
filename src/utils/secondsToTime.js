@@ -4,7 +4,7 @@ const secondsInMinute = 60;
 
 const addZeroBefore = value => (value < 10 ? `0${value}` : value);
 
-const secondsToTime = (time, prefix = false) => {
+const secondsToTime = (time, prefix = true) => {
     let workTime = time;
 
     const days = Math.floor(workTime / secondsInDay);
