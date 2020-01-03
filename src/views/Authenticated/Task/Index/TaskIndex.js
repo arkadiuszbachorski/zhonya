@@ -15,6 +15,8 @@ import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWi
 import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
 import formattedRelativeTimeFromDate from '../../../../utils/formattedRelativeTimeCount';
 import ColorPill from '../../../../components/ColorPill/ColorPill';
+import Active from '../../../../components/typography/Active/Active';
+import Time from '../../../../components/Time/Time';
 
 const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
     search: search === '' ? undefined : search,
@@ -30,9 +32,7 @@ const TaskIndex = () => {
     /*
      * Todo:
      *  Data headings
-     *  Check if element is currently active
      * */
-
     const [debouncedFilters, filters, handleChange] = useDebouncedForm({
         search: '',
         tag: '',
@@ -99,11 +99,14 @@ const TaskIndex = () => {
                         </GridTable.Cell>
                         <GridTable.Cell>{task.description}</GridTable.Cell>
                         <GridTable.Cell>
-                            <FormattedRelativeTime
-                                value={formattedRelativeTimeFromDate(task.updated_at)}
-                                numeric="auto"
-                                updateIntervalInSeconds={10}
-                            />
+                            {task.active && <Active />}
+                            {!task.active && (
+                                <FormattedRelativeTime
+                                    value={formattedRelativeTimeFromDate(task.updated_at)}
+                                    numeric="auto"
+                                    updateIntervalInSeconds={10}
+                                />
+                            )}
                         </GridTable.Cell>
                     </GridTable.Row>
                 ))}
