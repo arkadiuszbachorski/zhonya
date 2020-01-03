@@ -1,7 +1,7 @@
 import useStore, { storeKeys } from './useStore';
 import useStateWithLocalStorage from './useStateWithLocalStorage';
 
-const availableTimePreferences = ['short', 'medium', 'long'];
+export const availableTimePreferences = ['short', 'medium', 'long'];
 
 export const useTimePreferenceProvider = () => {
     const [timePreference, setTimePreference] = useStateWithLocalStorage(storeKeys.useTimePreference, 'long');
