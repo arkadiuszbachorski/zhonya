@@ -83,6 +83,9 @@ const TaskIndex = () => {
                 <GridTable.Row header className={styles.row}>
                     <GridTable.Header messageId="task.index.header.name" />
                     <GridTable.Header messageId="task.index.header.description" />
+                    <GridTable.Header messageId="task.index.header.average" />
+                    <GridTable.Header messageId="task.index.header.fastest" />
+                    <GridTable.Header messageId="task.index.header.slowest" />
                     <GridTable.Header messageId="task.index.header.lastUpdated" />
                 </GridTable.Row>
                 {tasks.map(task => (
@@ -98,6 +101,15 @@ const TaskIndex = () => {
                             {task.name}
                         </GridTable.Cell>
                         <GridTable.Cell>{task.description}</GridTable.Cell>
+                        <GridTable.Cell>
+                            <Time time={task.attempts_statistics.avg} />
+                        </GridTable.Cell>
+                        <GridTable.Cell>
+                            <Time time={task.attempts_statistics.min} />
+                        </GridTable.Cell>
+                        <GridTable.Cell>
+                            <Time time={task.attempts_statistics.max} />
+                        </GridTable.Cell>
                         <GridTable.Cell>
                             {task.active && <Active />}
                             {!task.active && (
