@@ -17,8 +17,7 @@ const Time = ({ time, timePreference }) => {
             <span className={styles.time}>
                 {time >= 86400 && <>{days}:</>}
                 {time >= 3600 && <>{hours}:</>}
-                {time >= 60 && <>{minutes}:</>}
-                {seconds}:
+                {minutes}:{seconds}
             </span>
         );
     }
