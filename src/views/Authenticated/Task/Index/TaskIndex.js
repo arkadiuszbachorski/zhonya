@@ -91,10 +91,10 @@ const TaskIndex = () => {
                 {tasks.map(task => (
                     <GridTable.Row className={styles.row} key={task.id} to={routes.task.edit(task.id)}>
                         <GridTable.Cell className={styles.name}>
-                            {task.tags.length > 0 && (
+                            {task.tags_colors.length > 0 && (
                                 <div className={styles.pills}>
-                                    {task.tags.map(tag => (
-                                        <ColorPill key={tag.id} color={`#${tag.color}`} variant="vertical" />
+                                    {task.tags_colors.map(color => (
+                                        <ColorPill key={color} color={`#${color}`} variant="vertical" />
                                     ))}
                                 </div>
                             )}
