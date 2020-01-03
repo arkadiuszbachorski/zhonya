@@ -29,10 +29,6 @@ const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
 const TaskIndex = () => {
     useAuthenticatedOnly();
 
-    /*
-     * Todo:
-     *  Data headings
-     * */
     const [debouncedFilters, filters, handleChange] = useDebouncedForm({
         search: '',
         tag: '',
