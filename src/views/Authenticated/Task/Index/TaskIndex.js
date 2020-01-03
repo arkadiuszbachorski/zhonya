@@ -15,6 +15,8 @@ import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWi
 import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
 import formattedRelativeTimeFromDate from '../../../../utils/formattedRelativeTimeCount';
 import ColorPill from '../../../../components/ColorPill/ColorPill';
+import Active from '../../../../components/typography/Active/Active';
+import Time from '../../../../components/Time/Time';
 
 const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
     search: search === '' ? undefined : search,
@@ -26,12 +28,6 @@ const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
 
 const TaskIndex = () => {
     useAuthenticatedOnly();
-
-    /*
-     * Todo:
-     *  Data headings
-     *  Check if element is currently active
-     * */
 
     const [debouncedFilters, filters, handleChange] = useDebouncedForm({
         search: '',
@@ -83,15 +79,18 @@ const TaskIndex = () => {
                 <GridTable.Row header className={styles.row}>
                     <GridTable.Header messageId="task.index.header.name" />
                     <GridTable.Header messageId="task.index.header.description" />
+                    <GridTable.Header messageId="task.index.header.average" />
+                    <GridTable.Header messageId="task.index.header.fastest" />
+                    <GridTable.Header messageId="task.index.header.slowest" />
                     <GridTable.Header messageId="task.index.header.lastUpdated" />
                 </GridTable.Row>
                 {tasks.map(task => (
                     <GridTable.Row className={styles.row} key={task.id} to={routes.task.edit(task.id)}>
                         <GridTable.Cell className={styles.name}>
-                            {task.tags.length > 0 && (
+                            {task.tags_colors.length > 0 && (
                                 <div className={styles.pills}>
-                                    {task.tags.map(tag => (
-                                        <ColorPill key={tag.id} color={`#${tag.color}`} variant="vertical" />
+                                    {task.tags_colors.map(color => (
+                                        <ColorPill key={color} color={`#${color}`} variant="vertical" />
                                     ))}
                                 </div>
                             )}
@@ -99,11 +98,23 @@ const TaskIndex = () => {
                         </GridTable.Cell>
                         <GridTable.Cell>{task.description}</GridTable.Cell>
                         <GridTable.Cell>
-                            <FormattedRelativeTime
-                                value={formattedRelativeTimeFromDate(task.updated_at)}
-                                numeric="auto"
-                                updateIntervalInSeconds={10}
-                            />
+                            <Time time={task.attempts_statistics.avg} />
+                        </GridTable.Cell>
+                        <GridTable.Cell>
+                            <Time time={task.attempts_statistics.min} />
+                        </GridTable.Cell>
+                        <GridTable.Cell>
+                            <Time time={task.attempts_statistics.max} />
+                        </GridTable.Cell>
+                        <GridTable.Cell>
+                            {task.active && <Active />}
+                            {!task.active && (
+                                <FormattedRelativeTime
+                                    value={formattedRelativeTimeFromDate(task.updated_at)}
+                                    numeric="auto"
+                                    updateIntervalInSeconds={10}
+                                />
+                            )}
                         </GridTable.Cell>
                     </GridTable.Row>
                 ))}
