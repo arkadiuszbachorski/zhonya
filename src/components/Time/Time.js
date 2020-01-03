@@ -28,26 +28,22 @@ const Time = ({ time, timePreference }) => {
             {time >= 86400 && (
                 <>
                     {days}
-                    &nbsp;
-                    <FormattedMessage id={suffixIfMedium('timer.days')} values={{ value: days }} />{' '}
+                    <FormattedMessage id={suffixIfMedium('timer.days')} values={{ value: days }} />
                 </>
             )}
             {time >= 3600 && (
                 <>
                     {hours}
-                    &nbsp;
-                    <FormattedMessage id={suffixIfMedium('timer.hours')} values={{ value: hours }} />{' '}
+                    <FormattedMessage id={suffixIfMedium('timer.hours')} values={{ value: hours }} />
                 </>
             )}
             {time >= 60 && (
                 <>
                     {minutes}
-                    &nbsp;
-                    <FormattedMessage id={suffixIfMedium('timer.minutes')} values={{ value: minutes }} />{' '}
+                    <FormattedMessage id={suffixIfMedium('timer.minutes')} values={{ value: minutes }} />
                 </>
             )}
             {seconds}
-            &nbsp;
             <FormattedMessage id={suffixIfMedium('timer.seconds')} values={{ value: seconds }} />
         </span>
     );
