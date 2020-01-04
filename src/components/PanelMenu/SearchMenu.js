@@ -52,6 +52,7 @@ const SearchMenu = ({ toggle, active }) => {
                     className={styles.input}
                     labelId="action.search"
                     name="search"
+                    id="main-search"
                     icon={faSearch}
                     value={filters.search}
                     onChange={handleChange}
