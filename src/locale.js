@@ -10,25 +10,29 @@ export default {
         edited: 'Edytowano',
         active: 'Aktywne',
         'timer.seconds': `{value, plural, 
-            one {Sekunda} 
-            few {Sekundy} 
-            many {Sekund}
+            one { Sekunda } 
+            few { Sekundy } 
+            many { Sekund }
         }`,
         'timer.minutes': `{value, plural, 
-            one {Minuta} 
-            few {Minuty} 
-            many {Minut}
+            one { Minuta } 
+            few { Minuty } 
+            many { Minut }
         }`,
         'timer.hours': `{value, plural, 
-            one {Godzina} 
-            few {Godziny} 
-            many {Godzin}
+            one { Godzina } 
+            few { Godziny } 
+            many { Godzin }
         }`,
         'timer.days': `{value, plural, 
-            one {Dzień} 
-            few {Dni} 
-            many {Dni}
+            one { Dzień } 
+            few { Dni } 
+            many { Dni }
         }`,
+        'timer.seconds.medium': ` Sek. `,
+        'timer.minutes.medium': ` Min. `,
+        'timer.hours.medium': ` Godz. `,
+        'timer.days.medium': ` D. `,
         'main.jumbotron.first': 'Zmierz swoje codzienne zadania',
         'main.jumbotron.second': 'i planuj swój dzień lepiej!',
         'main.jumbotron.button': 'Spróbuj za darmo już teraz',
@@ -47,6 +51,9 @@ export default {
         'input.theme.dark': 'Ciemny',
         'input.locale.pl': 'Polski - polski',
         'input.locale.en': 'Angielski - english',
+        'input.timePreference.long': 'Długa',
+        'input.timePreference.medium': 'Średnia',
+        'input.timePreference.short': 'Krótka',
         'input.active': 'Aktywne',
         'toast.success.changePassword': 'Pomyślnie zmieniono hasło',
         'toast.success.changeEmail': 'Wiadomość potwierdzająca została wysłana',
@@ -128,6 +135,7 @@ export default {
         'attempt.delete.title': 'Usuń próbę',
         'user.settings.theme.title': 'Zmień motyw',
         'user.settings.locale.title': 'Zmień język',
+        'user.settings.timePreference.title': 'Wybierz preferowany format daty',
         'user.delete.title': 'Usuń konto',
         'user.delete.text2': 'Stracisz wszystkie swoje dane oraz postępy',
         'user.data.password.title': 'Zmień hasło',
@@ -148,21 +156,25 @@ export default {
         edited: 'Edited',
         active: 'Active',
         'timer.seconds': `{value, plural, 
-            one {second} 
-            other {seconds} 
+            one { second } 
+            other { seconds } 
         }`,
         'timer.minutes': `{value, plural, 
-            one {minute} 
-            other {minutes} 
+            one { minute } 
+            other { minutes } 
         }`,
         'timer.hours': `{value, plural, 
-            one {hour} 
-            other {hours} 
+            one { hour } 
+            other { hours } 
         }`,
         'timer.days': `{value, plural, 
-            one {day} 
-            other {days} 
+            one { day } 
+            other { days } 
         }`,
+        'timer.seconds.medium': `Sec `,
+        'timer.minutes.medium': `Min `,
+        'timer.hours.medium': `H `,
+        'timer.days.medium': `D `,
         'main.jumbotron.first': 'Measure your everyday tasks',
         'main.jumbotron.second': 'and plan your day even better!',
         'main.jumbotron.button': 'Try now for free',
@@ -181,6 +193,9 @@ export default {
         'input.theme.dark': 'Dark',
         'input.locale.pl': 'Polish - polski',
         'input.locale.en': 'English - english',
+        'input.timePreference.long': 'Long',
+        'input.timePreference.medium': 'Medium',
+        'input.timePreference.short': 'Short',
         'input.active': 'Active',
         'toast.success.changePassword': 'Password changed successfully',
         'toast.success.changeEmail': 'Confirmation email has been sent',
@@ -260,6 +275,7 @@ export default {
         'attempt.delete.title': 'Delete an attempt',
         'user.settings.theme.title': 'Change theme',
         'user.settings.locale.title': 'Change language',
+        'user.settings.timePreference.title': 'Choose preferred date format',
         'user.delete.title': 'Delete account',
         'user.delete.text2': "You'll lose your data and progress",
         'user.data.password.title': 'Change password',

@@ -15,5 +15,6 @@ export const storeKeys = {
     useLocale: 'locale',
     useRedirect: 'redirect',
     useTheme: 'theme',
-    useModelTitle: 'useModelTitle',
+    useModelTitle: 'modelTitle',
+    useTimePreference: 'timePreference',
 };
