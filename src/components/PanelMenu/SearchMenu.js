@@ -76,6 +76,7 @@ const SearchMenu = ({ toggle, active }) => {
                                                 />
                                             }
                                             text={tag.name}
+                                            onClick={toggle}
                                         />
                                     ))}
                                 </ListCaptionAndColor>
@@ -97,6 +98,7 @@ const SearchMenu = ({ toggle, active }) => {
                                                 </>
                                             }
                                             text={task.name}
+                                            onClick={toggle}
                                         />
                                     ))}
                                 </ListCaptionAndColor>

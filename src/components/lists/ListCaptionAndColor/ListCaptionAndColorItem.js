@@ -6,10 +6,10 @@ import styles from './ListCaptionAndColorItem.module.scss';
 import ColorPill from '../../ColorPill/ColorPill';
 import Caption from '../../typography/Caption/Caption';
 
-const ListCaptionAndColorItem = ({ text, caption, color, to, className }) => {
+const ListCaptionAndColorItem = ({ text, caption, color, to, className, onClick }) => {
     return (
         <li className={cn(styles.item, className)}>
-            <Link to={to}>
+            <Link to={to} onClick={onClick}>
                 {color && (
                     <div className={styles.color}>
                         <ColorPill color={color} className={styles.colorPill} variant="vertical" />
@@ -30,11 +30,13 @@ ListCaptionAndColorItem.propTypes = {
     to: PropTypes.string.isRequired,
     color: PropTypes.string,
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    onClick: PropTypes.func,
 };
 
 ListCaptionAndColorItem.defaultProps = {
     color: null,
     className: null,
+    onClick: null,
 };
 
 export default ListCaptionAndColorItem;
