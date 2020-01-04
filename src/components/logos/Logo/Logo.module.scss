@@ -1,0 +1,11 @@
+.logo {
+  &.inverted {
+    path {
+      stroke: var(--secondary-font);
+    }
+  }
+
+  path {
+    stroke: var(--primary-font);
+  }
+}

@@ -17,7 +17,7 @@ const PanelMenu = () => {
     return (
         <>
             <nav className={styles.mainMenu}>
-                <Logo className={styles.logo} inverted stroke={7} />
+                <Logo className={styles.logo} stroke={7} />
                 <div className={styles.buttonsWrapper}>
                     <ButtonRoundIcon icon={faList} onClick={toggleListMenu} />
                     <ButtonRoundIcon icon={faPlus} onClick={toggleCreateMenu} />
