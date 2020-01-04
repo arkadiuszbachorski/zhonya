@@ -37,6 +37,7 @@ body {
     border-bottom-right-radius: $falling-border-radius;
     padding-left: $falling-border-radius / 2;
     padding-right: $falling-border-radius / 2;
+    color: var(--secondary-font);
   }
 
   .Toastify__toast--info {
