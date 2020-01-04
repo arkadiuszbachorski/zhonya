@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FormattedRelativeTime } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import api from '../../../../api';
@@ -13,10 +12,10 @@ import GridTable from '../../../../components/GridTable/GridTable';
 import styles from './TaskIndex.module.scss';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
-import formattedRelativeTimeFromDate from '../../../../utils/formattedRelativeTimeCount';
 import ColorPill from '../../../../components/ColorPill/ColorPill';
 import Active from '../../../../components/typography/Active/Active';
 import Time from '../../../../components/Time/Time';
+import RelativeDate from '../../../../components/RelativeDate/RelativeDate';
 
 const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
     search: search === '' ? undefined : search,
@@ -108,13 +107,7 @@ const TaskIndex = () => {
                         </GridTable.Cell>
                         <GridTable.Cell>
                             {task.active && <Active />}
-                            {!task.active && (
-                                <FormattedRelativeTime
-                                    value={formattedRelativeTimeFromDate(task.updated_at)}
-                                    numeric="auto"
-                                    updateIntervalInSeconds={10}
-                                />
-                            )}
+                            {!task.active && <RelativeDate date={task.updated_at} />}
                         </GridTable.Cell>
                     </GridTable.Row>
                 ))}

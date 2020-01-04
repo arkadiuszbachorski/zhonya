@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FormattedMessage, FormattedRelativeTime } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import SlidingMenu from '../SlidingMenu/SlidingMenu';
 import Input from '../forms/Input/Input';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
@@ -12,7 +12,7 @@ import ListCaptionAndColor from '../lists/ListCaptionAndColor/ListCaptionAndColo
 import AccentSubtitle from '../typography/AccentSubtitle/AccentSubtitle';
 import routes from '../../routes';
 import styles from './SearchMenu.module.scss';
-import formattedRelativeTimeFromDate from '../../utils/formattedRelativeTimeCount';
+import RelativeDate from '../RelativeDate/RelativeDate';
 
 const prepareParams = ({ search, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -92,11 +92,7 @@ const SearchMenu = ({ toggle, active }) => {
                                             caption={
                                                 <>
                                                     <FormattedMessage id="edited" />{' '}
-                                                    <FormattedRelativeTime
-                                                        value={formattedRelativeTimeFromDate(task.updated_at)}
-                                                        numeric="auto"
-                                                        updateIntervalInSeconds={10}
-                                                    />
+                                                    <RelativeDate date={task.updated_at} />
                                                 </>
                                             }
                                             text={task.name}

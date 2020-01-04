@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FormattedRelativeTime } from 'react-intl';
 import { useParams } from 'react-router';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import api from '../../../../api';
@@ -13,10 +12,10 @@ import GridTable from '../../../../components/GridTable/GridTable';
 import styles from './AttemptIndex.module.scss';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
-import formattedRelativeTimeFromDate from '../../../../utils/formattedRelativeTimeCount';
 import TaskPanelTemplate from '../../Task/TaskPanelTemplate';
 import Time from '../../../../components/Time/Time';
 import Active from '../../../../components/typography/Active/Active';
+import RelativeDate from '../../../../components/RelativeDate/RelativeDate';
 
 const prepareParams = ({ search, active, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -74,13 +73,7 @@ const AttemptIndex = () => {
                         </GridTable.Cell>
                         <GridTable.Cell>
                             {attempt.active && <Active />}
-                            {!attempt.active && (
-                                <FormattedRelativeTime
-                                    value={formattedRelativeTimeFromDate(attempt.updated_at)}
-                                    numeric="auto"
-                                    updateIntervalInSeconds={10}
-                                />
-                            )}
+                            {!attempt.active && <RelativeDate date={attempt.updated_at} />}
                         </GridTable.Cell>
                     </GridTable.Row>
                 ))}
