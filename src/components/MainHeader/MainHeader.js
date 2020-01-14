@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import cn from 'classnames';
 import styles from './MainHeader.module.scss';
 import CombinedLogo from '../logos/CombinedLogo/CombinedLogo';
 import routes from '../../routes';
 import Button from '../buttons/Button/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import cn from 'classnames';
 
 const MainHeader = () => {
     const [open, setOpen] = useState(false);
@@ -21,7 +21,7 @@ const MainHeader = () => {
                     </Link>
                 </li>
                 <li>
-                    <Button link to={routes.signUp}>
+                    <Button link to={routes.signUp} variant="primaryLight">
                         <FormattedMessage id="signUp" />
                     </Button>
                 </li>

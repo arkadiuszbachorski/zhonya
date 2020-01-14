@@ -2,6 +2,8 @@
 
 .group {
   input, textarea, select {
+    background: var(--background);
+    color: var(--primary-font);
     border: none;
     border-bottom: 1px solid var(--accent);
     transition: border-color .3s;

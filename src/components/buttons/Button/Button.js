@@ -34,7 +34,7 @@ Button.propTypes = {
     round: PropTypes.bool,
     size: PropTypes.oneOf(['small', 'large', null]),
     children: PropTypes.node,
-    variant: PropTypes.oneOf(['primary', 'blank', 'danger', 'success', 'accent']),
+    variant: PropTypes.oneOf(['primary', 'blank', 'danger', 'success', 'accent', 'primaryLight']),
     className: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
     onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.exact(null)]),
     disabled: PropTypes.bool,
