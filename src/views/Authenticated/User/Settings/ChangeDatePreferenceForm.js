@@ -18,6 +18,7 @@ const ChangeDatePreferenceForm = () => {
                 loading={false}
                 variant="edit"
                 titleId="user.settings.datePreference.title"
+                paragraphIds={['user.settings.datePreference.text1']}
             >
                 {availableDatePreferences.map(pref => (
                     <Checkbox
