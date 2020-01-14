@@ -4,6 +4,7 @@ import ChangeThemeForm from './ChangeThemeForm';
 import ChangeLocaleForm from './ChangeLocaleForm';
 import UserPanelTemplate from '../UserPanelTemplate';
 import ChangeTimePreferenceForm from './ChangeTimePreferenceForm';
+import ChangeDatePreferenceForm from './ChangeDatePreferenceForm';
 
 const UserSettings = () => {
     useAuthenticatedOnly();
@@ -13,6 +14,7 @@ const UserSettings = () => {
             <ChangeThemeForm />
             <ChangeLocaleForm />
             <ChangeTimePreferenceForm />
+            <ChangeDatePreferenceForm />
         </UserPanelTemplate>
     );
 };

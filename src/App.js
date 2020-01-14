@@ -35,6 +35,7 @@ import AttemptEdit from './views/Authenticated/Attempt/Edit/AttemptEdit';
 import AttemptDelete from './views/Authenticated/Attempt/Delete/AttemptDelete';
 import AttemptTimer from './views/Authenticated/Attempt/Timer/AttemptTimer';
 import { useTimePreferenceProvider } from './hooks/useTimePreference';
+import { useDatePreferenceProvider } from './hooks/useDatePreference';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -43,6 +44,7 @@ const App = () => {
     const [currentLocale, setLocale] = useLocaleProvider();
     const modelTitle = useModelTitleProvider();
     const timePreference = useTimePreferenceProvider();
+    const datePreference = useDatePreferenceProvider();
 
     return (
         <IntlProvider locale={currentLocale} messages={locale[currentLocale]}>
@@ -54,6 +56,7 @@ const App = () => {
                     [storeKeys.useLocale]: [currentLocale, setLocale],
                     [storeKeys.useModelTitle]: modelTitle,
                     [storeKeys.useTimePreference]: timePreference,
+                    [storeKeys.useDatePreference]: datePreference,
                 }}
             >
                 <ToastContainer newestOnTop position="bottom-right" transition={Slide} />
