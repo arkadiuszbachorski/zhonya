@@ -10,12 +10,16 @@
 .card {
   text-align: center;
   font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .inputsWrapper {
   flex-grow: 1;
   margin-left: 2rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 @include media-breakpoint-up(md) {
