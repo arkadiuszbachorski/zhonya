@@ -29,6 +29,22 @@ body {
   background-color: var(--background);
 }
 
+::-webkit-scrollbar {
+  width: 13px;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 6px;
+  border: 4px solid var(--background);
+}
+
 @import '~react-toastify/dist/ReactToastify.css';
 
 .Toastify {

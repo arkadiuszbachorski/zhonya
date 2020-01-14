@@ -61,7 +61,7 @@ const AttemptTimer = () => {
     return (
         <AttemptPanelTemplate>
             <Container variant={['center', 'marginTopLarge']}>
-                <LoadingOrChildren loading={loading && relativeTime === null}>
+                <LoadingOrChildren loading={relativeTime === null}>
                     <Timer time={relativeTime} />
                 </LoadingOrChildren>
             </Container>
