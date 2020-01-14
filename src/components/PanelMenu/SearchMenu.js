@@ -12,7 +12,7 @@ import ListCaptionAndColor from '../lists/ListCaptionAndColor/ListCaptionAndColo
 import AccentSubtitle from '../typography/AccentSubtitle/AccentSubtitle';
 import routes from '../../routes';
 import styles from './SearchMenu.module.scss';
-import RelativeDate from '../RelativeDate/RelativeDate';
+import DateDisplay from '../DateDisplay/DateDisplay';
 
 const prepareParams = ({ search, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -94,7 +94,7 @@ const SearchMenu = ({ toggle, active }) => {
                                             caption={
                                                 <>
                                                     <FormattedMessage id="edited" />{' '}
-                                                    <RelativeDate date={task.updated_at} />
+                                                    <DateDisplay date={task.updated_at} />
                                                 </>
                                             }
                                             text={task.name}

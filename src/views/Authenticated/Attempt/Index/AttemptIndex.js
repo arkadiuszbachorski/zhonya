@@ -15,7 +15,7 @@ import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
 import TaskPanelTemplate from '../../Task/TaskPanelTemplate';
 import Time from '../../../../components/Time/Time';
 import Active from '../../../../components/typography/Active/Active';
-import RelativeDate from '../../../../components/RelativeDate/RelativeDate';
+import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
 
 const prepareParams = ({ search, active, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -73,7 +73,7 @@ const AttemptIndex = () => {
                         </GridTable.Cell>
                         <GridTable.Cell>
                             {attempt.active && <Active />}
-                            {!attempt.active && <RelativeDate date={attempt.updated_at} />}
+                            {!attempt.active && <DateDisplay date={attempt.updated_at} />}
                         </GridTable.Cell>
                     </GridTable.Row>
                 ))}

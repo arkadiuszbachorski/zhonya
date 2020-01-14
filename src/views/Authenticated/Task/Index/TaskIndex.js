@@ -15,7 +15,7 @@ import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
 import ColorPill from '../../../../components/ColorPill/ColorPill';
 import Active from '../../../../components/typography/Active/Active';
 import Time from '../../../../components/Time/Time';
-import RelativeDate from '../../../../components/RelativeDate/RelativeDate';
+import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
 
 const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
     search: search === '' ? undefined : search,
@@ -107,7 +107,7 @@ const TaskIndex = () => {
                         </GridTable.Cell>
                         <GridTable.Cell>
                             {task.active && <Active />}
-                            {!task.active && <RelativeDate date={task.updated_at} />}
+                            {!task.active && <DateDisplay date={task.updated_at} />}
                         </GridTable.Cell>
                     </GridTable.Row>
                 ))}
