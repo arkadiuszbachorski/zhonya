@@ -22,6 +22,10 @@
   padding-top: 1rem;
 }
 
+.paragraph {
+  margin-bottom: 0;
+}
+
 @include media-breakpoint-up(md) {
   .wrapper {
     flex-direction: row;
