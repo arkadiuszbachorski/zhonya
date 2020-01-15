@@ -5,10 +5,11 @@ import formattedRelativeTimeFromDate from '../../utils/formattedRelativeTimeCoun
 import useDatePreference, { availableDatePreferences } from '../../hooks/useDatePreference';
 
 const DateDisplay = ({ date, preference }) => {
+    const tzDate = new Date(`${date} UTC`);
     const [savedPreference] = useDatePreference();
     const finalPreference = preference || savedPreference;
     const { formatDate } = useIntl();
-    const long = formatDate(date, {
+    const long = formatDate(tzDate, {
         day: 'numeric',
         month: 'long',
         year: 'numeric',
@@ -21,13 +22,13 @@ const DateDisplay = ({ date, preference }) => {
         <span title={long}>
             {finalPreference === 'relative' && (
                 <FormattedRelativeTime
-                    value={formattedRelativeTimeFromDate(date)}
+                    value={formattedRelativeTimeFromDate(tzDate)}
                     numeric="auto"
                     updateIntervalInSeconds={10}
                 />
             )}
             {finalPreference === 'short' &&
-                formatDate(date, {
+                formatDate(tzDate, {
                     day: 'numeric',
                     month: 'numeric',
                     year: 'numeric',
