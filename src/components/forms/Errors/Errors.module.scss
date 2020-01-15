@@ -3,4 +3,8 @@
 .error {
   margin-top: .3rem;
   color: var(--danger);
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
 }
