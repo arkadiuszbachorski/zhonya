@@ -20,6 +20,11 @@
   flex-grow: 1;
   margin-left: 2rem;
   padding-top: 1rem;
+  align-self: center;
+}
+
+.paragraph {
+  margin-bottom: 0;
 }
 
 @include media-breakpoint-up(md) {

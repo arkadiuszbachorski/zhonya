@@ -13,7 +13,7 @@ const FormWithCard = ({ titleId, paragraphIds, children, onSubmit, variant, load
             <Card inverted variant={variant === 'delete' ? 'danger' : 'primary'} className={styles.card}>
                 <PageTitle tag="h4" messageId={titleId} />
                 {paragraphIds.map(item => (
-                    <p key={item}>
+                    <p key={item} className={styles.paragraph}>
                         <FormattedMessage id={item} />
                     </p>
                 ))}
