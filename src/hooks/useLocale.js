@@ -3,19 +3,16 @@ import useStore, { storeKeys } from './useStore';
 import localeObject, { defaultLocale } from '../locale';
 import useStateWithLocalStorage from './useStateWithLocalStorage';
 
-const checkIfLocaleIsAvailable = locale => {
-    const availableLocales = Object.keys(localeObject);
-    return availableLocales.includes(locale);
-};
-
 const availableLocale = locales => {
     let locale = defaultLocale;
-    locales.forEach(item => {
-        if (checkIfLocaleIsAvailable(item)) {
+    const availableLocales = Object.keys(localeObject);
+    for (let i = 0; i < locales.length; i += 1) {
+        const item = locales[i];
+        if (availableLocales.includes(item)) {
             locale = item;
+            break;
         }
-    });
-
+    }
     return locale;
 };
 
