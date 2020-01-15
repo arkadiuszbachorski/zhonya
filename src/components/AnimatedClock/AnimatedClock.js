@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './AnimatedClock.module.scss';
 import useIntervalCounter from '../../hooks/useIntervalCounter';
+import randomInteger from '../../utils/randomInteger';
 
 const AnimatedClock = ({ transitionTime }) => {
-    const counter = useIntervalCounter(transitionTime);
+    const counter = useIntervalCounter(transitionTime, randomInteger(0, 3600));
 
     const style = {
         '--counter': counter,
