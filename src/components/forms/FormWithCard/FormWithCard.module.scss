@@ -18,18 +18,35 @@
 
 .inputsWrapper {
   flex-grow: 1;
-  margin-left: 2rem;
-  padding-top: 1rem;
-  align-self: center;
+  padding-top: 1.5rem;
 }
 
 .paragraph {
   margin-bottom: 0;
 }
 
+@include media-breakpoint-only(sm) {
+  .inputsWrapper {
+    form {
+      width: 400px;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .inputsWrapper {
+    align-self: center;
+  }
+}
+
 @include media-breakpoint-up(md) {
   .wrapper {
     flex-direction: row;
+  }
+
+  .inputsWrapper {
+    margin-left: 2rem;
+    padding-top: 1rem;
   }
 
   .card {
