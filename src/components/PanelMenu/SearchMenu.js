@@ -90,7 +90,7 @@ const SearchMenu = ({ toggle, active }) => {
                                         <ListCaptionAndColor.Item
                                             className={styles.captionLowercase}
                                             key={task.id}
-                                            to={routes.task.edit(task.id)}
+                                            to={routes.attempt.index(task.id)}
                                             caption={
                                                 <>
                                                     <FormattedMessage id="edited" />{' '}

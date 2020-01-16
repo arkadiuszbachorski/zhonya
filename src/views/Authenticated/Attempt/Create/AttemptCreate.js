@@ -31,7 +31,7 @@ const AttemptCreate = () => {
         instance.post(api.attempt.store(taskId), form).then(response => {
             const id = response.data;
             toast.success(formatMessage({ id: 'toast.success.attempt.create' }));
-            redirectTo(routes.attempt.edit(taskId, id));
+            redirectTo(routes.attempt.timer(taskId, id));
         });
     };
 

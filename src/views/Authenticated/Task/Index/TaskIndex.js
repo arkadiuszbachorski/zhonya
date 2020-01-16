@@ -84,7 +84,7 @@ const TaskIndex = () => {
                     <GridTable.Header messageId="task.index.header.lastUpdated" />
                 </GridTable.Row>
                 {tasks.map(task => (
-                    <GridTable.Row className={styles.row} key={task.id} to={routes.task.edit(task.id)}>
+                    <GridTable.Row className={styles.row} key={task.id} to={routes.attempt.index(task.id)}>
                         <GridTable.Cell className={styles.name}>
                             {task.tags_colors.length > 0 && (
                                 <div className={styles.pills}>

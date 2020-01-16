@@ -26,9 +26,9 @@ const TaskCreate = () => {
 
     const submit = () => {
         instance.post(api.task.store, form).then(response => {
-            const id = response.data;
+            const taskId = response.data;
             toast.success(formatMessage({ id: 'toast.success.task.create' }));
-            redirectTo(routes.task.edit(id));
+            redirectTo(routes.attempt.index(taskId));
         });
     };
 
