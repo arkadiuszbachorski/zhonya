@@ -1,3 +1,5 @@
+@import '../../../scss/package';
+
 .card {
   padding-top: 3rem;
   padding-bottom: 1.5rem;
@@ -12,4 +14,10 @@
 .formWrapper {
   display: flex;
   flex-direction: column;
+}
+
+@include media-breakpoint-down(xs) {
+  .card {
+    padding: 2rem;
+  }
 }
