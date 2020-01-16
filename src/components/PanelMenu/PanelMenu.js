@@ -6,9 +6,9 @@ import Logo from '../logos/Logo/Logo';
 import ButtonRoundIcon from '../buttons/ButtonRoundIcon/ButtonRoundIcon';
 import routes from '../../routes';
 import useToggle from '../../hooks/useToggle';
-import ListMenu from './ListMenu';
-import CreateMenu from './CreateMenu';
-import SearchMenu from './SearchMenu';
+import IndexSubmenu from './IndexSubmenu/IndexSubmenu';
+import CreateSubmenu from './CreateSubmenu/CreateSubmenu';
+import SearchSubmenu from './SearchSubmenu/SearchSubmenu';
 
 const PanelMenu = () => {
     const [listMenuActive, toggleListMenu] = useToggle();
@@ -27,9 +27,9 @@ const PanelMenu = () => {
                     <ButtonRoundIcon icon={faUser} link to={routes.user.settings} />
                 </div>
             </nav>
-            <ListMenu toggle={toggleListMenu} active={listMenuActive} />
-            <CreateMenu toggle={toggleCreateMenu} active={createMenuActive} />
-            <SearchMenu toggle={toggleSearchMenu} active={searchMenuActive} />
+            <IndexSubmenu toggle={toggleListMenu} active={listMenuActive} />
+            <CreateSubmenu toggle={toggleCreateMenu} active={createMenuActive} />
+            <SearchSubmenu toggle={toggleSearchMenu} active={searchMenuActive} />
         </>
     );
 };

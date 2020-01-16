@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FormattedMessage } from 'react-intl';
-import SlidingMenu from '../SlidingMenu/SlidingMenu';
-import Input from '../forms/Input/Input';
-import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
-import useDebouncedForm from '../../hooks/useDebouncedForm';
-import api from '../../api';
-import LoadingComplete from '../loading/LoadingComplete/LoadingComplete';
-import ListCaptionAndColor from '../lists/ListCaptionAndColor/ListCaptionAndColor';
-import AccentSubtitle from '../typography/AccentSubtitle/AccentSubtitle';
-import routes from '../../routes';
-import styles from './SearchMenu.module.scss';
-import DateDisplay from '../DateDisplay/DateDisplay';
+import SlidingMenu from '../../SlidingMenu/SlidingMenu';
+import Input from '../../forms/Input/Input';
+import useInstanceWithErrorsAndToastsAndLoading from '../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import useDebouncedForm from '../../../hooks/useDebouncedForm';
+import api from '../../../api';
+import LoadingComplete from '../../loading/LoadingComplete/LoadingComplete';
+import ListCaptionAndColor from '../../lists/ListCaptionAndColor/ListCaptionAndColor';
+import AccentSubtitle from '../../typography/AccentSubtitle/AccentSubtitle';
+import routes from '../../../routes';
+import styles from './SearchSubmenu.module.scss';
+import DateDisplay from '../../DateDisplay/DateDisplay';
 
 const prepareParams = ({ search, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -24,7 +24,7 @@ const initData = {
     tags: [],
 };
 
-const SearchMenu = ({ toggle, active }) => {
+const SearchSubmenu = ({ toggle, active }) => {
     const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
 
     const [debouncedFilters, filters, handleChange] = useDebouncedForm({
@@ -111,9 +111,9 @@ const SearchMenu = ({ toggle, active }) => {
     );
 };
 
-SearchMenu.propTypes = {
+SearchSubmenu.propTypes = {
     toggle: PropTypes.func.isRequired,
     active: PropTypes.bool.isRequired,
 };
 
-export default SearchMenu;
+export default SearchSubmenu;

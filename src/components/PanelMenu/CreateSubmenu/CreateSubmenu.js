@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { faCheckSquare } from '@fortawesome/free-regular-svg-icons';
 import { faTag } from '@fortawesome/free-solid-svg-icons';
-import ListIcon from '../lists/ListIcon/ListIcon';
-import styles from './PanelMenu.module.scss';
-import routes from '../../routes';
-import SlidingMenu from '../SlidingMenu/SlidingMenu';
+import ListIcon from '../../lists/ListIcon/ListIcon';
+import styles from '../PanelMenu.module.scss';
+import routes from '../../../routes';
+import SlidingMenu from '../../SlidingMenu/SlidingMenu';
 
-const CreateMenu = ({ toggle, active }) => {
+const CreateSubmenu = ({ toggle, active }) => {
     return (
         <SlidingMenu toggle={toggle} titleId="action.create" visible={active}>
             <ListIcon className={styles.itemList}>
@@ -18,9 +18,9 @@ const CreateMenu = ({ toggle, active }) => {
     );
 };
 
-CreateMenu.propTypes = {
+CreateSubmenu.propTypes = {
     toggle: PropTypes.func.isRequired,
     active: PropTypes.bool.isRequired,
 };
 
-export default CreateMenu;
+export default CreateSubmenu;
