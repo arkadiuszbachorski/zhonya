@@ -16,8 +16,4 @@ MainTemplate.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-MainTemplate.defaultProps = {
-    redirect: null,
-};
-
 export default MainTemplate;
