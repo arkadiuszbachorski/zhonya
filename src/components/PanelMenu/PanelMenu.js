@@ -17,11 +17,11 @@ const PanelMenu = () => {
     return (
         <>
             <nav className={styles.mainMenu}>
-                <Logo className={styles.logo} stroke={7} />
+                <Logo className={styles.logo} linkClassName={styles.logoLink} stroke={7} />
                 <div className={styles.buttonsWrapper}>
-                    <ButtonRoundIcon icon={faList} onClick={toggleListMenu} />
-                    <ButtonRoundIcon icon={faPlus} onClick={toggleCreateMenu} />
-                    <ButtonRoundIcon icon={faSearch} onClick={toggleSearchMenu} />
+                    <ButtonRoundIcon icon={faList} className={styles.button} onClick={toggleListMenu} />
+                    <ButtonRoundIcon icon={faPlus} className={styles.button} onClick={toggleCreateMenu} />
+                    <ButtonRoundIcon icon={faSearch} className={styles.button} onClick={toggleSearchMenu} />
                 </div>
                 <div className={cn(styles.buttonsWrapper, styles.bottomButtons)}>
                     <ButtonRoundIcon icon={faUser} link to={routes.user.settings} />
