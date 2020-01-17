@@ -3,18 +3,19 @@
 .row {
   grid-template-columns: 80px minmax(100px, 1fr) minmax(200px, 2fr) 125px;
 
-  @include media-breakpoint-down(md) {
-    grid-template-columns: 80px minmax(100px, 1fr) minmax(200px, 2fr);
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 80px minmax(100px, 1fr) 100px;
 
-    > div:nth-child(4) {
+    > div:nth-child(3) {
       display: none;
     }
   }
 
-  @include media-breakpoint-down(xs) {
+
+  @include media-breakpoint-down(xxs) {
     grid-template-columns: 60px 1fr;
 
-    > div:nth-child(3) {
+    > div:nth-child(4) {
       display: none;
     }
   }
