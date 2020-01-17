@@ -53,13 +53,13 @@ const TagIndex = () => {
                     <GridTable.Header messageId="tag.index.header.description" />
                     <GridTable.Header messageId="tag.index.header.taskCount" />
                 </GridTable.Row>
-                {tags.map(({ id, name, description, color, tasks_count }) => (
+                {tags.map(({ id, name, short_description, color, tasks_count }) => (
                     <GridTable.Row className={styles.row} key={id} to={routes.tag.edit(id)}>
                         <GridTable.Cell>
                             <ColorPill color={`#${color}`} variant="horizontal" />
                         </GridTable.Cell>
                         <GridTable.Cell>{name}</GridTable.Cell>
-                        <GridTable.Cell>{description}</GridTable.Cell>
+                        <GridTable.Cell>{short_description}</GridTable.Cell>
                         <GridTable.Cell>{tasks_count}</GridTable.Cell>
                     </GridTable.Row>
                 ))}
