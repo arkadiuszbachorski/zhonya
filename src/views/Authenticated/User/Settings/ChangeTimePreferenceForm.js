@@ -11,7 +11,6 @@ const equalTime = 3 * (60 * 60 * 24) + 22 * (60 * 60) + 3 * 60 + 9;
 const ChangeTimePreferenceForm = () => {
     const [timePreference, setTimePreference] = useTimePreference();
 
-    // TODO: Inform how to cutting will work
     return (
         <Container variant={['center', 'marginTopLarge']}>
             <FormWithCard
@@ -19,6 +18,7 @@ const ChangeTimePreferenceForm = () => {
                 loading={false}
                 variant="edit"
                 titleId="user.settings.timePreference.title"
+                paragraphIds={['user.settings.timePreference.text1']}
             >
                 {availableTimePreferences.map(pref => (
                     <Checkbox

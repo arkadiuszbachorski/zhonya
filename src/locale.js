@@ -139,6 +139,8 @@ export default {
         'user.settings.theme.title': 'Zmień motyw',
         'user.settings.locale.title': 'Zmień język',
         'user.settings.timePreference.title': 'Wybierz preferowany format czasu',
+        'user.settings.timePreference.text1':
+            'W miejscach takich jak listy, długi i uśredniony format będzie odcinał dane bez znaczenia - np. 3 dni 22 godziny',
         'user.settings.datePreference.title': 'Wybierz preferowany format daty',
         'user.settings.datePreference.text1': 'Po najechaniu kursorem na datę zawsze wyświetli się format długi',
         'user.delete.title': 'Usuń konto',
@@ -284,6 +286,8 @@ export default {
         'user.settings.theme.title': 'Change theme',
         'user.settings.locale.title': 'Change language',
         'user.settings.timePreference.title': 'Choose preferred time format',
+        'user.settings.timePreference.text1':
+            'In places such as lists, long and average format will cut off insignificant data - np. 3 days 22 hours',
         'user.settings.datePreference.title': 'Choose preferred date format',
         'user.settings.datePreference.text1': 'When you hover date with cursor, long date is displayed',
         'user.delete.title': 'Delete account',
