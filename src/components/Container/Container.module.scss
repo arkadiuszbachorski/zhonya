@@ -55,4 +55,24 @@
     margin-right: 2rem;
     max-width: 200px;
   }
+
+
+  @include media-breakpoint-down(xs) {
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > * {
+      margin-right: 0;
+      max-width: unset;
+      width: calc(50% - .5rem);
+    }
+  }
+
+  @media (max-width: 340px) {
+    > * {
+      margin-right: 0;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
 }
