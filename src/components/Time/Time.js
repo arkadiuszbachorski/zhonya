@@ -5,7 +5,7 @@ import secondsToTime from '../../utils/secondsToTime';
 import styles from './Time.module.scss';
 import useTimePreference, { availableTimePreferences } from '../../hooks/useTimePreference';
 
-const Time = ({ time, timePreference }) => {
+const Time = ({ time, timePreference, cutMeaninglessData }) => {
     const [savedTimePreference] = useTimePreference();
     const finalTimePreference = timePreference || savedTimePreference;
     const { days, hours, seconds, minutes } = secondsToTime(time, finalTimePreference === 'short');
@@ -22,6 +22,14 @@ const Time = ({ time, timePreference }) => {
         );
     }
 
+    const cutIfLesserThan = value => {
+        if (cutMeaninglessData) {
+            return time < value;
+        }
+
+        return true;
+    };
+
     return (
         <span className={styles.time}>
             {time >= 86400 && (
@@ -36,25 +44,31 @@ const Time = ({ time, timePreference }) => {
                     <FormattedMessage id={suffixIfMedium('timer.hours')} values={{ value: hours }} />
                 </>
             )}
-            {time >= 60 && (
+            {time >= 60 && cutIfLesserThan(86400) && (
                 <>
                     {minutes}
                     <FormattedMessage id={suffixIfMedium('timer.minutes')} values={{ value: minutes }} />
                 </>
             )}
-            {seconds}
-            <FormattedMessage id={suffixIfMedium('timer.seconds')} values={{ value: seconds }} />
+            {cutIfLesserThan(3600) && (
+                <>
+                    {seconds}
+                    <FormattedMessage id={suffixIfMedium('timer.seconds')} values={{ value: seconds }} />
+                </>
+            )}
         </span>
     );
 };
 
 Time.propTypes = {
     time: PropTypes.number.isRequired,
+    cutMeaninglessData: PropTypes.bool,
     timePreference: PropTypes.oneOf(availableTimePreferences),
 };
 
 Time.defaultProps = {
     timePreference: null,
+    cutMeaninglessData: false,
 };
 
 export default Time;
