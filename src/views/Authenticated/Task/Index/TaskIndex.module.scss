@@ -1,7 +1,46 @@
 @import '../../../../scss/package';
 
 .row {
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: minmax(200px, 1fr) minmax(200px, 2fr) 1fr 1fr 1fr 140px;
+
+  @include media-breakpoint-down(lg) {
+    grid-template-columns: minmax(200px, 1fr) 1fr 1fr 1fr 140px;
+
+    > *:nth-child(2) {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 2fr 1fr 1fr 1fr 140px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 1fr 200px 140px;
+
+    > *:nth-child(4) {
+      display: none;
+    }
+    > *:nth-child(5) {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-down(xs) {
+    grid-template-columns: 1fr 140px;
+
+    > *:nth-child(3) {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-down(xxs) {
+    grid-template-columns: 1fr;
+
+    > *:nth-child(6) {
+      display: none;
+    }
+  }
 }
 
 .name {
