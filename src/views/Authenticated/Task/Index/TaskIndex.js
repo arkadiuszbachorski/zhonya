@@ -95,7 +95,7 @@ const TaskIndex = () => {
                             )}
                             {task.name}
                         </GridTable.Cell>
-                        <GridTable.Cell>{task.description}</GridTable.Cell>
+                        <GridTable.Cell>{task.short_description}</GridTable.Cell>
                         <GridTable.Cell>
                             <Time time={task.attempts_statistics.avg} />
                         </GridTable.Cell>
