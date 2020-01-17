@@ -4,9 +4,9 @@
 .wrapper {
   position: fixed;
   top: 0;
-  left: 60px;
-  padding: 0 2rem;
-  width: calc(100% - 60px);
+  left: 0;
+  width: 100%;
+  padding: 0 1rem 70px;
   height: 100%;
   overflow-y: auto;
 }
@@ -18,18 +18,44 @@
 
 .content {
   flex-grow: 1;
+  padding: 0 0 1rem;
 }
 
 .iconList {
   margin-top: 0;
 }
 
+@include media-breakpoint-down(md) {
+  .iconList {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+
+    > * {
+      margin: 0 1rem;
+    }
+  }
+}
+
+
 @include media-breakpoint-up(lg) {
   .mainWrapper {
     flex-direction: row;
   }
 
+  .content {
+    padding: 0;
+  }
+
   .sideMenu {
     width: 200px;
   }
+
+  .wrapper {
+    left: 60px;
+    padding: 0 2rem;
+    width: calc(100% - 60px);
+  }
 }
+

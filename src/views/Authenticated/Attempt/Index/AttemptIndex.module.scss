@@ -1,6 +1,22 @@
 @import '../../../../scss/package';
 
 .row {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 300px 140px;
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr 300px;
+
+    @include hide-child(3);
+  }
+
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include media-breakpoint-down(xxs) {
+    grid-template-columns: 1fr;
+
+    @include hide-child(2);
+  }
 }
 

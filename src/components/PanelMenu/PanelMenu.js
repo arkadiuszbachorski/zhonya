@@ -6,9 +6,9 @@ import Logo from '../logos/Logo/Logo';
 import ButtonRoundIcon from '../buttons/ButtonRoundIcon/ButtonRoundIcon';
 import routes from '../../routes';
 import useToggle from '../../hooks/useToggle';
-import ListMenu from './ListMenu';
-import CreateMenu from './CreateMenu';
-import SearchMenu from './SearchMenu';
+import IndexSubmenu from './IndexSubmenu/IndexSubmenu';
+import CreateSubmenu from './CreateSubmenu/CreateSubmenu';
+import SearchSubmenu from './SearchSubmenu/SearchSubmenu';
 
 const PanelMenu = () => {
     const [listMenuActive, toggleListMenu] = useToggle();
@@ -17,19 +17,19 @@ const PanelMenu = () => {
     return (
         <>
             <nav className={styles.mainMenu}>
-                <Logo className={styles.logo} stroke={7} />
+                <Logo className={styles.logo} linkClassName={styles.logoLink} stroke={7} />
                 <div className={styles.buttonsWrapper}>
-                    <ButtonRoundIcon icon={faList} onClick={toggleListMenu} />
-                    <ButtonRoundIcon icon={faPlus} onClick={toggleCreateMenu} />
-                    <ButtonRoundIcon icon={faSearch} onClick={toggleSearchMenu} />
+                    <ButtonRoundIcon icon={faList} className={styles.button} onClick={toggleListMenu} />
+                    <ButtonRoundIcon icon={faPlus} className={styles.button} onClick={toggleCreateMenu} />
+                    <ButtonRoundIcon icon={faSearch} className={styles.button} onClick={toggleSearchMenu} />
                 </div>
                 <div className={cn(styles.buttonsWrapper, styles.bottomButtons)}>
                     <ButtonRoundIcon icon={faUser} link to={routes.user.settings} />
                 </div>
             </nav>
-            <ListMenu toggle={toggleListMenu} active={listMenuActive} />
-            <CreateMenu toggle={toggleCreateMenu} active={createMenuActive} />
-            <SearchMenu toggle={toggleSearchMenu} active={searchMenuActive} />
+            <IndexSubmenu toggle={toggleListMenu} active={listMenuActive} />
+            <CreateSubmenu toggle={toggleCreateMenu} active={createMenuActive} />
+            <SearchSubmenu toggle={toggleSearchMenu} active={searchMenuActive} />
         </>
     );
 };

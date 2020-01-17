@@ -1,3 +1,5 @@
+@import '../../scss/package';
+
 .mainMenu {
   height: 100%;
   width: 60px;
@@ -44,3 +46,41 @@
 .itemList {
   padding-left: 1rem !important;
 }
+
+@include media-breakpoint-down(md) {
+  .mainMenu {
+    top: unset;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    flex-direction: row;
+    padding: 0 2rem;
+    justify-content: center;
+    align-items: center;
+    background: var(--opaque-primary);
+    z-index: 100;
+    border-top-left-radius: 3rem;
+    border-top-right-radius: 3rem;
+    box-shadow: none;
+  }
+
+  .logoLink {
+    display: none;
+  }
+
+  .bottomButtons {
+    margin: 0;
+  }
+
+  .buttonsWrapper {
+    flex-direction: row;
+    height: 100%;
+    margin: 0;
+
+    .button {
+      margin-right: 8vw;
+    }
+  }
+}
+
