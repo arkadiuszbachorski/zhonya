@@ -6,18 +6,14 @@
   @include media-breakpoint-down(sm) {
     grid-template-columns: 80px minmax(100px, 1fr) 100px;
 
-    > div:nth-child(3) {
-      display: none;
-    }
+    @include hide-child(3);
   }
 
 
   @include media-breakpoint-down(xxs) {
     grid-template-columns: 60px 1fr;
 
-    > div:nth-child(4) {
-      display: none;
-    }
+    @include hide-child(4);
   }
 
 

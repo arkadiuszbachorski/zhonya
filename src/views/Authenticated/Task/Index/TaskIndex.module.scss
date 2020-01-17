@@ -6,9 +6,7 @@
   @include media-breakpoint-down(lg) {
     grid-template-columns: minmax(200px, 1fr) 1fr 1fr 1fr 140px;
 
-    > *:nth-child(2) {
-      display: none;
-    }
+    @include hide-child(2);
   }
 
   @include media-breakpoint-down(md) {
@@ -18,28 +16,20 @@
   @include media-breakpoint-down(sm) {
     grid-template-columns: 1fr 200px 140px;
 
-    > *:nth-child(4) {
-      display: none;
-    }
-    > *:nth-child(5) {
-      display: none;
-    }
+    @include hide-child(4);
+    @include hide-child(5);
   }
 
   @include media-breakpoint-down(xs) {
     grid-template-columns: 1fr 140px;
 
-    > *:nth-child(3) {
-      display: none;
-    }
+    @include hide-child(3);
   }
 
   @include media-breakpoint-down(xxs) {
     grid-template-columns: 1fr;
 
-    > *:nth-child(6) {
-      display: none;
-    }
+    @include hide-child(6);
   }
 }
 
