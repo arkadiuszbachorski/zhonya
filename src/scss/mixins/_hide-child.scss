@@ -1,0 +1,5 @@
+@mixin hide-child($nth) {
+  > *:nth-child(#{$nth}) {
+    display: none;
+  }
+}
