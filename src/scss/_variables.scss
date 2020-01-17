@@ -31,7 +31,8 @@ $main-font: 'Lato', sans-serif;
 $falling-border-radius: 5rem;
 
 $grid-breakpoints: (
-        xs: 0,
+        xxs: 0,
+        xs: 320px,
         sm: 576px,
         md: 768px,
         lg: 992px,
@@ -44,7 +45,6 @@ $container-max-widths: (
         lg: 960px,
         xl: 1140px
 );
-
 
 $transition-opacity: .6;
 
