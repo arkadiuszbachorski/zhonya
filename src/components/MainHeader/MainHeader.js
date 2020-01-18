@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import cn from 'classnames';
+import { useSwipeable } from 'react-swipeable';
 import styles from './MainHeader.module.scss';
 import CombinedLogo from '../logos/CombinedLogo/CombinedLogo';
 import routes from '../../routes';
@@ -11,10 +12,11 @@ import Button from '../buttons/Button/Button';
 
 const MainHeader = () => {
     const [open, setOpen] = useState(false);
+    const swipeableHandlers = useSwipeable({ onSwipedLeft: () => setOpen(false) });
     return (
         <header className={cn(styles.wrapper, open ? styles.open : null)}>
             <CombinedLogo />
-            <ul className={styles.links}>
+            <ul className={styles.links} {...swipeableHandlers}>
                 <li>
                     <Link to={routes.logIn}>
                         <FormattedMessage id="logIn" />
@@ -35,7 +37,7 @@ const MainHeader = () => {
             >
                 <FontAwesomeIcon icon={faBars} />
             </Button>
-            <button type="button" className={styles.menuClose} onClick={() => setOpen(false)}>
+            <button type="button" className={styles.menuClose} onClick={() => setOpen(false)} {...swipeableHandlers}>
                 Close menu
             </button>
         </header>
