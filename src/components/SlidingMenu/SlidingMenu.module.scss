@@ -1,12 +1,25 @@
 .main {
-  width: 300px;
+  width: 100%;
   height: 100%;
   position: fixed;
-  overflow-y: auto;
   top: 0;
+  z-index: 100;
+  pointer-events: none;
+
+  &.active {
+    pointer-events: unset;
+  }
+}
+
+.menuWrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  left: 0;
   transform: translateX(-110%);
   box-shadow: 3px 0 3px rgba(0, 0, 0, .25);
   transition: transform .3s;
@@ -26,20 +39,21 @@
 .menuClose {
   display: block;
   color: transparent;
-  z-index: 1;
+  z-index: -100;
   opacity: 0;
   transition: opacity .3s;
-  position: fixed;
+  position: absolute;
   width: 100%;
-  right: 0;
+  left: 0;
   top: -1.2rem;
   height: calc(100% + 2rem);
   background-color: var(--primary);
   pointer-events: none;
 
   &.active {
+    z-index: 99;
     opacity: .25;
-    pointer-events: all;
+    pointer-events: unset;
   }
 }
 
