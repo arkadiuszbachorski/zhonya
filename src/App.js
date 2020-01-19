@@ -36,6 +36,8 @@ import AttemptDelete from './views/Authenticated/Attempt/Delete/AttemptDelete';
 import AttemptTimer from './views/Authenticated/Attempt/Timer/AttemptTimer';
 import { useTimePreferenceProvider } from './hooks/useTimePreference';
 import { useDatePreferenceProvider } from './hooks/useDatePreference';
+import AttemptIndependentIndex from './views/Authenticated/AttemptIndependent/Index/AttemptIndependentIndex';
+import AttemptIndependentCreate from './views/Authenticated/AttemptIndependent/Create/AttemptIndependentCreate';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -85,6 +87,8 @@ const App = () => {
                         <Route path={routes.attempt.edit()} exact component={AttemptEdit} />
                         <Route path={routes.attempt.delete()} exact component={AttemptDelete} />
                         <Route path={routes.attempt.timer()} exact component={AttemptTimer} />
+                        <Route path={routes.attemptIndependent.index} exact component={AttemptIndependentIndex} />
+                        <Route path={routes.attemptIndependent.create} exact component={AttemptIndependentCreate} />
                     </Switch>
                 </Router>
             </StoreContext.Provider>

@@ -29,4 +29,8 @@ export default {
         delete: (taskId = ':taskId', attemptId = ':attemptId') => `/task/${taskId}/attempt/${attemptId}/delete`,
         timer: (taskId = ':taskId', attemptId = ':attemptId') => `/task/${taskId}/attempt/${attemptId}/timer`,
     },
+    attemptIndependent: {
+        index: `/attempt`,
+        create: `/attempt/create`,
+    },
 };
