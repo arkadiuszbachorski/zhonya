@@ -42,5 +42,9 @@ export default {
         measurement: (taskId, attemptId) => `${url}/task/${taskId}/attempt/${attemptId}/measurement`,
         measurementSave: (taskId, attemptId) => `${url}/task/${taskId}/attempt/${attemptId}/measurement/save`,
     },
+    attemptIndependent: {
+        index: `${url}/independent-attempt`,
+        create: `${url}/independent-attempt/create`,
+    },
     search: `${url}/search`,
 };
