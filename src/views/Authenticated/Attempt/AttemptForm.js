@@ -4,7 +4,7 @@ import FormWithCard from '../../../components/forms/FormWithCard/FormWithCard';
 import Input from '../../../components/forms/Input/Input';
 import Container from '../../../components/Container/Container';
 
-const AttemptForm = ({ submit, loading, form, errors, handleChange, variant }) => {
+const AttemptForm = ({ submit, loading, form, errors, handleChange, variant, tasks, renderTasks }) => {
     return (
         <Container variant={['center', 'marginTopLarge']}>
             <FormWithCard
@@ -14,6 +14,17 @@ const AttemptForm = ({ submit, loading, form, errors, handleChange, variant }) =
                 titleId={`attempt.${variant}.title`}
                 paragraphIds={['attempt.form.text1']}
             >
+                {renderTasks && (
+                    <Input
+                        select
+                        labelId="model.task.singular"
+                        name="task"
+                        value={form.task}
+                        errors={errors.task}
+                        onChange={handleChange}
+                        options={tasks.map(({ id, name }) => ({ value: id, label: name }))}
+                    />
+                )}
                 <Input
                     labelId="input.description"
                     name="description"
@@ -32,11 +43,23 @@ AttemptForm.propTypes = {
     handleChange: PropTypes.func.isRequired,
     form: PropTypes.shape({
         description: PropTypes.string.isRequired,
+        task: PropTypes.string,
     }).isRequired,
     errors: PropTypes.shape({
         description: PropTypes.string,
+        task: PropTypes.string,
     }).isRequired,
     variant: PropTypes.oneOf(['create', 'edit']).isRequired,
+    tasks: PropTypes.shape({
+        name: PropTypes.string,
+        id: PropTypes.number,
+    }),
+    renderTasks: PropTypes.bool,
+};
+
+AttemptForm.defaultProps = {
+    tasks: [],
+    renderTasks: false,
 };
 
 export default AttemptForm;
