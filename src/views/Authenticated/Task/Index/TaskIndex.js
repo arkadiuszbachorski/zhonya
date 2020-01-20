@@ -16,6 +16,7 @@ import ColorPill from '../../../../components/ColorPill/ColorPill';
 import Active from '../../../../components/typography/Active/Active';
 import Time from '../../../../components/Time/Time';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
+import { FormattedMessage } from 'react-intl';
 
 const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
     search: search === '' ? undefined : search,
@@ -55,7 +56,12 @@ const TaskIndex = () => {
     }, [debouncedFilters, instance]);
 
     return (
-        <PanelTemplate titleId="model.task.plural" actionButton={<ButtonCreate link to={routes.task.create} />}>
+        <PanelTemplate
+            titleId="model.task.plural"
+            actionButton={
+                <ButtonCreate link to={routes.task.create} title={<FormattedMessage id="action.task.create" />} />
+            }
+        >
             <Container variant={['marginBottom', 'filters']}>
                 <Input
                     icon={faSearch}
