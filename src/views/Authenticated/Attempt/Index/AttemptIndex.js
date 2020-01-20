@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router';
+import { useIntl } from 'react-intl';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import api from '../../../../api';
 import routes from '../../../../routes';
@@ -16,7 +17,6 @@ import TaskPanelTemplate from '../../Task/TaskPanelTemplate';
 import Time from '../../../../components/Time/Time';
 import Active from '../../../../components/typography/Active/Active';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
-import { FormattedMessage } from 'react-intl';
 
 const prepareParams = ({ search, active, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -28,6 +28,8 @@ const AttemptIndex = () => {
     useAuthenticatedOnly();
 
     const { taskId } = useParams();
+
+    const { formatMessage } = useIntl();
 
     const [debouncedFilters, filters, handleChange] = useDebouncedForm({
         search: '',
@@ -54,7 +56,7 @@ const AttemptIndex = () => {
                 <ButtonCreate
                     link
                     to={routes.attempt.create(taskId)}
-                    title={<FormattedMessage id="action.attempt.create" />}
+                    title={formatMessage({ id: 'action.attempt.create' })}
                 />
             }
         >

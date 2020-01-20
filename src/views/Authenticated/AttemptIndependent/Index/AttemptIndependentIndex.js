@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import api from '../../../../api';
@@ -15,7 +16,6 @@ import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
 import Active from '../../../../components/typography/Active/Active';
 import Time from '../../../../components/Time/Time';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
-import { FormattedMessage } from 'react-intl';
 
 const prepareParams = ({ search, active, task, ...rest }, withTasks) => ({
     search: search === '' ? undefined : search,
@@ -33,6 +33,8 @@ const AttemptIndependentIndex = () => {
         task: '',
         active: false,
     });
+
+    const { formatMessage } = useIntl();
 
     const [instance, loading] = useInstanceWithToastsAndLoading();
 
@@ -61,7 +63,7 @@ const AttemptIndependentIndex = () => {
                 <ButtonCreate
                     link
                     to={routes.attemptIndependent.create}
-                    title={<FormattedMessage id="action.attempt.create" />}
+                    title={formatMessage({ id: 'action.attempt.create' })}
                 />
             }
         >

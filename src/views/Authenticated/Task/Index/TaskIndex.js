@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import api from '../../../../api';
@@ -16,7 +17,6 @@ import ColorPill from '../../../../components/ColorPill/ColorPill';
 import Active from '../../../../components/typography/Active/Active';
 import Time from '../../../../components/Time/Time';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
-import { FormattedMessage } from 'react-intl';
 
 const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
     search: search === '' ? undefined : search,
@@ -34,6 +34,8 @@ const TaskIndex = () => {
         tag: '',
         active: false,
     });
+
+    const { formatMessage } = useIntl();
 
     const [instance, loading] = useInstanceWithToastsAndLoading();
 
@@ -59,7 +61,7 @@ const TaskIndex = () => {
         <PanelTemplate
             titleId="model.task.plural"
             actionButton={
-                <ButtonCreate link to={routes.task.create} title={<FormattedMessage id="action.task.create" />} />
+                <ButtonCreate link to={routes.task.create} title={formatMessage({ id: 'action.task.create' })} />
             }
         >
             <Container variant={['marginBottom', 'filters']}>

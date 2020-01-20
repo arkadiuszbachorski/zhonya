@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import api from '../../../../api';
@@ -12,7 +13,6 @@ import GridTable from '../../../../components/GridTable/GridTable';
 import ColorPill from '../../../../components/ColorPill/ColorPill';
 import styles from './TagIndex.module.scss';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
-import { FormattedMessage } from 'react-intl';
 
 const prepareParams = ({ search, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -25,6 +25,8 @@ const TagIndex = () => {
     const [debouncedFilters, filters, handleChange] = useDebouncedForm({
         search: '',
     });
+
+    const { formatMessage } = useIntl();
 
     const [instance, loading] = useInstanceWithToastsAndLoading();
 
@@ -40,7 +42,7 @@ const TagIndex = () => {
         <PanelTemplate
             titleId="model.tag.plural"
             actionButton={
-                <ButtonCreate link to={routes.tag.create} title={<FormattedMessage id="action.tag.create" />} />
+                <ButtonCreate link to={routes.tag.create} title={formatMessage({ id: 'action.tag.create' })} />
             }
         >
             <Container variant={['marginBottom', 'filters']}>
