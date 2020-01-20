@@ -15,6 +15,7 @@ import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
 import Active from '../../../../components/typography/Active/Active';
 import Time from '../../../../components/Time/Time';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
+import { FormattedMessage } from 'react-intl';
 
 const prepareParams = ({ search, active, task, ...rest }, withTasks) => ({
     search: search === '' ? undefined : search,
@@ -56,7 +57,13 @@ const AttemptIndependentIndex = () => {
     return (
         <PanelTemplate
             titleId="model.attempt.plural"
-            actionButton={<ButtonCreate link to={routes.attemptIndependent.create} />}
+            actionButton={
+                <ButtonCreate
+                    link
+                    to={routes.attemptIndependent.create}
+                    title={<FormattedMessage id="action.attempt.create" />}
+                />
+            }
         >
             <Container variant={['marginBottom', 'filters']}>
                 <Input

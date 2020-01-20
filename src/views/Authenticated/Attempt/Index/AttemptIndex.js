@@ -16,6 +16,7 @@ import TaskPanelTemplate from '../../Task/TaskPanelTemplate';
 import Time from '../../../../components/Time/Time';
 import Active from '../../../../components/typography/Active/Active';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
+import { FormattedMessage } from 'react-intl';
 
 const prepareParams = ({ search, active, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -48,7 +49,15 @@ const AttemptIndex = () => {
     }, [debouncedFilters, instance]);
 
     return (
-        <TaskPanelTemplate actionButton={<ButtonCreate link to={routes.attempt.create(taskId)} />}>
+        <TaskPanelTemplate
+            actionButton={
+                <ButtonCreate
+                    link
+                    to={routes.attempt.create(taskId)}
+                    title={<FormattedMessage id="action.attempt.create" />}
+                />
+            }
+        >
             <Container variant={['marginBottom', 'filters']}>
                 <Input
                     icon={faSearch}
