@@ -12,6 +12,7 @@ import GridTable from '../../../../components/GridTable/GridTable';
 import ColorPill from '../../../../components/ColorPill/ColorPill';
 import styles from './TagIndex.module.scss';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
+import { FormattedMessage } from 'react-intl';
 
 const prepareParams = ({ search, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -36,7 +37,12 @@ const TagIndex = () => {
     }, [debouncedFilters, instance]);
 
     return (
-        <PanelTemplate titleId="model.tag.plural" actionButton={<ButtonCreate link to={routes.tag.create} />}>
+        <PanelTemplate
+            titleId="model.tag.plural"
+            actionButton={
+                <ButtonCreate link to={routes.tag.create} title={<FormattedMessage id="action.tag.create" />} />
+            }
+        >
             <Container variant={['marginBottom', 'filters']}>
                 <Input
                     icon={faSearch}
