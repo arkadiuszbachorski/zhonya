@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import api from '../../../../api';
@@ -33,6 +34,8 @@ const AttemptIndependentIndex = () => {
         active: false,
     });
 
+    const { formatMessage } = useIntl();
+
     const [instance, loading] = useInstanceWithToastsAndLoading();
 
     const [attempts, setAttempts] = useState([]);
@@ -56,7 +59,13 @@ const AttemptIndependentIndex = () => {
     return (
         <PanelTemplate
             titleId="model.attempt.plural"
-            actionButton={<ButtonCreate link to={routes.attemptIndependent.create} />}
+            actionButton={
+                <ButtonCreate
+                    link
+                    to={routes.attemptIndependent.create}
+                    title={formatMessage({ id: 'action.attempt.create' })}
+                />
+            }
         >
             <Container variant={['marginBottom', 'filters']}>
                 <Input

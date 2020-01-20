@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import api from '../../../../api';
@@ -25,6 +26,8 @@ const TagIndex = () => {
         search: '',
     });
 
+    const { formatMessage } = useIntl();
+
     const [instance, loading] = useInstanceWithToastsAndLoading();
 
     const [tags, setTags] = useState([]);
@@ -36,7 +39,12 @@ const TagIndex = () => {
     }, [debouncedFilters, instance]);
 
     return (
-        <PanelTemplate titleId="model.tag.plural" actionButton={<ButtonCreate link to={routes.tag.create} />}>
+        <PanelTemplate
+            titleId="model.tag.plural"
+            actionButton={
+                <ButtonCreate link to={routes.tag.create} title={formatMessage({ id: 'action.tag.create' })} />
+            }
+        >
             <Container variant={['marginBottom', 'filters']}>
                 <Input
                     icon={faSearch}

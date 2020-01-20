@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router';
+import { useIntl } from 'react-intl';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import api from '../../../../api';
 import routes from '../../../../routes';
@@ -28,6 +29,8 @@ const AttemptIndex = () => {
 
     const { taskId } = useParams();
 
+    const { formatMessage } = useIntl();
+
     const [debouncedFilters, filters, handleChange] = useDebouncedForm({
         search: '',
         active: false,
@@ -48,7 +51,15 @@ const AttemptIndex = () => {
     }, [debouncedFilters, instance]);
 
     return (
-        <TaskPanelTemplate actionButton={<ButtonCreate link to={routes.attempt.create(taskId)} />}>
+        <TaskPanelTemplate
+            actionButton={
+                <ButtonCreate
+                    link
+                    to={routes.attempt.create(taskId)}
+                    title={formatMessage({ id: 'action.attempt.create' })}
+                />
+            }
+        >
             <Container variant={['marginBottom', 'filters']}>
                 <Input
                     icon={faSearch}

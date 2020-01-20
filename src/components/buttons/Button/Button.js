@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
 
-const Button = ({ children, type, variant, round, className, onClick, link, to, size, disabled }) => {
+const Button = ({ children, type, variant, round, className, onClick, link, to, size, disabled, title }) => {
     let composedProps = {
         className: cn(
             styles.button,
@@ -14,6 +14,7 @@ const Button = ({ children, type, variant, round, className, onClick, link, to, 
             className,
         ),
         children,
+        title,
     };
 
     if (link) {
@@ -38,6 +39,7 @@ Button.propTypes = {
     className: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
     onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.exact(null)]),
     disabled: PropTypes.bool,
+    title: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -51,6 +53,7 @@ Button.defaultProps = {
     onClick: null,
     size: null,
     disabled: false,
+    title: null,
 };
 
 export default Button;

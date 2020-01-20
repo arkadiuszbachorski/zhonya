@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import api from '../../../../api';
@@ -34,6 +35,8 @@ const TaskIndex = () => {
         active: false,
     });
 
+    const { formatMessage } = useIntl();
+
     const [instance, loading] = useInstanceWithToastsAndLoading();
 
     const [tasks, setTasks] = useState([]);
@@ -55,7 +58,12 @@ const TaskIndex = () => {
     }, [debouncedFilters, instance]);
 
     return (
-        <PanelTemplate titleId="model.task.plural" actionButton={<ButtonCreate link to={routes.task.create} />}>
+        <PanelTemplate
+            titleId="model.task.plural"
+            actionButton={
+                <ButtonCreate link to={routes.task.create} title={formatMessage({ id: 'action.task.create' })} />
+            }
+        >
             <Container variant={['marginBottom', 'filters']}>
                 <Input
                     icon={faSearch}
