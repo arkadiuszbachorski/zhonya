@@ -36,7 +36,15 @@ const AttemptCreate = () => {
     };
 
     return (
-        <TaskPanelTemplate actionButton={<ButtonBack link to={routes.attempt.index(taskId)} />}>
+        <TaskPanelTemplate
+            actionButton={
+                <ButtonBack
+                    link
+                    to={routes.attempt.index(taskId)}
+                    title={formatMessage({ id: 'action.attempt.backIndex' })}
+                />
+            }
+        >
             <AttemptForm
                 variant="create"
                 handleChange={handleChange}
