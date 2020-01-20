@@ -13,6 +13,8 @@ import AccentSubtitle from '../../typography/AccentSubtitle/AccentSubtitle';
 import routes from '../../../routes';
 import styles from './SearchSubmenu.module.scss';
 import DateDisplay from '../../DateDisplay/DateDisplay';
+import Active from '../../typography/Active/Active';
+import Time from '../../Time/Time';
 
 const prepareParams = ({ search, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -22,6 +24,7 @@ const prepareParams = ({ search, ...rest }) => ({
 const initData = {
     tasks: [],
     tags: [],
+    attempts: [],
 };
 
 const SearchSubmenu = ({ toggle, active }) => {
@@ -45,6 +48,7 @@ const SearchSubmenu = ({ toggle, active }) => {
 
     const tasksEmpty = data.tasks.length === 0;
     const tagsEmpty = data.tags.length === 0;
+    const attemptsEmpty = data.attempts.length === 0;
     return (
         <SlidingMenu toggle={toggle} titleId="action.search" visible={active}>
             <div className={styles.wrapper}>
@@ -59,7 +63,7 @@ const SearchSubmenu = ({ toggle, active }) => {
                     errors={errors.task}
                 />
                 {debouncedFilters.search !== '' && (
-                    <LoadingComplete loading={loading} empty={tasksEmpty && tagsEmpty}>
+                    <LoadingComplete loading={loading} empty={tasksEmpty && tagsEmpty && attemptsEmpty}>
                         {!tagsEmpty && (
                             <>
                                 <AccentSubtitle messageId="model.tag.plural" />
@@ -98,6 +102,35 @@ const SearchSubmenu = ({ toggle, active }) => {
                                                 </>
                                             }
                                             text={task.name}
+                                            onClick={toggle}
+                                        />
+                                    ))}
+                                </ListCaptionAndColor>
+                            </>
+                        )}
+                        {!attemptsEmpty && (
+                            <>
+                                <AccentSubtitle messageId="model.attempt.plural" />
+                                <ListCaptionAndColor>
+                                    {data.attempts.map(attempt => (
+                                        <ListCaptionAndColor.Item
+                                            className={styles.captionLowercase}
+                                            key={attempt.id}
+                                            to={routes.attempt.timer(attempt.task.id, attempt.id)}
+                                            caption={
+                                                <>
+                                                    {attempt.active && <Active />}
+                                                    {!attempt.active && (
+                                                        <>
+                                                            <FormattedMessage id="edited" />{' '}
+                                                            <DateDisplay date={attempt.updated_at} />
+                                                        </>
+                                                    )}
+                                                    <br />
+                                                    <Time time={attempt.relative_time} />
+                                                </>
+                                            }
+                                            text={attempt.short_description}
                                             onClick={toggle}
                                         />
                                     ))}
