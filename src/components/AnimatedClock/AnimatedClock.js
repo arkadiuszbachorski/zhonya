@@ -5,7 +5,7 @@ import useIntervalCounter from '../../hooks/useIntervalCounter';
 import randomInteger from '../../utils/randomInteger';
 
 const AnimatedClock = ({ transitionTime }) => {
-    const counter = useIntervalCounter(transitionTime, randomInteger(0, 3600));
+    const counter = useIntervalCounter(transitionTime, randomInteger(0, 3600), true);
 
     const style = {
         '--counter': counter,
