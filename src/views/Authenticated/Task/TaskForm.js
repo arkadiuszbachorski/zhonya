@@ -24,6 +24,7 @@ const TaskForm = ({ submit, loading, form, errors, handleChange, variant }) => {
                 <Input
                     labelId="input.description"
                     name="description"
+                    textarea
                     value={form.description}
                     errors={errors.description}
                     onChange={handleChange}

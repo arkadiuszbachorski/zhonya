@@ -18,6 +18,11 @@
     }
   }
 
+  textarea {
+    resize: vertical;
+    padding-top: .5rem;
+  }
+
   //Disable ugly select arrow
   select {
     -moz-appearance: none;
@@ -94,6 +99,19 @@
   select, input, textarea {
     padding-right: 1.6rem;
   }
+}
+
+.isTextarea {
+  label {
+    transition: background-color .3s, transform .3s;
+  }
+
+  &.active {
+    label {
+      background: var(--background);
+    }
+  }
+
 }
 
 
