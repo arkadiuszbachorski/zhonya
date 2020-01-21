@@ -28,6 +28,7 @@ const AttemptForm = ({ submit, loading, form, errors, handleChange, variant, tas
                 <Input
                     labelId="input.description"
                     name="description"
+                    textarea
                     value={form.description}
                     errors={errors.description}
                     onChange={handleChange}
