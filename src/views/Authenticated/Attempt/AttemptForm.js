@@ -12,7 +12,7 @@ const AttemptForm = ({ submit, loading, form, errors, handleChange, variant, tas
                 loading={loading}
                 variant={variant}
                 titleId={`attempt.${variant}.title`}
-                paragraphIds={['attempt.form.text1']}
+                paragraphIds={['attempt.form.text1', 'attempt.form.text2']}
             >
                 {renderTasks && (
                     <Input
