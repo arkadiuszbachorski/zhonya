@@ -1,6 +1,6 @@
 @import '../../scss/package';
 
-@keyframes jumbotron {
+@keyframes jumbotronAnimation {
   from {
     opacity: 0;
     transform: translateX(-5rem);
@@ -14,7 +14,7 @@
 .jumbotron {
   margin-top: 15rem;
   text-align: center;
-  animation: jumbotron 1s;
+  animation: jumbotronAnimation .5s .5s backwards;
 
   h2 {
     font-weight: 300;

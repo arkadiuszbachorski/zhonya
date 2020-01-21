@@ -25,7 +25,7 @@
   border-radius: 100%;
   opacity: var(--elementOpacity);
   z-index: -5;
-  animation: animatedClock 1s;
+  animation: animatedClock 1s 1s backwards;
 }
 
 .handHours, .handMinutes {
