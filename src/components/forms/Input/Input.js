@@ -76,6 +76,7 @@ const Input = ({
                 errors.length > 0 ? styles.hasErrors : null,
                 typeColor ? styles.color : null,
                 input ? styles.hasIcon : null,
+                textarea ? styles.isTextarea : null,
                 className,
             ]}
         >
