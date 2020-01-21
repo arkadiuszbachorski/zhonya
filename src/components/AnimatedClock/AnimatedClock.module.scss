@@ -1,9 +1,21 @@
 @import '../../scss/package';
 
+@keyframes animatedClock {
+  from {
+    opacity: 0;
+    transform: scale(.9);
+  }
+  to {
+    opacity: var(--elementOpacity);
+    transform: scale(1);
+  }
+}
+
 .wrapper {
   --counter: 0;
   --transitionTime: 200ms;
   --borderSize: 6px;
+  --elementOpacity: .25;
   width: 40vw;
   height: 40vw;
   position: absolute;
@@ -11,8 +23,9 @@
   top: 10rem;
   border: var(--borderSize) solid var(--accent);
   border-radius: 100%;
-  opacity: .25;
+  opacity: var(--elementOpacity);
   z-index: -5;
+  animation: animatedClock 1s;
 }
 
 .handHours, .handMinutes {
