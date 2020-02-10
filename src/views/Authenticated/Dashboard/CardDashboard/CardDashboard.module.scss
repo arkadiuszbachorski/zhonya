@@ -1,0 +1,18 @@
+.cardTitle {
+  text-align: center;
+
+  .icon {
+    margin-left: 1rem;
+    font-size: .6em;
+  }
+}
+
+.actionsWrapper {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+
+  > * {
+    margin: 0 1rem;
+  }
+}
