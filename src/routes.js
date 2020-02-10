@@ -2,6 +2,7 @@ export default {
     index: '/',
     signUp: '/sign-up',
     logIn: '/log-in',
+    dashboard: '/dashboard',
     user: {
         settings: '/user/settings',
         data: '/user/data',
