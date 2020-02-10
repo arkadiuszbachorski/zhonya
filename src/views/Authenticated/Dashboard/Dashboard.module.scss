@@ -1,0 +1,11 @@
+.wrapper {
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  > * {
+    margin-left: 3vw;
+    margin-right: 3vw;
+    margin-bottom: 5rem;
+  }
+}
