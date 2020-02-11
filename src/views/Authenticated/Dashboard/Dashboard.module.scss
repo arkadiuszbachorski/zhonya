@@ -2,10 +2,21 @@
   margin-top: 2rem;
   flex-wrap: wrap;
   justify-content: space-around;
+  position: relative;
+  padding-bottom: 3rem;
 
   > * {
     margin-left: 3vw;
     margin-right: 3vw;
     margin-bottom: 5rem;
   }
+}
+
+.quote {
+  margin: 0;
+  left: 0;
+  bottom: -1.5rem;
+  min-width: 100%;
+  position: absolute;
+  justify-content: center;
 }

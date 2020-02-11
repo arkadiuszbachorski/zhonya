@@ -8,6 +8,7 @@ import useInstanceWithErrorsAndToastsAndLoading from '../../../hooks/api/useInst
 import routes from '../../../routes';
 import styles from './Dashboard.module.scss';
 import CardDashboard from './CardDashboard/CardDashboard';
+import Quote from '../../../components/Quote/Quote';
 
 const Dashboard = () => {
     useAuthenticatedOnly();
@@ -80,6 +81,7 @@ const Dashboard = () => {
                         },
                     ]}
                 />
+                <Quote author="Steve Jobs" content="Czas to pieniądz, gdyby ślimak..." className={styles.quote} />
             </Container>
         </PanelTemplate>
     );
