@@ -1,0 +1,25 @@
+@import '../../scss/package';
+
+.wrapper {
+  color: var(--accent);
+  display: grid;
+  grid-template-areas:
+          "icon content"
+          "icon author";
+}
+
+.icon {
+  grid-area: icon;
+  justify-self: end;
+  margin-right: 1rem;
+}
+
+.content {
+  grid-area: content;
+}
+
+.author {
+  margin-top: .3rem;
+  grid-area: author;
+  font-weight: 300;
+}
