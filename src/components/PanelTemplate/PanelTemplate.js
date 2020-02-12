@@ -4,6 +4,7 @@ import PanelMenu from '../PanelMenu/PanelMenu';
 import PanelHeader from '../PanelHeader/PanelHeader';
 import styles from './PanelTemplate.module.scss';
 import ListIcon from '../lists/ListIcon/ListIcon';
+import customPropTypes from '../../customPropTypes';
 
 const PanelTemplate = ({ children, titleId, secondaryTitleId, actionButton, sideMenuItems, title }) => {
     return (
@@ -38,7 +39,7 @@ PanelTemplate.propTypes = {
         PropTypes.shape({
             to: PropTypes.string,
             messageId: PropTypes.string,
-            icon: PropTypes.object,
+            icon: customPropTypes.fontAwesomeIcon,
         }),
     ),
     children: PropTypes.node,

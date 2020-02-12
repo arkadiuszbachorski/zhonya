@@ -6,6 +6,7 @@ import { useLocation } from 'react-router';
 import cn from 'classnames';
 import styles from './ListIconItem.module.scss';
 import FormattedOrChildren from '../../FormattedOrChildren/FormattedOrChildren';
+import customPropTypes from '../../../customPropTypes';
 
 const ListIconItem = ({ to, icon, children, messageId }) => {
     const { pathname } = useLocation();
@@ -23,7 +24,7 @@ ListIconItem.propTypes = {
     children: PropTypes.node,
     messageId: PropTypes.string,
     to: PropTypes.string.isRequired,
-    icon: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    icon: customPropTypes.fontAwesomeIcon.isRequired,
 };
 
 ListIconItem.defaultProps = {
