@@ -47,4 +47,5 @@ export default {
         create: `${url}/independent-attempt/create`,
     },
     search: `${url}/search`,
+    dashboard: `${url}/dashboard`,
 };

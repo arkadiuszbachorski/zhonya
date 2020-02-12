@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useIntl } from 'react-intl';
+import React, { useEffect, useState } from 'react';
 import { faCheckSquare, faClock, faList, faPlus, faTag, faUser } from '@fortawesome/free-solid-svg-icons';
 import Container from '../../../components/Container/Container';
 import useAuthenticatedOnly from '../../../hooks/useAuthenticatedOnly';
@@ -9,14 +8,34 @@ import routes from '../../../routes';
 import styles from './Dashboard.module.scss';
 import CardDashboard from './CardDashboard/CardDashboard';
 import Quote from '../../../components/Quote/Quote';
+import api from '../../../api';
+import { useLocaleProvider } from '../../../hooks/useLocale';
+import useRandomArrayElement from '../../../hooks/useRandomArrayElement';
+import quotes from './quotes';
 
 const Dashboard = () => {
     useAuthenticatedOnly();
 
+    const [currentLocale] = useLocaleProvider();
+
     const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
 
+    const [dashboardData, setDashboardData] = useState({
+        tags: [],
+        tasks: [],
+        attempts: [],
+    });
+
+    const [quote] = useRandomArrayElement(quotes[currentLocale]);
+
     useEffect(() => {
-        //    todo: get dashboard data here
+        instance.get(api.dashboard).then(({ data }) => {
+            setDashboardData({
+                tags: data.tags,
+                tasks: data.tasks,
+                attempts: data.attempts,
+            });
+        });
     }, []);
 
     return (
@@ -81,7 +100,7 @@ const Dashboard = () => {
                         },
                     ]}
                 />
-                <Quote author="Steve Jobs" content="Czas to pieniądz, gdyby ślimak..." className={styles.quote} />
+                <Quote author={quote.author} content={quote.content} className={styles.quote} />
             </Container>
         </PanelTemplate>
     );

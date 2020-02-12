@@ -36,7 +36,7 @@ const CardDashboard = ({ icon, titleId, buttons, children }) => {
 };
 
 CardDashboard.propTypes = {
-    icon: customPropTypes.fontAwesomeIcon().isRequired,
+    icon: customPropTypes.fontAwesomeIcon.isRequired,
     titleId: PropTypes.string.isRequired,
     buttons: PropTypes.arrayOf(
         PropTypes.shape({
