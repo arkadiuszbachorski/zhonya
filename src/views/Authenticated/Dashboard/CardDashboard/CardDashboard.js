@@ -6,6 +6,7 @@ import PageTitle from '../../../../components/typography/PageTitle/PageTitle';
 import styles from './CardDashboard.module.scss';
 import ButtonRoundIcon from '../../../../components/buttons/ButtonRoundIcon/ButtonRoundIcon';
 import Card from '../../../../components/Card/Card';
+import customPropTypes from '../../../../customPropTypes';
 
 const CardDashboard = ({ icon, titleId, buttons, children }) => {
     const { formatMessage } = useIntl();
@@ -19,6 +20,7 @@ const CardDashboard = ({ icon, titleId, buttons, children }) => {
                 <div className={styles.actionsWrapper}>
                     {buttons.map(item => (
                         <ButtonRoundIcon
+                            key={item.to}
                             icon={item.icon}
                             link
                             size="small"
@@ -34,11 +36,11 @@ const CardDashboard = ({ icon, titleId, buttons, children }) => {
 };
 
 CardDashboard.propTypes = {
-    icon: PropTypes.oneOf([PropTypes.object]).isRequired,
+    icon: customPropTypes.fontAwesomeIcon().isRequired,
     titleId: PropTypes.string.isRequired,
     buttons: PropTypes.arrayOf(
         PropTypes.shape({
-            icon: PropTypes.oneOf([PropTypes.object]).isRequired,
+            icon: customPropTypes.fontAwesomeIcon.isRequired,
             to: PropTypes.string.isRequired,
             titleId: PropTypes.string.isRequired,
         }),

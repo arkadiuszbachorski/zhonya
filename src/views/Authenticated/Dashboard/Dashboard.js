@@ -60,12 +60,12 @@ const Dashboard = () => {
                     buttons={[
                         {
                             icon: faList,
-                            to: routes.attempt.index,
+                            to: routes.attemptIndependent.index,
                             titleId: 'action.list',
                         },
                         {
                             icon: faPlus,
-                            to: routes.attempt.create,
+                            to: routes.attemptIndependent.create,
                             titleId: 'action.create',
                         },
                     ]}
