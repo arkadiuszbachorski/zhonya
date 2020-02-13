@@ -12,13 +12,14 @@ import api from '../../../api';
 import { useLocaleProvider } from '../../../hooks/useLocale';
 import useRandomArrayElement from '../../../hooks/useRandomArrayElement';
 import quotes from './quotes';
+import LoadingOverlay from '../../../components/loading/LoadingOverlay/LoadingOverlay';
 
 const Dashboard = () => {
     useAuthenticatedOnly();
 
     const [currentLocale] = useLocaleProvider();
 
-    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading] = useInstanceWithErrorsAndToastsAndLoading();
 
     const [dashboardData, setDashboardData] = useState({
         tags: [],
@@ -40,6 +41,7 @@ const Dashboard = () => {
 
     return (
         <PanelTemplate titleId="action.dashboard">
+            <LoadingOverlay loading={loading} />
             <Container variant={['smallItems']} className={styles.wrapper}>
                 <CardDashboard
                     titleId="model.tag.plural"
