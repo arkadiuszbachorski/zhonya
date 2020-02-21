@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PageTitle from '../../../../components/typography/PageTitle/PageTitle';
+import PageTitle from '../../../../../components/typography/PageTitle/PageTitle';
 import styles from './CardDashboard.module.scss';
-import ButtonRoundIcon from '../../../../components/buttons/ButtonRoundIcon/ButtonRoundIcon';
-import Card from '../../../../components/Card/Card';
-import customPropTypes from '../../../../customPropTypes';
+import ButtonRoundIcon from '../../../../../components/buttons/ButtonRoundIcon/ButtonRoundIcon';
+import Card from '../../../../../components/Card/Card';
+import customPropTypes from '../../../../../customPropTypes';
 
 const CardDashboard = ({ icon, titleId, buttons, children }) => {
     const { formatMessage } = useIntl();

@@ -2,8 +2,8 @@ export default {
     index: '/',
     signUp: '/sign-up',
     logIn: '/log-in',
-    dashboard: '/dashboard',
     user: {
+        dashboard: '/user/dashboard',
         settings: '/user/settings',
         data: '/user/data',
         delete: '/user/delete',

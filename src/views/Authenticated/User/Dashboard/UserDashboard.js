@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { faCheckSquare, faClock, faList, faPlus, faTag, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FormattedMessage } from 'react-intl';
-import Container from '../../../components/Container/Container';
-import useAuthenticatedOnly from '../../../hooks/useAuthenticatedOnly';
-import PanelTemplate from '../../../components/PanelTemplate/PanelTemplate';
-import useInstanceWithErrorsAndToastsAndLoading from '../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
-import routes from '../../../routes';
-import styles from './Dashboard.module.scss';
+import Container from '../../../../components/Container/Container';
+import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import routes from '../../../../routes';
+import styles from './UserDashboard.module.scss';
 import CardDashboard from './CardDashboard/CardDashboard';
-import Quote from '../../../components/Quote/Quote';
-import api from '../../../api';
-import { useLocaleProvider } from '../../../hooks/useLocale';
-import useRandomArrayElement from '../../../hooks/useRandomArrayElement';
+import Quote from '../../../../components/Quote/Quote';
+import api from '../../../../api';
+import { useLocaleProvider } from '../../../../hooks/useLocale';
+import useRandomArrayElement from '../../../../hooks/useRandomArrayElement';
 import quotes from './quotes';
-import LoadingOverlay from '../../../components/loading/LoadingOverlay/LoadingOverlay';
-import AccentSubtitle from '../../../components/typography/AccentSubtitle/AccentSubtitle';
-import ListCaptionAndColor from '../../../components/lists/ListCaptionAndColor/ListCaptionAndColor';
-import DateDisplay from '../../../components/DateDisplay/DateDisplay';
-import Time from '../../../components/Time/Time';
-import LoadingOrChildren from '../../../components/loading/LoadingOrChildren/LoadingOrChildren';
+import AccentSubtitle from '../../../../components/typography/AccentSubtitle/AccentSubtitle';
+import ListCaptionAndColor from '../../../../components/lists/ListCaptionAndColor/ListCaptionAndColor';
+import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
+import Time from '../../../../components/Time/Time';
+import LoadingOrChildren from '../../../../components/loading/LoadingOrChildren/LoadingOrChildren';
+import UserPanelTemplate from '../UserPanelTemplate';
 
-const Dashboard = () => {
+const UserDashboard = () => {
     useAuthenticatedOnly();
 
     const [currentLocale] = useLocaleProvider();
@@ -46,7 +45,7 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <PanelTemplate titleId="action.dashboard">
+        <UserPanelTemplate>
             <LoadingOrChildren loading={loading}>
                 <Container variant={['smallItems']} className={styles.wrapper}>
                     <CardDashboard
@@ -153,8 +152,8 @@ const Dashboard = () => {
                     <Quote author={quote.author} content={quote.content} className={styles.quote} />
                 </Container>
             </LoadingOrChildren>
-        </PanelTemplate>
+        </UserPanelTemplate>
     );
 };
 
-export default Dashboard;
+export default UserDashboard;

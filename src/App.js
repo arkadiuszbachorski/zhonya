@@ -38,7 +38,7 @@ import { useTimePreferenceProvider } from './hooks/useTimePreference';
 import { useDatePreferenceProvider } from './hooks/useDatePreference';
 import AttemptIndependentIndex from './views/Authenticated/AttemptIndependent/Index/AttemptIndependentIndex';
 import AttemptIndependentCreate from './views/Authenticated/AttemptIndependent/Create/AttemptIndependentCreate';
-import Dashboard from './views/Authenticated/Dashboard/Dashboard';
+import UserDashboard from './views/Authenticated/User/Dashboard/UserDashboard';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -69,7 +69,7 @@ const App = () => {
                         <Route path={routes.index} exact component={MainPage} />
                         <Route path={routes.logIn} exact component={LogIn} />
                         <Route path={routes.signUp} exact component={SignUp} />
-                        <Route path={routes.dashboard} exact component={Dashboard} />
+                        <Route path={routes.user.dashboard} exact component={UserDashboard} />
                         <Route path={routes.user.settings} exact component={UserSettings} />
                         <Route path={routes.user.data} exact component={UserData} />
                         <Route path={routes.user.delete} exact component={UserDelete} />
