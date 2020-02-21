@@ -9,7 +9,7 @@ const useGuestOnly = () => {
 
     useEffect(() => {
         if (auth.token !== null) {
-            setRedirect(routes.user.settings);
+            setRedirect(routes.user.dashboard);
         }
     }, [auth.token, auth.scope, setRedirect]);
 };
