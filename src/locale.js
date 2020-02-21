@@ -11,6 +11,11 @@ export default {
         active: 'Aktywne',
         lastEdited: 'Ostatnio edytowane',
         quickActions: 'Szybkie akcje',
+        'forWho.title': 'Dla kogo?',
+        'forWho.text1': 'Zhonya została zaprojektowana dla tych, dla których liczy się czas.',
+        'forWho.text2':
+            'Dzięki Zhonii możesz stworzyć statystykę, która pomoże Ci zaplanować swój dzień lepiej, zaoszczędzić czas, przestać się spóźniać bądź przepełniać swój dzień niewykonalnymi zadaniami.',
+        'forWho.text3': 'Sprawdź czy twój poranny szybki prysznic rzeczywiście jest tak szybki, jak zakładasz!',
         'timer.seconds': `{value, plural, 
             one { Sekunda } 
             few { Sekundy } 
@@ -175,6 +180,11 @@ export default {
         active: 'Active',
         lastEdited: 'Last edited',
         quickActions: 'Quick actions',
+        'forWho.title': 'For who?',
+        'forWho.text1': 'Zhonya was designed for those for whom time matters.',
+        'forWho.text2':
+            'With Zhonya, you can create statistics that will help you plan your day, save time, stop being late overestimate your capabilities.',
+        'forWho.text3': 'Check if your morning shower is really as speed as you assume!',
         'timer.seconds': `{value, plural, 
             one { second } 
             other { seconds } 

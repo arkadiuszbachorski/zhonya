@@ -1,0 +1,43 @@
+@import '../../../../scss/package';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+
+  .text {
+    text-align: justify;
+    width: 45%;
+    line-height: 140%;
+    font-size: 1.2rem;
+    font-weight: 300;
+
+    p {
+      margin: 2rem 0;
+
+    }
+  }
+
+  .image {
+    margin-left: 2rem;
+    width: calc(55% - 2rem);
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@include media-breakpoint-down(md)
+{
+  .wrapper {
+    flex-wrap: wrap;
+
+    .text {
+      width: 100%;
+    }
+
+    .image {
+      margin: 1rem 0 0;
+      width: 100%;
+    }
+  }
+
+}
