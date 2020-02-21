@@ -3,6 +3,7 @@ export default {
     signUp: '/sign-up',
     logIn: '/log-in',
     user: {
+        dashboard: '/user/dashboard',
         settings: '/user/settings',
         data: '/user/data',
         delete: '/user/delete',

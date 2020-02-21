@@ -17,7 +17,7 @@ const ListCaptionAndColorItem = ({ text, caption, color, to, className, onClick 
                 )}
                 <div className={styles.fonts}>
                     <span>{text}</span>
-                    <Caption>{caption}</Caption>
+                    {caption && <Caption>{caption}</Caption>}
                 </div>
             </Link>
         </li>
@@ -26,7 +26,7 @@ const ListCaptionAndColorItem = ({ text, caption, color, to, className, onClick 
 
 ListCaptionAndColorItem.propTypes = {
     text: PropTypes.node.isRequired,
-    caption: PropTypes.node.isRequired,
+    caption: PropTypes.node,
     to: PropTypes.string.isRequired,
     color: PropTypes.string,
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
@@ -34,6 +34,7 @@ ListCaptionAndColorItem.propTypes = {
 };
 
 ListCaptionAndColorItem.defaultProps = {
+    caption: null,
     color: null,
     className: null,
     onClick: null,

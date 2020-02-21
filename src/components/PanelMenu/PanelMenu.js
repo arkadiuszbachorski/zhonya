@@ -44,7 +44,7 @@ const PanelMenu = () => {
                     <ButtonRoundIcon
                         icon={faUser}
                         link
-                        to={routes.user.settings}
+                        to={routes.user.dashboard}
                         title={formatMessage({ id: 'action.settings' })}
                     />
                 </div>

@@ -8,6 +8,7 @@ import Errors from '../Errors/Errors';
 import Group from '../Group/Group';
 import ColorPill from '../../ColorPill/ColorPill';
 import InputIcon from '../InputIcon/InputIcon';
+import customPropTypes from '../../../customPropTypes';
 
 const Input = ({
     onChange,
@@ -107,7 +108,7 @@ Input.propTypes = {
     label: PropTypes.string,
     name: PropTypes.string.isRequired,
     id: PropTypes.string,
-    icon: PropTypes.oneOfType([PropTypes.object]),
+    icon: customPropTypes.fontAwesomeIcon,
     errors: PropTypes.arrayOf(PropTypes.string),
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
     children: PropTypes.node,

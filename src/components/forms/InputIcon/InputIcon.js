@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import styles from './InputIcon.module.scss';
+import customPropTypes from '../../../customPropTypes';
 
 const InputIcon = ({ select, icon }) => {
     const parsedIcon = select && !icon ? faAngleDown : icon;
@@ -15,7 +16,7 @@ const InputIcon = ({ select, icon }) => {
 };
 
 InputIcon.propTypes = {
-    icon: PropTypes.oneOfType([PropTypes.object]),
+    icon: customPropTypes.fontAwesomeIcon,
     select: PropTypes.bool,
 };
 
