@@ -1,6 +1,7 @@
 @import '../../scss/package';
 
 .wrapper {
+  margin-bottom: 3em;
   padding: 2rem;
 
   .contentWrapper {
@@ -20,7 +21,7 @@
 
 @include media-breakpoint-down(md) {
   .wrapper {
-    padding: 2rem 1rem;
+    padding: 1rem;
   }
 }
 

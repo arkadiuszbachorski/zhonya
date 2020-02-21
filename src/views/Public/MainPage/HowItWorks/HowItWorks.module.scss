@@ -78,12 +78,15 @@
   .conclusionWrapper {
     text-align: center;
     font-size: 2rem;
-    font-weight: 300;
   }
 }
 
 @include media-breakpoint-down(md) {
   .wrapper {
+
+    .next {
+      margin: 3rem 0;
+    }
 
     .instructionWrapper {
       flex-wrap: wrap;
@@ -91,7 +94,8 @@
       .instruction {
         width: 50%;
 
-        &:not(:last-child) {
+        &:nth-child(1),
+        &:nth-child(2) {
           margin-bottom: 3rem;
         }
 
@@ -110,6 +114,10 @@
 
       .instruction {
         width: 100%;
+
+        &:not(:last-child) {
+          margin-bottom: 2rem;
+        }
       }
     }
 
