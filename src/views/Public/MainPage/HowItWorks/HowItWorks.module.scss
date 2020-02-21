@@ -1,0 +1,126 @@
+@import '../../../../scss/package';
+
+.fill {
+  position: relative;
+
+
+  &::before,
+  &::after {
+    --sizing: 2rem;
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: var(--sizing);
+    top: 0;
+    background: var(--primary);
+    z-index: -5;
+
+    @include media-breakpoint-up(md) {
+      --sizing: 4rem;
+    }
+  }
+
+  &::before {
+    left: calc(-1 * var(--sizing));
+  }
+  &::after {
+    right: calc(-1 * var(--sizing));
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .instructionWrapper {
+    display: flex;
+
+    .instruction {
+      font-size: 1.2rem;
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .instructionIcon {
+        font-size: .75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 1rem 1rem;
+        padding: 1rem;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 100%;
+        background-color: var(--light);
+        color: var(--primary);
+      }
+    }
+  }
+
+  .next {
+    text-align: center;
+    font-size: .8rem;
+    font-weight: 300;
+    margin: 4rem 0;
+  }
+
+  .iconsWrapper {
+    display: flex;
+    justify-content: center;
+
+    .icon {
+      margin: 0 2rem;
+    }
+  }
+
+  .conclusionWrapper {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 300;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .wrapper {
+
+    .instructionWrapper {
+      flex-wrap: wrap;
+
+      .instruction {
+        width: 50%;
+
+        &:not(:last-child) {
+          margin-bottom: 3rem;
+        }
+
+        .instructionIcon {
+          margin-bottom: .5rem;
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .wrapper {
+    .instructionWrapper {
+      flex-direction: column;
+
+      .instruction {
+        width: 100%;
+      }
+    }
+
+    .iconsWrapper {
+      .icon {
+        font-size: 1rem;
+      }
+    }
+
+    .conclusionWrapper {
+      font-size: 1.8rem
+    }
+  }
+}

@@ -16,6 +16,13 @@ export default {
         'forWho.text2':
             'Dzięki Zhonii możesz stworzyć statystykę, która pomoże Ci zaplanować swój dzień lepiej, zaoszczędzić czas, przestać się spóźniać bądź przepełniać swój dzień niewykonalnymi zadaniami.',
         'forWho.text3': 'Sprawdź czy twój poranny szybki prysznic rzeczywiście jest tak szybki, jak zakładasz!',
+        'howItWorks.title': 'Jak to działa?',
+        'howItWorks.instruction.tasks': 'Stwórz zadania',
+        'howItWorks.instruction.tags': 'Grupuj je',
+        'howItWorks.instruction.attempts': 'Wykonaj wiele prób',
+        'howItWorks.instruction.statistics': 'Odczytaj statystykę',
+        'howItWorks.next': 'a następnie...',
+        'howItWorks.conclusion': 'Ciesz się zaoszczędzonym czasem, pieniędzmi oraz energią!',
         'timer.seconds': `{value, plural, 
             one { Sekunda } 
             few { Sekundy } 
@@ -185,6 +192,13 @@ export default {
         'forWho.text2':
             'With Zhonya, you can create statistics that will help you plan your day, save time, stop being late overestimate your capabilities.',
         'forWho.text3': 'Check if your morning shower is really as speed as you assume!',
+        'howItWorks.title': 'How does it work?',
+        'howItWorks.instruction.tasks': 'Create tasks',
+        'howItWorks.instruction.tags': 'Group them',
+        'howItWorks.instruction.attempts': 'Make time attempts',
+        'howItWorks.instruction.statistics': 'Read the statistics',
+        'howItWorks.next': 'then...',
+        'howItWorks.conclusion': 'Enjoy saved time, money and energy!',
         'timer.seconds': `{value, plural, 
             one { second } 
             other { seconds } 
