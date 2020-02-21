@@ -9,6 +9,8 @@ export default {
         notFound: 'Nie znaleziono',
         edited: 'Edytowano',
         active: 'Aktywne',
+        lastEdited: 'Ostatnio edytowane',
+        quickActions: 'Szybkie akcje',
         'timer.seconds': `{value, plural, 
             one { Sekunda } 
             few { Sekundy } 
@@ -171,6 +173,8 @@ export default {
         notFound: 'Not found',
         edited: 'Edited',
         active: 'Active',
+        lastEdited: 'Last edited',
+        quickActions: 'Quick actions',
         'timer.seconds': `{value, plural, 
             one { second } 
             other { seconds } 

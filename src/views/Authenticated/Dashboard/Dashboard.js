@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { faCheckSquare, faClock, faList, faPlus, faTag, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FormattedMessage } from 'react-intl';
 import Container from '../../../components/Container/Container';
 import useAuthenticatedOnly from '../../../hooks/useAuthenticatedOnly';
 import PanelTemplate from '../../../components/PanelTemplate/PanelTemplate';
@@ -13,6 +14,11 @@ import { useLocaleProvider } from '../../../hooks/useLocale';
 import useRandomArrayElement from '../../../hooks/useRandomArrayElement';
 import quotes from './quotes';
 import LoadingOverlay from '../../../components/loading/LoadingOverlay/LoadingOverlay';
+import AccentSubtitle from '../../../components/typography/AccentSubtitle/AccentSubtitle';
+import ListCaptionAndColor from '../../../components/lists/ListCaptionAndColor/ListCaptionAndColor';
+import DateDisplay from '../../../components/DateDisplay/DateDisplay';
+import Time from '../../../components/Time/Time';
+import LoadingOrChildren from '../../../components/loading/LoadingOrChildren/LoadingOrChildren';
 
 const Dashboard = () => {
     useAuthenticatedOnly();
@@ -41,69 +47,112 @@ const Dashboard = () => {
 
     return (
         <PanelTemplate titleId="action.dashboard">
-            <LoadingOverlay loading={loading} />
-            <Container variant={['smallItems']} className={styles.wrapper}>
-                <CardDashboard
-                    titleId="model.tag.plural"
-                    icon={faTag}
-                    buttons={[
-                        {
-                            icon: faList,
-                            to: routes.tag.index,
-                            titleId: 'action.list',
-                        },
-                        {
-                            icon: faPlus,
-                            to: routes.tag.create,
-                            titleId: 'action.create',
-                        },
-                    ]}
-                />
-                <CardDashboard
-                    titleId="model.task.plural"
-                    icon={faCheckSquare}
-                    buttons={[
-                        {
-                            icon: faList,
-                            to: routes.task.index,
-                            titleId: 'action.list',
-                        },
-                        {
-                            icon: faPlus,
-                            to: routes.task.create,
-                            titleId: 'action.create',
-                        },
-                    ]}
-                />
-                <CardDashboard
-                    titleId="model.attempt.plural"
-                    icon={faClock}
-                    buttons={[
-                        {
-                            icon: faList,
-                            to: routes.attemptIndependent.index,
-                            titleId: 'action.list',
-                        },
-                        {
-                            icon: faPlus,
-                            to: routes.attemptIndependent.create,
-                            titleId: 'action.create',
-                        },
-                    ]}
-                />
-                <CardDashboard
-                    titleId="model.user"
-                    icon={faUser}
-                    buttons={[
-                        {
-                            icon: faUser,
-                            to: routes.user.settings,
-                            titleId: 'action.settings',
-                        },
-                    ]}
-                />
-                <Quote author={quote.author} content={quote.content} className={styles.quote} />
-            </Container>
+            <LoadingOrChildren loading={loading}>
+                <Container variant={['smallItems']} className={styles.wrapper}>
+                    <CardDashboard
+                        titleId="model.tag.plural"
+                        icon={faTag}
+                        buttons={[
+                            {
+                                icon: faList,
+                                to: routes.tag.index,
+                                titleId: 'action.list',
+                            },
+                            {
+                                icon: faPlus,
+                                to: routes.tag.create,
+                                titleId: 'action.create',
+                            },
+                        ]}
+                    >
+                        <AccentSubtitle messageId="lastEdited" />
+                        <ListCaptionAndColor>
+                            {dashboardData.tags.map(tag => (
+                                <ListCaptionAndColor.Item
+                                    className={styles.captionLowercase}
+                                    key={tag.id}
+                                    to={routes.tag.edit(tag.id)}
+                                    color={tag.color}
+                                    caption={
+                                        <FormattedMessage
+                                            id="model.task.pluralCounter"
+                                            values={{ tasks: tag.tasks_count }}
+                                        />
+                                    }
+                                    text={tag.name}
+                                />
+                            ))}
+                        </ListCaptionAndColor>
+                    </CardDashboard>
+                    <CardDashboard
+                        titleId="model.task.plural"
+                        icon={faCheckSquare}
+                        buttons={[
+                            {
+                                icon: faList,
+                                to: routes.task.index,
+                                titleId: 'action.list',
+                            },
+                            {
+                                icon: faPlus,
+                                to: routes.task.create,
+                                titleId: 'action.create',
+                            },
+                        ]}
+                    >
+                        <AccentSubtitle messageId="lastEdited" />
+                        <ListCaptionAndColor>
+                            {dashboardData.tasks.map(task => (
+                                <ListCaptionAndColor.Item
+                                    key={task.id}
+                                    className={styles.captionLowercase}
+                                    to={routes.attempt.index(task.id)}
+                                    caption={
+                                        <>
+                                            <FormattedMessage id="edited" /> <DateDisplay date={task.updated_at} />
+                                        </>
+                                    }
+                                    text={task.name}
+                                />
+                            ))}
+                        </ListCaptionAndColor>
+                    </CardDashboard>
+                    <CardDashboard
+                        titleId="model.attempt.plural"
+                        icon={faClock}
+                        buttons={[
+                            {
+                                icon: faList,
+                                to: routes.attemptIndependent.index,
+                                titleId: 'action.list',
+                            },
+                            {
+                                icon: faPlus,
+                                to: routes.attemptIndependent.create,
+                                titleId: 'action.create',
+                            },
+                        ]}
+                    >
+                        <AccentSubtitle messageId="active" />
+                        <ListCaptionAndColor>
+                            {dashboardData.attempts.map(attempt => (
+                                <ListCaptionAndColor.Item
+                                    key={attempt.id}
+                                    to={routes.attempt.timer(attempt.task.id, attempt.id)}
+                                    className={styles.attemptsListItem}
+                                    caption={
+                                        <>
+                                            <Time time={attempt.relative_time} />
+                                        </>
+                                    }
+                                    text={attempt.short_description}
+                                />
+                            ))}
+                        </ListCaptionAndColor>
+                    </CardDashboard>
+                    <Quote author={quote.author} content={quote.content} className={styles.quote} />
+                </Container>
+            </LoadingOrChildren>
         </PanelTemplate>
     );
 };

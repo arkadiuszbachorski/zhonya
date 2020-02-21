@@ -20,3 +20,9 @@
   position: absolute;
   justify-content: center;
 }
+
+.captionLowercase {
+  > a > div > *:last-child:first-letter {
+    text-transform: lowercase;
+  }
+}
