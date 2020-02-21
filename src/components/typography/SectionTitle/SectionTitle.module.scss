@@ -1,3 +1,5 @@
+@import '../../../scss/package';
+
 .sectionTitle {
   text-transform: uppercase;
   font-size: 1.8rem;
@@ -22,5 +24,11 @@
 
   &::after {
     border-color: var(--light);
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .sectionTitle {
+    margin-bottom: 2rem;
   }
 }
