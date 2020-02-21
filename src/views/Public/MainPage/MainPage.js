@@ -6,6 +6,7 @@ import routes from '../../../routes';
 import MainTemplate from '../../../components/MainTemplate/MainTemplate';
 import ForWho from './ForWho/ForWho';
 import HowItWorks from './HowItWorks/HowItWorks';
+import Contact from './Contact/Contact';
 
 const MainPage = () => (
     <MainTemplate>
@@ -21,6 +22,7 @@ const MainPage = () => (
         </Jumbotron>
         <ForWho />
         <HowItWorks />
+        <Contact />
     </MainTemplate>
 );
 

@@ -11,6 +11,7 @@ export default {
         active: 'Aktywne',
         lastEdited: 'Ostatnio edytowane',
         quickActions: 'Szybkie akcje',
+        send: 'Wyślij',
         'forWho.title': 'Dla kogo?',
         'forWho.text1': 'Zhonya została zaprojektowana dla tych, dla których liczy się czas.',
         'forWho.text2':
@@ -23,6 +24,13 @@ export default {
         'howItWorks.instruction.statistics': 'Odczytaj statystykę',
         'howItWorks.next': 'a następnie...',
         'howItWorks.conclusion': 'Ciesz się zaoszczędzonym czasem, pieniędzmi oraz energią!',
+        'contact.title': 'Kontakt',
+        'contact.welcome': 'Cześć, chciałbyś się o coś spytać?',
+        'contact.questionType1': 'Masz propozycję jak rozwinąć Zhonyę?',
+        'contact.questionType2': 'Znalazłeś błąd, który trzeba naprawić?',
+        'contact.questionType3': 'A może chciałbyś pomóc w tłumaczeniu?',
+        'contact.text2': 'Czekam na Twoją wiadomość!',
+        'contact.creator': 'twórca Zhonii',
         'timer.seconds': `{value, plural, 
             one { Sekunda } 
             few { Sekundy } 
@@ -72,6 +80,9 @@ export default {
         'input.datePreference.long': 'Długa',
         'input.datePreference.short': 'Krótka',
         'input.active': 'Aktywne',
+        'input.message': 'Wiadomość',
+        'input.contactEmail': 'E-mail kontaktowy',
+        'input.firstName': 'Imię',
         'toast.success.changePassword': 'Pomyślnie zmieniono hasło',
         'toast.success.changeEmail': 'Wiadomość potwierdzająca została wysłana',
         'toast.success.deleteAccount': 'Pomyślnie usunięto konto',
@@ -187,6 +198,7 @@ export default {
         active: 'Active',
         lastEdited: 'Last edited',
         quickActions: 'Quick actions',
+        send: 'Send',
         'forWho.title': 'For who?',
         'forWho.text1': 'Zhonya was designed for those for whom time matters.',
         'forWho.text2':
@@ -199,6 +211,13 @@ export default {
         'howItWorks.instruction.statistics': 'Read the statistics',
         'howItWorks.next': 'then...',
         'howItWorks.conclusion': 'Enjoy saved time, money and energy!',
+        'contact.title': 'Contact',
+        'contact.welcome': 'Hi, would you like to ask me something?',
+        'contact.questionType1': 'Do you have an idea how to improve Zhonya?',
+        'contact.questionType2': 'Did you found a bug?',
+        'contact.questionType3': 'Perhaps you wanted to help with translation?',
+        'contact.text2': 'I look forward to hearing from you!',
+        'contact.creator': "Zhonya's creator",
         'timer.seconds': `{value, plural, 
             one { second } 
             other { seconds } 
@@ -244,6 +263,9 @@ export default {
         'input.datePreference.long': 'Long',
         'input.datePreference.short': 'Short',
         'input.active': 'Active',
+        'input.message': 'Message',
+        'input.contactEmail': 'Contact E-mail',
+        'input.firstName': 'First name',
         'toast.success.changePassword': 'Password changed successfully',
         'toast.success.changeEmail': 'Confirmation email has been sent',
         'toast.success.deleteAccount': 'Account deleted successfully',
