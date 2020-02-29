@@ -39,6 +39,8 @@ import { useDatePreferenceProvider } from './hooks/useDatePreference';
 import AttemptIndependentIndex from './views/Authenticated/AttemptIndependent/Index/AttemptIndependentIndex';
 import AttemptIndependentCreate from './views/Authenticated/AttemptIndependent/Create/AttemptIndependentCreate';
 import UserDashboard from './views/Authenticated/User/Dashboard/UserDashboard';
+import SendVerificationEmail from './views/Authenticated/SendVerificationEmail/SendVerificationEmail';
+import Verify from './views/Authenticated/Verify/Verify';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -69,6 +71,8 @@ const App = () => {
                         <Route path={routes.index} exact component={MainPage} />
                         <Route path={routes.logIn} exact component={LogIn} />
                         <Route path={routes.signUp} exact component={SignUp} />
+                        <Route path={routes.sendVerificationEmail} exact component={SendVerificationEmail} />
+                        <Route path={routes.verify()} exact component={Verify} />
                         <Route path={routes.user.dashboard} exact component={UserDashboard} />
                         <Route path={routes.user.settings} exact component={UserSettings} />
                         <Route path={routes.user.data} exact component={UserData} />

@@ -2,6 +2,8 @@ export default {
     index: '/',
     signUp: '/sign-up',
     logIn: '/log-in',
+    sendVerificationEmail: '/verify-email',
+    verify: (token = ':token') => `/verify/${token}`,
     user: {
         dashboard: '/user/dashboard',
         settings: '/user/settings',

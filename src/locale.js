@@ -60,6 +60,8 @@ export default {
         'input.datePreference.long': 'Długa',
         'input.datePreference.short': 'Krótka',
         'input.active': 'Aktywne',
+        'toast.success.sendVerificationEmail': 'Pomyślnie wysłano maila weryfikacyjnego',
+        'toast.success.verified': 'Pomyślnie zweryfikowano konto',
         'toast.success.changePassword': 'Pomyślnie zmieniono hasło',
         'toast.success.changeEmail': 'Wiadomość potwierdzająca została wysłana',
         'toast.success.deleteAccount': 'Pomyślnie usunięto konto',
@@ -76,6 +78,7 @@ export default {
         'toast.success.attempt.delete': 'Pomyślnie usunięto próbę',
         'toast.success.task.tags.attach': 'Pomyślnie przypisano etykietę',
         'toast.success.task.tags.detach': 'Pomyślnie odłączono etykietę',
+        'toast.error.sendVerificationEmail': 'Wystąpił nieoczekiwany błąd podczas wysyłania maila weryfikującego',
         'toast.error.validation': 'Sprawdź błędy i wyślij ponownie',
         'toast.error.notFound': 'Nie znaleziono takiego adresu',
         'toast.error.unauthorized': 'Musisz być zalogowanym',
@@ -85,6 +88,7 @@ export default {
         'toast.error.client':
             'Wystąpił niezidentyfikowany błąd. Spróbuj ponownie później lub skontaktuj się z administratorem',
         'validation.error.attempt.noTask': 'Zadanie jest wymagane.',
+        'action.sendVerificationEmail': 'Wyślij email',
         'action.create': 'Stwórz',
         'action.timer': 'Mierz czas',
         'action.edit': 'Edytuj',
@@ -161,6 +165,8 @@ export default {
         'user.data.email.title': 'Zmień email',
         'user.data.email.text1': 'Wprowadź nowy adres email',
         'user.data.email.text2': 'Będziesz musiał potwierdzić tę akcję',
+        'verificationEmail.text':
+            'By przejść dalej musisz zweryfikować swój adres e-mail. Kliknij by otrzymać wiadomość z linkiem aktywującym na podany adres.',
         'placeholder.title': 'Pellentesque tortor',
         'placeholder.shortText':
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare mattis pellentesque.',
@@ -220,6 +226,8 @@ export default {
         'input.datePreference.long': 'Long',
         'input.datePreference.short': 'Short',
         'input.active': 'Active',
+        'toast.success.sendVerificationEmail': 'Verification email sent successfully',
+        'toast.success.verified': 'Account verified successfully',
         'toast.success.changePassword': 'Password changed successfully',
         'toast.success.changeEmail': 'Confirmation email has been sent',
         'toast.success.deleteAccount': 'Account deleted successfully',
@@ -236,6 +244,8 @@ export default {
         'toast.success.attempt.delete': 'Attempt deleted successfully',
         'toast.success.task.tags.attach': 'Tag attached successfully',
         'toast.success.task.tags.detach': 'Tag detached successfully',
+        'toast.error.sendVerificationEmail': 'Problem occurred while sending your verification email',
+        'toast.error.verified': 'Problem occurred while verification',
         'toast.error.validation': 'Check errors and try again',
         'toast.error.notFound': 'Address not found',
         'toast.error.unauthorized': 'You have to log in',
@@ -244,6 +254,7 @@ export default {
         'toast.error.server': 'Server error occurred. Try again later',
         'toast.error.client': 'Undefined error occurred. Try again or contact the administrator',
         'validation.error.attempt.noTask': 'Task is required.',
+        'action.sendVerificationEmail': 'Send an email',
         'action.create': 'Create',
         'action.edit': 'Edit',
         'action.timer': 'Timer',
@@ -319,6 +330,8 @@ export default {
         'user.data.email.title': 'Change email',
         'user.data.email.text1': 'Enter new e-mail address',
         'user.data.email.text2': 'You have to confirm this action',
+        'verificationEmail.text':
+            'You must verify your email address to proceed. Click on the button below to receive message with verification link.',
         'placeholder.title': 'Pellentesque tortor',
         'placeholder.shortText':
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare mattis pellentesque.',
