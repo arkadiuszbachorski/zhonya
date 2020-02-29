@@ -27,7 +27,9 @@ const Index = () => {
 };
 
 const AuthenticatedOnly = () => {
-    useAuthenticatedOnly('admin');
+    useAuthenticatedOnly({
+        scope: 'admin',
+    });
     const redirect = useRedirect();
 
     return (

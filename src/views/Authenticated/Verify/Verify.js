@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
+import { useParams } from 'react-router';
 import useAuthenticatedOnly from '../../../hooks/useAuthenticatedOnly';
 import Container from '../../../components/Container/Container';
-import FormInCard from '../../../components/forms/FormInCard/FormInCard';
 import useInstanceWithToastsAndLoading from '../../../hooks/api/useInstanceWithToastsAndLoading';
 import PanelTemplate from '../../../components/PanelTemplate/PanelTemplate';
 import api from '../../../api';
-import { useParams } from 'react-router';
 import Loading from '../../../components/loading/Loading/Loading';
 import useAuth from '../../../hooks/useAuth';
 import useRedirect from '../../../hooks/useRedirect';
 import routes from '../../../routes';
 
 const Verify = () => {
-    useAuthenticatedOnly(null, false);
+    useAuthenticatedOnly({
+        checkIfEmailNotVerified: true,
+    });
 
     const redirectTo = useRedirect();
 
@@ -22,7 +23,7 @@ const Verify = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading] = useInstanceWithToastsAndLoading();
+    const [instance] = useInstanceWithToastsAndLoading();
 
     const { token } = useParams();
 

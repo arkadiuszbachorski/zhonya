@@ -66,8 +66,8 @@ const App = () => {
             >
                 <ToastContainer newestOnTop position="bottom-right" transition={Slide} />
                 <Router>
+                    {redirect && <Redirect to={redirect} />}
                     <Switch>
-                        {redirect && <Redirect to={redirect} />}
                         <Route path={routes.index} exact component={MainPage} />
                         <Route path={routes.logIn} exact component={LogIn} />
                         <Route path={routes.signUp} exact component={SignUp} />

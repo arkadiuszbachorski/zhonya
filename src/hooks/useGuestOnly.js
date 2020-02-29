@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import useAuth from './useAuth';
 import useRedirect from './useRedirect';
 import routes from '../routes';
@@ -6,12 +6,22 @@ import routes from '../routes';
 const useGuestOnly = () => {
     const [auth] = useAuth();
     const setRedirect = useRedirect();
+    const [first, setFirst] = useState(true);
 
-    useEffect(() => {
+    const redirectIfNotGuest = () => {
         if (auth.token !== null) {
             setRedirect(routes.user.dashboard);
         }
-    }, [auth.token, auth.scope, setRedirect]);
+        if (first) {
+            setFirst(false);
+        }
+    };
+
+    if (first) {
+        redirectIfNotGuest();
+    }
+
+    useLayoutEffect(redirectIfNotGuest, [auth.token, auth.scope, setRedirect]);
 };
 
 export default useGuestOnly;

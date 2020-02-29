@@ -9,11 +9,15 @@ import PanelTemplate from '../../../components/PanelTemplate/PanelTemplate';
 import api from '../../../api';
 
 const SendVerificationEmail = () => {
-    useAuthenticatedOnly(null, false);
+    useAuthenticatedOnly({
+        checkIfEmailNotVerified: true,
+    });
 
     const { formatMessage } = useIntl();
 
     const [instance, loading] = useInstanceWithToastsAndLoading();
+
+    console.log('here');
 
     const submit = () => {
         instance
