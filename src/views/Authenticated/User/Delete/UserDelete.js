@@ -24,6 +24,7 @@ const UserDelete = () => {
             setAuth({
                 token: null,
                 scope: null,
+                verified: null,
             });
         });
     };
