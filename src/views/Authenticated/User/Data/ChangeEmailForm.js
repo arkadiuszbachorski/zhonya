@@ -7,8 +7,11 @@ import FormWithCard from '../../../../components/forms/FormWithCard/FormWithCard
 import Input from '../../../../components/forms/Input/Input';
 import api from '../../../../api';
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import useAuth from '../../../../hooks/useAuth';
 
 const ChangeEmailForm = () => {
+    const [auth, setAuth] = useAuth();
+
     const { formatMessage } = useIntl();
 
     const [form, handleChange] = useForm({
@@ -20,6 +23,10 @@ const ChangeEmailForm = () => {
     const submit = () => {
         instance.put(api.user.changeEmail, form).then(() => {
             toast.success(formatMessage({ id: 'toast.success.changeEmail' }));
+            setAuth({
+                ...auth,
+                verified: false,
+            });
         });
     };
 
