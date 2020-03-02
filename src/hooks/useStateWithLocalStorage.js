@@ -12,8 +12,10 @@ const useStateWithLocalStorage = (key, initial) => {
         return initial;
     });
 
-    const setStateAndSaveToLocalStorage = newValue => {
-        localStorage.setItem(key, JSON.stringify(newValue));
+    const setStateAndSaveToLocalStorage = (newValue, saveToStorage = true) => {
+        if (saveToStorage) {
+            localStorage.setItem(key, JSON.stringify(newValue));
+        }
         setState(newValue);
     };
 
