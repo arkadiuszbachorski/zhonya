@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { FormattedMessage, useIntl } from 'react-intl';
 import useAuthenticatedOnly from '../../../hooks/useAuthenticatedOnly';
@@ -17,8 +17,6 @@ const SendVerificationEmail = () => {
 
     const [instance, loading] = useInstanceWithToastsAndLoading();
 
-    console.log('here');
-
     const submit = () => {
         instance
             .post(api.auth.send)
@@ -29,6 +27,10 @@ const SendVerificationEmail = () => {
                 toast.error(formatMessage({ id: 'toast.error.sendVerificationEmail' }));
             });
     };
+
+    useEffect(() => {
+        submit();
+    }, []);
 
     return (
         <PanelTemplate>
