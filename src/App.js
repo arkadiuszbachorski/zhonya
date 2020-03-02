@@ -10,7 +10,7 @@ import './scss/index.scss';
 import LogIn from './views/Guest/LogIn';
 import SignUp from './views/Guest/SignUp';
 import UserData from './views/Authenticated/User/Data/UserData';
-import UserDelete from './views/Authenticated/User/Delete/UserDelete';
+import UserSendDeleteMail from './views/Authenticated/User/SendDeleteMail/UserSendDeleteMail';
 import UserLogout from './views/Authenticated/User/Logout/UserLogout';
 import { useAuthProvider } from './hooks/useAuth';
 import { useRedirectProvider } from './hooks/useRedirect';
@@ -41,6 +41,7 @@ import AttemptIndependentCreate from './views/Authenticated/AttemptIndependent/C
 import UserDashboard from './views/Authenticated/User/Dashboard/UserDashboard';
 import SendVerificationEmail from './views/Authenticated/SendVerificationEmail/SendVerificationEmail';
 import Verify from './views/Authenticated/Verify/Verify';
+import Delete from './views/Authenticated/Delete/Delete';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -73,10 +74,11 @@ const App = () => {
                         <Route path={routes.signUp} exact component={SignUp} />
                         <Route path={routes.sendVerificationEmail} exact component={SendVerificationEmail} />
                         <Route path={routes.verify()} exact component={Verify} />
+                        <Route path={routes.delete()} exact component={Delete} />
                         <Route path={routes.user.dashboard} exact component={UserDashboard} />
                         <Route path={routes.user.settings} exact component={UserSettings} />
                         <Route path={routes.user.data} exact component={UserData} />
-                        <Route path={routes.user.delete} exact component={UserDelete} />
+                        <Route path={routes.user.delete} exact component={UserSendDeleteMail} />
                         <Route path={routes.user.logout} exact component={UserLogout} />
                         <Route path={routes.tag.index} exact component={TagIndex} />
                         <Route path={routes.tag.create} exact component={TagCreate} />

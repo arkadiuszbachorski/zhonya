@@ -6,28 +6,24 @@ import FormWithCard from '../../../../components/forms/FormWithCard/FormWithCard
 import api from '../../../../api';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
-import useAuth from '../../../../hooks/useAuth';
 import UserPanelTemplate from '../UserPanelTemplate';
 
-const UserDelete = () => {
+const UserSendDeleteMail = () => {
     useAuthenticatedOnly();
 
     const [instance, loading] = useInstanceWithToastsAndLoading();
 
     const { formatMessage } = useIntl();
 
-    const [, setAuth] = useAuth();
-
     const handleSubmit = () => {
-        instance.delete(api.user.delete).then(() => {
-            toast.success(formatMessage({ id: 'toast.success.deleteAccount' }));
-            setAuth({
-                token: null,
-                scope: null,
-                verified: null,
-                rememberMe: null,
+        instance
+            .post(api.user.sendDelete)
+            .then(() => {
+                toast.success(formatMessage({ id: 'toast.success.delete.sendMail' }));
+            })
+            .catch(() => {
+                toast.error(formatMessage({ id: 'toast.error.delete.sendMail' }));
             });
-        });
     };
 
     return (
@@ -38,11 +34,11 @@ const UserDelete = () => {
                     loading={loading}
                     variant="delete"
                     titleId="user.delete.title"
-                    paragraphIds={['actionCannotBeUndone', 'user.delete.text2']}
+                    paragraphIds={['actionCannotBeUndone', 'user.delete.text2', 'user.delete.text3']}
                 />
             </Container>
         </UserPanelTemplate>
     );
 };
 
-export default UserDelete;
+export default UserSendDeleteMail;
