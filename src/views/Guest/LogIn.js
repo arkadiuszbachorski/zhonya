@@ -18,7 +18,7 @@ const LogIn = () => {
         password: '',
     });
 
-    const [rememberMe, setRememberMe] = useState(false);
+    const [rememberMe, setRememberMe] = useState(true);
 
     const [, setAuth] = useAuth();
 
@@ -61,6 +61,7 @@ const LogIn = () => {
                         onChange={handleChange}
                     />
                     <Checkbox
+                        checked={rememberMe}
                         groupSize="large"
                         value="rememberMe"
                         labelId="rememberMe"

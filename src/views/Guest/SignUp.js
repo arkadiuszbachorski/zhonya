@@ -29,7 +29,7 @@ const SignUp = () => {
                 token: data.access_token,
                 scope: data.scope,
                 verified: data.verified,
-                rememberMe: false,
+                rememberMe: true,
             });
         });
     };
