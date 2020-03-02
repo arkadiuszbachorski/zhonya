@@ -6,6 +6,7 @@ export const useAuthProvider = () => {
         token: null,
         scope: null,
         verified: null,
+        rememberMe: false,
     });
 };
 

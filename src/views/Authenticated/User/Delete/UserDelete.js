@@ -25,6 +25,7 @@ const UserDelete = () => {
                 token: null,
                 scope: null,
                 verified: null,
+                rememberMe: null,
             });
         });
     };

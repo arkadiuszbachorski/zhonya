@@ -17,11 +17,9 @@ const useAuthenticatedOnly = (customSettings = null) => {
     const checkIfAuthenticated = () => {
         if (auth.token === null || (settings.scope && auth.scope && !auth.scope.includes(settings.scope))) {
             redirect(routes.logIn);
-        }
-        if (settings.checkIfEmailVerified && !auth.verified) {
+        } else if (settings.checkIfEmailVerified && !auth.verified) {
             redirect(routes.sendVerificationEmail);
-        }
-        if (settings.checkIfEmailNotVerified && auth.verified) {
+        } else if (settings.checkIfEmailNotVerified && auth.verified) {
             redirect(routes.user.dashboard);
         }
         if (first) {

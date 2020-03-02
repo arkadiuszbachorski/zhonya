@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MainTemplate from '../../components/MainTemplate/MainTemplate';
 import Input from '../../components/forms/Input/Input';
 import FormInCard from '../../components/forms/FormInCard/FormInCard';
@@ -8,6 +8,7 @@ import api from '../../api';
 import useAuth from '../../hooks/useAuth';
 import useGuestOnly from '../../hooks/useGuestOnly';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import Checkbox from '../../components/forms/Checkbox/Checkbox';
 
 const LogIn = () => {
     useGuestOnly();
@@ -17,6 +18,8 @@ const LogIn = () => {
         password: '',
     });
 
+    const [rememberMe, setRememberMe] = useState(false);
+
     const [, setAuth] = useAuth();
 
     const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
@@ -24,11 +27,15 @@ const LogIn = () => {
     const handleSubmit = () => {
         instance.post(api.auth.logIn, form).then(response => {
             const { data } = response;
-            setAuth({
-                token: data.access_token,
-                scope: data.scope,
-                verified: data.verified,
-            });
+            setAuth(
+                {
+                    token: data.access_token,
+                    scope: data.scope,
+                    verified: data.verified,
+                    rememberMe: data.verified ? rememberMe : false,
+                },
+                data.verified ? rememberMe : true,
+            );
         });
     };
 
@@ -52,6 +59,13 @@ const LogIn = () => {
                         errors={errors.password}
                         type="password"
                         onChange={handleChange}
+                    />
+                    <Checkbox
+                        groupSize="large"
+                        value="rememberMe"
+                        labelId="rememberMe"
+                        name="rememberMe"
+                        onChange={e => setRememberMe(e.target.checked)}
                     />
                 </FormInCard>
             </Container>

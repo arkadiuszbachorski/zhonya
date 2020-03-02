@@ -11,6 +11,7 @@ export default {
         active: 'Aktywne',
         lastEdited: 'Ostatnio edytowane',
         quickActions: 'Szybkie akcje',
+        rememberMe: 'Zapamiętaj mnie',
         'timer.seconds': `{value, plural, 
             one { Sekunda } 
             few { Sekundy } 
@@ -79,6 +80,7 @@ export default {
         'toast.success.task.tags.attach': 'Pomyślnie przypisano etykietę',
         'toast.success.task.tags.detach': 'Pomyślnie odłączono etykietę',
         'toast.error.sendVerificationEmail': 'Wystąpił nieoczekiwany błąd podczas wysyłania maila weryfikującego',
+        'toast.error.verified': 'Nastąpił problem podczas weryfikacji',
         'toast.error.validation': 'Sprawdź błędy i wyślij ponownie',
         'toast.error.notFound': 'Nie znaleziono takiego adresu',
         'toast.error.unauthorized': 'Musisz być zalogowanym',
@@ -181,6 +183,7 @@ export default {
         active: 'Active',
         lastEdited: 'Last edited',
         quickActions: 'Quick actions',
+        rememberMe: 'Remember me',
         'timer.seconds': `{value, plural, 
             one { second } 
             other { seconds } 

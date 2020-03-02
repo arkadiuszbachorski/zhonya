@@ -11,6 +11,7 @@ import Loading from '../../../components/loading/Loading/Loading';
 import useAuth from '../../../hooks/useAuth';
 import useRedirect from '../../../hooks/useRedirect';
 import routes from '../../../routes';
+import { storeKeys } from '../../../hooks/useStore';
 
 const Verify = () => {
     useAuthenticatedOnly({
@@ -33,11 +34,17 @@ const Verify = () => {
                 verification_token: token,
             })
             .then(() => {
+                if (!auth.rememberMe) {
+                    localStorage.removeItem(storeKeys.useAuth);
+                }
                 toast.success(formatMessage({ id: 'toast.success.verified' }));
-                setAuth({
-                    ...auth,
-                    verified: true,
-                });
+                setAuth(
+                    {
+                        ...auth,
+                        verified: true,
+                    },
+                    auth.rememberMe,
+                );
                 redirectTo(routes.user.dashboard);
             })
             .catch(() => {
