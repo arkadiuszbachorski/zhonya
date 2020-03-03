@@ -1,11 +1,17 @@
-export default (instance, loadingSetter) => {
+import { cancelMessage } from '../modifiers/generateCancelToken';
+
+export default (instance, loadingSetter, isRedirecting) => {
     instance.interceptors.request.use(
         config => {
-            loadingSetter(true);
+            if (!config.cancelToken.reason) {
+                loadingSetter(true);
+            }
             return config;
         },
         error => {
-            loadingSetter(false);
+            if (error.message !== cancelMessage) {
+                loadingSetter(false);
+            }
             return Promise.reject(error);
         },
     );
@@ -15,7 +21,9 @@ export default (instance, loadingSetter) => {
             return response;
         },
         error => {
-            loadingSetter(false);
+            if (error.message !== cancelMessage) {
+                loadingSetter(false);
+            }
             return Promise.reject(error);
         },
     );

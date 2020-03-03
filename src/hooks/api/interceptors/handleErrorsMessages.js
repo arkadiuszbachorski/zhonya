@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import { cancelMessage } from '../modifiers/generateCancelToken';
 
 export default (instance, formatMessage, userMessages = null) => {
     const defualtMessages = {
@@ -31,9 +32,10 @@ export default (instance, formatMessage, userMessages = null) => {
                 } else if (status >= 500 && status < 600) {
                     toast.error(messages.server());
                 }
-            } else {
+            } else if (error.message !== cancelMessage) {
                 toast.error(messages.code());
             }
+
             return Promise.reject(error);
         },
     );

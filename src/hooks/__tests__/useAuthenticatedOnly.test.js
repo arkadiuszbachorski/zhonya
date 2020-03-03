@@ -8,11 +8,11 @@ import useAuthenticatedOnly from '../useAuthenticatedOnly';
 import { storeKeys, StoreContext } from '../useStore';
 
 const Index = () => {
-    const redirect = useRedirect();
+    const redirectTo = useRedirect();
     const [auth, setAuth] = useAuth();
     return (
         <>
-            <button type="button" id="redirect" onClick={() => redirect('/admin-only')}>
+            <button type="button" id="redirect" onClick={() => redirectTo('/admin-only')}>
                 Redirect me to admin only
             </button>
             <button
@@ -30,11 +30,11 @@ const AuthenticatedOnly = () => {
     useAuthenticatedOnly({
         scope: 'admin',
     });
-    const redirect = useRedirect();
+    const redirectTo = useRedirect();
 
     return (
         <>
-            <button type="button" id="redirect-index" onClick={() => redirect('/')}>
+            <button type="button" id="redirect-index" onClick={() => redirectTo('/')}>
                 Redirect to index
             </button>
             <h1>Only admins are allowed to be here</h1>
