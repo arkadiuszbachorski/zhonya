@@ -12,6 +12,8 @@ const UserLogout = () => {
         setAuth({
             token: null,
             scope: null,
+            verified: null,
+            rememberMe: null,
         });
     }, [setAuth]);
 

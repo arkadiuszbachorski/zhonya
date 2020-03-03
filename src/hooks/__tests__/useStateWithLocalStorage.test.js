@@ -36,4 +36,17 @@ describe('Hook - useStateWithLocalStorage', () => {
     it('keeps data in localStorage', () => {
         expect(JSON.parse(localStorage.getItem('test')).lorem).toBe('newValue');
     });
+
+    it('doesnt keep data in localStorage when not wanted', () => {
+        const { result } = renderHook(() => useStateWithLocalStorage('lorem', 'ipsum', false));
+
+        expect(result.current[0]).toBe('ipsum');
+
+        act(() => {
+            result.current[1]('dolor', false);
+        });
+
+        expect(result.current[0]).toBe('dolor');
+        expect(localStorage.getItem('lorem')).toBeNull();
+    });
 });

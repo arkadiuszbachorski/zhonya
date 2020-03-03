@@ -8,11 +8,11 @@ import useAuth, { useAuthProvider } from '../useAuth';
 import { StoreContext, storeKeys } from '../useStore';
 
 const Index = () => {
-    const redirect = useRedirect();
+    const { redirectTo } = useRedirect();
     const [, setAuth] = useAuth();
     return (
         <>
-            <button type="button" id="redirect" onClick={() => redirect('/guest-only')}>
+            <button type="button" id="redirect" onClick={() => redirectTo('/guest-only')}>
                 Redirect me to guest only
             </button>
             <button type="button" id="auth" onClick={() => setAuth({ token: 'topSecret', scope: 'user' })}>
@@ -24,11 +24,11 @@ const Index = () => {
 
 const GuestOnly = () => {
     useGuestOnly();
-    const redirect = useRedirect();
+    const { redirectTo } = useRedirect();
 
     return (
         <>
-            <button type="button" id="redirect-index" onClick={() => redirect('/')}>
+            <button type="button" id="redirect-index" onClick={() => redirectTo('/')}>
                 Redirect to index
             </button>
             <h1>Only guests are allowed to be here</h1>

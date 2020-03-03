@@ -9,31 +9,45 @@ import styles from './MainHeader.module.scss';
 import CombinedLogo from '../logos/CombinedLogo/CombinedLogo';
 import routes from '../../routes';
 import Button from '../buttons/Button/Button';
+import useAuth from '../../hooks/useAuth';
 
 const MainHeader = () => {
     const [open, setOpen] = useState(false);
+    const [auth] = useAuth();
     const swipeableHandlers = useSwipeable({ onSwipedLeft: () => setOpen(false) });
     return (
         <header className={cn(styles.wrapper, open ? styles.open : null)}>
             <CombinedLogo />
             <ul className={styles.links} {...swipeableHandlers}>
-                <li>
-                    <Link to={routes.logIn}>
-                        <FormattedMessage id="logIn" />
-                    </Link>
-                </li>
-                <li>
-                    <Button link to={routes.signUp} variant="primaryLight">
-                        <FormattedMessage id="signUp" />
-                    </Button>
-                </li>
+                {auth.token === null ? (
+                    <>
+                        <li>
+                            <Link to={routes.logIn}>
+                                <FormattedMessage id="logIn" />
+                            </Link>
+                        </li>
+                        <li>
+                            <Button link to={routes.signUp} variant="primaryLight">
+                                <FormattedMessage id="signUp" />
+                            </Button>
+                        </li>
+                    </>
+                ) : (
+                    <>
+                        <li>
+                            <Button link to={routes.signUp} variant="primaryLight">
+                                <FormattedMessage id="action.dashboard" />
+                            </Button>
+                        </li>
+                    </>
+                )}
             </ul>
             <Button
                 variant="blank"
                 size="large"
                 className={[styles.menuToggleButton]}
                 round
-                onClick={() => setOpen(open => !open)}
+                onClick={() => setOpen(op => !op)}
             >
                 <FontAwesomeIcon icon={faBars} />
             </Button>

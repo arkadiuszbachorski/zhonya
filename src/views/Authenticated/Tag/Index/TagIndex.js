@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
@@ -13,6 +13,7 @@ import GridTable from '../../../../components/GridTable/GridTable';
 import ColorPill from '../../../../components/ColorPill/ColorPill';
 import styles from './TagIndex.module.scss';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const prepareParams = ({ search, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -28,15 +29,19 @@ const TagIndex = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading] = useInstanceWithToastsAndLoading();
+    const [instance, loading, cancel] = useInstanceWithToastsAndLoading();
 
     const [tags, setTags] = useState([]);
 
-    useEffect(() => {
-        instance.get(api.tag.index, { params: prepareParams(debouncedFilters) }).then(response => {
-            setTags(response.data);
-        });
-    }, [debouncedFilters, instance]);
+    useCancellableEffect(
+        () => {
+            instance.get(api.tag.index, { params: prepareParams(debouncedFilters) }).then(response => {
+                setTags(response.data);
+            });
+        },
+        [debouncedFilters, instance],
+        cancel,
+    );
 
     return (
         <PanelTemplate

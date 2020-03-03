@@ -18,13 +18,14 @@ import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
 import Time from '../../../../components/Time/Time';
 import LoadingOrChildren from '../../../../components/loading/LoadingOrChildren/LoadingOrChildren';
 import UserPanelTemplate from '../UserPanelTemplate';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const UserDashboard = () => {
     useAuthenticatedOnly();
 
     const [currentLocale] = useLocaleProvider();
 
-    const [instance, loading] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, , cancel] = useInstanceWithErrorsAndToastsAndLoading();
 
     const [dashboardData, setDashboardData] = useState({
         tags: [],
@@ -34,15 +35,19 @@ const UserDashboard = () => {
 
     const [quote] = useRandomArrayElement(quotes[currentLocale]);
 
-    useEffect(() => {
-        instance.get(api.dashboard).then(({ data }) => {
-            setDashboardData({
-                tags: data.tags,
-                tasks: data.tasks,
-                attempts: data.attempts,
+    useCancellableEffect(
+        () => {
+            instance.get(api.dashboard).then(({ data }) => {
+                setDashboardData({
+                    tags: data.tags,
+                    tasks: data.tasks,
+                    attempts: data.attempts,
+                });
             });
-        });
-    }, []);
+        },
+        [],
+        cancel,
+    );
 
     return (
         <UserPanelTemplate>

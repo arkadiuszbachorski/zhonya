@@ -2,13 +2,16 @@ const url = 'http://localhost:8000/api';
 
 export default {
     user: {
-        delete: `${url}/user`,
+        delete: `${url}/user/delete`,
+        sendDelete: `${url}/user/send-delete`,
         changePassword: `${url}/user/password`,
         changeEmail: `${url}/user/email`,
     },
     auth: {
         logIn: `${url}/auth/login`,
         signIn: `${url}/auth/register`,
+        send: `${url}/auth/send`,
+        verify: `${url}/auth/verify`,
     },
     tag: {
         index: `${url}/tag`,

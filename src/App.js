@@ -10,7 +10,7 @@ import './scss/index.scss';
 import LogIn from './views/Guest/LogIn';
 import SignUp from './views/Guest/SignUp';
 import UserData from './views/Authenticated/User/Data/UserData';
-import UserDelete from './views/Authenticated/User/Delete/UserDelete';
+import UserSendDeleteMail from './views/Authenticated/User/SendDeleteMail/UserSendDeleteMail';
 import UserLogout from './views/Authenticated/User/Logout/UserLogout';
 import { useAuthProvider } from './hooks/useAuth';
 import { useRedirectProvider } from './hooks/useRedirect';
@@ -39,10 +39,13 @@ import { useDatePreferenceProvider } from './hooks/useDatePreference';
 import AttemptIndependentIndex from './views/Authenticated/AttemptIndependent/Index/AttemptIndependentIndex';
 import AttemptIndependentCreate from './views/Authenticated/AttemptIndependent/Create/AttemptIndependentCreate';
 import UserDashboard from './views/Authenticated/User/Dashboard/UserDashboard';
+import SendVerificationEmail from './views/Authenticated/SendVerificationEmail/SendVerificationEmail';
+import Verify from './views/Authenticated/Verify/Verify';
+import Delete from './views/Authenticated/Delete/Delete';
 
 const App = () => {
     const auth = useAuthProvider();
-    const [redirect, setRedirect] = useRedirectProvider();
+    const { redirectPath, redirectTo } = useRedirectProvider();
     const theme = useThemeProvider();
     const [currentLocale, setLocale] = useLocaleProvider();
     const modelTitle = useModelTitleProvider();
@@ -54,7 +57,7 @@ const App = () => {
             <StoreContext.Provider
                 value={{
                     [storeKeys.useAuth]: auth,
-                    [storeKeys.useRedirect]: setRedirect,
+                    [storeKeys.useRedirect]: { redirectPath, redirectTo },
                     [storeKeys.useTheme]: theme,
                     [storeKeys.useLocale]: [currentLocale, setLocale],
                     [storeKeys.useModelTitle]: modelTitle,
@@ -64,15 +67,18 @@ const App = () => {
             >
                 <ToastContainer newestOnTop position="bottom-right" transition={Slide} />
                 <Router>
+                    {redirectPath && <Redirect to={redirectPath} />}
                     <Switch>
-                        {redirect && <Redirect to={redirect} />}
                         <Route path={routes.index} exact component={MainPage} />
                         <Route path={routes.logIn} exact component={LogIn} />
                         <Route path={routes.signUp} exact component={SignUp} />
+                        <Route path={routes.sendVerificationEmail} exact component={SendVerificationEmail} />
+                        <Route path={routes.verify()} exact component={Verify} />
+                        <Route path={routes.delete()} exact component={Delete} />
                         <Route path={routes.user.dashboard} exact component={UserDashboard} />
                         <Route path={routes.user.settings} exact component={UserSettings} />
                         <Route path={routes.user.data} exact component={UserData} />
-                        <Route path={routes.user.delete} exact component={UserDelete} />
+                        <Route path={routes.user.delete} exact component={UserSendDeleteMail} />
                         <Route path={routes.user.logout} exact component={UserLogout} />
                         <Route path={routes.tag.index} exact component={TagIndex} />
                         <Route path={routes.tag.create} exact component={TagCreate} />
