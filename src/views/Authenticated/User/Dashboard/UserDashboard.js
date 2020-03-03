@@ -83,7 +83,7 @@ const UserDashboard = () => {
                                             values={{ tasks: tag.tasks_count }}
                                         />
                                     }
-                                    text={tag.name}
+                                    text={tag.name ?? <FormattedMessage id="noName" />}
                                 />
                             ))}
                         </ListCaptionAndColor>

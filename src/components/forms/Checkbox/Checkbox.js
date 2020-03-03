@@ -58,7 +58,7 @@ Checkbox.propTypes = {
     checked: PropTypes.bool,
     finalValue: PropTypes.bool,
     labelId: PropTypes.string,
-    label: PropTypes.string,
+    label: PropTypes.node,
     name: PropTypes.string.isRequired,
     id: PropTypes.string,
     errors: PropTypes.arrayOf(PropTypes.string),

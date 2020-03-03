@@ -53,9 +53,9 @@ TagForm.propTypes = {
         description: PropTypes.string.isRequired,
     }).isRequired,
     errors: PropTypes.shape({
-        color: PropTypes.string,
-        name: PropTypes.string,
-        description: PropTypes.string,
+        color: PropTypes.arrayOf(PropTypes.string),
+        name: PropTypes.arrayOf(PropTypes.string),
+        description: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     variant: PropTypes.oneOf(['create', 'edit']).isRequired,
 };
