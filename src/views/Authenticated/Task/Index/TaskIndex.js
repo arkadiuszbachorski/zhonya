@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
@@ -17,6 +17,7 @@ import ColorPill from '../../../../components/ColorPill/ColorPill';
 import Active from '../../../../components/typography/Active/Active';
 import Time from '../../../../components/Time/Time';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
     search: search === '' ? undefined : search,
@@ -37,25 +38,29 @@ const TaskIndex = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading] = useInstanceWithToastsAndLoading();
+    const [instance, loading, cancel] = useInstanceWithToastsAndLoading();
 
     const [tasks, setTasks] = useState([]);
 
     const [tags, setTags] = useState([]);
 
-    useEffect(() => {
-        const hasNoTags = tags.length === 0;
-        instance
-            .get(api.task.index, {
-                params: prepareParams(debouncedFilters, hasNoTags),
-            })
-            .then(response => {
-                setTasks(response.data.tasks);
-                if (hasNoTags) {
-                    setTags(response.data.tags);
-                }
-            });
-    }, [debouncedFilters, instance]);
+    useCancellableEffect(
+        () => {
+            const hasNoTags = tags.length === 0;
+            instance
+                .get(api.task.index, {
+                    params: prepareParams(debouncedFilters, hasNoTags),
+                })
+                .then(response => {
+                    setTasks(response.data.tasks);
+                    if (hasNoTags) {
+                        setTags(response.data.tags);
+                    }
+                });
+        },
+        [debouncedFilters, instance],
+        cancel,
+    );
 
     return (
         <PanelTemplate

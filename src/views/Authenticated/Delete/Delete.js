@@ -11,6 +11,7 @@ import Loading from '../../../components/loading/Loading/Loading';
 import useAuth from '../../../hooks/useAuth';
 import useRedirect from '../../../hooks/useRedirect';
 import routes from '../../../routes';
+import useCancellableEffect from '../../../hooks/useCancellableEffect';
 
 const Delete = () => {
     useAuthenticatedOnly();
@@ -21,33 +22,33 @@ const Delete = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance] = useInstanceWithToastsAndLoading();
+    const [instance, , cancel] = useInstanceWithToastsAndLoading();
 
     const { token } = useParams();
 
-    const submit = () => {
-        instance
-            .post(api.user.delete, {
-                delete_token: token,
-            })
-            .then(() => {
-                toast.success(formatMessage({ id: 'toast.success.delete' }));
-                setAuth({
-                    token: null,
-                    scope: null,
-                    verified: null,
-                    rememberMe: false,
+    useCancellableEffect(
+        () => {
+            instance
+                .post(api.user.delete, {
+                    delete_token: token,
+                })
+                .then(() => {
+                    toast.success(formatMessage({ id: 'toast.success.delete' }));
+                    setAuth({
+                        token: null,
+                        scope: null,
+                        verified: null,
+                        rememberMe: false,
+                    });
+                })
+                .catch(() => {
+                    toast.error(formatMessage({ id: 'toast.error.delete' }));
+                    redirectTo(routes.user.delete);
                 });
-            })
-            .catch(() => {
-                toast.error(formatMessage({ id: 'toast.error.delete' }));
-                redirectTo(routes.user.delete);
-            });
-    };
-
-    useEffect(() => {
-        submit();
-    }, []);
+        },
+        [],
+        cancel,
+    );
 
     return (
         <PanelTemplate>

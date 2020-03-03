@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router';
@@ -11,6 +11,7 @@ import pick from '../../../../utils/pick';
 import TagPanelTemplate from '../TagPanelTemplate';
 import nullToEmptyString from '../../../../utils/nullToEmptyString';
 import useModelTitle from '../../../../hooks/useModelTitle';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const TagEdit = () => {
     useAuthenticatedOnly();
@@ -19,7 +20,7 @@ const TagEdit = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, errors, cancel] = useInstanceWithErrorsAndToastsAndLoading();
 
     const [form, handleChange, , setForm] = useForm({
         name: '',
@@ -29,12 +30,12 @@ const TagEdit = () => {
 
     const [, setName] = useModelTitle('tag', tagId);
 
-    useEffect(() => {
+    useCancellableEffect(() => {
         instance.get(api.tag.edit(tagId)).then(response => {
             const { data: tag } = response;
             setForm(nullToEmptyString(pick(tag, ['name', 'description', 'color'])));
         });
-    }, [tagId, instance]);
+    }, [tagId, instance, cancel]);
 
     const submit = () => {
         instance.put(api.tag.update(tagId), form).then(() => {

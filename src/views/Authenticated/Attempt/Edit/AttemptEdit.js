@@ -10,6 +10,7 @@ import AttemptForm from '../AttemptForm';
 import AttemptPanelTemplate from '../AttemptPanelTemplate';
 import nullToEmptyString from '../../../../utils/nullToEmptyString';
 import pick from '../../../../utils/pick';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const AttemptEdit = () => {
     useAuthenticatedOnly();
@@ -18,7 +19,7 @@ const AttemptEdit = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, errors, cancel] = useInstanceWithErrorsAndToastsAndLoading();
 
     const [form, handleChange, , setForm] = useForm({
         description: '',
@@ -30,12 +31,16 @@ const AttemptEdit = () => {
         });
     };
 
-    useEffect(() => {
-        instance.get(api.attempt.edit(taskId, attemptId)).then(response => {
-            const { data: attempt } = response;
-            setForm(nullToEmptyString(pick(attempt, ['description'])));
-        });
-    }, [taskId, attemptId, instance]);
+    useCancellableEffect(
+        () => {
+            instance.get(api.attempt.edit(taskId, attemptId)).then(response => {
+                const { data: attempt } = response;
+                setForm(nullToEmptyString(pick(attempt, ['description'])));
+            });
+        },
+        [taskId, attemptId, instance],
+        cancel,
+    );
 
     return (
         <AttemptPanelTemplate>

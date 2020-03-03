@@ -10,6 +10,7 @@ import AttemptPanelTemplate from '../AttemptPanelTemplate';
 import LoadingOrChildren from '../../../../components/loading/LoadingOrChildren/LoadingOrChildren';
 import Timer from '../../../../components/Timer/Timer';
 import Button from '../../../../components/buttons/Button/Button';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const prepareData = relativeTime => {
     const date = new Date();
@@ -25,17 +26,21 @@ const AttemptTimer = () => {
 
     const { taskId, attemptId } = useParams();
 
-    const [instance, loading] = useInstanceWithToastsAndLoading();
+    const [instance, loading, cancel] = useInstanceWithToastsAndLoading();
 
     const [relativeTime, setRelativeTime] = useState(null);
     const [active, setActive] = useState(false);
 
-    useEffect(() => {
-        instance.get(api.attempt.measurement(taskId, attemptId)).then(({ data }) => {
-            setRelativeTime(data.relative_time);
-            setActive(data.active);
-        });
-    }, []);
+    useCancellableEffect(
+        () => {
+            instance.get(api.attempt.measurement(taskId, attemptId)).then(({ data }) => {
+                setRelativeTime(data.relative_time);
+                setActive(data.active);
+            });
+        },
+        [taskId, attemptId],
+        cancel,
+    );
 
     useEffect(() => {
         let interval;
@@ -62,7 +67,7 @@ const AttemptTimer = () => {
         <AttemptPanelTemplate>
             <Container variant={['center', 'marginTopLarge']}>
                 <LoadingOrChildren loading={relativeTime === null}>
-                    <Timer time={relativeTime} />
+                    <Timer time={relativeTime ?? 0} />
                 </LoadingOrChildren>
             </Container>
             {!(loading && relativeTime === null) && (

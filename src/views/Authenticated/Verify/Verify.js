@@ -12,6 +12,7 @@ import useAuth from '../../../hooks/useAuth';
 import useRedirect from '../../../hooks/useRedirect';
 import routes from '../../../routes';
 import { storeKeys } from '../../../hooks/useStore';
+import useCancellableEffect from '../../../hooks/useCancellableEffect';
 
 const Verify = () => {
     useAuthenticatedOnly({
@@ -24,42 +25,42 @@ const Verify = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance] = useInstanceWithToastsAndLoading();
+    const [instance, , cancel] = useInstanceWithToastsAndLoading();
 
     const { token } = useParams();
 
-    const submit = () => {
-        instance
-            .post(api.auth.verify, {
-                verification_token: token,
-            })
-            .then(() => {
-                if (!auth.rememberMe) {
-                    localStorage.removeItem(storeKeys.useAuth);
-                }
-                toast.success(formatMessage({ id: 'toast.success.verified' }));
-                setAuth(
-                    {
-                        ...auth,
-                        verified: true,
-                    },
-                    auth.rememberMe,
-                );
+    useCancellableEffect(
+        () => {
+            if (!auth.verified) {
+                instance
+                    .post(api.auth.verify, {
+                        verification_token: token,
+                    })
+                    .then(() => {
+                        if (!auth.rememberMe) {
+                            localStorage.removeItem(storeKeys.useAuth);
+                        }
+                        toast.success(formatMessage({ id: 'toast.success.verified' }));
+                        setAuth(
+                            {
+                                ...auth,
+                                verified: true,
+                            },
+                            auth.rememberMe,
+                        );
+                        redirectTo(routes.user.dashboard);
+                    })
+                    .catch(() => {
+                        toast.error(formatMessage({ id: 'toast.error.verified' }));
+                        redirectTo(routes.sendVerificationEmail);
+                    });
+            } else {
                 redirectTo(routes.user.dashboard);
-            })
-            .catch(() => {
-                toast.error(formatMessage({ id: 'toast.error.verified' }));
-                redirectTo(routes.sendVerificationEmail);
-            });
-    };
-
-    useEffect(() => {
-        if (!auth.verified) {
-            submit();
-        } else {
-            redirectTo(routes.user.dashboard);
-        }
-    }, []);
+            }
+        },
+        [],
+        cancel,
+    );
 
     return (
         <PanelTemplate>

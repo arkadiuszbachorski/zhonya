@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
@@ -11,6 +11,7 @@ import Input from '../../../../components/forms/Input/Input';
 import Container from '../../../../components/Container/Container';
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import DeleteList from '../../../../components/DeleteList/DeleteList';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const TagTasks = () => {
     useAuthenticatedOnly();
@@ -19,7 +20,7 @@ const TagTasks = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, errors, cancel] = useInstanceWithErrorsAndToastsAndLoading();
 
     const [form, handleChange, , setForm] = useForm({
         task: '',
@@ -27,29 +28,37 @@ const TagTasks = () => {
 
     const [tasks, setTasks] = useState([]);
 
-    useEffect(() => {
-        instance.get(api.tag.tasks(tagId)).then(response => {
-            setTasks(response.data);
-        });
-    }, [tagId, instance]);
-
-    useEffect(() => {
-        if (form.task !== '') {
-            instance.post(api.tagTask.attach(tagId, form.task)).then(() => {
-                setTasks(prevTasks => {
-                    const newTasks = [...prevTasks];
-                    const index = newTasks.findIndex(item => item.id === parseInt(form.task, 10));
-                    newTasks[index].has_queried_tag = true;
-
-                    return newTasks;
-                });
-                setForm({
-                    task: '',
-                });
-                toast.success(formatMessage({ id: 'toast.success.tag.tasks.attach' }));
+    useCancellableEffect(
+        () => {
+            instance.get(api.tag.tasks(tagId)).then(response => {
+                setTasks(response.data);
             });
-        }
-    }, [form.task]);
+        },
+        [tagId, instance],
+        cancel,
+    );
+
+    useCancellableEffect(
+        () => {
+            if (form.task !== '') {
+                instance.post(api.tagTask.attach(tagId, form.task)).then(() => {
+                    setTasks(prevTasks => {
+                        const newTasks = [...prevTasks];
+                        const index = newTasks.findIndex(item => item.id === parseInt(form.task, 10));
+                        newTasks[index].has_queried_tag = true;
+
+                        return newTasks;
+                    });
+                    setForm({
+                        task: '',
+                    });
+                    toast.success(formatMessage({ id: 'toast.success.tag.tasks.attach' }));
+                });
+            }
+        },
+        [form.task],
+        cancel,
+    );
 
     const detach = taskId => {
         instance.post(api.tagTask.detach(tagId, taskId)).then(() => {
@@ -90,7 +99,9 @@ const TagTasks = () => {
                         {tasks
                             .filter(item => item.has_queried_tag)
                             .map(item => (
-                                <DeleteList.Item onClick={() => detach(item.id)}>{item.name}</DeleteList.Item>
+                                <DeleteList.Item key={item.id} onClick={() => detach(item.id)}>
+                                    {item.name}
+                                </DeleteList.Item>
                             ))}
                     </DeleteList>
                 </FormWithCard>

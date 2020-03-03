@@ -11,6 +11,7 @@ import Input from '../../../../components/forms/Input/Input';
 import Container from '../../../../components/Container/Container';
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import DeleteList from '../../../../components/DeleteList/DeleteList';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const TaskTags = () => {
     useAuthenticatedOnly();
@@ -19,7 +20,7 @@ const TaskTags = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, errors, cancel] = useInstanceWithErrorsAndToastsAndLoading();
 
     const [form, handleChange, , setForm] = useForm({
         tag: '',
@@ -27,29 +28,37 @@ const TaskTags = () => {
 
     const [tags, setTags] = useState([]);
 
-    useEffect(() => {
-        instance.get(api.task.tags(taskId)).then(response => {
-            setTags(response.data);
-        });
-    }, [taskId, instance]);
-
-    useEffect(() => {
-        if (form.tag !== '') {
-            instance.post(api.tagTask.attach(form.tag, taskId)).then(() => {
-                setTags(prevTasks => {
-                    const newTasks = [...prevTasks];
-                    const index = newTasks.findIndex(item => item.id === parseInt(form.tag, 10));
-                    newTasks[index].has_queried_task = true;
-
-                    return newTasks;
-                });
-                setForm({
-                    tag: '',
-                });
-                toast.success(formatMessage({ id: 'toast.success.task.tags.attach' }));
+    useCancellableEffect(
+        () => {
+            instance.get(api.task.tags(taskId)).then(response => {
+                setTags(response.data);
             });
-        }
-    }, [form.tag]);
+        },
+        [taskId, instance],
+        cancel,
+    );
+
+    useCancellableEffect(
+        () => {
+            if (form.tag !== '') {
+                instance.post(api.tagTask.attach(form.tag, taskId)).then(() => {
+                    setTags(prevTasks => {
+                        const newTasks = [...prevTasks];
+                        const index = newTasks.findIndex(item => item.id === parseInt(form.tag, 10));
+                        newTasks[index].has_queried_task = true;
+
+                        return newTasks;
+                    });
+                    setForm({
+                        tag: '',
+                    });
+                    toast.success(formatMessage({ id: 'toast.success.task.tags.attach' }));
+                });
+            }
+        },
+        [form.tag, taskId],
+        cancel,
+    );
 
     const detach = tagId => {
         instance.post(api.tagTask.detach(tagId, taskId)).then(() => {
@@ -90,7 +99,9 @@ const TaskTags = () => {
                         {tags
                             .filter(item => item.has_queried_task)
                             .map(item => (
-                                <DeleteList.Item onClick={() => detach(item.id)}>{item.name}</DeleteList.Item>
+                                <DeleteList.Item key={item.id} onClick={() => detach(item.id)}>
+                                    {item.name}
+                                </DeleteList.Item>
                             ))}
                     </DeleteList>
                 </FormWithCard>
