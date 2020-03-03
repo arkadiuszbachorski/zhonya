@@ -47,8 +47,8 @@ AttemptForm.propTypes = {
         task: PropTypes.string,
     }).isRequired,
     errors: PropTypes.shape({
-        description: PropTypes.string,
-        task: PropTypes.string,
+        description: PropTypes.arrayOf(PropTypes.string),
+        task: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     variant: PropTypes.oneOf(['create', 'edit']).isRequired,
     tasks: PropTypes.shape({

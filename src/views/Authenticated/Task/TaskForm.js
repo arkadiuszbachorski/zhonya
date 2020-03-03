@@ -43,8 +43,8 @@ TaskForm.propTypes = {
         description: PropTypes.string.isRequired,
     }).isRequired,
     errors: PropTypes.shape({
-        name: PropTypes.string,
-        description: PropTypes.string,
+        name: PropTypes.arrayOf(PropTypes.string),
+        description: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     variant: PropTypes.oneOf(['create', 'edit']).isRequired,
 };
