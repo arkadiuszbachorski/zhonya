@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { cancelMessage } from '../modifiers/generateCancelToken';
+import { cancelMessage } from '../useCancelToken';
 
 export default (instance, formatMessage, userMessages = null) => {
     const defualtMessages = {
