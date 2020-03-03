@@ -43,7 +43,7 @@ const Input = ({
     let input;
 
     if (textarea) {
-        input = <textarea {...inputAttrs}>{value}</textarea>;
+        input = <textarea {...inputAttrs} value={value} />;
     } else if (select) {
         input = {
             ...inputAttrs,
