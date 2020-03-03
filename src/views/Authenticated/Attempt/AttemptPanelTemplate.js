@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { faHourglass, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router';
 import routes from '../../../routes';
 import PanelTemplate from '../../../components/PanelTemplate/PanelTemplate';

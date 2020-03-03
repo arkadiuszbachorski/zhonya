@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 import { FormattedMessage, useIntl } from 'react-intl';
 import useAuthenticatedOnly from '../../../hooks/useAuthenticatedOnly';

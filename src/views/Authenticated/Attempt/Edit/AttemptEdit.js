@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router';
@@ -38,7 +38,7 @@ const AttemptEdit = () => {
                 setForm(nullToEmptyString(pick(attempt, ['description'])));
             });
         },
-        [taskId, attemptId, instance],
+        [taskId, attemptId],
         cancel,
     );
 

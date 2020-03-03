@@ -39,7 +39,7 @@ const TagIndex = () => {
                 setTags(response.data);
             });
         },
-        [debouncedFilters, instance],
+        [debouncedFilters],
         cancel,
     );
 

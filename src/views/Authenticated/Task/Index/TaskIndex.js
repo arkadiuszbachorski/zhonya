@@ -58,7 +58,7 @@ const TaskIndex = () => {
                     }
                 });
         },
-        [debouncedFilters, instance],
+        [debouncedFilters],
         cancel,
     );
 

@@ -37,7 +37,7 @@ const TaskEdit = () => {
                 setName(taskId, task.name);
             });
         },
-        [taskId, instance],
+        [taskId],
         cancel,
     );
 

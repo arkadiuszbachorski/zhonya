@@ -22,7 +22,7 @@ const SlidingMenu = ({ children, titleId, visible, toggle }) => {
         }
 
         return () => window.removeEventListener('keyup', close);
-    }, [visible]);
+    }, [visible, toggle]);
 
     const swipeableHandlers = useSwipeable({
         onSwipedLeft: () => {

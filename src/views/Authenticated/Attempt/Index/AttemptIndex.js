@@ -51,7 +51,7 @@ const AttemptIndex = () => {
                     setAttempts(response.data);
                 });
         },
-        [debouncedFilters, instance, taskId],
+        [debouncedFilters, taskId],
         cancel,
     );
 
