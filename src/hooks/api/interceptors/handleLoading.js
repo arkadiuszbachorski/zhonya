@@ -1,6 +1,6 @@
 import { cancelMessage } from '../modifiers/generateCancelToken';
 
-export default (instance, loadingSetter, isRedirecting) => {
+export default (instance, loadingSetter) => {
     instance.interceptors.request.use(
         config => {
             if (!config.cancelToken.reason) {

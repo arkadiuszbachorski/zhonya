@@ -8,7 +8,6 @@ import useAuth from '../useAuth';
 import addBearerToken from './modifiers/addBearerToken';
 import addCancelToken from './modifiers/addCancelToken';
 import generateCancelToken from './modifiers/generateCancelToken';
-import useRedirectDetector from '../useRedirectDetector';
 
 const [cancel, cancelToken] = generateCancelToken();
 
@@ -17,20 +16,18 @@ const useInstanceWithErrorsAndToastsAndLoading = (userMessages = null) => {
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const [auth] = useAuth();
-    const isRedirecting = useRedirectDetector();
 
-    console.log(isRedirecting);
 
     const instance = useMemo(() => {
         const inst = axios.create();
         handleErrorsMessages(inst, formatMessage, userMessages);
-        handleLoading(inst, setLoading, isRedirecting);
+        handleLoading(inst, setLoading);
         handleErrors(inst, setErrors);
         addBearerToken(inst, auth.token);
         addCancelToken(inst, cancelToken);
 
         return inst;
-    }, [formatMessage, userMessages, auth.token, isRedirecting]);
+    }, [formatMessage, userMessages, auth.token]);
 
     return [instance, loading, errors, setErrors, setLoading, cancel];
 };
