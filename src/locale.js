@@ -12,6 +12,7 @@ export default {
         lastEdited: 'Ostatnio edytowane',
         quickActions: 'Szybkie akcje',
         rememberMe: 'Zapamiętaj mnie',
+        noName: 'Brak nazwy',
         'timer.seconds': `{value, plural, 
             one { Sekunda } 
             few { Sekundy } 
@@ -188,6 +189,7 @@ export default {
         lastEdited: 'Last edited',
         quickActions: 'Quick actions',
         rememberMe: 'Remember me',
+        noName: 'Brak nazwy',
         'timer.seconds': `{value, plural, 
             one { second } 
             other { seconds } 
