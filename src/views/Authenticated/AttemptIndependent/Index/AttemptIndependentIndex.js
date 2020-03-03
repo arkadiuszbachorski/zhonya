@@ -57,7 +57,7 @@ const AttemptIndependentIndex = () => {
                     }
                 });
         },
-        [debouncedFilters, instance],
+        [debouncedFilters],
         cancel,
     );
 

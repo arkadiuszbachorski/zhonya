@@ -11,7 +11,7 @@ const useInterval = (action, clock, checkActiveness = false) => {
         }
 
         return () => clearInterval(interval);
-    }, [action, clock, document.hidden, checkActiveness]);
+    }, [action, clock, checkActiveness, visible]);
 };
 
 export default useInterval;

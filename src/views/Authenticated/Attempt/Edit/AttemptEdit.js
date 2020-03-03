@@ -38,7 +38,7 @@ const AttemptEdit = () => {
                 setForm(nullToEmptyString(pick(attempt, ['description'])));
             });
         },
-        [taskId, attemptId, instance],
+        [taskId, attemptId],
         cancel,
     );
 

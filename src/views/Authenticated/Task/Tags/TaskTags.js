@@ -34,7 +34,7 @@ const TaskTags = () => {
                 setTags(response.data);
             });
         },
-        [taskId, instance],
+        [taskId],
         cancel,
     );
 

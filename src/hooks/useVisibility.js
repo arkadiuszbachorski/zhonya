@@ -26,7 +26,7 @@ const useVisibility = () => {
         window.addEventListener(visibilityChange, setVisibleDocumentHidden);
 
         return () => window.removeEventListener(visibilityChange, setVisibleDocumentHidden);
-    }, [hidden, visibilityChange]);
+    }, []);
 
     return visible;
 };

@@ -30,12 +30,16 @@ const TagEdit = () => {
 
     const [, setName] = useModelTitle('tag', tagId);
 
-    useCancellableEffect(() => {
-        instance.get(api.tag.edit(tagId)).then(response => {
-            const { data: tag } = response;
-            setForm(nullToEmptyString(pick(tag, ['name', 'description', 'color'])));
-        });
-    }, [tagId, instance, cancel]);
+    useCancellableEffect(
+        () => {
+            instance.get(api.tag.edit(tagId)).then(response => {
+                const { data: tag } = response;
+                setForm(nullToEmptyString(pick(tag, ['name', 'description', 'color'])));
+            });
+        },
+        [tagId],
+        cancel,
+    );
 
     const submit = () => {
         instance.put(api.tag.update(tagId), form).then(() => {

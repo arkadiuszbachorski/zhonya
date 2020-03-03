@@ -34,7 +34,7 @@ const TagTasks = () => {
                 setTasks(response.data);
             });
         },
-        [tagId, instance],
+        [tagId],
         cancel,
     );
 
@@ -56,7 +56,7 @@ const TagTasks = () => {
                 });
             }
         },
-        [form.task],
+        [form.task, tagId],
         cancel,
     );
 
