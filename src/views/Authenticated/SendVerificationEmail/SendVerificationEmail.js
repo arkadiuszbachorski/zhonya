@@ -28,10 +28,6 @@ const SendVerificationEmail = () => {
             });
     };
 
-    useEffect(() => {
-        submit();
-    }, []);
-
     return (
         <PanelTemplate>
             <Container variant={['center', 'smallItems', 'marginTopLarge']}>
