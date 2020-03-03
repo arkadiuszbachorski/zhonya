@@ -90,7 +90,9 @@ const TaskTags = () => {
                         {tags
                             .filter(item => item.has_queried_task)
                             .map(item => (
-                                <DeleteList.Item onClick={() => detach(item.id)}>{item.name}</DeleteList.Item>
+                                <DeleteList.Item key={item.id} onClick={() => detach(item.id)}>
+                                    {item.name}
+                                </DeleteList.Item>
                             ))}
                     </DeleteList>
                 </FormWithCard>
