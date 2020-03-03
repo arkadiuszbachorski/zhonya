@@ -51,10 +51,12 @@ AttemptForm.propTypes = {
         task: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     variant: PropTypes.oneOf(['create', 'edit']).isRequired,
-    tasks: PropTypes.shape({
-        name: PropTypes.string,
-        id: PropTypes.number,
-    }),
+    tasks: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string,
+            id: PropTypes.number,
+        }),
+    ),
     renderTasks: PropTypes.bool,
 };
 
