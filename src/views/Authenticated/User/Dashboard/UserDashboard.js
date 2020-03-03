@@ -25,7 +25,7 @@ const UserDashboard = () => {
 
     const [currentLocale] = useLocaleProvider();
 
-    const [instance, loading, , , , cancel] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, , cancel] = useInstanceWithErrorsAndToastsAndLoading();
 
     const [dashboardData, setDashboardData] = useState({
         tags: [],

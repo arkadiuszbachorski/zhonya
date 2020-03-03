@@ -28,7 +28,7 @@ const useInstanceWithErrorsAndToastsAndLoading = (userMessages = null) => {
         return inst;
     }, [formatMessage, userMessages, auth.token]);
 
-    return [instance, loading, errors, setErrors, setLoading, cancel];
+    return [instance, loading, errors, cancel, setErrors, setLoading];
 };
 
 export default useInstanceWithErrorsAndToastsAndLoading;
