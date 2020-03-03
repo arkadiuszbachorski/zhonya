@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import styles from './Input.module.scss';
 import Label from '../Label/Label';
 import Errors from '../Errors/Errors';
@@ -9,6 +7,8 @@ import Group from '../Group/Group';
 import ColorPill from '../../ColorPill/ColorPill';
 import InputIcon from '../InputIcon/InputIcon';
 import customPropTypes from '../../../customPropTypes';
+
+const DEFAULT_VALUE = '!@#default_value000X000X0000123123123';
 
 const Input = ({
     onChange,
@@ -50,8 +50,8 @@ const Input = ({
             value,
         };
         input = (
-            <select {...inputAttrs}>
-                <option hidden selected="selected" style={{ display: 'none' }} />
+            <select {...inputAttrs} defaultValue={DEFAULT_VALUE}>
+                <option hidden style={{ display: 'none' }} value={DEFAULT_VALUE} />
                 {options.map(option => (
                     <option value={option.value} key={option.value}>
                         {option.label}
