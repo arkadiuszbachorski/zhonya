@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { StoreContext, storeKeys } from '../useStore';
 
 const SimulatedIndex = () => {
-    const redirectTo = useRedirect();
+    const { redirectTo } = useRedirect();
     return (
         <button type="button" id="button" onClick={() => redirectTo('/result')}>
             Redirect me

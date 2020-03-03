@@ -15,7 +15,7 @@ import routes from '../../../routes';
 const Delete = () => {
     useAuthenticatedOnly();
 
-    const redirectTo = useRedirect();
+    const { redirectTo } = useRedirect();
 
     const [, setAuth] = useAuth();
 

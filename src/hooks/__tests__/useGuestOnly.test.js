@@ -8,7 +8,7 @@ import useAuth, { useAuthProvider } from '../useAuth';
 import { StoreContext, storeKeys } from '../useStore';
 
 const Index = () => {
-    const redirectTo = useRedirect();
+    const { redirectTo } = useRedirect();
     const [, setAuth] = useAuth();
     return (
         <>
@@ -24,7 +24,7 @@ const Index = () => {
 
 const GuestOnly = () => {
     useGuestOnly();
-    const redirectTo = useRedirect();
+    const { redirectTo } = useRedirect();
 
     return (
         <>

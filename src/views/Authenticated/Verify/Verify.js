@@ -18,7 +18,7 @@ const Verify = () => {
         checkIfEmailNotVerified: true,
     });
 
-    const redirectTo = useRedirect();
+    const { redirectTo } = useRedirect();
 
     const [auth, setAuth] = useAuth();
 

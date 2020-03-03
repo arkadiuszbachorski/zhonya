@@ -5,7 +5,7 @@ import routes from '../routes';
 
 const useAuthenticatedOnly = (customSettings = null) => {
     const [auth] = useAuth();
-    const redirect = useRedirect();
+    const { redirectTo } = useRedirect();
     const [first, setFirst] = useState(true);
 
     const settings = customSettings || {
@@ -16,11 +16,11 @@ const useAuthenticatedOnly = (customSettings = null) => {
 
     const checkIfAuthenticated = () => {
         if (auth.token === null || (settings.scope && auth.scope && !auth.scope.includes(settings.scope))) {
-            redirect(routes.logIn);
+            redirectTo(routes.logIn);
         } else if (settings.checkIfEmailVerified && !auth.verified) {
-            redirect(routes.sendVerificationEmail);
+            redirectTo(routes.sendVerificationEmail);
         } else if (settings.checkIfEmailNotVerified && auth.verified) {
-            redirect(routes.user.dashboard);
+            redirectTo(routes.user.dashboard);
         }
         if (first) {
             setFirst(false);
@@ -31,7 +31,7 @@ const useAuthenticatedOnly = (customSettings = null) => {
         checkIfAuthenticated();
     }
 
-    useLayoutEffect(checkIfAuthenticated, [auth.token, auth.scope, redirect, settings]);
+    useLayoutEffect(checkIfAuthenticated, [auth.token, auth.scope, redirectTo, settings]);
 };
 
 export default useAuthenticatedOnly;

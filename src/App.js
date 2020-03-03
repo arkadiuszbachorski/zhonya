@@ -45,7 +45,7 @@ import Delete from './views/Authenticated/Delete/Delete';
 
 const App = () => {
     const auth = useAuthProvider();
-    const [redirectPath, redirectTo] = useRedirectProvider();
+    const { redirectPath, redirectTo } = useRedirectProvider();
     const theme = useThemeProvider();
     const [currentLocale, setLocale] = useLocaleProvider();
     const modelTitle = useModelTitleProvider();
@@ -57,7 +57,7 @@ const App = () => {
             <StoreContext.Provider
                 value={{
                     [storeKeys.useAuth]: auth,
-                    [storeKeys.useRedirect]: [redirectPath, redirectTo],
+                    [storeKeys.useRedirect]: { redirectPath, redirectTo },
                     [storeKeys.useTheme]: theme,
                     [storeKeys.useLocale]: [currentLocale, setLocale],
                     [storeKeys.useModelTitle]: modelTitle,

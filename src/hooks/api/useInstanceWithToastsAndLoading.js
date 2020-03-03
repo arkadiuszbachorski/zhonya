@@ -1,5 +1,5 @@
-import {useIntl} from 'react-intl';
-import {useMemo, useState} from 'react';
+import { useIntl } from 'react-intl';
+import { useMemo, useState } from 'react';
 import axios from 'axios';
 import handleErrorsMessages from './interceptors/handleErrorsMessages';
 import handleLoading from './interceptors/handleLoading';

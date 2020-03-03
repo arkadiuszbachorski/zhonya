@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import useStore, { storeKeys } from './useStore';
 
 export const useRedirectProvider = () => {
-    const [redirect, setRedirect] = useState(null);
+    const [redirectPath, redirectTo] = useState(null);
 
     useEffect(() => {
-        if (redirect !== null) {
-            setRedirect(null);
+        if (redirectPath !== null) {
+            redirectTo(null);
         }
-    }, [redirect]);
+    }, [redirectPath]);
 
-    return [redirect, setRedirect];
+    return { redirectPath, redirectTo };
 };
 
 const useRedirect = () => useStore(storeKeys.useRedirect);

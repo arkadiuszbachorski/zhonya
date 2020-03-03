@@ -17,7 +17,6 @@ const useInstanceWithErrorsAndToastsAndLoading = (userMessages = null) => {
     const [errors, setErrors] = useState({});
     const [auth] = useAuth();
 
-
     const instance = useMemo(() => {
         const inst = axios.create();
         handleErrorsMessages(inst, formatMessage, userMessages);

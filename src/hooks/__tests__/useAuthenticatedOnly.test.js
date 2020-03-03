@@ -8,7 +8,7 @@ import useAuthenticatedOnly from '../useAuthenticatedOnly';
 import { storeKeys, StoreContext } from '../useStore';
 
 const Index = () => {
-    const redirectTo = useRedirect();
+    const { redirectTo } = useRedirect();
     const [auth, setAuth] = useAuth();
     return (
         <>
@@ -30,7 +30,7 @@ const AuthenticatedOnly = () => {
     useAuthenticatedOnly({
         scope: 'admin',
     });
-    const redirectTo = useRedirect();
+    const { redirectTo } = useRedirect();
 
     return (
         <>

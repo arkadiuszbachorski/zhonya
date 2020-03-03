@@ -18,7 +18,7 @@ const AttemptIndependentCreate = () => {
 
     const { formatMessage } = useIntl();
 
-    const redirectTo = useRedirect();
+    const { redirectTo } = useRedirect();
 
     const [instance, loading, errors, setErrors] = useInstanceWithErrorsAndToastsAndLoading();
 
