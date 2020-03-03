@@ -62,7 +62,7 @@ const AttemptTimer = () => {
         <AttemptPanelTemplate>
             <Container variant={['center', 'marginTopLarge']}>
                 <LoadingOrChildren loading={relativeTime === null}>
-                    <Timer time={relativeTime} />
+                    <Timer time={relativeTime ?? 0} />
                 </LoadingOrChildren>
             </Container>
             {!(loading && relativeTime === null) && (
