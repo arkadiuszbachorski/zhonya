@@ -8,12 +8,12 @@ import addBearerToken from './modifiers/addBearerToken';
 import addCancelToken from './modifiers/addCancelToken';
 import generateCancelToken from './modifiers/generateCancelToken';
 
-const [cancel, cancelToken] = generateCancelToken();
-
 const useInstanceWithToastsAndLoading = (userMessages = null) => {
     const { formatMessage } = useIntl();
     const [loading, setLoading] = useState(false);
     const [auth] = useAuth();
+
+    const [cancel, cancelToken] = generateCancelToken();
 
     const instance = useMemo(() => {
         const inst = axios.create();
