@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useAuth from './useAuth';
 import useRedirect from './useRedirect';
 import routes from '../routes';
@@ -8,11 +8,15 @@ const useAuthenticatedOnly = (customSettings = null) => {
     const { redirectTo } = useRedirect();
     const [first, setFirst] = useState(true);
 
-    const settings = customSettings || {
-        scope: false,
-        checkIfEmailVerified: true,
-        checkIfEmailNotVerified: false,
-    };
+    const settings = useMemo(() => {
+        return (
+            customSettings ?? {
+                scope: false,
+                checkIfEmailVerified: true,
+                checkIfEmailNotVerified: false,
+            }
+        );
+    }, [customSettings]);
 
     const checkIfAuthenticated = () => {
         if (auth.token === null || (settings.scope && auth.scope && !auth.scope.includes(settings.scope))) {
@@ -31,7 +35,7 @@ const useAuthenticatedOnly = (customSettings = null) => {
         checkIfAuthenticated();
     }
 
-    useLayoutEffect(checkIfAuthenticated, [auth.token, auth.scope, redirectTo, settings]);
+    useEffect(checkIfAuthenticated, [auth.token, auth.scope, redirectTo, settings]);
 };
 
 export default useAuthenticatedOnly;
