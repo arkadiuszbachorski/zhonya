@@ -23,6 +23,9 @@
 
 .iconList {
   margin-top: 0;
+  position: sticky;
+  top: .8rem;
+  left: 0;
 }
 
 @include media-breakpoint-down(md) {
@@ -31,6 +34,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
+    position: static;
 
     > * {
       margin: 0 1rem;
