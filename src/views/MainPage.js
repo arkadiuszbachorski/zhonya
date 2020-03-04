@@ -6,7 +6,7 @@ import routes from '../routes';
 import MainTemplate from '../components/MainTemplate/MainTemplate';
 
 const MainPage = () => (
-    <MainTemplate>
+    <MainTemplate animate>
         <AnimatedClock />
         <Jumbotron>
             <Jumbotron.Title>
