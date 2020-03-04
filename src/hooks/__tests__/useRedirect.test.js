@@ -17,17 +17,17 @@ const SimulatedIndex = () => {
 const SimulatedResult = () => <h1>You were redirected</h1>;
 
 const SimulatedApp = () => {
-    const [redirect, setRedirect] = useRedirectProvider();
+    const { redirectPath, redirectTo } = useRedirectProvider();
     return (
         <MemoryRouter>
             <StoreContext.Provider
                 value={{
-                    [storeKeys.useRedirect]: setRedirect,
+                    [storeKeys.useRedirect]: { redirectPath, redirectTo },
                 }}
             >
                 <Router>
                     <Switch>
-                        {redirect && <Redirect to={redirect} />}
+                        {redirectPath && <Redirect to={redirectPath} />}
                         <Route path="/" exact component={SimulatedIndex} />
                         <Route path="/result" exact component={SimulatedResult} />
                     </Switch>
