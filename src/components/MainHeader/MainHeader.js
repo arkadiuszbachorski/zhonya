@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,12 +12,12 @@ import routes from '../../routes';
 import Button from '../buttons/Button/Button';
 import useAuth from '../../hooks/useAuth';
 
-const MainHeader = () => {
+const MainHeader = ({ animate }) => {
     const [open, setOpen] = useState(false);
     const [auth] = useAuth();
     const swipeableHandlers = useSwipeable({ onSwipedLeft: () => setOpen(false) });
     return (
-        <header className={cn(styles.wrapper, open ? styles.open : null)}>
+        <header className={cn(styles.wrapper, animate ? styles.withAnimation : null, open ? styles.open : null)}>
             <CombinedLogo />
             <ul className={styles.links} {...swipeableHandlers}>
                 {auth.token === null ? (
@@ -56,6 +57,14 @@ const MainHeader = () => {
             </button>
         </header>
     );
+};
+
+MainHeader.propTypes = {
+    animate: PropTypes.bool,
+};
+
+MainHeader.defaultProps = {
+    animate: false,
 };
 
 export default MainHeader;
