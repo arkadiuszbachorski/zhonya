@@ -6,7 +6,7 @@ const useInterval = (action, clock, checkActiveness = false) => {
 
     useEffect(() => {
         let interval;
-        if (checkActiveness && visible) {
+        if ((checkActiveness && visible) || !checkActiveness) {
             interval = setInterval(action, clock);
         }
 

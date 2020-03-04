@@ -15,9 +15,8 @@ describe('Hook - useInterval', () => {
 
         const promise = new Promise(resolve => {
             setTimeout(() => {
-                fn();
                 resolve();
-            }, 300);
+            }, 350);
         });
 
         await promise.then(() => {
