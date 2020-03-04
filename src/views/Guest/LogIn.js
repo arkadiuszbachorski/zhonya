@@ -9,6 +9,7 @@ import useAuth from '../../hooks/useAuth';
 import useGuestOnly from '../../hooks/useGuestOnly';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import Checkbox from '../../components/forms/Checkbox/Checkbox';
+import useRedirect from '../../hooks/useRedirect';
 
 const LogIn = () => {
     useGuestOnly();
@@ -21,6 +22,8 @@ const LogIn = () => {
     const [rememberMe, setRememberMe] = useState(true);
 
     const [, setAuth] = useAuth();
+
+    const { lastAborted, setLastAborted, redirectTo } = useRedirect();
 
     const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
 
@@ -36,6 +39,10 @@ const LogIn = () => {
                 },
                 data.verified ? rememberMe : true,
             );
+            if (lastAborted) {
+                setLastAborted(null);
+                redirectTo(lastAborted);
+            }
         });
     };
 
