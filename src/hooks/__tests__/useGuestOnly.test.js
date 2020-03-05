@@ -37,18 +37,18 @@ const GuestOnly = () => {
 };
 
 const SimulatedApp = () => {
-    const { redirectPath, redirectTo } = useRedirectProvider();
+    const redirect = useRedirectProvider();
     const auth = useAuthProvider();
     return (
         <StoreContext.Provider
             value={{
                 [storeKeys.useAuth]: auth,
-                [storeKeys.useRedirect]: { redirectPath, redirectTo },
+                [storeKeys.useRedirect]: redirect,
             }}
         >
             <Router>
                 <Switch>
-                    {redirectPath && <Redirect to={redirectPath} />}
+                    {redirect.redirectPath && <Redirect to={redirect.redirectPath} />}
                     <Route path="/" exact component={Index} />
                     <Route path="/guest-only" exact component={GuestOnly} />
                 </Switch>

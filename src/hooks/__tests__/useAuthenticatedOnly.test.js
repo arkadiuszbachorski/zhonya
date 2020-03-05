@@ -43,19 +43,21 @@ const AuthenticatedOnly = () => {
 };
 
 const SimulatedApp = () => {
-    const { redirectPath, redirectTo } = useRedirectProvider();
+    const redirect = useRedirectProvider();
     const auth = useAuthProvider();
     return (
         <Router>
             <StoreContext.Provider
                 value={{
                     [storeKeys.useAuth]: auth,
-                    [storeKeys.useRedirect]: { redirectPath, redirectTo },
+                    [storeKeys.useRedirect]: redirect,
                 }}
             >
                 <Router>
                     <Switch>
-                        {redirectPath && <Redirect to={redirectPath === '/log-in' ? '/' : redirectPath} />}
+                        {redirect.redirectPath && (
+                            <Redirect to={redirect.redirectPath === '/log-in' ? '/' : redirect.redirectPath} />
+                        )}
                         <Route path="/" exact component={Index} />
                         <Route path="/admin-only" exact component={AuthenticatedOnly} />
                     </Switch>
