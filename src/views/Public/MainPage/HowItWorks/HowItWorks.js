@@ -22,35 +22,35 @@ const HowItWorks = () => {
             variant="primary"
         >
             <div className={styles.instructionWrapper}>
-                <div className={styles.instruction}>
+                <div className={styles.instruction} data-aos="zoom-in" data-aos-delay="0">
                     <div className={styles.instructionIcon}>
                         <FontAwesomeIcon size="2x" icon={faCheckSquare} />
                     </div>
                     <FormattedMessage id="howItWorks.instruction.tasks" />
                 </div>
-                <div className={styles.instruction}>
+                <div className={styles.instruction} data-aos="zoom-in" data-aos-delay="100">
                     <div className={styles.instructionIcon}>
                         <FontAwesomeIcon size="2x" icon={faTags} />
                     </div>
                     <FormattedMessage id="howItWorks.instruction.tags" />
                 </div>
-                <div className={styles.instruction}>
+                <div className={styles.instruction} data-aos="zoom-in" data-aos-delay="300">
                     <div className={styles.instructionIcon}>
                         <FontAwesomeIcon size="2x" icon={faClock} />
                     </div>
                     <FormattedMessage id="howItWorks.instruction.attempts" />
                 </div>
-                <div className={styles.instruction}>
+                <div className={styles.instruction} data-aos="zoom-in" data-aos-delay="400">
                     <div className={styles.instructionIcon}>
                         <FontAwesomeIcon size="2x" icon={faChartBar} />
                     </div>
                     <FormattedMessage id="howItWorks.instruction.statistics" />
                 </div>
             </div>
-            <div className={styles.next}>
+            <div className={styles.next} data-aos="zoom-in" data-aos-delay="400">
                 <FormattedMessage id="howItWorks.next" />
             </div>
-            <div className={styles.iconsWrapper}>
+            <div className={styles.iconsWrapper} data-aos="zoom-out" data-aos-delay="600">
                 <div className={styles.icon}>
                     <FontAwesomeIcon size="3x" icon={faRedo} />
                 </div>
@@ -61,7 +61,7 @@ const HowItWorks = () => {
                     <FontAwesomeIcon size="3x" icon={faBatteryFull} />
                 </div>
             </div>
-            <div className={styles.conclusionWrapper}>
+            <div className={styles.conclusionWrapper} data-aos="zoom-in" data-aos-delay="800">
                 <p>
                     <FormattedMessage id="howItWorks.conclusion" />
                 </p>
