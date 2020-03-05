@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { BrowserRouter as Router, MemoryRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { renderHook, act } from '@testing-library/react-hooks';
 import useRedirect, { useRedirectProvider } from '../useRedirect';
 import '@testing-library/jest-dom/extend-expect';
 import { StoreContext, storeKeys } from '../useStore';
@@ -48,5 +49,35 @@ describe('Hooks - useRedirect, useRedirectProvider both', () => {
 
         expect(document.location.pathname).toBe('/result');
         expect(getByText('You were redirected')).toBeInTheDocument();
+    });
+
+    it('able to set lastAborted as Location object or simple string', () => {
+        const { result } = renderHook(() => useRedirectProvider());
+
+        expect(result.current.lastAborted).toBeNull();
+
+        act(() => {
+            result.current.setLastAborted({
+                pathname: '/lorem',
+            });
+        });
+
+        expect(result.current.lastAborted).toBe('/lorem');
+
+        act(() => {
+            result.current.setLastAborted('/ipsum');
+        });
+
+        expect(result.current.lastAborted).toBe('/ipsum');
+    });
+
+    it('cant set login route as lastAborted', () => {
+        const { result } = renderHook(() => useRedirectProvider());
+
+        expect(result.current.lastAborted).toBeNull();
+
+        result.current.setLastAborted('/logout');
+
+        expect(result.current.lastAborted).toBeNull();
     });
 });
