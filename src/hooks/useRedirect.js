@@ -6,11 +6,12 @@ export const useRedirectProvider = () => {
     const [lastAborted, setLastAbortedState] = useState(null);
 
     const setLastAborted = value => {
-        if (value && value.pathname.includes('logout')) {
+        const path = value.pathname ?? value;
+        if (path && path.includes('logout')) {
             setLastAbortedState(null);
             return;
         }
-        setLastAbortedState(value);
+        setLastAbortedState(path);
     };
 
     useEffect(() => {
