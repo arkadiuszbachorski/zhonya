@@ -4,13 +4,11 @@ import { toast } from 'react-toastify';
 import Container from '../../../../components/Container/Container';
 import FormWithCard from '../../../../components/forms/FormWithCard/FormWithCard';
 import api from '../../../../api';
-import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import UserPanelTemplate from '../UserPanelTemplate';
 
 const UserSendDeleteMail = () => {
-    useAuthenticatedOnly();
-
     const [instance, loading] = useInstanceWithToastsAndLoading();
 
     const { formatMessage } = useIntl();

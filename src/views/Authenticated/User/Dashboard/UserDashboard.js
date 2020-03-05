@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { faCheckSquare, faClock, faList, faPlus, faTag } from '@fortawesome/free-solid-svg-icons';
 import { FormattedMessage } from 'react-intl';
 import Container from '../../../../components/Container/Container';
-import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import routes from '../../../../routes';
 import styles from './UserDashboard.module.scss';
@@ -21,8 +21,6 @@ import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 import LoadingOverlay from '../../../../components/loading/LoadingOverlay/LoadingOverlay';
 
 const UserDashboard = () => {
-    useAuthenticatedOnly();
-
     const [currentLocale] = useLocaleProvider();
 
     const [instance, loading, , cancel] = useInstanceWithErrorsAndToastsAndLoading();

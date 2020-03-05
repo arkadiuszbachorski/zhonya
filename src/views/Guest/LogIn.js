@@ -9,7 +9,7 @@ import useAuth from '../../hooks/useAuth';
 import useGuestOnly from '../../hooks/useGuestOnly';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import Checkbox from '../../components/forms/Checkbox/Checkbox';
-import useRedirect from '../../hooks/useRedirect';
+
 import { useHistory } from 'react-router';
 
 const LogIn = () => {

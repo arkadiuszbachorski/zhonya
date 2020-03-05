@@ -1,22 +1,20 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import Container from '../../../../components/Container/Container';
 import FormWithCard from '../../../../components/forms/FormWithCard/FormWithCard';
 import api from '../../../../api';
-import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
-import useRedirect from '../../../../hooks/useRedirect';
+
 import routes from '../../../../routes';
 import AttemptPanelTemplate from '../AttemptPanelTemplate';
 
 const AttemptDelete = () => {
-    useAuthenticatedOnly();
-
     const { taskId, attemptId } = useParams();
 
-    const { redirectTo } = useRedirect();
+    const history = useHistory();
 
     const [instance, loading] = useInstanceWithToastsAndLoading();
 
@@ -25,7 +23,7 @@ const AttemptDelete = () => {
     const handleSubmit = () => {
         instance.delete(api.attempt.delete(taskId, attemptId)).then(() => {
             toast.success(formatMessage({ id: 'toast.success.attempt.delete' }));
-            redirectTo(routes.attempt.index(taskId));
+            history.push(routes.attempt.index(taskId));
         });
     };
 
