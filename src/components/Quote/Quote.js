@@ -11,14 +11,23 @@ const Quote = ({ content, author, className }) => {
             <div className={styles.icon}>
                 <FontAwesomeIcon icon={faQuoteRight} size="lg" className={styles.icon} />
             </div>
-            <div className={styles.content}>{content}</div>
+            <div className={styles.content}>
+                {typeof content === 'string'
+                    ? content
+                    : content.map(item => (
+                          <span key={item}>
+                              {item}
+                              <br />
+                          </span>
+                      ))}
+            </div>
             <div className={styles.author}>{author}</div>
         </div>
     );
 };
 
 Quote.propTypes = {
-    content: PropTypes.string.isRequired,
+    content: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
     author: PropTypes.string.isRequired,
     className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
 };
