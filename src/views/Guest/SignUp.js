@@ -28,6 +28,8 @@ const SignUp = () => {
             setAuth({
                 token: data.access_token,
                 scope: data.scope,
+                verified: data.verified,
+                rememberMe: true,
             });
         });
     };

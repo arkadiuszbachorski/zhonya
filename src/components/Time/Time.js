@@ -10,6 +10,10 @@ const Time = ({ time, timePreference, cutMeaninglessData }) => {
     const finalTimePreference = timePreference || savedTimePreference;
     const { days, hours, seconds, minutes } = secondsToTime(time, finalTimePreference === 'short');
 
+    if (time === null) {
+        return null;
+    }
+
     const suffixIfMedium = element => `${element}${finalTimePreference === 'medium' ? '.medium' : ''}`;
 
     if (finalTimePreference === 'short') {
@@ -61,12 +65,13 @@ const Time = ({ time, timePreference, cutMeaninglessData }) => {
 };
 
 Time.propTypes = {
-    time: PropTypes.number.isRequired,
+    time: PropTypes.number,
     cutMeaninglessData: PropTypes.bool,
     timePreference: PropTypes.oneOf(availableTimePreferences),
 };
 
 Time.defaultProps = {
+    time: null,
     timePreference: null,
     cutMeaninglessData: false,
 };

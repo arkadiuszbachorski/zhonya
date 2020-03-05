@@ -9,7 +9,7 @@ import HowItWorks from './HowItWorks/HowItWorks';
 import Contact from './Contact/Contact';
 
 const MainPage = () => (
-    <MainTemplate>
+    <MainTemplate animate>
         <AnimatedClock />
         <Jumbotron>
             <Jumbotron.Title>

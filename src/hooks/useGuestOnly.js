@@ -1,17 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useAuth from './useAuth';
 import useRedirect from './useRedirect';
 import routes from '../routes';
 
 const useGuestOnly = () => {
     const [auth] = useAuth();
-    const setRedirect = useRedirect();
+    const { redirectTo } = useRedirect();
+    const [first, setFirst] = useState(true);
 
-    useEffect(() => {
+    const redirectIfNotGuest = () => {
         if (auth.token !== null) {
-            setRedirect(routes.user.dashboard);
+            redirectTo(routes.user.dashboard);
         }
-    }, [auth.token, auth.scope, setRedirect]);
+        if (first) {
+            setFirst(false);
+        }
+    };
+
+    if (first) {
+        redirectIfNotGuest();
+    }
+
+    useEffect(redirectIfNotGuest, [auth.token, auth.scope, redirectTo]);
 };
 
 export default useGuestOnly;

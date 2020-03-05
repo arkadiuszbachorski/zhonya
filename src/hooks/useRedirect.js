@@ -2,15 +2,25 @@ import { useEffect, useState } from 'react';
 import useStore, { storeKeys } from './useStore';
 
 export const useRedirectProvider = () => {
-    const [redirect, setRedirect] = useState(null);
+    const [redirectPath, redirectTo] = useState(null);
+    const [lastAborted, setLastAbortedState] = useState(null);
+
+    const setLastAborted = value => {
+        const path = value.pathname ?? value;
+        if (path && path.includes('logout')) {
+            setLastAbortedState(null);
+            return;
+        }
+        setLastAbortedState(path);
+    };
 
     useEffect(() => {
-        if (redirect !== null) {
-            setRedirect(null);
+        if (redirectPath !== null) {
+            redirectTo(null);
         }
-    }, [redirect]);
+    }, [redirectPath]);
 
-    return [redirect, setRedirect];
+    return { redirectPath, redirectTo, lastAborted, setLastAborted };
 };
 
 const useRedirect = () => useStore(storeKeys.useRedirect);

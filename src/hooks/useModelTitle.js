@@ -1,7 +1,7 @@
 import useStore, { storeKeys } from './useStore';
 import useMergeableState from './useMergeableState';
 import useInstanceWithToastsAndLoading from './api/useInstanceWithToastsAndLoading';
-import { useEffect } from 'react';
+import useCancellableEffect from './useCancellableEffect';
 
 export const useModelTitleProvider = () => {
     return useMergeableState({
@@ -23,7 +23,7 @@ export const useModelTitleProvider = () => {
 const useModelTitle = (model, id, url = null) => {
     const [modelTitle, setModelTitle] = useStore(storeKeys.useModelTitle);
 
-    const [instance] = useInstanceWithToastsAndLoading();
+    const [instance, , cancel] = useInstanceWithToastsAndLoading();
 
     const name = modelTitle[model].id === id ? modelTitle[model].name : null;
 
@@ -36,13 +36,17 @@ const useModelTitle = (model, id, url = null) => {
         });
     };
 
-    useEffect(() => {
-        if (!name && url) {
-            instance.get(url).then(response => {
-                setModelData(id, response.data);
-            });
-        }
-    }, [id, name]);
+    useCancellableEffect(
+        () => {
+            if (!name && url) {
+                instance.get(url).then(response => {
+                    setModelData(id, response.data);
+                });
+            }
+        },
+        [id, name],
+        cancel,
+    );
 
     return [name, setModelData];
 };

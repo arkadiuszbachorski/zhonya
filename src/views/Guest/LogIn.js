@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MainTemplate from '../../components/MainTemplate/MainTemplate';
 import Input from '../../components/forms/Input/Input';
 import FormInCard from '../../components/forms/FormInCard/FormInCard';
@@ -8,6 +8,8 @@ import api from '../../api';
 import useAuth from '../../hooks/useAuth';
 import useGuestOnly from '../../hooks/useGuestOnly';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import Checkbox from '../../components/forms/Checkbox/Checkbox';
+import useRedirect from '../../hooks/useRedirect';
 
 const LogIn = () => {
     useGuestOnly();
@@ -17,17 +19,30 @@ const LogIn = () => {
         password: '',
     });
 
+    const [rememberMe, setRememberMe] = useState(false);
+
     const [, setAuth] = useAuth();
+
+    const { lastAborted, setLastAborted, redirectTo } = useRedirect();
 
     const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
 
     const handleSubmit = () => {
         instance.post(api.auth.logIn, form).then(response => {
             const { data } = response;
-            setAuth({
-                token: data.access_token,
-                scope: data.scope,
-            });
+            setAuth(
+                {
+                    token: data.access_token,
+                    scope: data.scope,
+                    verified: data.verified,
+                    rememberMe: data.verified ? rememberMe : false,
+                },
+                data.verified ? rememberMe : true,
+            );
+            if (lastAborted) {
+                setLastAborted(null);
+                redirectTo(lastAborted);
+            }
         });
     };
 
@@ -51,6 +66,14 @@ const LogIn = () => {
                         errors={errors.password}
                         type="password"
                         onChange={handleChange}
+                    />
+                    <Checkbox
+                        checked={rememberMe}
+                        groupSize="large"
+                        value="rememberMe"
+                        labelId="rememberMe"
+                        name="rememberMe"
+                        onChange={e => setRememberMe(e.target.checked)}
                     />
                 </FormInCard>
             </Container>

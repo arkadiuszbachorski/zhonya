@@ -9,7 +9,7 @@ const ListClear = ({ className, children }) => {
 
 ListClear.propTypes = {
     children: PropTypes.node.isRequired,
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
 };
 
 ListClear.defaultProps = {

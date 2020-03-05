@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
-import { useParams } from 'react-router';
 import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
 import useForm from '../../../../hooks/useForm';
 import api from '../../../../api';
 import useRedirect from '../../../../hooks/useRedirect';
 import routes from '../../../../routes';
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
-import TaskPanelTemplate from '../../Task/TaskPanelTemplate';
-import ButtonBack from '../../../../components/buttons/ButtonBack/ButtonBack';
 import AttemptForm from '../../Attempt/AttemptForm';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const AttemptIndependentCreate = () => {
     useAuthenticatedOnly();
 
     const { formatMessage } = useIntl();
 
-    const redirectTo = useRedirect();
+    const { redirectTo } = useRedirect();
 
-    const [instance, loading, errors, setErrors] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, errors, cancel, setErrors] = useInstanceWithErrorsAndToastsAndLoading();
 
     const [form, handleChange] = useForm({
         description: '',
@@ -44,11 +42,15 @@ const AttemptIndependentCreate = () => {
         });
     };
 
-    useEffect(() => {
-        instance.get(api.attemptIndependent.create).then(response => {
-            setTasks(response.data);
-        });
-    }, []);
+    useCancellableEffect(
+        () => {
+            instance.get(api.attemptIndependent.create).then(response => {
+                setTasks(response.data);
+            });
+        },
+        [],
+        cancel,
+    );
 
     return (
         <PanelTemplate>

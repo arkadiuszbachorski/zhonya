@@ -5,14 +5,14 @@ import useRedirect, { useRedirectProvider } from '../useRedirect';
 import '@testing-library/jest-dom/extend-expect';
 import useAuth, { useAuthProvider } from '../useAuth';
 import useAuthenticatedOnly from '../useAuthenticatedOnly';
-import { storeKeys, StoreContext } from '../useStore';
+import { StoreContext, storeKeys } from '../useStore';
 
 const Index = () => {
-    const redirect = useRedirect();
+    const { redirectTo } = useRedirect();
     const [auth, setAuth] = useAuth();
     return (
         <>
-            <button type="button" id="redirect" onClick={() => redirect('/admin-only')}>
+            <button type="button" id="redirect" onClick={() => redirectTo('/admin-only')}>
                 Redirect me to admin only
             </button>
             <button
@@ -27,12 +27,14 @@ const Index = () => {
 };
 
 const AuthenticatedOnly = () => {
-    useAuthenticatedOnly('admin');
-    const redirect = useRedirect();
+    useAuthenticatedOnly({
+        scope: 'admin',
+    });
+    const { redirectTo } = useRedirect();
 
     return (
         <>
-            <button type="button" id="redirect-index" onClick={() => redirect('/')}>
+            <button type="button" id="redirect-index" onClick={() => redirectTo('/')}>
                 Redirect to index
             </button>
             <h1>Only admins are allowed to be here</h1>
@@ -41,19 +43,21 @@ const AuthenticatedOnly = () => {
 };
 
 const SimulatedApp = () => {
-    const [redirect, setRedirect] = useRedirectProvider();
+    const redirect = useRedirectProvider();
     const auth = useAuthProvider();
     return (
         <Router>
             <StoreContext.Provider
                 value={{
                     [storeKeys.useAuth]: auth,
-                    [storeKeys.useRedirect]: setRedirect,
+                    [storeKeys.useRedirect]: redirect,
                 }}
             >
                 <Router>
                     <Switch>
-                        {redirect && <Redirect to={redirect === '/log-in' ? '/' : redirect} />}
+                        {redirect.redirectPath && (
+                            <Redirect to={redirect.redirectPath === '/log-in' ? '/' : redirect.redirectPath} />
+                        )}
                         <Route path="/" exact component={Index} />
                         <Route path="/admin-only" exact component={AuthenticatedOnly} />
                     </Switch>

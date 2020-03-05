@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
@@ -16,6 +16,7 @@ import Checkbox from '../../../../components/forms/Checkbox/Checkbox';
 import Active from '../../../../components/typography/Active/Active';
 import Time from '../../../../components/Time/Time';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const prepareParams = ({ search, active, task, ...rest }, withTasks) => ({
     search: search === '' ? undefined : search,
@@ -36,25 +37,29 @@ const AttemptIndependentIndex = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading] = useInstanceWithToastsAndLoading();
+    const [instance, loading, cancel] = useInstanceWithToastsAndLoading();
 
     const [attempts, setAttempts] = useState([]);
 
     const [tasks, setTasks] = useState([]);
 
-    useEffect(() => {
-        const hasNoTasks = tasks.length === 0;
-        instance
-            .get(api.attemptIndependent.index, {
-                params: prepareParams(debouncedFilters, hasNoTasks),
-            })
-            .then(response => {
-                setAttempts(response.data.attempts);
-                if (hasNoTasks) {
-                    setTasks(response.data.tasks);
-                }
-            });
-    }, [debouncedFilters, instance]);
+    useCancellableEffect(
+        () => {
+            const hasNoTasks = tasks.length === 0;
+            instance
+                .get(api.attemptIndependent.index, {
+                    params: prepareParams(debouncedFilters, hasNoTasks),
+                })
+                .then(response => {
+                    setAttempts(response.data.attempts);
+                    if (hasNoTasks) {
+                        setTasks(response.data.tasks);
+                    }
+                });
+        },
+        [debouncedFilters],
+        cancel,
+    );
 
     return (
         <PanelTemplate

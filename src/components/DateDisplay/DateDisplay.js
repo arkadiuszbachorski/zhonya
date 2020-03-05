@@ -41,7 +41,7 @@ const DateDisplay = ({ date, preference }) => {
 };
 
 DateDisplay.propTypes = {
-    date: PropTypes.string.isRequired,
+    date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
     preference: PropTypes.oneOf(availableDatePreferences),
 };
 

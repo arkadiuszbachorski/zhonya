@@ -16,7 +16,7 @@ const AttemptDelete = () => {
 
     const { taskId, attemptId } = useParams();
 
-    const redirectTo = useRedirect();
+    const { redirectTo } = useRedirect();
 
     const [instance, loading] = useInstanceWithToastsAndLoading();
 

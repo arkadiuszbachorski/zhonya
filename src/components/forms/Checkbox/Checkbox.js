@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import styles from './Checkbox.module.scss';
 import Label from '../Label/Label';
 import Errors from '../Errors/Errors';
@@ -27,12 +28,12 @@ const Checkbox = ({
     return (
         <Group
             groupSize={groupSize}
-            className={[
+            className={cn([
                 styles.group,
                 errors.length > 0 ? styles.hasErrors : null,
                 radio ? styles.radio : null,
                 className,
-            ]}
+            ])}
         >
             <input
                 type={type}
@@ -58,11 +59,11 @@ Checkbox.propTypes = {
     checked: PropTypes.bool,
     finalValue: PropTypes.bool,
     labelId: PropTypes.string,
-    label: PropTypes.string,
+    label: PropTypes.node,
     name: PropTypes.string.isRequired,
     id: PropTypes.string,
     errors: PropTypes.arrayOf(PropTypes.string),
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
 };
 
 Checkbox.defaultProps = {

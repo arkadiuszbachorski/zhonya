@@ -17,7 +17,7 @@ const Label = ({ id, labelId, label }) => {
 Label.propTypes = {
     id: PropTypes.string,
     labelId: PropTypes.string,
-    label: PropTypes.string,
+    label: PropTypes.node,
 };
 
 Label.defaultProps = {

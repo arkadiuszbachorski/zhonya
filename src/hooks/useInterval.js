@@ -6,12 +6,12 @@ const useInterval = (action, clock, checkActiveness = false) => {
 
     useEffect(() => {
         let interval;
-        if (checkActiveness && visible) {
+        if ((checkActiveness && visible) || !checkActiveness) {
             interval = setInterval(action, clock);
         }
 
         return () => clearInterval(interval);
-    }, [action, clock, document.hidden, checkActiveness]);
+    }, [action, clock, checkActiveness, visible]);
 };
 
 export default useInterval;

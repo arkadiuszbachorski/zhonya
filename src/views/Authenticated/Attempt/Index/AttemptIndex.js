@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router';
 import { useIntl } from 'react-intl';
@@ -17,6 +17,7 @@ import TaskPanelTemplate from '../../Task/TaskPanelTemplate';
 import Time from '../../../../components/Time/Time';
 import Active from '../../../../components/typography/Active/Active';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const prepareParams = ({ search, active, ...rest }) => ({
     search: search === '' ? undefined : search,
@@ -36,19 +37,23 @@ const AttemptIndex = () => {
         active: false,
     });
 
-    const [instance, loading] = useInstanceWithToastsAndLoading();
+    const [instance, loading, cancel] = useInstanceWithToastsAndLoading();
 
     const [attempts, setAttempts] = useState([]);
 
-    useEffect(() => {
-        instance
-            .get(api.attempt.index(taskId), {
-                params: prepareParams(debouncedFilters),
-            })
-            .then(response => {
-                setAttempts(response.data);
-            });
-    }, [debouncedFilters, instance]);
+    useCancellableEffect(
+        () => {
+            instance
+                .get(api.attempt.index(taskId), {
+                    params: prepareParams(debouncedFilters),
+                })
+                .then(response => {
+                    setAttempts(response.data);
+                });
+        },
+        [debouncedFilters, taskId],
+        cancel,
+    );
 
     return (
         <TaskPanelTemplate

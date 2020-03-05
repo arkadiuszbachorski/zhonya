@@ -19,7 +19,7 @@ const AttemptCreate = () => {
 
     const { formatMessage } = useIntl();
 
-    const redirectTo = useRedirect();
+    const { redirectTo } = useRedirect();
 
     const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
 

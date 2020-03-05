@@ -12,7 +12,7 @@ DeleteList.Item = DeleteListItem;
 
 DeleteList.propTypes = {
     children: PropTypes.node.isRequired,
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    className: PropTypes.string,
 };
 
 DeleteList.defaultProps = {

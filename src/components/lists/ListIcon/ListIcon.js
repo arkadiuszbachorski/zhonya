@@ -11,7 +11,7 @@ ListIcon.Item = ListIconItem;
 
 ListIcon.propTypes = {
     children: PropTypes.node.isRequired,
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    className: PropTypes.string,
 };
 
 ListIcon.defaultProps = {
