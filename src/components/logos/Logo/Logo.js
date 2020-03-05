@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './Logo.module.scss';
-import customPropTypes from '../../../customPropTypes';
 
 const Logo = ({ inverted, className, stroke, to, linkClassName }) => (
     <Link to={to} className={cn(styles.logo, inverted ? styles.inverted : null, linkClassName)}>
@@ -26,7 +25,7 @@ const Logo = ({ inverted, className, stroke, to, linkClassName }) => (
 Logo.propTypes = {
     inverted: PropTypes.bool,
     className: PropTypes.string,
-    linkClassName: customPropTypes.className,
+    linkClassName: PropTypes.string,
     stroke: PropTypes.number,
     to: PropTypes.string,
 };
