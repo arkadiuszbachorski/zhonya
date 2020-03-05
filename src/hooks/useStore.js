@@ -13,7 +13,6 @@ export default useStore;
 export const storeKeys = {
     useAuth: 'auth',
     useLocale: 'locale',
-    useRedirect: 'redirect',
     useTheme: 'theme',
     useModelTitle: 'modelTitle',
     useTimePreference: 'timePreference',
