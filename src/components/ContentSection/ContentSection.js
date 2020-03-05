@@ -6,7 +6,11 @@ import SectionTitle from '../typography/SectionTitle/SectionTitle';
 
 const ContentSection = ({ messageId, variant, children, className, containerClassName }) => {
     return (
-        <div className={cn(styles.wrapper, styles[variant], containerClassName)}>
+        <div
+            className={cn(styles.wrapper, styles[variant], containerClassName)}
+            data-aos="fade-up"
+            data-aos-offset="300"
+        >
             <SectionTitle messageId={messageId} light={variant === 'primary'} />
             <div className={cn(styles.contentWrapper, className)}>{children}</div>
         </div>
