@@ -19,7 +19,7 @@ const LogIn = () => {
         password: '',
     });
 
-    const [rememberMe, setRememberMe] = useState(true);
+    const [rememberMe, setRememberMe] = useState(false);
 
     const [, setAuth] = useAuth();
 
