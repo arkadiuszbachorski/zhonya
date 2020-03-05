@@ -19,7 +19,7 @@ const Delete = () => {
 
     const { redirectTo } = useRedirect();
 
-    const [, setAuth] = useAuth();
+    const auth = useAuth();
 
     const { formatMessage } = useIntl();
 
@@ -35,12 +35,7 @@ const Delete = () => {
                 })
                 .then(() => {
                     toast.success(formatMessage({ id: 'toast.success.delete' }));
-                    setAuth({
-                        token: null,
-                        scope: null,
-                        verified: null,
-                        rememberMe: false,
-                    });
+                    auth.logOut();
                 })
                 .catch(error => {
                     if (error.message !== cancelMessage) {

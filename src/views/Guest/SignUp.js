@@ -18,14 +18,14 @@ const SignUp = () => {
         password_confirmation: '',
     });
 
-    const [, setAuth] = useAuth();
+    const auth = useAuth();
 
     const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
 
     const handleSubmit = () => {
         instance.post(api.auth.signIn, form).then(response => {
             const { data } = response;
-            setAuth({
+            auth.setData({
                 token: data.access_token,
                 scope: data.scope,
                 verified: data.verified,

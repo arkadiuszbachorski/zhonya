@@ -6,16 +6,11 @@ import UserPanelTemplate from '../UserPanelTemplate';
 const UserLogout = () => {
     useAuthenticatedOnly();
 
-    const [, setAuth] = useAuth();
+    const auth = useAuth();
 
     useEffect(() => {
-        setAuth({
-            token: null,
-            scope: null,
-            verified: null,
-            rememberMe: null,
-        });
-    }, [setAuth]);
+        auth.logOut();
+    }, []);
 
     return <UserPanelTemplate />;
 };

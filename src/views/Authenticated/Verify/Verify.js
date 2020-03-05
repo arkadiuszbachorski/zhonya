@@ -22,7 +22,7 @@ const Verify = () => {
 
     const { redirectTo } = useRedirect();
 
-    const [auth, setAuth] = useAuth();
+    const auth = useAuth();
 
     const { formatMessage } = useIntl();
 
@@ -32,7 +32,7 @@ const Verify = () => {
 
     useCancellableEffect(
         () => {
-            if (!auth.verified) {
+            if (!auth.isVerified()) {
                 instance
                     .post(api.auth.verify, {
                         verification_token: token,
@@ -42,13 +42,7 @@ const Verify = () => {
                             localStorage.removeItem(storeKeys.useAuth);
                         }
                         toast.success(formatMessage({ id: 'toast.success.verified' }));
-                        setAuth(
-                            {
-                                ...auth,
-                                verified: true,
-                            },
-                            auth.rememberMe,
-                        );
+                        auth.setVerified(true, auth.data.rememberMe);
                         redirectTo(routes.user.dashboard);
                     })
                     .catch(error => {

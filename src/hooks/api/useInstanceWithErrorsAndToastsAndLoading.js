@@ -13,7 +13,7 @@ const useInstanceWithErrorsAndToastsAndLoading = (userMessages = null) => {
     const { formatMessage } = useIntl();
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
-    const [auth] = useAuth();
+    const auth = useAuth();
     const [cancel, cancelToken] = useCancelToken();
 
     const instance = useMemo(() => {
@@ -21,11 +21,11 @@ const useInstanceWithErrorsAndToastsAndLoading = (userMessages = null) => {
         handleErrorsMessages(inst, formatMessage, userMessages);
         handleLoading(inst, setLoading);
         handleErrors(inst, setErrors);
-        addBearerToken(inst, auth.token);
+        addBearerToken(inst, auth.data.token);
         addCancelToken(inst, cancelToken);
 
         return inst;
-    }, [formatMessage, userMessages, auth.token, cancelToken]);
+    }, [formatMessage, userMessages, auth.data.token, cancelToken]);
 
     return [instance, loading, errors, cancel, setErrors, setLoading];
 };

@@ -13,7 +13,6 @@ import UserData from './views/Authenticated/User/Data/UserData';
 import UserSendDeleteMail from './views/Authenticated/User/SendDeleteMail/UserSendDeleteMail';
 import UserLogout from './views/Authenticated/User/Logout/UserLogout';
 import { useAuthProvider } from './hooks/useAuth';
-import { useRedirectProvider } from './hooks/useRedirect';
 import { useLocaleProvider } from './hooks/useLocale';
 import { StoreContext, storeKeys } from './hooks/useStore';
 import { useThemeProvider } from './hooks/useTheme';
@@ -45,7 +44,6 @@ import Delete from './views/Authenticated/Delete/Delete';
 
 const App = () => {
     const auth = useAuthProvider();
-    const redirect = useRedirectProvider();
     const theme = useThemeProvider();
     const [currentLocale, setLocale] = useLocaleProvider();
     const modelTitle = useModelTitleProvider();
@@ -57,7 +55,6 @@ const App = () => {
             <StoreContext.Provider
                 value={{
                     [storeKeys.useAuth]: auth,
-                    [storeKeys.useRedirect]: redirect,
                     [storeKeys.useTheme]: theme,
                     [storeKeys.useLocale]: [currentLocale, setLocale],
                     [storeKeys.useModelTitle]: modelTitle,
@@ -67,7 +64,6 @@ const App = () => {
             >
                 <ToastContainer newestOnTop position="bottom-right" transition={Slide} />
                 <Router>
-                    {redirect.redirectPath && <Redirect to={redirect.redirectPath} />}
                     <Switch>
                         <Route path={routes.index} exact component={MainPage} />
                         <Route path={routes.logIn} exact component={LogIn} />

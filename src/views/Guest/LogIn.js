@@ -10,6 +10,7 @@ import useGuestOnly from '../../hooks/useGuestOnly';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import Checkbox from '../../components/forms/Checkbox/Checkbox';
 import useRedirect from '../../hooks/useRedirect';
+import { useHistory } from 'react-router';
 
 const LogIn = () => {
     useGuestOnly();
@@ -19,11 +20,11 @@ const LogIn = () => {
         password: '',
     });
 
+    const history = useHistory();
+
     const [rememberMe, setRememberMe] = useState(false);
 
-    const [, setAuth] = useAuth();
-
-    const { lastAborted, setLastAborted, redirectTo } = useRedirect();
+    const auth = useAuth();
 
     const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading({
         unauthorized: 'toast.error.login.wrongCredentials',
@@ -32,7 +33,7 @@ const LogIn = () => {
     const handleSubmit = () => {
         instance.post(api.auth.logIn, form).then(response => {
             const { data } = response;
-            setAuth(
+            auth.setData(
                 {
                     token: data.access_token,
                     scope: data.scope,
@@ -41,10 +42,7 @@ const LogIn = () => {
                 },
                 data.verified ? rememberMe : true,
             );
-            if (lastAborted) {
-                setLastAborted(null);
-                redirectTo(lastAborted);
-            }
+            history.push(lastAborted);
         });
     };
 

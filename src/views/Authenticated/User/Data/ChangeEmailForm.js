@@ -10,7 +10,7 @@ import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useI
 import useAuth from '../../../../hooks/useAuth';
 
 const ChangeEmailForm = () => {
-    const [auth, setAuth] = useAuth();
+    const auth = useAuth();
 
     const { formatMessage } = useIntl();
 
@@ -23,10 +23,7 @@ const ChangeEmailForm = () => {
     const submit = () => {
         instance.put(api.user.changeEmail, form).then(() => {
             toast.success(formatMessage({ id: 'toast.success.changeEmail' }));
-            setAuth({
-                ...auth,
-                verified: false,
-            });
+            auth.setVerified(false);
         });
     };
 
