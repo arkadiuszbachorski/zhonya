@@ -15,7 +15,7 @@ import UserLogout from './views/Authenticated/User/Logout/UserLogout';
 import { useAuthProvider } from './hooks/useAuth';
 import { useRedirectProvider } from './hooks/useRedirect';
 import { useLocaleProvider } from './hooks/useLocale';
-import { storeKeys, StoreContext } from './hooks/useStore';
+import { StoreContext, storeKeys } from './hooks/useStore';
 import { useThemeProvider } from './hooks/useTheme';
 import UserSettings from './views/Authenticated/User/Settings/UserSettings';
 import TagCreate from './views/Authenticated/Tag/Create/TagCreate';

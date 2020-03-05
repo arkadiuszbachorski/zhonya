@@ -12,7 +12,7 @@ const Card = ({ children, variant, className, inverted }) => (
 Card.propTypes = {
     children: PropTypes.node,
     variant: PropTypes.oneOf(['primary', 'danger']),
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
     inverted: PropTypes.bool,
 };
 

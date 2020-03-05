@@ -5,7 +5,7 @@ import useRedirect, { useRedirectProvider } from '../useRedirect';
 import '@testing-library/jest-dom/extend-expect';
 import useAuth, { useAuthProvider } from '../useAuth';
 import useAuthenticatedOnly from '../useAuthenticatedOnly';
-import { storeKeys, StoreContext } from '../useStore';
+import { StoreContext, storeKeys } from '../useStore';
 
 const Index = () => {
     const { redirectTo } = useRedirect();

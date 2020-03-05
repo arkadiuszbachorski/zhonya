@@ -11,7 +11,7 @@ Container.propTypes = {
     children: PropTypes.node.isRequired,
     variant: PropTypes.arrayOf(PropTypes.oneOf(['center', 'smallItems', 'filters', 'marginTopLarge', 'marginBottom']))
         .isRequired,
-    className: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+    className: PropTypes.string,
 };
 
 Container.defaultProps = {

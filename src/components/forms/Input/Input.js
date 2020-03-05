@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import styles from './Input.module.scss';
 import Label from '../Label/Label';
 import Errors from '../Errors/Errors';
@@ -51,6 +52,7 @@ const Input = ({
         };
         input = (
             <select {...inputAttrs} defaultValue={DEFAULT_VALUE}>
+                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                 <option hidden style={{ display: 'none' }} value={DEFAULT_VALUE} />
                 {options.map(option => (
                     <option value={option.value} key={option.value}>
@@ -71,7 +73,7 @@ const Input = ({
         <Group
             value={value}
             groupSize={groupSize}
-            className={[
+            className={cn([
                 styles.group,
                 value ? styles.active : null,
                 errors.length > 0 ? styles.hasErrors : null,
@@ -79,7 +81,7 @@ const Input = ({
                 input ? styles.hasIcon : null,
                 textarea ? styles.isTextarea : null,
                 className,
-            ]}
+            ])}
         >
             {children}
             <InputIcon icon={icon} select={select} />
@@ -110,7 +112,7 @@ Input.propTypes = {
     id: PropTypes.string,
     icon: customPropTypes.fontAwesomeIcon,
     errors: PropTypes.arrayOf(PropTypes.string),
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
     children: PropTypes.node,
     select: PropTypes.bool,
     options: PropTypes.arrayOf(

@@ -24,7 +24,7 @@ Form.propTypes = {
     noPrevent: PropTypes.bool,
     onSubmit: PropTypes.func,
     children: PropTypes.node.isRequired,
-    className: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+    className: PropTypes.string,
     loading: PropTypes.bool,
 };
 

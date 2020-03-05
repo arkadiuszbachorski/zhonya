@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cs from 'classnames';
-import styles from './GridTable.module.scss';
 import { Link } from 'react-router-dom';
+import styles from './GridTable.module.scss';
 
 const Row = ({ children, to, className, header }) => {
     if (to) {
@@ -18,7 +18,7 @@ const Row = ({ children, to, className, header }) => {
 Row.propTypes = {
     children: PropTypes.node.isRequired,
     to: PropTypes.string,
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
     header: PropTypes.bool,
 };
 

@@ -1,10 +1,11 @@
 import React from 'react';
-import { fireEvent, render, act } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import useLocale, { useLocaleProvider } from '../useLocale';
-import { storeKeys, StoreContext } from '../useStore';
+import { StoreContext, storeKeys } from '../useStore';
 import { defaultLocale } from '../../locale';
 
+// eslint-disable-next-line react/prop-types
 const Display = ({ localeToSet }) => {
     const [lang, setLang] = useLocale();
     return (
@@ -17,6 +18,7 @@ const Display = ({ localeToSet }) => {
     );
 };
 
+// eslint-disable-next-line react/prop-types
 const SimulatedApp = ({ localeToSet }) => {
     const [locale, setLocale] = useLocaleProvider();
 

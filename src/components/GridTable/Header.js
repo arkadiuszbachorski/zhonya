@@ -14,7 +14,7 @@ const Header = ({ children, messageId, className }) => {
 Header.propTypes = {
     children: PropTypes.node,
     messageId: PropTypes.string,
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
 };
 
 Header.defaultProps = {

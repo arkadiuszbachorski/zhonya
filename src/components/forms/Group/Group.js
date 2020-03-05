@@ -19,7 +19,7 @@ const Group = ({ className, groupSize, children }) => {
 };
 
 Group.propTypes = {
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
     groupSize: PropTypes.oneOf(['large', 'small']),
     children: PropTypes.node.isRequired,
 };
