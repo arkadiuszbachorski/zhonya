@@ -1,39 +1,48 @@
 import { toast } from 'react-toastify';
 import { cancelMessage } from '../useCancelToken';
 
+const defualtMessages = {
+    validation: 'toast.error.validation',
+    notFound: 'toast.error.notFound',
+    unauthorized: 'toast.error.unauthorized',
+    forbidden: 'toast.error.forbidden',
+    code: 'toast.error.code',
+    server: 'toast.error.server',
+    client: 'toast.error.client',
+};
+
 export default (instance, formatMessage, userMessages = null) => {
-    const defualtMessages = {
-        validation: () => formatMessage({ id: 'toast.error.validation' }),
-        notFound: () => formatMessage({ id: 'toast.error.notFound' }),
-        unauthorized: () => formatMessage({ id: 'toast.error.unauthorized' }),
-        forbidden: () => formatMessage({ id: 'toast.error.forbidden' }),
-        code: () => formatMessage({ id: 'toast.error.code' }),
-        server: () => formatMessage({ id: 'toast.error.server' }),
-        client: () => formatMessage({ id: 'toast.error.client' }),
-    };
     const messages = userMessages ? { ...defualtMessages, ...userMessages } : defualtMessages;
     instance.interceptors.response.use(
         response => {
             return response;
         },
         error => {
+            function handleMessage(message) {
+                if (typeof message === 'function') {
+                    message(error);
+                }
+
+                toast.error(formatMessage({ id: message }));
+            }
+
             if (error.response) {
                 const { status } = error.response;
                 if (status === 422) {
-                    toast.error(messages.validation());
+                    handleMessage(messages.validation);
                 } else if (status === 404) {
-                    toast.error(messages.notFound());
+                    handleMessage(messages.notFound);
                 } else if (status === 401) {
-                    toast.error(messages.unauthorized());
+                    handleMessage(messages.unauthorized);
                 } else if (status === 403) {
-                    toast.error(messages.forbidden());
+                    handleMessage(messages.forbidden);
                 } else if (status >= 400 && status < 500) {
-                    toast.error(messages.client());
+                    handleMessage(messages.client);
                 } else if (status >= 500 && status < 600) {
-                    toast.error(messages.server());
+                    handleMessage(messages.server);
                 }
             } else if (error.message !== cancelMessage) {
-                toast.error(messages.code());
+                handleMessage(messages.code);
             }
 
             return Promise.reject(error);

@@ -25,7 +25,9 @@ const LogIn = () => {
 
     const { lastAborted, setLastAborted, redirectTo } = useRedirect();
 
-    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading({
+        unauthorized: 'toast.error.login.wrongCredentials',
+    });
 
     const handleSubmit = () => {
         instance.post(api.auth.logIn, form).then(response => {
