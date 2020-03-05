@@ -46,7 +46,7 @@ const MainHeader = ({ animate }) => {
             <Button
                 variant="blank"
                 size="large"
-                className={[styles.menuToggleButton]}
+                className={cn([styles.menuToggleButton])}
                 round
                 onClick={() => setOpen(op => !op)}
             >

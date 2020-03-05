@@ -9,7 +9,7 @@ const ListCaptionAndColor = ({ children, className }) => {
 
 ListCaptionAndColor.propTypes = {
     children: PropTypes.node.isRequired,
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
 };
 
 ListCaptionAndColor.defaultProps = {

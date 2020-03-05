@@ -10,7 +10,7 @@ const Cell = ({ children, header, className }) => {
 Cell.propTypes = {
     children: PropTypes.node,
     header: PropTypes.bool,
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
 };
 
 Cell.defaultProps = {

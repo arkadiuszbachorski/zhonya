@@ -29,7 +29,7 @@ const Quote = ({ content, author, className }) => {
 Quote.propTypes = {
     content: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
     author: PropTypes.string.isRequired,
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
 };
 
 Quote.defaultProps = {

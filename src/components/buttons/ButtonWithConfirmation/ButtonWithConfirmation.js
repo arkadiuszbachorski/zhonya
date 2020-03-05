@@ -20,7 +20,7 @@ const ButtonWithConfirmation = ({ loading, className }) => {
 
 ButtonWithConfirmation.propTypes = {
     loading: PropTypes.bool,
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
 };
 
 ButtonWithConfirmation.defaultProps = {

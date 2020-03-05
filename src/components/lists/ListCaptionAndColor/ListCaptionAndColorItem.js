@@ -29,7 +29,7 @@ ListCaptionAndColorItem.propTypes = {
     caption: PropTypes.node,
     to: PropTypes.string.isRequired,
     color: PropTypes.string,
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
     onClick: PropTypes.func,
 };
 

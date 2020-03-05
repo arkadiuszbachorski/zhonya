@@ -24,7 +24,7 @@ LoadingComplete.propTypes = {
     empty: PropTypes.bool,
     emptyId: PropTypes.string,
     loading: PropTypes.bool,
-    className: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
+    className: PropTypes.string,
 };
 
 LoadingComplete.defaultProps = {
