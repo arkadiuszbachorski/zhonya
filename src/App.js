@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import { Slide, ToastContainer } from 'react-toastify';
-import MainPage from './views/MainPage';
+import MainPage from './views/Public/MainPage/MainPage';
 import routes from './routes';
 import locale from './locale';
 import 'normalize.css';

@@ -1,0 +1,34 @@
+@import '../../../scss/package';
+
+.sectionTitle {
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  text-align: center;
+  position: relative;
+  margin-bottom: 5rem;
+  color: var(--primary-font);
+
+  &::after {
+    content: '';
+    width: 80px;
+    height: 1px;
+    border: 1px solid var(--primary);
+    position: absolute;
+    bottom: -.75rem;
+    left: calc(50% - 40px);
+  }
+}
+
+.sectionTitle.light {
+  color: var(--light);
+
+  &::after {
+    border-color: var(--light);
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .sectionTitle {
+    margin-bottom: 3rem;
+  }
+}

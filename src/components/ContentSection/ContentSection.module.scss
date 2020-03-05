@@ -1,0 +1,27 @@
+@import '../../scss/package';
+
+.wrapper {
+  margin-bottom: 3em;
+  padding: 2rem;
+
+  .contentWrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  &.primary {
+    background-color: var(--primary);
+    color: var(--light);
+  }
+
+  &.blank {
+    color: var(--primary-font);
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .wrapper {
+    padding: 1rem;
+  }
+}
+
