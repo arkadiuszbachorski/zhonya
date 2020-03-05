@@ -101,7 +101,7 @@ const Input = ({
 Input.propTypes = {
     onChange: PropTypes.func,
     groupSize: PropTypes.oneOf(['large', 'small']),
-    type: PropTypes.oneOf(['text', 'password', 'color']),
+    type: PropTypes.oneOf(['text', 'password', 'color', 'email']),
     textarea: PropTypes.bool,
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,

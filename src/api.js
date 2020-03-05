@@ -51,4 +51,5 @@ export default {
     },
     search: `${url}/search`,
     dashboard: `${url}/dashboard`,
+    contact: `${url}/contact`,
 };

@@ -1,14 +1,18 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import ContentSection from '../../../../components/ContentSection/ContentSection';
 import styles from './Contact.module.scss';
 import Input from '../../../../components/forms/Input/Input';
 import FormInCard from '../../../../components/forms/FormInCard/FormInCard';
 import useForm from '../../../../hooks/useForm';
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import api from '../../../../api';
 
 const Contact = () => {
-    const [form, handleChange] = useForm({
+    const { formatMessage } = useIntl();
+
+    const [form, handleChange, resetForm] = useForm({
         name: '',
         email: '',
         message: '',
@@ -17,7 +21,10 @@ const Contact = () => {
     const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
 
     const handleSubmit = () => {
-        console.log(form);
+        instance.post(api.contact, form).then(() => {
+            toast.success(formatMessage({ id: 'toast.success.sendContactEmail' }));
+            resetForm();
+        });
     };
 
     return (
