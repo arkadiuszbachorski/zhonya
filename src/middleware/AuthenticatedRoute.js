@@ -4,7 +4,7 @@ import { Redirect, Route } from 'react-router';
 import routes from '../routes';
 import useAuth from '../hooks/useAuth';
 
-const AuthenticatedRoute = ({ to, component: Component, settings }) => {
+const AuthenticatedRoute = ({ path, component: Component, settings }) => {
     const auth = useAuth();
 
     if (!auth.isAuthenticated() || (settings.scope && auth.scope && !auth.hasScope(settings.scope))) {
@@ -17,11 +17,11 @@ const AuthenticatedRoute = ({ to, component: Component, settings }) => {
         return <Redirect to={routes.user.dashboard} />;
     }
 
-    return <Route to={to} exact component={Component} />;
+    return <Route to={path} exact component={Component} />;
 };
 
 AuthenticatedRoute.propTypes = {
-    to: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
     component: PropTypes.node.isRequired,
     settings: PropTypes.shape({
         scope: PropTypes.string,
