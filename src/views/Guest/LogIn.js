@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import MainTemplate from '../../components/MainTemplate/MainTemplate';
 import Input from '../../components/forms/Input/Input';
 import FormInCard from '../../components/forms/FormInCard/FormInCard';
@@ -6,15 +7,10 @@ import Container from '../../components/Container/Container';
 import useForm from '../../hooks/useForm';
 import api from '../../api';
 import useAuth from '../../hooks/useAuth';
-import useGuestOnly from '../../hooks/useGuestOnly';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import Checkbox from '../../components/forms/Checkbox/Checkbox';
 
-import { useHistory } from 'react-router';
-
 const LogIn = () => {
-    useGuestOnly();
-
     const [form, handleChange] = useForm({
         email: '',
         password: '',

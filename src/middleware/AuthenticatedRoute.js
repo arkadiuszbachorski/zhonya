@@ -22,9 +22,9 @@ const AuthenticatedRoute = ({ path, component: Component, settings }) => {
 
 AuthenticatedRoute.propTypes = {
     path: PropTypes.string.isRequired,
-    component: PropTypes.node.isRequired,
+    component: PropTypes.func.isRequired,
     settings: PropTypes.shape({
-        scope: PropTypes.string,
+        scope: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
         checkIfEmailVerified: PropTypes.bool,
         checkIfEmailNotVerified: PropTypes.bool,
     }),

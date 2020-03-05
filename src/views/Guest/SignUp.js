@@ -6,12 +6,9 @@ import Container from '../../components/Container/Container';
 import useForm from '../../hooks/useForm';
 import api from '../../api';
 import useAuth from '../../hooks/useAuth';
-import useGuestOnly from '../../hooks/useGuestOnly';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 
 const SignUp = () => {
-    useGuestOnly();
-
     const [form, handleChange] = useForm({
         email: '',
         password: '',

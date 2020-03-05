@@ -16,7 +16,7 @@ const GuestRoute = ({ path, component: Component }) => {
 
 GuestRoute.propTypes = {
     path: PropTypes.string.isRequired,
-    component: PropTypes.node.isRequired,
+    component: PropTypes.func.isRequired,
 };
 
 export default GuestRoute;
