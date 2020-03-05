@@ -13,6 +13,7 @@ import useRedirect from '../../../hooks/useRedirect';
 import routes from '../../../routes';
 import { storeKeys } from '../../../hooks/useStore';
 import useCancellableEffect from '../../../hooks/useCancellableEffect';
+import { cancelMessage } from '../../../hooks/api/useCancelToken';
 
 const Verify = () => {
     useAuthenticatedOnly({
@@ -50,9 +51,11 @@ const Verify = () => {
                         );
                         redirectTo(routes.user.dashboard);
                     })
-                    .catch(() => {
-                        toast.error(formatMessage({ id: 'toast.error.verified' }));
-                        redirectTo(routes.sendVerificationEmail);
+                    .catch(error => {
+                        if (error.message !== cancelMessage) {
+                            toast.error(formatMessage({ id: 'toast.error.verified' }));
+                            redirectTo(routes.sendVerificationEmail);
+                        }
                     });
             } else {
                 redirectTo(routes.user.dashboard);

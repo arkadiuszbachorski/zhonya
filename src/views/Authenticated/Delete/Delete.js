@@ -12,6 +12,7 @@ import useAuth from '../../../hooks/useAuth';
 import useRedirect from '../../../hooks/useRedirect';
 import routes from '../../../routes';
 import useCancellableEffect from '../../../hooks/useCancellableEffect';
+import { cancelMessage } from '../../../hooks/api/useCancelToken';
 
 const Delete = () => {
     useAuthenticatedOnly();
@@ -41,9 +42,11 @@ const Delete = () => {
                         rememberMe: false,
                     });
                 })
-                .catch(() => {
-                    toast.error(formatMessage({ id: 'toast.error.delete' }));
-                    redirectTo(routes.user.delete);
+                .catch(error => {
+                    if (error.message !== cancelMessage) {
+                        toast.error(formatMessage({ id: 'toast.error.delete' }));
+                        redirectTo(routes.user.delete);
+                    }
                 });
         },
         [],
