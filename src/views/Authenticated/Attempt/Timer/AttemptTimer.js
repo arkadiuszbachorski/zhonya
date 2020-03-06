@@ -11,6 +11,7 @@ import LoadingOrChildren from '../../../../components/loading/LoadingOrChildren/
 import Timer from '../../../../components/Timer/Timer';
 import Button from '../../../../components/buttons/Button/Button';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
+import routes from '../../../../routes';
 
 const prepareData = relativeTime => {
     const date = new Date();
@@ -24,7 +25,9 @@ const prepareData = relativeTime => {
 const AttemptTimer = () => {
     const { taskId, attemptId } = useParams();
 
-    const [instance, loading, cancel] = useInstanceWithToastsAndLoading();
+    const [instance, loading, cancel] = useInstanceWithToastsAndLoading({
+        redirectPath: routes.attempt.index(taskId),
+    });
 
     const [relativeTime, setRelativeTime] = useState(null);
     const [active, setActive] = useState(false);

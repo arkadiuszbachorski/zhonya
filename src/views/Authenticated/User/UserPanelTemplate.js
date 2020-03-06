@@ -23,7 +23,7 @@ const sideMenuItems = [
         icon: faPen,
     },
     {
-        to: routes.user.delete,
+        to: routes.user.sendDeleteEmail,
         messageId: 'action.delete',
         icon: faTrash,
     },

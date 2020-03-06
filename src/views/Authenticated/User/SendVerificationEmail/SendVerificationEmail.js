@@ -1,12 +1,11 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { FormattedMessage, useIntl } from 'react-intl';
-
-import Container from '../../../components/Container/Container';
-import FormInCard from '../../../components/forms/FormInCard/FormInCard';
-import useInstanceWithToastsAndLoading from '../../../hooks/api/useInstanceWithToastsAndLoading';
-import PanelTemplate from '../../../components/PanelTemplate/PanelTemplate';
-import api from '../../../api';
+import Container from '../../../../components/Container/Container';
+import FormInCard from '../../../../components/forms/FormInCard/FormInCard';
+import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
+import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
+import api from '../../../../api';
 
 const SendVerificationEmail = () => {
     const { formatMessage } = useIntl();

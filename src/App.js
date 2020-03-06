@@ -37,9 +37,9 @@ import { useDatePreferenceProvider } from './hooks/useDatePreference';
 import AttemptIndependentIndex from './views/Authenticated/AttemptIndependent/Index/AttemptIndependentIndex';
 import AttemptIndependentCreate from './views/Authenticated/AttemptIndependent/Create/AttemptIndependentCreate';
 import UserDashboard from './views/Authenticated/User/Dashboard/UserDashboard';
-import SendVerificationEmail from './views/Authenticated/SendVerificationEmail/SendVerificationEmail';
-import Verify from './views/Authenticated/Verify/Verify';
-import Delete from './views/Authenticated/Delete/Delete';
+import UserSendVerificationEmail from './views/Authenticated/User/SendVerificationEmail/SendVerificationEmail';
+import UserVerify from './views/Authenticated/User/Verify/Verify';
+import UserDelete from './views/Authenticated/User/Delete/Delete';
 import GuestRoute from './middleware/GuestRoute';
 import AuthenticatedRoute from './middleware/AuthenticatedRoute';
 
@@ -72,20 +72,20 @@ const App = () => {
                         <AuthenticatedRoute
                             exact
                             settings={{ checkIfEmailNotVerified: true, checkIfEmailVerified: false }}
-                            path={routes.sendVerificationEmail}
-                            component={SendVerificationEmail}
+                            path={routes.user.sendVerificationEmail}
+                            component={UserSendVerificationEmail}
                         />
                         <AuthenticatedRoute
                             exact
                             settings={{ checkIfEmailNotVerified: true, checkIfEmailVerified: false }}
-                            path={routes.verify()}
-                            component={Verify}
+                            path={routes.user.verify()}
+                            component={UserVerify}
                         />
-                        <AuthenticatedRoute exact path={routes.delete()} component={Delete} />
+                        <AuthenticatedRoute exact path={routes.user.delete()} component={UserDelete} />
                         <AuthenticatedRoute exact path={routes.user.dashboard} component={UserDashboard} />
                         <AuthenticatedRoute exact path={routes.user.settings} component={UserSettings} />
                         <AuthenticatedRoute exact path={routes.user.data} component={UserData} />
-                        <AuthenticatedRoute exact path={routes.user.delete} component={UserSendDeleteMail} />
+                        <AuthenticatedRoute exact path={routes.user.sendDeleteEmail} component={UserSendDeleteMail} />
                         <AuthenticatedRoute exact path={routes.tag.index} component={TagIndex} />
                         <AuthenticatedRoute exact path={routes.tag.create} component={TagCreate} />
                         <AuthenticatedRoute exact path={routes.tag.edit()} component={TagEdit} />

@@ -23,7 +23,16 @@ export const useModelTitleProvider = () => {
 const useModelTitle = (model, id, url = null) => {
     const [modelTitle, setModelTitle] = useStore(storeKeys.useModelTitle);
 
-    const [instance, , cancel] = useInstanceWithToastsAndLoading();
+    const [instance, , cancel] = useInstanceWithToastsAndLoading({
+        validation: null,
+        notFound: null,
+        unauthorized: null,
+        forbidden: null,
+        code: null,
+        server: null,
+        client: null,
+        redirectPath: null,
+    });
 
     const name = modelTitle[model].id === id ? modelTitle[model].name : null;
 

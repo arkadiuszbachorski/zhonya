@@ -34,7 +34,9 @@ const AttemptIndex = () => {
         active: false,
     });
 
-    const [instance, loading, cancel] = useInstanceWithToastsAndLoading();
+    const [instance, loading, cancel] = useInstanceWithToastsAndLoading({
+        redirectPath: routes.task.index,
+    });
 
     const [attempts, setAttempts] = useState([]);
 
