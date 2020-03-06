@@ -14,13 +14,24 @@ import useAuth from '../../hooks/useAuth';
 
 const MainHeader = ({ animate }) => {
     const [open, setOpen] = useState(false);
-    const [auth] = useAuth();
+
+    const auth = useAuth();
+
     const swipeableHandlers = useSwipeable({ onSwipedLeft: () => setOpen(false) });
+
     return (
         <header className={cn(styles.wrapper, animate ? styles.withAnimation : null, open ? styles.open : null)}>
             <CombinedLogo />
             <ul className={styles.links} {...swipeableHandlers}>
-                {auth.token === null ? (
+                {auth.isAuthenticated() ? (
+                    <>
+                        <li>
+                            <Button link to={routes.signUp} variant="primaryLight">
+                                <FormattedMessage id="action.dashboard" />
+                            </Button>
+                        </li>
+                    </>
+                ) : (
                     <>
                         <li>
                             <Link to={routes.logIn}>
@@ -30,14 +41,6 @@ const MainHeader = ({ animate }) => {
                         <li>
                             <Button link to={routes.signUp} variant="primaryLight">
                                 <FormattedMessage id="signUp" />
-                            </Button>
-                        </li>
-                    </>
-                ) : (
-                    <>
-                        <li>
-                            <Button link to={routes.signUp} variant="primaryLight">
-                                <FormattedMessage id="action.dashboard" />
                             </Button>
                         </li>
                     </>

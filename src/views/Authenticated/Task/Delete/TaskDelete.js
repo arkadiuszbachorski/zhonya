@@ -1,22 +1,20 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import Container from '../../../../components/Container/Container';
 import FormWithCard from '../../../../components/forms/FormWithCard/FormWithCard';
 import api from '../../../../api';
-import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import TaskPanelTemplate from '../TaskPanelTemplate';
-import useRedirect from '../../../../hooks/useRedirect';
+
 import routes from '../../../../routes';
 
 const TaskDelete = () => {
-    useAuthenticatedOnly();
-
     const { taskId } = useParams();
 
-    const { redirectTo } = useRedirect();
+    const history = useHistory();
 
     const [instance, loading] = useInstanceWithToastsAndLoading();
 
@@ -25,7 +23,7 @@ const TaskDelete = () => {
     const handleSubmit = () => {
         instance.delete(api.task.delete(taskId)).then(() => {
             toast.success(formatMessage({ id: 'toast.success.task.delete' }));
-            redirectTo(routes.task.index);
+            history.push(routes.task.index);
         });
     };
 

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
-import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+
+import { useHistory } from 'react-router';
 import useForm from '../../../../hooks/useForm';
 import api from '../../../../api';
-import useRedirect from '../../../../hooks/useRedirect';
+
 import routes from '../../../../routes';
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import AttemptForm from '../../Attempt/AttemptForm';
@@ -12,11 +13,9 @@ import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const AttemptIndependentCreate = () => {
-    useAuthenticatedOnly();
-
     const { formatMessage } = useIntl();
 
-    const { redirectTo } = useRedirect();
+    const history = useHistory();
 
     const [instance, loading, errors, cancel, setErrors] = useInstanceWithErrorsAndToastsAndLoading();
 
@@ -38,7 +37,7 @@ const AttemptIndependentCreate = () => {
         instance.post(api.attempt.store(form.task), form).then(response => {
             const attemptId = response.data;
             toast.success(formatMessage({ id: 'toast.success.attempt.create' }));
-            redirectTo(routes.attempt.timer(form.task, attemptId));
+            history.push(routes.attempt.timer(form.task, attemptId));
         });
     };
 

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
 import Container from '../../../../components/Container/Container';
 import api from '../../../../api';
-import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import AttemptPanelTemplate from '../AttemptPanelTemplate';
 import LoadingOrChildren from '../../../../components/loading/LoadingOrChildren/LoadingOrChildren';
@@ -22,8 +22,6 @@ const prepareData = relativeTime => {
 };
 
 const AttemptTimer = () => {
-    useAuthenticatedOnly();
-
     const { taskId, attemptId } = useParams();
 
     const [instance, loading, cancel] = useInstanceWithToastsAndLoading();

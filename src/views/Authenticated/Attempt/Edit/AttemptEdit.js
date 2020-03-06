@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router';
-import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+
 import useForm from '../../../../hooks/useForm';
 import api from '../../../../api';
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
@@ -13,8 +13,6 @@ import pick from '../../../../utils/pick';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const AttemptEdit = () => {
-    useAuthenticatedOnly();
-
     const { taskId, attemptId } = useParams();
 
     const { formatMessage } = useIntl();

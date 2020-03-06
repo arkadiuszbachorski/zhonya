@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import { Slide, ToastContainer } from 'react-toastify';
 import MainPage from './views/Public/MainPage/MainPage';
@@ -11,9 +11,7 @@ import LogIn from './views/Guest/LogIn';
 import SignUp from './views/Guest/SignUp';
 import UserData from './views/Authenticated/User/Data/UserData';
 import UserSendDeleteMail from './views/Authenticated/User/SendDeleteMail/UserSendDeleteMail';
-import UserLogout from './views/Authenticated/User/Logout/UserLogout';
 import { useAuthProvider } from './hooks/useAuth';
-import { useRedirectProvider } from './hooks/useRedirect';
 import { useLocaleProvider } from './hooks/useLocale';
 import { StoreContext, storeKeys } from './hooks/useStore';
 import { useThemeProvider } from './hooks/useTheme';
@@ -42,10 +40,11 @@ import UserDashboard from './views/Authenticated/User/Dashboard/UserDashboard';
 import SendVerificationEmail from './views/Authenticated/SendVerificationEmail/SendVerificationEmail';
 import Verify from './views/Authenticated/Verify/Verify';
 import Delete from './views/Authenticated/Delete/Delete';
+import GuestRoute from './middleware/GuestRoute';
+import AuthenticatedRoute from './middleware/AuthenticatedRoute';
 
 const App = () => {
     const auth = useAuthProvider();
-    const redirect = useRedirectProvider();
     const theme = useThemeProvider();
     const [currentLocale, setLocale] = useLocaleProvider();
     const modelTitle = useModelTitleProvider();
@@ -57,7 +56,6 @@ const App = () => {
             <StoreContext.Provider
                 value={{
                     [storeKeys.useAuth]: auth,
-                    [storeKeys.useRedirect]: redirect,
                     [storeKeys.useTheme]: theme,
                     [storeKeys.useLocale]: [currentLocale, setLocale],
                     [storeKeys.useModelTitle]: modelTitle,
@@ -67,36 +65,50 @@ const App = () => {
             >
                 <ToastContainer newestOnTop position="bottom-right" transition={Slide} />
                 <Router>
-                    {redirect.redirectPath && <Redirect to={redirect.redirectPath} />}
                     <Switch>
                         <Route path={routes.index} exact component={MainPage} />
-                        <Route path={routes.logIn} exact component={LogIn} />
-                        <Route path={routes.signUp} exact component={SignUp} />
-                        <Route path={routes.sendVerificationEmail} exact component={SendVerificationEmail} />
-                        <Route path={routes.verify()} exact component={Verify} />
-                        <Route path={routes.delete()} exact component={Delete} />
-                        <Route path={routes.user.dashboard} exact component={UserDashboard} />
-                        <Route path={routes.user.settings} exact component={UserSettings} />
-                        <Route path={routes.user.data} exact component={UserData} />
-                        <Route path={routes.user.delete} exact component={UserSendDeleteMail} />
-                        <Route path={routes.user.logout} exact component={UserLogout} />
-                        <Route path={routes.tag.index} exact component={TagIndex} />
-                        <Route path={routes.tag.create} exact component={TagCreate} />
-                        <Route path={routes.tag.edit()} exact component={TagEdit} />
-                        <Route path={routes.tag.tasks()} exact component={TagTasks} />
-                        <Route path={routes.tag.delete()} exact component={TagDelete} />
-                        <Route path={routes.task.index} exact component={TaskIndex} />
-                        <Route path={routes.task.create} exact component={TaskCreate} />
-                        <Route path={routes.task.edit()} exact component={TaskEdit} />
-                        <Route path={routes.task.tags()} exact component={TaskTags} />
-                        <Route path={routes.task.delete()} exact component={TaskDelete} />
-                        <Route path={routes.attempt.index()} exact component={AttemptIndex} />
-                        <Route path={routes.attempt.create()} exact component={AttemptCreate} />
-                        <Route path={routes.attempt.edit()} exact component={AttemptEdit} />
-                        <Route path={routes.attempt.delete()} exact component={AttemptDelete} />
-                        <Route path={routes.attempt.timer()} exact component={AttemptTimer} />
-                        <Route path={routes.attemptIndependent.index} exact component={AttemptIndependentIndex} />
-                        <Route path={routes.attemptIndependent.create} exact component={AttemptIndependentCreate} />
+                        <GuestRoute path={routes.logIn} exact component={LogIn} />
+                        <GuestRoute path={routes.signUp} exact component={SignUp} />
+                        <AuthenticatedRoute
+                            exact
+                            settings={{ checkIfEmailNotVerified: true, checkIfEmailVerified: false }}
+                            path={routes.sendVerificationEmail}
+                            component={SendVerificationEmail}
+                        />
+                        <AuthenticatedRoute
+                            exact
+                            settings={{ checkIfEmailNotVerified: true, checkIfEmailVerified: false }}
+                            path={routes.verify()}
+                            component={Verify}
+                        />
+                        <AuthenticatedRoute exact path={routes.delete()} component={Delete} />
+                        <AuthenticatedRoute exact path={routes.user.dashboard} component={UserDashboard} />
+                        <AuthenticatedRoute exact path={routes.user.settings} component={UserSettings} />
+                        <AuthenticatedRoute exact path={routes.user.data} component={UserData} />
+                        <AuthenticatedRoute exact path={routes.user.delete} component={UserSendDeleteMail} />
+                        <AuthenticatedRoute exact path={routes.tag.index} component={TagIndex} />
+                        <AuthenticatedRoute exact path={routes.tag.create} component={TagCreate} />
+                        <AuthenticatedRoute exact path={routes.tag.edit()} component={TagEdit} />
+                        <AuthenticatedRoute exact path={routes.tag.tasks()} component={TagTasks} />
+                        <AuthenticatedRoute exact path={routes.tag.delete()} component={TagDelete} />
+                        <AuthenticatedRoute exact path={routes.task.index} component={TaskIndex} />
+                        <AuthenticatedRoute exact path={routes.task.create} component={TaskCreate} />
+                        <AuthenticatedRoute exact path={routes.task.edit()} component={TaskEdit} />
+                        <AuthenticatedRoute exact path={routes.task.tags()} component={TaskTags} />
+                        <AuthenticatedRoute exact path={routes.task.delete()} component={TaskDelete} />
+                        <AuthenticatedRoute exact path={routes.attempt.index()} component={AttemptIndex} />
+                        <AuthenticatedRoute exact path={routes.attempt.create()} component={AttemptCreate} />
+                        <AuthenticatedRoute exact path={routes.attempt.edit()} component={AttemptEdit} />
+                        <AuthenticatedRoute exact path={routes.attempt.delete()} component={AttemptDelete} />
+                        <AuthenticatedRoute exact path={routes.attempt.timer()} component={AttemptTimer} />
+                        <AuthenticatedRoute
+                            path={routes.attemptIndependent.index}
+                            component={AttemptIndependentIndex}
+                        />
+                        <AuthenticatedRoute
+                            path={routes.attemptIndependent.create}
+                            component={AttemptIndependentCreate}
+                        />
                     </Switch>
                 </Router>
             </StoreContext.Provider>

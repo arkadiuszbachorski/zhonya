@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
-import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+
 import api from '../../../../api';
 import routes from '../../../../routes';
 import ButtonCreate from '../../../../components/buttons/ButtonCreate/ButtonCreate';
@@ -27,8 +27,6 @@ const prepareParams = ({ search, active, task, ...rest }, withTasks) => ({
 });
 
 const AttemptIndependentIndex = () => {
-    useAuthenticatedOnly();
-
     const [debouncedFilters, filters, handleChange] = useDebouncedForm({
         search: '',
         task: '',

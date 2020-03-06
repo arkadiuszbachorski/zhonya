@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import MainTemplate from '../../components/MainTemplate/MainTemplate';
 import Input from '../../components/forms/Input/Input';
 import FormInCard from '../../components/forms/FormInCard/FormInCard';
@@ -6,31 +7,32 @@ import Container from '../../components/Container/Container';
 import useForm from '../../hooks/useForm';
 import api from '../../api';
 import useAuth from '../../hooks/useAuth';
-import useGuestOnly from '../../hooks/useGuestOnly';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import routes from '../../routes';
 
 const SignUp = () => {
-    useGuestOnly();
-
     const [form, handleChange] = useForm({
         email: '',
         password: '',
         password_confirmation: '',
     });
 
-    const [, setAuth] = useAuth();
+    const history = useHistory();
+
+    const auth = useAuth();
 
     const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
 
     const handleSubmit = () => {
         instance.post(api.auth.signIn, form).then(response => {
             const { data } = response;
-            setAuth({
+            auth.setData({
                 token: data.access_token,
                 scope: data.scope,
                 verified: data.verified,
                 rememberMe: true,
             });
+            history.push(routes.sendVerificationEmail);
         });
     };
 

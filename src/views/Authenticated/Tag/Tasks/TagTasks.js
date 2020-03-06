@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router';
 import { toast } from 'react-toastify';
-import useAuthenticatedOnly from '../../../../hooks/useAuthenticatedOnly';
+
 import useForm from '../../../../hooks/useForm';
 import api from '../../../../api';
 import TagPanelTemplate from '../TagPanelTemplate';
@@ -14,8 +14,6 @@ import DeleteList from '../../../../components/DeleteList/DeleteList';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 
 const TagTasks = () => {
-    useAuthenticatedOnly();
-
     const { tagId } = useParams();
 
     const { formatMessage } = useIntl();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { FormattedMessage, useIntl } from 'react-intl';
-import useAuthenticatedOnly from '../../../hooks/useAuthenticatedOnly';
+
 import Container from '../../../components/Container/Container';
 import FormInCard from '../../../components/forms/FormInCard/FormInCard';
 import useInstanceWithToastsAndLoading from '../../../hooks/api/useInstanceWithToastsAndLoading';
@@ -9,10 +9,6 @@ import PanelTemplate from '../../../components/PanelTemplate/PanelTemplate';
 import api from '../../../api';
 
 const SendVerificationEmail = () => {
-    useAuthenticatedOnly({
-        checkIfEmailNotVerified: true,
-    });
-
     const { formatMessage } = useIntl();
 
     const [instance, loading] = useInstanceWithToastsAndLoading();

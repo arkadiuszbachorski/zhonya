@@ -5,12 +5,12 @@ import useAuth, { useAuthProvider } from '../useAuth';
 import { StoreContext, storeKeys } from '../useStore';
 
 const Changer = () => {
-    const [auth, setAuth] = useAuth();
+    const { data, setData } = useAuth();
     return (
         <>
-            <h1>Token: {auth.token || 'null'}</h1>
-            <h1>Scope: {auth.scope || 'null'}</h1>
-            <button id="button" type="button" onClick={() => setAuth({ token: 'topSecret', scope: 'user' })}>
+            <h1>Token: {data.token || 'null'}</h1>
+            <h1>Scope: {data.scope || 'null'}</h1>
+            <button id="button" type="button" onClick={() => setData({ token: 'topSecret', scope: 'user' })}>
                 Auth setter
             </button>
         </>
