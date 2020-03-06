@@ -4,14 +4,21 @@ import { Redirect, Route } from 'react-router';
 import routes from '../routes';
 import useAuth from '../hooks/useAuth';
 
-const GuestRoute = ({ path, component: Component }) => {
+const GuestRoute = ({ component: Component, ...rest }) => {
     const auth = useAuth();
 
-    if (auth.isAuthenticated()) {
-        return <Redirect to={routes.user.dashboard} />;
-    }
+    return (
+        <Route
+            {...rest}
+            render={() => {
+                if (auth.isAuthenticated()) {
+                    return <Redirect to={routes.user.dashboard} />;
+                }
 
-    return <Route path={path} exact component={Component} />;
+                return <Component />;
+            }}
+        />
+    );
 };
 
 GuestRoute.propTypes = {
