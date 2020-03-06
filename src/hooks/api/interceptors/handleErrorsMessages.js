@@ -19,7 +19,7 @@ export default (instance, formatMessage, history, userMessages = null) => {
             return response;
         },
         error => {
-            function handleMessage(message, redirect = false) {
+            function handleMessage(message, redirectPath) {
                 if (message === null) {
                     return;
                 }
@@ -28,8 +28,8 @@ export default (instance, formatMessage, history, userMessages = null) => {
                 }
 
                 toast.error(formatMessage({ id: message }));
-                if (redirect && messages.redirectPath) {
-                    history.push(messages.redirectPath);
+                if (redirectPath) {
+                    history.push(redirectPath);
                 }
             }
 
@@ -38,9 +38,9 @@ export default (instance, formatMessage, history, userMessages = null) => {
                 if (status === 422) {
                     handleMessage(messages.validation);
                 } else if (status === 404) {
-                    handleMessage(messages.notFound, true);
+                    handleMessage(messages.notFound, messages.redirectPath);
                 } else if (status === 401) {
-                    handleMessage(messages.unauthorized, true);
+                    handleMessage(messages.unauthorized, messages.redirectPath);
                 } else if (status === 403) {
                     handleMessage(messages.forbidden);
                 } else if (status >= 400 && status < 500) {
