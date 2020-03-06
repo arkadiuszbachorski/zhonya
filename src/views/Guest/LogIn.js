@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import MainTemplate from '../../components/MainTemplate/MainTemplate';
 import Input from '../../components/forms/Input/Input';
 import FormInCard from '../../components/forms/FormInCard/FormInCard';
@@ -9,6 +9,7 @@ import api from '../../api';
 import useAuth from '../../hooks/useAuth';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import Checkbox from '../../components/forms/Checkbox/Checkbox';
+import routes from '../../routes';
 
 const LogIn = () => {
     const [form, handleChange] = useForm({
@@ -17,6 +18,8 @@ const LogIn = () => {
     });
 
     const history = useHistory();
+
+    const location = useLocation();
 
     const [rememberMe, setRememberMe] = useState(false);
 
@@ -27,6 +30,7 @@ const LogIn = () => {
     });
 
     const handleSubmit = () => {
+        const { from } = location.state || { from: { pathname: routes.user.dashboard } };
         instance.post(api.auth.logIn, form).then(response => {
             const { data } = response;
             auth.setData(
@@ -38,7 +42,7 @@ const LogIn = () => {
                 },
                 data.verified ? rememberMe : true,
             );
-            history.push(lastAborted);
+            history.replace(from);
         });
     };
 

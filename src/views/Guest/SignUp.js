@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import MainTemplate from '../../components/MainTemplate/MainTemplate';
 import Input from '../../components/forms/Input/Input';
 import FormInCard from '../../components/forms/FormInCard/FormInCard';
@@ -7,6 +8,7 @@ import useForm from '../../hooks/useForm';
 import api from '../../api';
 import useAuth from '../../hooks/useAuth';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import routes from '../../routes';
 
 const SignUp = () => {
     const [form, handleChange] = useForm({
@@ -14,6 +16,8 @@ const SignUp = () => {
         password: '',
         password_confirmation: '',
     });
+
+    const history = useHistory();
 
     const auth = useAuth();
 
@@ -28,6 +32,7 @@ const SignUp = () => {
                 verified: data.verified,
                 rememberMe: true,
             });
+            history.push(routes.sendVerificationEmail);
         });
     };
 

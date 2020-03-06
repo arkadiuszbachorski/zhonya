@@ -28,28 +28,24 @@ const Verify = () => {
 
     useCancellableEffect(
         () => {
-            if (!auth.isVerified()) {
-                instance
-                    .post(api.auth.verify, {
-                        verification_token: token,
-                    })
-                    .then(() => {
-                        if (!auth.rememberMe) {
-                            localStorage.removeItem(storeKeys.useAuth);
-                        }
-                        toast.success(formatMessage({ id: 'toast.success.verified' }));
-                        auth.setVerified(true, auth.data.rememberMe);
-                        history.push(routes.user.dashboard);
-                    })
-                    .catch(error => {
-                        if (error.message !== cancelMessage) {
-                            toast.error(formatMessage({ id: 'toast.error.verified' }));
-                            history.push(routes.sendVerificationEmail);
-                        }
-                    });
-            } else {
-                history.push(routes.user.dashboard);
-            }
+            instance
+                .post(api.auth.verify, {
+                    verification_token: token,
+                })
+                .then(() => {
+                    if (!auth.rememberMe) {
+                        localStorage.removeItem(storeKeys.useAuth);
+                    }
+                    toast.success(formatMessage({ id: 'toast.success.verified' }));
+                    auth.setVerified(true, auth.data.rememberMe);
+                    history.push(routes.user.dashboard);
+                })
+                .catch(error => {
+                    if (error.message !== cancelMessage) {
+                        toast.error(formatMessage({ id: 'toast.error.verified' }));
+                        history.push(routes.sendVerificationEmail);
+                    }
+                });
         },
         [],
         cancel,

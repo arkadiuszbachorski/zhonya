@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router';
 import { useIntl } from 'react-intl';
-
 import api from '../../../../api';
 import routes from '../../../../routes';
 import ButtonCreate from '../../../../components/buttons/ButtonCreate/ButtonCreate';

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { faCheckSquare, faClock, faList, faPlus, faTag } from '@fortawesome/free-solid-svg-icons';
 import { FormattedMessage } from 'react-intl';
 import Container from '../../../../components/Container/Container';
-
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import routes from '../../../../routes';
 import styles from './UserDashboard.module.scss';
