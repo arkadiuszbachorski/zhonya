@@ -21,7 +21,9 @@ const Delete = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, , cancel] = useInstanceWithToastsAndLoading();
+    const [instance, , cancel] = useInstanceWithToastsAndLoading({
+        unauthorized: 'toast.error.delete',
+    });
 
     const { token } = useParams();
 
@@ -37,7 +39,6 @@ const Delete = () => {
                 })
                 .catch(error => {
                     if (error.message !== cancelMessage) {
-                        toast.error(formatMessage({ id: 'toast.error.delete' }));
                         history.push(routes.user.delete);
                     }
                 });
