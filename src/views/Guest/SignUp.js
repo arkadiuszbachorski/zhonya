@@ -32,7 +32,7 @@ const SignUp = () => {
                 verified: data.verified,
                 rememberMe: true,
             });
-            history.push(routes.sendVerificationEmail);
+            history.push(routes.user.sendVerificationEmail);
         });
     };
 

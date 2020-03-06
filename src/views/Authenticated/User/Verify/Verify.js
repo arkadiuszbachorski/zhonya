@@ -21,7 +21,9 @@ const Verify = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, , cancel] = useInstanceWithToastsAndLoading();
+    const [instance, , cancel] = useInstanceWithToastsAndLoading({
+        unauthorized: 'toast.error.verified',
+    });
 
     const { token } = useParams();
 
@@ -41,8 +43,7 @@ const Verify = () => {
                 })
                 .catch(error => {
                     if (error.message !== cancelMessage) {
-                        toast.error(formatMessage({ id: 'toast.error.verified' }));
-                        history.push(routes.sendVerificationEmail);
+                        history.push(routes.user.sendVerificationEmail);
                     }
                 });
         },
