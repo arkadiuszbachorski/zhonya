@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
 import { useMemo, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router';
 import handleErrorsMessages from './interceptors/handleErrorsMessages';
 import handleLoading from './interceptors/handleLoading';
 import useAuth from '../useAuth';
@@ -13,10 +14,11 @@ const useInstanceWithToastsAndLoading = (userMessages = null) => {
     const [loading, setLoading] = useState(false);
     const auth = useAuth();
     const [cancel, cancelToken] = useCancelToken();
+    const history = useHistory();
 
     const instance = useMemo(() => {
         const inst = axios.create();
-        handleErrorsMessages(inst, formatMessage, userMessages);
+        handleErrorsMessages(inst, formatMessage, history, userMessages);
         handleLoading(inst, setLoading);
         addBearerToken(inst, auth.data.token);
         addCancelToken(inst, cancelToken);

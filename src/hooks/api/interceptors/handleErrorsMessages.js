@@ -9,21 +9,28 @@ const defualtMessages = {
     code: 'toast.error.code',
     server: 'toast.error.server',
     client: 'toast.error.client',
+    redirectPath: null,
 };
 
-export default (instance, formatMessage, userMessages = null) => {
+export default (instance, formatMessage, history, userMessages = null) => {
     const messages = userMessages ? { ...defualtMessages, ...userMessages } : defualtMessages;
     instance.interceptors.response.use(
         response => {
             return response;
         },
         error => {
-            function handleMessage(message) {
+            function handleMessage(message, redirect = false) {
+                if (message === null) {
+                    return;
+                }
                 if (typeof message === 'function') {
                     message(error);
                 }
 
                 toast.error(formatMessage({ id: message }));
+                if (redirect && messages.redirectPath) {
+                    history.push(messages.redirectPath);
+                }
             }
 
             if (error.response) {
@@ -31,9 +38,9 @@ export default (instance, formatMessage, userMessages = null) => {
                 if (status === 422) {
                     handleMessage(messages.validation);
                 } else if (status === 404) {
-                    handleMessage(messages.notFound);
+                    handleMessage(messages.notFound, true);
                 } else if (status === 401) {
-                    handleMessage(messages.unauthorized);
+                    handleMessage(messages.unauthorized, true);
                 } else if (status === 403) {
                     handleMessage(messages.forbidden);
                 } else if (status >= 400 && status < 500) {
