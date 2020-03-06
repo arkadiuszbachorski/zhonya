@@ -49,4 +49,11 @@ describe('Hook - useStateWithLocalStorage', () => {
         expect(result.current[0]).toBe('dolor');
         expect(localStorage.getItem('lorem')).toBeNull();
     });
+
+    it('handles undefined in localStorage', () => {
+        localStorage.setItem('dolor', undefined);
+        const { result } = renderHook(() => useStateWithLocalStorage('dolor', 'amet'));
+
+        expect(result.current[0]).toBe('amet');
+    });
 });

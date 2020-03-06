@@ -6,8 +6,9 @@ import { useState } from 'react';
 
 const useStateWithLocalStorage = (key, initial) => {
     const [state, setState] = useState(() => {
-        const item = JSON.parse(localStorage.getItem(key));
-        if (item) return item;
+        const item = localStorage.getItem(key);
+        const parsed = item !== 'undefined' ? JSON.parse(item) : undefined;
+        if (parsed) return parsed;
         if (typeof initial === 'function') return initial();
         return initial;
     });
