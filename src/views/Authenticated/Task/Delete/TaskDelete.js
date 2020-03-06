@@ -5,7 +5,6 @@ import { useHistory, useParams } from 'react-router';
 import Container from '../../../../components/Container/Container';
 import FormWithCard from '../../../../components/forms/FormWithCard/FormWithCard';
 import api from '../../../../api';
-
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import TaskPanelTemplate from '../TaskPanelTemplate';
 
@@ -16,7 +15,9 @@ const TaskDelete = () => {
 
     const history = useHistory();
 
-    const [instance, loading] = useInstanceWithToastsAndLoading();
+    const [instance, loading] = useInstanceWithToastsAndLoading({
+        redirectPath: routes.task.index,
+    });
 
     const { formatMessage } = useIntl();
 

@@ -19,7 +19,9 @@ const AttemptCreate = () => {
 
     const history = useHistory();
 
-    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading({
+        redirectPath: routes.task.index,
+    });
 
     const [form, handleChange] = useForm({
         description: '',

@@ -12,13 +12,16 @@ import TagPanelTemplate from '../TagPanelTemplate';
 import nullToEmptyString from '../../../../utils/nullToEmptyString';
 import useModelTitle from '../../../../hooks/useModelTitle';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
+import routes from '../../../../routes';
 
 const TagEdit = () => {
     const { tagId } = useParams();
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading, errors, cancel] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, errors, cancel] = useInstanceWithErrorsAndToastsAndLoading({
+        redirectPath: routes.tag.index,
+    });
 
     const [form, handleChange, , setForm] = useForm({
         name: '',

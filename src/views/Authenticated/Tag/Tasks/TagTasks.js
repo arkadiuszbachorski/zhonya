@@ -12,13 +12,16 @@ import Container from '../../../../components/Container/Container';
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import DeleteList from '../../../../components/DeleteList/DeleteList';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
+import routes from '../../../../routes';
 
 const TagTasks = () => {
     const { tagId } = useParams();
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading, errors, cancel] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, errors, cancel] = useInstanceWithErrorsAndToastsAndLoading({
+        redirectPath: routes.tag.index,
+    });
 
     const [form, handleChange, , setForm] = useForm({
         task: '',

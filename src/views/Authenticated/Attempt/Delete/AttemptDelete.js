@@ -5,9 +5,7 @@ import { useHistory, useParams } from 'react-router';
 import Container from '../../../../components/Container/Container';
 import FormWithCard from '../../../../components/forms/FormWithCard/FormWithCard';
 import api from '../../../../api';
-
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
-
 import routes from '../../../../routes';
 import AttemptPanelTemplate from '../AttemptPanelTemplate';
 
@@ -16,7 +14,9 @@ const AttemptDelete = () => {
 
     const history = useHistory();
 
-    const [instance, loading] = useInstanceWithToastsAndLoading();
+    const [instance, loading] = useInstanceWithToastsAndLoading({
+        redirectPath: routes.attempt.index(taskId),
+    });
 
     const { formatMessage } = useIntl();
 

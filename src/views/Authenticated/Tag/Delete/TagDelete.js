@@ -16,7 +16,9 @@ const TagDelete = () => {
 
     const history = useHistory();
 
-    const [instance, loading] = useInstanceWithToastsAndLoading();
+    const [instance, loading] = useInstanceWithToastsAndLoading({
+        redirectPath: routes.tag.index,
+    });
 
     const { formatMessage } = useIntl();
 

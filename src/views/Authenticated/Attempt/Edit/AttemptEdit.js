@@ -11,13 +11,16 @@ import AttemptPanelTemplate from '../AttemptPanelTemplate';
 import nullToEmptyString from '../../../../utils/nullToEmptyString';
 import pick from '../../../../utils/pick';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
+import routes from '../../../../routes';
 
 const AttemptEdit = () => {
     const { taskId, attemptId } = useParams();
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading, errors, cancel] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, errors, cancel] = useInstanceWithErrorsAndToastsAndLoading({
+        redirectPath: routes.attempt.index(taskId),
+    });
 
     const [form, handleChange, , setForm] = useForm({
         description: '',
