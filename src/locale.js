@@ -111,9 +111,9 @@ export default {
         'toast.error.verified': 'Nastąpił problem podczas weryfikacji',
         'toast.error.validation': 'Sprawdź błędy i wyślij ponownie',
         'toast.error.notFound': 'Nie znaleziono takiego adresu lub zasobu',
-        'toast.error.unauthorized': 'Musisz być zalogowanym',
-        'toast.error.unverified': 'Musisz być zweryfikować swoje konto',
-        'toast.error.forbidden': 'Nie masz uprawnień',
+        'toast.error.unauthorized': 'Musisz się zalogować',
+        'toast.error.unverified': 'Musisz zweryfikować swoje konto',
+        'toast.error.forbidden': 'Nie masz uprawnień by wykonać tę akcję',
         'toast.error.code': 'Wystąpił nieznany błąd. Spróbuj ponownie lub skontaktuj się z administratorem',
         'toast.error.server': 'Wystąpił błąd po stronie serwera. Spróbuj ponownie później',
         'toast.error.client':
