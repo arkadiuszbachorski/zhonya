@@ -30,7 +30,7 @@ Button.propTypes = {
     to: PropTypes.string,
     type: PropTypes.oneOf(['button', 'submit']),
     round: PropTypes.bool,
-    size: PropTypes.oneOf(['small', 'large', null]),
+    size: PropTypes.oneOf(['xsmall', 'small', 'large', null]),
     children: PropTypes.node,
     variant: PropTypes.oneOf(['primary', 'blank', 'danger', 'success', 'accent', 'primaryLight', 'facebook']),
     className: PropTypes.string,
