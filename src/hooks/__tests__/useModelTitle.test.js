@@ -23,7 +23,7 @@ const Changer = () => {
 
 const SimulatedApp = () => {
     const auth = useAuthProvider();
-    const [currentLocale, setLocale] = useLocaleProvider();
+    const { locale: currentLocale, setLocale } = useLocaleProvider();
     const modelTitle = useModelTitleProvider();
 
     return (

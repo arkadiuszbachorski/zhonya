@@ -20,12 +20,12 @@ const Display = ({ localeToSet }) => {
 
 // eslint-disable-next-line react/prop-types
 const SimulatedApp = ({ localeToSet }) => {
-    const [locale, setLocale] = useLocaleProvider();
+    const locale = useLocaleProvider();
 
     return (
         <StoreContext.Provider
             value={{
-                [storeKeys.useLocale]: [locale, setLocale],
+                [storeKeys.useLocale]: locale,
             }}
         >
             <Display localeToSet={localeToSet} />
