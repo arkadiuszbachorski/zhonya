@@ -41,7 +41,7 @@ const AttemptPanelTemplate = ({ children, actionButton }) => {
             secondaryTitleId="model.attempt.singular"
             titleId={name ? null : 'model.attempt.singular'}
             sideMenuItems={sideMenuItems}
-            actionButton={actionButton || <ButtonBack link to={routes.attempt.index(taskId)} />}
+            actionButton={actionButton || <ButtonBack to={routes.attempt.index(taskId)} />}
         >
             {children}
         </PanelTemplate>

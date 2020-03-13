@@ -22,7 +22,6 @@ const CardDashboard = ({ icon, titleId, buttons, children }) => {
                         <ButtonRoundIcon
                             key={item.to}
                             icon={item.icon}
-                            link
                             size="small"
                             to={item.to}
                             title={formatMessage({ id: item.titleId })}

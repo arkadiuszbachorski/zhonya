@@ -58,7 +58,6 @@ const AttemptIndex = () => {
         <TaskPanelTemplate
             actionButton={
                 <ButtonCreate
-                    link
                     to={routes.attempt.create(taskId)}
                     title={formatMessage({ id: 'action.attempt.create' })}
                 />

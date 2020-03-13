@@ -28,7 +28,7 @@ const MainPage = () => {
                     <FormattedMessage id="main.jumbotron.first" /> <br />
                     <FormattedMessage id="main.jumbotron.second" />
                 </Jumbotron.Title>
-                <Jumbotron.Action link to={routes.signUp} variant="primaryLight">
+                <Jumbotron.Action to={routes.signUp} variant="primaryLight">
                     <FormattedMessage id="main.jumbotron.button" />
                 </Jumbotron.Action>
             </Jumbotron>

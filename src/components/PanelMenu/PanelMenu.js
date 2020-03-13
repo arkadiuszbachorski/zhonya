@@ -43,7 +43,6 @@ const PanelMenu = () => {
                 <div className={cn(styles.buttonsWrapper, styles.bottomButtons)}>
                     <ButtonRoundIcon
                         icon={faUser}
-                        link
                         to={routes.user.dashboard}
                         title={formatMessage({ id: 'action.settings' })}
                     />

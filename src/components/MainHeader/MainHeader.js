@@ -26,7 +26,7 @@ const MainHeader = ({ animate }) => {
                 {auth.isAuthenticated() ? (
                     <>
                         <li>
-                            <Button link to={routes.user.dashboard} variant="primaryLight">
+                            <Button to={routes.user.dashboard} variant="primaryLight">
                                 <FormattedMessage id="action.dashboard" />
                             </Button>
                         </li>
