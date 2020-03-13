@@ -43,6 +43,7 @@ import UserDelete from './views/Authenticated/User/Delete/Delete';
 import GuestRoute from './middleware/GuestRoute';
 import AuthenticatedRoute from './middleware/AuthenticatedRoute';
 import ForgotPassword from './views/Guest/ForgotPassword';
+import FallbackRoute from './middleware/FallbackRoute';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -113,6 +114,7 @@ const App = () => {
                             path={routes.attemptIndependent.create}
                             component={AttemptIndependentCreate}
                         />
+                        <FallbackRoute />
                     </Switch>
                 </Router>
             </StoreContext.Provider>
