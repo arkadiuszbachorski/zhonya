@@ -30,7 +30,7 @@ const UserDashboard = () => {
         attempts: [],
     });
 
-    const [quote] = useRandomArrayElement(quotes[locale]);
+    const quote = useRandomArrayElement(quotes[locale]);
 
     useCancellableEffect(
         () => {
