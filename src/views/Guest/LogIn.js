@@ -12,6 +12,7 @@ import useAuth from '../../hooks/useAuth';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import Checkbox from '../../components/forms/Checkbox/Checkbox';
 import routes from '../../routes';
+import ButtonSocial from '../../components/buttons/ButtonSocial/ButtonSocial';
 
 const LogIn = () => {
     const [form, handleChange] = useForm({
@@ -52,6 +53,7 @@ const LogIn = () => {
         <MainTemplate>
             <Container variant={['center', 'smallItems', 'marginTopLarge']}>
                 <FormInCard buttonMessageId="logIn" onSubmit={handleSubmit} loading={loading}>
+                    <ButtonSocial variant="facebook" messageId="logIn.facebook" />
                     <Input
                         labelId="input.email"
                         name="email"
