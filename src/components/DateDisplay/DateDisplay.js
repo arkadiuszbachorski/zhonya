@@ -6,8 +6,8 @@ import useDatePreference, { availableDatePreferences } from '../../hooks/useDate
 
 const DateDisplay = ({ date, preference }) => {
     const tzDate = new Date(`${date} UTC`);
-    const [savedPreference] = useDatePreference();
-    const finalPreference = preference || savedPreference;
+    const { datePreference } = useDatePreference();
+    const finalPreference = preference || datePreference;
     const { formatDate } = useIntl();
     const long = formatDate(tzDate, {
         day: 'numeric',

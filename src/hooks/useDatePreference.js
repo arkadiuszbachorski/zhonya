@@ -14,7 +14,7 @@ export const useDatePreferenceProvider = () => {
         setDatePreference(preference);
     };
 
-    return [datePreference, setAndCheckTimePreference];
+    return { datePreference, setDatePreference: setAndCheckTimePreference };
 };
 
 const useDatePreference = () => useStore(storeKeys.useDatePreference);
