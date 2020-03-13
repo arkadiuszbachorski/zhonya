@@ -76,6 +76,11 @@
   color: var(--secondary-font);
 }
 
+.facebook {
+  background-color: $facebook;
+  color: var(--light);
+}
+
 
 @include media-breakpoint-down(xs) {
   .button {
