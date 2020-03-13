@@ -1,9 +1,5 @@
 import { useState } from 'react';
 
-/*
- * To be used only once in the highest component, near AuthContext.Provider
- * */
-
 const useStateWithLocalStorage = (key, initial) => {
     const [state, setState] = useState(() => {
         const item = localStorage.getItem(key);
