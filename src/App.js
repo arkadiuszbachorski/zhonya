@@ -104,10 +104,12 @@ const App = () => {
                         <AuthenticatedRoute exact path={routes.attempt.delete()} component={AttemptDelete} />
                         <AuthenticatedRoute exact path={routes.attempt.timer()} component={AttemptTimer} />
                         <AuthenticatedRoute
+                            exact
                             path={routes.attemptIndependent.index}
                             component={AttemptIndependentIndex}
                         />
                         <AuthenticatedRoute
+                            exact
                             path={routes.attemptIndependent.create}
                             component={AttemptIndependentCreate}
                         />
