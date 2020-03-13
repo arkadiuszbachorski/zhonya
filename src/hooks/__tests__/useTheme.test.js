@@ -5,7 +5,7 @@ import { StoreContext, storeKeys } from '../useStore';
 import useTheme, { useThemeProvider } from '../useTheme';
 
 const Changer = () => {
-    const [, setTheme] = useTheme();
+    const { setTheme } = useTheme();
     return (
         <>
             <button id="button" type="button" onClick={() => setTheme('dark')}>

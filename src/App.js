@@ -47,7 +47,7 @@ import ForgotPassword from './views/Guest/ForgotPassword';
 const App = () => {
     const auth = useAuthProvider();
     const theme = useThemeProvider();
-    const [currentLocale, setLocale] = useLocaleProvider();
+    const { locale: currentLocale, setLocale } = useLocaleProvider();
     const modelTitle = useModelTitleProvider();
     const timePreference = useTimePreferenceProvider();
     const datePreference = useDatePreferenceProvider();
@@ -58,7 +58,7 @@ const App = () => {
                 value={{
                     [storeKeys.useAuth]: auth,
                     [storeKeys.useTheme]: theme,
-                    [storeKeys.useLocale]: [currentLocale, setLocale],
+                    [storeKeys.useLocale]: { locale: currentLocale, setLocale },
                     [storeKeys.useModelTitle]: modelTitle,
                     [storeKeys.useTimePreference]: timePreference,
                     [storeKeys.useDatePreference]: datePreference,

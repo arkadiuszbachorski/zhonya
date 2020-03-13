@@ -14,7 +14,7 @@ export const useTimePreferenceProvider = () => {
         setTimePreference(preference);
     };
 
-    return [timePreference, setAndCheckTimePreference];
+    return { timePreference, setTimePreference: setAndCheckTimePreference };
 };
 
 const useTimePreference = () => useStore(storeKeys.useTimePreference);

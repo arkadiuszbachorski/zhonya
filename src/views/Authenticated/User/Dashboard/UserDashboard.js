@@ -20,7 +20,7 @@ import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 import LoadingOverlay from '../../../../components/loading/LoadingOverlay/LoadingOverlay';
 
 const UserDashboard = () => {
-    const [currentLocale] = useLocaleProvider();
+    const { locale } = useLocaleProvider();
 
     const [instance, loading, , cancel] = useInstanceWithErrorsAndToastsAndLoading();
 
@@ -30,7 +30,7 @@ const UserDashboard = () => {
         attempts: [],
     });
 
-    const [quote] = useRandomArrayElement(quotes[currentLocale]);
+    const quote = useRandomArrayElement(quotes[locale]);
 
     useCancellableEffect(
         () => {

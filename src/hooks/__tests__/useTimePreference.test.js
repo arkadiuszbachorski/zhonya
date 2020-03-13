@@ -1,12 +1,12 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import { renderHook } from '@testing-library/react-hooks';
 import useTimePreference, { useTimePreferenceProvider } from '../useTimePreference';
 import { StoreContext, storeKeys } from '../useStore';
-import { renderHook } from '@testing-library/react-hooks';
 
 const Changer = ({ preference }) => {
-    const [timePreference, setTimePreference] = useTimePreference();
+    const { timePreference, setTimePreference } = useTimePreference();
     return (
         <>
             <h1>Preference: {timePreference || 'null'}</h1>
@@ -18,12 +18,12 @@ const Changer = ({ preference }) => {
 };
 
 const SimulatedApp = ({ preference }) => {
-    const auth = useTimePreferenceProvider();
+    const timePreference = useTimePreferenceProvider();
 
     return (
         <StoreContext.Provider
             value={{
-                [storeKeys.useTimePreference]: auth,
+                [storeKeys.useTimePreference]: timePreference,
             }}
         >
             <Changer preference={preference} />

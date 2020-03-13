@@ -8,7 +8,7 @@ import useLocale from '../../../../hooks/useLocale';
 const availableLocales = Object.keys(locale);
 
 const ChangeLocaleForm = () => {
-    const [currentLocale, setLocale] = useLocale();
+    const { locale: currentLocale, setLocale } = useLocale();
     return (
         <Container variant={['center', 'marginTopLarge']}>
             <FormWithCard buttonSwitch={false} loading={false} variant="edit" titleId="user.settings.locale.title">

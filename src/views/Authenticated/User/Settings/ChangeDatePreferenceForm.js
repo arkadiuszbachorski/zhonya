@@ -10,7 +10,7 @@ const date = new Date();
 date.setMinutes(date.getMinutes() - 5);
 
 const ChangeDatePreferenceForm = () => {
-    const [datePreference, setDatePreference] = useDatePreference();
+    const { datePreference, setDatePreference } = useDatePreference();
     return (
         <Container variant={['center', 'marginTopLarge']}>
             <FormWithCard

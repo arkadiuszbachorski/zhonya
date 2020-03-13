@@ -23,7 +23,10 @@ export const useLocaleProvider = () => {
         setLocale(availableLocale([value]));
     };
 
-    return [locale, checkIfAvailableAndSetLocale];
+    return {
+        locale,
+        setLocale: checkIfAvailableAndSetLocale,
+    };
 };
 
 const useLocale = () => useStore(storeKeys.useLocale);
