@@ -9,7 +9,7 @@ import Time from '../../../../components/Time/Time';
 const equalTime = 3 * (60 * 60 * 24) + 22 * (60 * 60) + 3 * 60 + 9;
 
 const ChangeTimePreferenceForm = () => {
-    const [timePreference, setTimePreference] = useTimePreference();
+    const { timePreference, setTimePreference } = useTimePreference();
 
     return (
         <Container variant={['center', 'marginTopLarge']}>

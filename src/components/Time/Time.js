@@ -6,7 +6,7 @@ import styles from './Time.module.scss';
 import useTimePreference, { availableTimePreferences } from '../../hooks/useTimePreference';
 
 const Time = ({ time, timePreference, cutMeaninglessData }) => {
-    const [savedTimePreference] = useTimePreference();
+    const {timePreference: savedTimePreference} = useTimePreference();
     const finalTimePreference = timePreference || savedTimePreference;
     const { days, hours, seconds, minutes } = secondsToTime(time, finalTimePreference === 'short');
 
