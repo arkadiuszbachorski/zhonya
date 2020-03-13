@@ -1,0 +1,19 @@
+@import '../../../scss/package';
+
+.button {
+  min-width: 1.5rem;
+  margin-top: .8rem;
+  transition: transform .3s, opacity .3s;
+  opacity: 0;
+  transform: scale(.8);
+  transform-origin: 50% 50%;
+
+  &.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @include media-breakpoint-down(xs) {
+    margin-top: 0;
+  }
+}
