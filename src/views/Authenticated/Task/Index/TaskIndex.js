@@ -63,9 +63,7 @@ const TaskIndex = () => {
     return (
         <PanelTemplate
             titleId="model.task.plural"
-            actionButton={
-                <ButtonCreate link to={routes.task.create} title={formatMessage({ id: 'action.task.create' })} />
-            }
+            actionButton={<ButtonCreate to={routes.task.create} title={formatMessage({ id: 'action.task.create' })} />}
         >
             <Container variant={['marginBottom', 'filters']}>
                 <Input

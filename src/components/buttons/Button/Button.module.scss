@@ -20,6 +20,11 @@
   }
 }
 
+.small {
+  font-size: .8rem;
+  padding: .5rem 0;
+}
+
 
 .large {
   font-size: 1.6rem;
@@ -74,6 +79,11 @@
 .accent {
   background-color: var(--accent);
   color: var(--secondary-font);
+}
+
+.facebook {
+  background-color: $facebook;
+  color: var(--light);
 }
 
 

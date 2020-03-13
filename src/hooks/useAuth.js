@@ -27,6 +27,18 @@ export const useAuthProvider = () => {
         setData(defaultAuthData);
     };
 
+    const logIn = (loginData, rememberMe) => {
+        setData(
+            {
+                token: loginData.access_token,
+                scope: loginData.scope,
+                verified: loginData.verified,
+                rememberMe: loginData.verified ? rememberMe : false,
+            },
+            loginData.verified ? rememberMe : true,
+        );
+    };
+
     const setVerified = (verified, saveInStorage = true) => {
         setData(
             oldData => ({
@@ -37,7 +49,7 @@ export const useAuthProvider = () => {
         );
     };
 
-    return { data, setData, isAuthenticated, hasScope, logOut, isVerified, setVerified };
+    return { data, setData, isAuthenticated, hasScope, logOut, isVerified, setVerified, logIn };
 };
 
 const useAuth = () => useStore(storeKeys.useAuth);

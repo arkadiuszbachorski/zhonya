@@ -9,7 +9,9 @@ export default {
     },
     auth: {
         logIn: `${url}/auth/login`,
+        logInFacebook: `${url}/auth/login/facebook`,
         signIn: `${url}/auth/register`,
+        signInFacebook: `${url}/auth/register/facebook`,
         forgotPassword: `${url}/auth/reset`,
         send: `${url}/auth/send`,
         verify: `${url}/auth/verify`,

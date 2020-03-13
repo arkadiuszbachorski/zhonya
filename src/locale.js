@@ -3,7 +3,9 @@ export const defaultLocale = 'en';
 export default {
     pl: {
         logIn: 'Zaloguj się',
+        'logIn.facebook': 'Zaloguj się przez Facebook',
         signUp: 'Zarejestruj się',
+        'signUp.facebook': 'Zarejestruj się przez Facebook',
         deleteConfirmation: 'Jesteś pewny?',
         actionCannotBeUndone: 'Ta akcja nie może zostać cofnięta',
         notFound: 'Nie znaleziono',
@@ -210,7 +212,9 @@ export default {
     },
     en: {
         logIn: 'Log In',
+        'logIn.facebook': 'Log In with Facebook',
         signUp: 'Sign Up',
+        'signUp.facebook': 'Sign Up with Facebook',
         deleteConfirmation: 'Are you sure?',
         actionCannotBeUndone: 'This action cannot be undone',
         notFound: 'Not found',

@@ -44,9 +44,7 @@ const TagIndex = () => {
     return (
         <PanelTemplate
             titleId="model.tag.plural"
-            actionButton={
-                <ButtonCreate link to={routes.tag.create} title={formatMessage({ id: 'action.tag.create' })} />
-            }
+            actionButton={<ButtonCreate to={routes.tag.create} title={formatMessage({ id: 'action.tag.create' })} />}
         >
             <Container variant={['marginBottom', 'filters']}>
                 <Input

@@ -64,7 +64,6 @@ const AttemptIndependentIndex = () => {
             titleId="model.attempt.plural"
             actionButton={
                 <ButtonCreate
-                    link
                     to={routes.attemptIndependent.create}
                     title={formatMessage({ id: 'action.attempt.create' })}
                 />

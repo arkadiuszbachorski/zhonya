@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
 
-const Button = ({ children, type, variant, round, className, onClick, link, to, size, disabled, title }) => {
+const Button = ({ children, type, variant, round, className, onClick, to, size, disabled, title }) => {
     const composedProps = {
         className: cn(
             styles.button,
@@ -17,7 +17,9 @@ const Button = ({ children, type, variant, round, className, onClick, link, to, 
         title,
     };
 
-    if (link) {
+    const isLink = to !== null;
+
+    if (isLink) {
         return <Link {...composedProps} to={to} />;
     }
 
@@ -25,13 +27,12 @@ const Button = ({ children, type, variant, round, className, onClick, link, to, 
 };
 
 Button.propTypes = {
-    link: PropTypes.bool,
     to: PropTypes.string,
     type: PropTypes.oneOf(['button', 'submit']),
     round: PropTypes.bool,
     size: PropTypes.oneOf(['small', 'large', null]),
     children: PropTypes.node,
-    variant: PropTypes.oneOf(['primary', 'blank', 'danger', 'success', 'accent', 'primaryLight']),
+    variant: PropTypes.oneOf(['primary', 'blank', 'danger', 'success', 'accent', 'primaryLight', 'facebook']),
     className: PropTypes.string,
     onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.exact(null)]),
     disabled: PropTypes.bool,
@@ -39,8 +40,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-    to: '/',
-    link: false,
+    to: null,
     type: 'button',
     children: '',
     variant: 'primary',

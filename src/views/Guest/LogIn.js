@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import MainTemplate from '../../components/MainTemplate/MainTemplate';
 import Input from '../../components/forms/Input/Input';
 import FormInCard from '../../components/forms/FormInCard/FormInCard';
@@ -12,6 +13,7 @@ import useAuth from '../../hooks/useAuth';
 import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import Checkbox from '../../components/forms/Checkbox/Checkbox';
 import routes from '../../routes';
+import ButtonSocial from '../../components/buttons/ButtonSocial/ButtonSocial';
 
 const LogIn = () => {
     const [form, handleChange] = useForm({
@@ -31,19 +33,30 @@ const LogIn = () => {
         unauthorized: 'toast.error.login.wrongCredentials',
     });
 
+    const from = useMemo(() => {
+        const { from: fr } = location.state || { from: { pathname: routes.user.dashboard } };
+
+        return fr;
+    }, [location.state]);
+
     const handleSubmit = () => {
-        const { from } = location.state || { from: { pathname: routes.user.dashboard } };
         instance.post(api.auth.logIn, form).then(response => {
-            const { data } = response;
-            auth.setData(
-                {
-                    token: data.access_token,
-                    scope: data.scope,
-                    verified: data.verified,
-                    rememberMe: data.verified ? rememberMe : false,
-                },
-                data.verified ? rememberMe : true,
-            );
+            auth.logIn(response.data, rememberMe);
+            history.replace(from);
+        });
+    };
+
+    const logInFacebook = fbResponse => {
+        if (fbResponse.status === 'unknown') {
+            return;
+        }
+
+        const data = {
+            email: fbResponse.email,
+            access_token: fbResponse.accessToken,
+        };
+        instance.post(api.auth.logInFacebook, data).then(response => {
+            auth.logIn(response.data, rememberMe);
             history.replace(from);
         });
     };
@@ -52,6 +65,14 @@ const LogIn = () => {
         <MainTemplate>
             <Container variant={['center', 'smallItems', 'marginTopLarge']}>
                 <FormInCard buttonMessageId="logIn" onSubmit={handleSubmit} loading={loading}>
+                    <FacebookLogin
+                        appId="512393846378772"
+                        fields="email"
+                        callback={logInFacebook}
+                        render={renderProps => (
+                            <ButtonSocial onClick={renderProps.onClick} variant="facebook" messageId="logIn.facebook" />
+                        )}
+                    />
                     <Input
                         labelId="input.email"
                         name="email"
