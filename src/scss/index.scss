@@ -29,6 +29,11 @@ body {
   background-color: var(--background);
 }
 
+.small-muted-link {
+  color: var(--accent);
+  font-size: .8rem;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
