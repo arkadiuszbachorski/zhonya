@@ -1,4 +1,4 @@
-import { cancelMessage } from '../useCancelToken';
+import { cancelMessage } from '../getCancelToken';
 
 export default (instance, loadingSetter) => {
     instance.interceptors.request.use(

@@ -10,7 +10,7 @@ import Loading from '../../../../components/loading/Loading/Loading';
 import useAuth from '../../../../hooks/useAuth';
 import routes from '../../../../routes';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
-import { cancelMessage } from '../../../../hooks/api/useCancelToken';
+import { cancelMessage } from '../../../../hooks/api/getCancelToken';
 
 const Delete = () => {
     const history = useHistory();

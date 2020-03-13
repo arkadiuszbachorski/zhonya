@@ -8,15 +8,15 @@ import handleErrors from './interceptors/handleErrors';
 import useAuth from '../useAuth';
 import addBearerToken from './modifiers/addBearerToken';
 import addCancelToken from './modifiers/addCancelToken';
-import useCancelToken from './useCancelToken';
+import getCancelToken from './getCancelToken';
 
 const useInstanceWithErrorsAndToastsAndLoading = (userMessages = null) => {
     const { formatMessage } = useIntl();
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const auth = useAuth();
-    const [cancel, cancelToken] = useCancelToken();
     const history = useHistory();
+    const [cancel, cancelToken] = getCancelToken();
 
     const instance = useMemo(() => {
         const inst = axios.create();
@@ -24,10 +24,11 @@ const useInstanceWithErrorsAndToastsAndLoading = (userMessages = null) => {
         handleLoading(inst, setLoading);
         handleErrors(inst, setErrors);
         addBearerToken(inst, auth.data.token);
-        addCancelToken(inst, cancelToken);
 
         return inst;
-    }, [formatMessage, userMessages, auth.data.token, cancelToken]);
+    }, [userMessages, auth.data.token]);
+
+    addCancelToken(instance, cancelToken);
 
     return [instance, loading, errors, cancel, setErrors, setLoading];
 };

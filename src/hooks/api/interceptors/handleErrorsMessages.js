@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { cancelMessage } from '../useCancelToken';
+import { cancelMessage } from '../getCancelToken';
 import routes from '../../../routes';
 
 const defaultSettings = {
