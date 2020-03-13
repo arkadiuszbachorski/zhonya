@@ -2,7 +2,7 @@ export default {
     index: '/',
     signUp: '/sign-up',
     logIn: '/log-in',
-
+    forgotPassword: '/forgot-password',
     user: {
         dashboard: '/user/dashboard',
         settings: '/user/settings',

@@ -42,6 +42,7 @@ import UserVerify from './views/Authenticated/User/Verify/Verify';
 import UserDelete from './views/Authenticated/User/Delete/Delete';
 import GuestRoute from './middleware/GuestRoute';
 import AuthenticatedRoute from './middleware/AuthenticatedRoute';
+import ForgotPassword from './views/Guest/ForgotPassword';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -69,6 +70,7 @@ const App = () => {
                         <Route path={routes.index} exact component={MainPage} />
                         <GuestRoute path={routes.logIn} exact component={LogIn} />
                         <GuestRoute path={routes.signUp} exact component={SignUp} />
+                        <GuestRoute path={routes.forgotPassword} exact component={ForgotPassword} />
                         <AuthenticatedRoute
                             exact
                             settings={{ checkIfEmailNotVerified: true, checkIfEmailVerified: false }}

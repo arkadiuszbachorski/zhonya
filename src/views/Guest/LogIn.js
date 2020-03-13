@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
+import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 import MainTemplate from '../../components/MainTemplate/MainTemplate';
 import Input from '../../components/forms/Input/Input';
 import FormInCard from '../../components/forms/FormInCard/FormInCard';
@@ -75,6 +77,9 @@ const LogIn = () => {
                         name="rememberMe"
                         onChange={e => setRememberMe(e.target.checked)}
                     />
+                    <Link to={routes.forgotPassword} className="small-muted-link">
+                        <FormattedMessage id="forgotPassword" />
+                    </Link>
                 </FormInCard>
             </Container>
         </MainTemplate>

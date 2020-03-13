@@ -10,6 +10,7 @@ export default {
     auth: {
         logIn: `${url}/auth/login`,
         signIn: `${url}/auth/register`,
+        forgotPassword: `${url}/auth/reset`,
         send: `${url}/auth/send`,
         verify: `${url}/auth/verify`,
     },

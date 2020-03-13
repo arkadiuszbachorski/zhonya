@@ -1,7 +1,8 @@
 import { toast } from 'react-toastify';
 import { cancelMessage } from '../useCancelToken';
+import routes from '../../../routes';
 
-const defualtMessages = {
+const defaultSettings = {
     validation: 'toast.error.validation',
     notFound: 'toast.error.notFound',
     unauthorized: 'toast.error.unauthorized',
@@ -10,46 +11,51 @@ const defualtMessages = {
     server: 'toast.error.server',
     client: 'toast.error.client',
     redirectPath: null,
+    unauthorizedPath: routes.signUp,
 };
 
-export default (instance, formatMessage, history, userMessages = null) => {
-    const messages = userMessages ? { ...defualtMessages, ...userMessages } : defualtMessages;
+export default (instance, formatMessage, history, auth, userSettings = null) => {
+    const settings = userSettings ? { ...defaultSettings, ...userSettings } : defaultSettings;
     instance.interceptors.response.use(
         response => {
             return response;
         },
         error => {
-            function handleMessage(message, redirect = false) {
+            function processSettings(message, redirectPath) {
                 if (message === null) {
                     return;
                 }
                 if (typeof message === 'function') {
                     message(error);
+                    return;
                 }
 
                 toast.error(formatMessage({ id: message }));
-                if (redirect && messages.redirectPath) {
-                    history.push(messages.redirectPath);
+                if (redirectPath) {
+                    if (error?.response?.status === 401) {
+                        auth.logOut();
+                    }
+                    history.push(redirectPath);
                 }
             }
 
             if (error.response) {
                 const { status } = error.response;
                 if (status === 422) {
-                    handleMessage(messages.validation);
+                    processSettings(settings.validation);
                 } else if (status === 404) {
-                    handleMessage(messages.notFound, true);
+                    processSettings(settings.notFound, settings.redirectPath);
                 } else if (status === 401) {
-                    handleMessage(messages.unauthorized, true);
+                    processSettings(settings.unauthorized, settings.unauthorizedPath);
                 } else if (status === 403) {
-                    handleMessage(messages.forbidden);
+                    processSettings(settings.forbidden, settings.redirectPath);
                 } else if (status >= 400 && status < 500) {
-                    handleMessage(messages.client);
+                    processSettings(settings.client);
                 } else if (status >= 500 && status < 600) {
-                    handleMessage(messages.server);
+                    processSettings(settings.server);
                 }
             } else if (error.message !== cancelMessage) {
-                handleMessage(messages.code);
+                processSettings(settings.code);
             }
 
             return Promise.reject(error);

@@ -18,7 +18,7 @@ const useInstanceWithToastsAndLoading = (userMessages = null) => {
 
     const instance = useMemo(() => {
         const inst = axios.create();
-        handleErrorsMessages(inst, formatMessage, history, userMessages);
+        handleErrorsMessages(inst, formatMessage, history, auth, userMessages);
         handleLoading(inst, setLoading);
         addBearerToken(inst, auth.data.token);
         addCancelToken(inst, cancelToken);

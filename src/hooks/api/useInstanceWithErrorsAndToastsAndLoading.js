@@ -20,7 +20,7 @@ const useInstanceWithErrorsAndToastsAndLoading = (userMessages = null) => {
 
     const instance = useMemo(() => {
         const inst = axios.create();
-        handleErrorsMessages(inst, formatMessage, history, userMessages);
+        handleErrorsMessages(inst, formatMessage, history, auth, userMessages);
         handleLoading(inst, setLoading);
         handleErrors(inst, setErrors);
         addBearerToken(inst, auth.data.token);
