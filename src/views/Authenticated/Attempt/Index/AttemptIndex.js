@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router';
 import { useIntl } from 'react-intl';
@@ -17,11 +17,12 @@ import Time from '../../../../components/Time/Time';
 import Active from '../../../../components/typography/Active/Active';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
+import Params from '../../../../utils/Params';
+import ButtonFiltersReset from '../../../../components/buttons/ButtonFiltersReset/ButtonFiltersReset';
 
-const prepareParams = ({ search, active, ...rest }) => ({
-    search: search === '' ? undefined : search,
-    active: active === false ? undefined : active,
-    ...rest,
+const params = new Params({
+    search: '',
+    active: false,
 });
 
 const AttemptIndex = () => {
@@ -29,10 +30,7 @@ const AttemptIndex = () => {
 
     const { formatMessage } = useIntl();
 
-    const [debouncedFilters, filters, handleChange] = useDebouncedForm({
-        search: '',
-        active: false,
-    });
+    const [debouncedFilters, filters, handleChange, resetFilters] = useDebouncedForm(params.default());
 
     const [instance, loading, cancel] = useInstanceWithToastsAndLoading({
         redirectPath: routes.task.index,
@@ -44,7 +42,7 @@ const AttemptIndex = () => {
         () => {
             instance
                 .get(api.attempt.index(taskId), {
-                    params: prepareParams(debouncedFilters),
+                    params: params.prepare(debouncedFilters),
                 })
                 .then(response => {
                     setAttempts(response.data);
@@ -53,6 +51,10 @@ const AttemptIndex = () => {
         [debouncedFilters, taskId],
         cancel,
     );
+
+    const hasChanged = useMemo(() => {
+        return params.hasChanged(debouncedFilters);
+    }, [debouncedFilters]);
 
     return (
         <TaskPanelTemplate
@@ -72,6 +74,7 @@ const AttemptIndex = () => {
                     onChange={handleChange}
                 />
                 <Checkbox labelId="input.active" name="active" checked={filters.active} onChange={handleChange} />
+                <ButtonFiltersReset onClick={resetFilters} visible={hasChanged} />
             </Container>
             <GridTable loading={loading} empty={!attempts.length}>
                 <GridTable.Row header className={styles.row}>
