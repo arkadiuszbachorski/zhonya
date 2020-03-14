@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
@@ -18,21 +18,17 @@ import Active from '../../../../components/typography/Active/Active';
 import Time from '../../../../components/Time/Time';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
+import Params from '../../../../utils/Params';
+import ButtonFiltersReset from '../../../../components/buttons/ButtonFiltersReset/ButtonFiltersReset';
 
-const prepareParams = ({ search, active, tag, ...rest }, withTags) => ({
-    search: search === '' ? undefined : search,
-    tag: tag === '' ? undefined : tag,
-    active: active === false ? undefined : search,
-    withTags: withTags ? true : undefined,
-    ...rest,
+const params = new Params({
+    search: '',
+    tag: '',
+    active: false,
 });
 
 const TaskIndex = () => {
-    const [debouncedFilters, filters, handleChange] = useDebouncedForm({
-        search: '',
-        tag: '',
-        active: false,
-    });
+    const [debouncedFilters, filters, handleChange, resetFilters] = useDebouncedForm(params.default());
 
     const { formatMessage } = useIntl();
 
@@ -47,7 +43,9 @@ const TaskIndex = () => {
             const hasNoTags = tags.length === 0;
             instance
                 .get(api.task.index, {
-                    params: prepareParams(debouncedFilters, hasNoTags),
+                    params: params.prepare(debouncedFilters, {
+                        withTags: hasNoTags ? true : undefined,
+                    }),
                 })
                 .then(response => {
                     setTasks(response.data.tasks);
@@ -59,6 +57,10 @@ const TaskIndex = () => {
         [debouncedFilters],
         cancel,
     );
+
+    const hasChanged = useMemo(() => {
+        return params.hasChanged(debouncedFilters);
+    }, [debouncedFilters]);
 
     return (
         <PanelTemplate
@@ -82,6 +84,7 @@ const TaskIndex = () => {
                     options={tags.map(({ id, name }) => ({ value: id, label: name }))}
                 />
                 <Checkbox labelId="input.active" name="active" checked={filters.active} onChange={handleChange} />
+                <ButtonFiltersReset onClick={resetFilters} visible={hasChanged} />
             </Container>
             <GridTable loading={loading} empty={!tasks.length}>
                 <GridTable.Row header className={styles.row}>
