@@ -44,6 +44,7 @@ import GuestRoute from './middleware/GuestRoute';
 import AuthenticatedRoute from './middleware/AuthenticatedRoute';
 import ForgotPassword from './views/Guest/ForgotPassword';
 import FallbackRoute from './middleware/FallbackRoute';
+import TaskData from './views/Authenticated/Task/Data/TaskData';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -96,6 +97,7 @@ const App = () => {
                         <AuthenticatedRoute exact path={routes.tag.delete()} component={TagDelete} />
                         <AuthenticatedRoute exact path={routes.task.index} component={TaskIndex} />
                         <AuthenticatedRoute exact path={routes.task.create} component={TaskCreate} />
+                        <AuthenticatedRoute exact path={routes.task.data()} component={TaskData} />
                         <AuthenticatedRoute exact path={routes.task.edit()} component={TaskEdit} />
                         <AuthenticatedRoute exact path={routes.task.tags()} component={TaskTags} />
                         <AuthenticatedRoute exact path={routes.task.delete()} component={TaskDelete} />

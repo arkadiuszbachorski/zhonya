@@ -17,6 +17,7 @@ export default {
         noName: 'Brak nazwy',
         send: 'Wyślij',
         forgotPassword: 'Zapomniałeś hasła?',
+        data: 'Dane',
         'forgotPassword.text': 'Jeśli straciłeś hasło - podaj email, a wyślemy Ci nowe.',
         'forWho.title': 'Dla kogo?',
         'forWho.text1': 'Zhonya została zaprojektowana dla tych, dla których liczy się czas.',
@@ -226,6 +227,7 @@ export default {
         rememberMe: 'Remember me',
         noName: 'Brak nazwy',
         forgotPassword: 'Forgot your password?',
+        data: 'dane',
         'forgotPassword.text':
             'If you have lost your password, please enter your Email address and new password will be sent to you',
         'forWho.title': 'For who?',
