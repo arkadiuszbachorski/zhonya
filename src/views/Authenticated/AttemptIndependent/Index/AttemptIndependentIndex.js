@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
@@ -17,21 +17,17 @@ import Active from '../../../../components/typography/Active/Active';
 import Time from '../../../../components/Time/Time';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
+import Params from '../../../../utils/Params';
+import ButtonFiltersReset from '../../../../components/buttons/ButtonFiltersReset/ButtonFiltersReset';
 
-const prepareParams = ({ search, active, task, ...rest }, withTasks) => ({
-    search: search === '' ? undefined : search,
-    task: task === '' ? undefined : task,
-    active: active === false ? undefined : search,
-    withTasks: withTasks ? true : undefined,
-    ...rest,
+const params = new Params({
+    search: '',
+    task: '',
+    active: false,
 });
 
 const AttemptIndependentIndex = () => {
-    const [debouncedFilters, filters, handleChange] = useDebouncedForm({
-        search: '',
-        task: '',
-        active: false,
-    });
+    const [debouncedFilters, filters, handleChange, resetFilters] = useDebouncedForm(params.default());
 
     const { formatMessage } = useIntl();
 
@@ -46,7 +42,9 @@ const AttemptIndependentIndex = () => {
             const hasNoTasks = tasks.length === 0;
             instance
                 .get(api.attemptIndependent.index, {
-                    params: prepareParams(debouncedFilters, hasNoTasks),
+                    params: params.prepare(debouncedFilters, {
+                        withTasks: hasNoTasks ? true : undefined,
+                    }),
                 })
                 .then(response => {
                     setAttempts(response.data.attempts);
@@ -58,6 +56,10 @@ const AttemptIndependentIndex = () => {
         [debouncedFilters],
         cancel,
     );
+
+    const hasChanged = useMemo(() => {
+        return params.hasChanged(debouncedFilters);
+    }, [debouncedFilters]);
 
     return (
         <PanelTemplate
@@ -86,6 +88,7 @@ const AttemptIndependentIndex = () => {
                     options={tasks.map(({ id, name }) => ({ value: id, label: name }))}
                 />
                 <Checkbox labelId="input.active" name="active" checked={filters.active} onChange={handleChange} />
+                <ButtonFiltersReset onClick={resetFilters} visible={hasChanged} />
             </Container>
             <GridTable loading={loading} empty={!attempts.length}>
                 <GridTable.Row header className={styles.row}>

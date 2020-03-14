@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useIntl } from 'react-intl';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
@@ -14,16 +14,15 @@ import ColorPill from '../../../../components/ColorPill/ColorPill';
 import styles from './TagIndex.module.scss';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
+import Params from '../../../../utils/Params';
+import ButtonFiltersReset from '../../../../components/buttons/ButtonFiltersReset/ButtonFiltersReset';
 
-const prepareParams = ({ search, ...rest }) => ({
-    search: search === '' ? undefined : search,
-    ...rest,
+const params = new Params({
+    search: '',
 });
 
 const TagIndex = () => {
-    const [debouncedFilters, filters, handleChange] = useDebouncedForm({
-        search: '',
-    });
+    const [debouncedFilters, filters, handleChange, resetFilters] = useDebouncedForm(params.default());
 
     const { formatMessage } = useIntl();
 
@@ -33,13 +32,17 @@ const TagIndex = () => {
 
     useCancellableEffect(
         () => {
-            instance.get(api.tag.index, { params: prepareParams(debouncedFilters) }).then(response => {
+            instance.get(api.tag.index, { params: params.prepare(debouncedFilters) }).then(response => {
                 setTags(response.data);
             });
         },
         [debouncedFilters],
         cancel,
     );
+
+    const hasChanged = useMemo(() => {
+        return params.hasChanged(debouncedFilters);
+    }, [debouncedFilters]);
 
     return (
         <PanelTemplate
@@ -54,6 +57,7 @@ const TagIndex = () => {
                     value={filters.search}
                     onChange={handleChange}
                 />
+                <ButtonFiltersReset onClick={resetFilters} visible={hasChanged} />
             </Container>
             <GridTable emptyId="notFound" loading={loading} empty={!tags.length}>
                 <GridTable.Row header className={styles.row}>

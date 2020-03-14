@@ -12,7 +12,7 @@ import useAuth from '../../../../hooks/useAuth';
 import routes from '../../../../routes';
 import { storeKeys } from '../../../../hooks/useStore';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
-import { cancelMessage } from '../../../../hooks/api/useCancelToken';
+import { cancelMessage } from '../../../../hooks/api/getCancelToken';
 
 const Verify = () => {
     const history = useHistory();

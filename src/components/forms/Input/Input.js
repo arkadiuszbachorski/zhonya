@@ -9,8 +9,6 @@ import ColorPill from '../../ColorPill/ColorPill';
 import InputIcon from '../InputIcon/InputIcon';
 import customPropTypes from '../../../customPropTypes';
 
-const DEFAULT_VALUE = '!@#default_value000X000X0000123123123';
-
 const Input = ({
     onChange,
     disabled,
@@ -51,9 +49,9 @@ const Input = ({
             value,
         };
         input = (
-            <select {...inputAttrs} defaultValue={DEFAULT_VALUE}>
+            <select {...inputAttrs}>
                 {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-                <option hidden style={{ display: 'none' }} value={DEFAULT_VALUE} />
+                {value === '' && <option selected hidden />}
                 {options.map(option => (
                     <option value={option.value} key={option.value}>
                         {option.label}
