@@ -1,0 +1,13 @@
+.dataContainer {
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  > * {
+    max-width: 300px;
+    margin: 2rem 1rem;
+  }
+}
+
+.chartContainer {
+  margin-top: 4rem;
+}

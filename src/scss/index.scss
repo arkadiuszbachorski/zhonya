@@ -80,3 +80,7 @@ body {
   }
 }
 
+.recharts-curve.recharts-area-area {
+  fill: var(--primary);
+  stroke: 1px solid var(--primary);
+}

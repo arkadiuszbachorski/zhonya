@@ -28,6 +28,7 @@ export default {
     task: {
         index: `${url}/task`,
         store: `${url}/task`,
+        data: taskId => `${url}/task/${taskId}/data`,
         edit: taskId => `${url}/task/${taskId}/edit`,
         name: taskId => `${url}/task/${taskId}/name`,
         tags: taskId => `${url}/task/${taskId}/attach-tags`,
