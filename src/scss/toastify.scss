@@ -1,0 +1,27 @@
+@import '~react-toastify/dist/ReactToastify.css';
+
+.Toastify {
+  .Toastify__toast {
+    border-top-left-radius: $falling-border-radius;
+    border-bottom-right-radius: $falling-border-radius;
+    padding-left: $falling-border-radius / 2;
+    padding-right: $falling-border-radius / 2;
+    color: var(--secondary-font);
+  }
+
+  .Toastify__toast--info {
+    background: var(--primary);
+  }
+
+  .Toastify__toast--success {
+    background: var(--success);
+  }
+
+  .Toastify__toast--warning {
+    background: #f1c40f;
+  }
+
+  .Toastify__toast--error {
+    background: var(--danger);
+  }
+}

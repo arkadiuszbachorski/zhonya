@@ -2,6 +2,9 @@
 
 
 @import 'package';
+@import 'toastify';
+@import 'scroll';
+@import 'recharts';
 
 
 *,
@@ -32,80 +35,4 @@ body {
 .small-muted-link {
   color: var(--accent);
   font-size: .8rem;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--background);
-}
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-::-webkit-scrollbar-thumb {
-  background-color: var(--primary);
-  border-radius: 6px;
-  border: 2px solid var(--background);
-  border-left: 0;
-  border-left: none;
-}
-
-@import '~react-toastify/dist/ReactToastify.css';
-
-.Toastify {
-  .Toastify__toast {
-    border-top-left-radius: $falling-border-radius;
-    border-bottom-right-radius: $falling-border-radius;
-    padding-left: $falling-border-radius / 2;
-    padding-right: $falling-border-radius / 2;
-    color: var(--secondary-font);
-  }
-
-  .Toastify__toast--info {
-    background: var(--primary);
-  }
-
-  .Toastify__toast--success {
-    background: var(--success);
-  }
-
-  .Toastify__toast--warning {
-    background: #f1c40f;
-  }
-
-  .Toastify__toast--error {
-    background: var(--danger);
-  }
-}
-
-.recharts-curve.recharts-area-area {
-  fill: var(--primary);
-  stroke: 1px solid var(--primary);
-}
-
-.recharts-reference-line  {
-  tspan {
-    fill: var(--primary-font);
-  }
-
-  line {
-    stroke: var(--danger);
-  }
-}
-
-.recharts-cartesian-axis-tick {
-  text {
-    fill: var(--accent);
-  }
-  line {
-    stroke: var(--accent);
-  }
-}
-
-.recharts-cartesian-axis {
-  line {
-    stroke: var(--accent);
-  }
 }
