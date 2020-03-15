@@ -214,6 +214,7 @@ export default {
         'data.values': 'Wartości',
         'data.average': 'Średnia',
         'data.quartiles': 'Kwartyle',
+        'data.tooLessAttempts': 'Musisz wykonać przynajmniej dwie próby by wyświetlić statystyki',
         'verificationEmail.text':
             'By przejść dalej musisz zweryfikować swój adres e-mail. Kliknij by otrzymać wiadomość z linkiem aktywującym na podany adres.',
         'placeholder.title': 'Pellentesque tortor',
@@ -428,6 +429,7 @@ export default {
         'data.values': 'Values',
         'data.average': 'Average',
         'data.quartiles': 'Quartiles',
+        'data.tooLessAttempts': 'You must create at least two attempts to display the data',
         'verificationEmail.text':
             'You must verify your email address to proceed. Click on the button below to receive message with verification link.',
         'placeholder.title': 'Pellentesque tortor',
