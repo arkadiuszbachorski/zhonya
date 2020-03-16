@@ -64,7 +64,12 @@ const TaskData = () => {
                     <>
                         {statisticsPreference.chart && (
                             <ResponsiveContainer height={400} className={styles.chartContainer}>
-                                <AreaChart data={data.attempts}>
+                                <AreaChart
+                                    data={data.attempts}
+                                    margin={{
+                                        left: 20,
+                                    }}
+                                >
                                     <XAxis dataKey="shortDate" />
                                     <YAxis domain={['dataMin', 'dataMax']} unit="s" />
                                     <Tooltip content={<TaskTooltip data={data} />} />
