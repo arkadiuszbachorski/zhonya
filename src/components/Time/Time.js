@@ -35,7 +35,7 @@ const Time = ({ time, timePreference, cutMeaninglessData }) => {
     };
 
     return (
-        <span className={styles.time}>
+        <span className={styles.time} title={`${time}s`}>
             {time >= 86400 && (
                 <>
                     {days}

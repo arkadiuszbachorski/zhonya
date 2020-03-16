@@ -6,11 +6,9 @@ import Container from '../../../../components/Container/Container';
 import api from '../../../../api';
 import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import TaskPanelTemplate from '../TaskPanelTemplate';
-
 import routes from '../../../../routes';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 import LoadingOrChildren from '../../../../components/loading/LoadingOrChildren/LoadingOrChildren';
-import Time from '../../../../components/Time/Time';
 import TaskTooltip from './TaskTooltip/TaskTooltip';
 import CardData from './CardData/CardData';
 import styles from './TaskData.module.scss';
@@ -18,6 +16,7 @@ import CoefficientOfVariation from './CoefficientOfVariation/CoefficientOfVariat
 import AccentTitle from '../../../../components/typography/AccentTitle/AccentTitle';
 import Empty from '../../../../components/typography/Empty/Empty';
 import useStatisticsPreference from '../../../../hooks/useStatisticsPreference';
+import TimeWithStatisticPreference from './TimeWithStatisticPreference/TimeWithStatisticPreference';
 
 const TaskData = () => {
     const [data, setData] = useState({});
@@ -70,24 +69,26 @@ const TaskData = () => {
                                     <YAxis domain={['dataMin', 'dataMax']} unit="s" />
                                     <Tooltip content={<TaskTooltip data={data} />} />
                                     <Area type="monotone" stroke={null} dataKey="relative_time" />
-                                    <ReferenceLine
-                                        y={data.timeStatistics?.avg}
-                                        label={formatMessage({ id: 'data.average' })}
-                                    />
+                                    {statisticsPreference.showAverageLine && (
+                                        <ReferenceLine
+                                            y={data.timeStatistics?.avg}
+                                            label={formatMessage({ id: 'data.average' })}
+                                        />
+                                    )}
                                 </AreaChart>
                             </ResponsiveContainer>
                         )}
                         <AccentTitle messageId="data.values" />
                         <Container variant={['smallItems']} className={styles.dataContainer}>
                             <CardData titleId="fastest">
-                                <Time time={data.timeStatistics?.min} cutMeaninglessData />
+                                <TimeWithStatisticPreference time={data.timeStatistics?.min} />
                             </CardData>
                             <CardData titleId="slowest">
-                                <Time time={data.timeStatistics?.max} cutMeaninglessData />
+                                <TimeWithStatisticPreference time={data.timeStatistics?.max} />
                             </CardData>
                             {statisticsPreference.full && (
                                 <CardData titleId="range" descriptionId="data.description.range">
-                                    <Time time={data.timeStatistics?.range} cutMeaninglessData />
+                                    <TimeWithStatisticPreference time={data.timeStatistics?.range} />
                                 </CardData>
                             )}
                             <CardData titleId="attemptsCount" descriptionId="data.description.amount">
@@ -97,14 +98,14 @@ const TaskData = () => {
                         <AccentTitle messageId="data.average" />
                         <Container variant={['smallItems']} className={styles.dataContainer}>
                             <CardData titleId="average" descriptionId="data.description.average">
-                                <Time time={data.timeStatistics?.avg} cutMeaninglessData />
+                                <TimeWithStatisticPreference time={data.timeStatistics?.avg} />
                             </CardData>
                             {statisticsPreference.full && (
                                 <CardData
                                     titleId="standardDeviation"
                                     descriptionId="data.description.standardDeviation"
                                 >
-                                    <Time time={data.timeStatistics?.standardDeviation} cutMeaninglessData />
+                                    <TimeWithStatisticPreference time={data.timeStatistics?.standardDeviation} />
                                 </CardData>
                             )}
                             <CardData
@@ -123,16 +124,16 @@ const TaskData = () => {
                                             titleId="quartile.lower"
                                             descriptionId="data.description.quartile.lower"
                                         >
-                                            <Time time={data.timeStatistics.quartiles.q1} cutMeaninglessData />
+                                            <TimeWithStatisticPreference time={data.timeStatistics.quartiles.q1} />
                                         </CardData>
                                         <CardData titleId="median" descriptionId="data.description.median">
-                                            <Time time={data.timeStatistics.quartiles.q2} cutMeaninglessData />
+                                            <TimeWithStatisticPreference time={data.timeStatistics.quartiles.q2} />
                                         </CardData>
                                         <CardData
                                             titleId="quartile.upper"
                                             descriptionId="data.description.quartile.upper"
                                         >
-                                            <Time time={data.timeStatistics.quartiles.q3} cutMeaninglessData />
+                                            <TimeWithStatisticPreference time={data.timeStatistics.quartiles.q3} />
                                         </CardData>
                                     </Container>
                                 )}

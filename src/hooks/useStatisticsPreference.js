@@ -7,13 +7,16 @@ export const useStatisticsPreferenceProvider = () => {
         {
             descriptions: true,
             chart: true,
+            showAverageLine: true,
             full: true,
+            cutMeaninglessData: true,
+            showSeconds: false,
         },
     );
 
     const setAndMergePreference = newState => {
         /*
-         * TODO: Handle case where useStateWithLocalStorage gets function to setState
+         * TODO: Handle case when useStateWithLocalStorage gets function to setState
          * */
         setStatisticsPreference({
             ...statisticsPreference,
