@@ -2,6 +2,7 @@
   margin-top: 2rem;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items: flex-start;
   position: relative;
   padding-bottom: 3rem;
 
@@ -12,6 +13,17 @@
   }
 }
 
+@keyframes quoteAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .quote {
   margin: 0;
   left: 0;
@@ -19,10 +31,36 @@
   min-width: 100%;
   position: absolute;
   justify-content: center;
+  animation: quoteAnimation .6s .6s;
+  animation-fill-mode: backwards;
 }
 
 .captionLowercase {
   > a > div > *:last-child:first-letter {
     text-transform: lowercase;
+  }
+}
+
+.attemptsListItem {
+  > a {
+    width: 100%;
+
+    > div {
+      width: 100%;
+      display: grid !important;
+      grid-template-areas: "text pause" "caption pause";
+      grid-template-columns: 1fr 2rem;
+
+      > span:first-child {
+        grid-area: text
+      }
+      > span:nth-child(2) {
+        grid-area: caption
+      }
+
+      > button:nth-child(3) {
+        grid-area: pause;
+      }
+    }
   }
 }
