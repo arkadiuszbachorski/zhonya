@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { faCheckSquare, faClock, faList, faPlus, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faCheckSquare, faClock, faList, faPause, faPlus, faTag } from '@fortawesome/free-solid-svg-icons';
 import { FormattedMessage } from 'react-intl';
 import Container from '../../../../components/Container/Container';
-import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import routes from '../../../../routes';
 import styles from './UserDashboard.module.scss';
 import CardDashboard from './CardDashboard/CardDashboard';
@@ -11,18 +10,19 @@ import api from '../../../../api';
 import { useLocaleProvider } from '../../../../hooks/useLocale';
 import useRandomArrayElement from '../../../../hooks/useRandomArrayElement';
 import quotes from './quotes';
-import AccentSubtitle from '../../../../components/typography/AccentSubtitle/AccentSubtitle';
 import ListCaptionAndColor from '../../../../components/lists/ListCaptionAndColor/ListCaptionAndColor';
 import DateDisplay from '../../../../components/DateDisplay/DateDisplay';
 import Time from '../../../../components/Time/Time';
 import UserPanelTemplate from '../UserPanelTemplate';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 import LoadingOverlay from '../../../../components/loading/LoadingOverlay/LoadingOverlay';
+import ButtonRoundIcon from '../../../../components/buttons/ButtonRoundIcon/ButtonRoundIcon';
+import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 
 const UserDashboard = () => {
     const { locale } = useLocaleProvider();
 
-    const [instance, loading, , cancel] = useInstanceWithErrorsAndToastsAndLoading();
+    const [instance, loading, cancel] = useInstanceWithToastsAndLoading();
 
     const [dashboardData, setDashboardData] = useState({
         tags: [],
@@ -31,6 +31,20 @@ const UserDashboard = () => {
     });
 
     const quote = useRandomArrayElement(quotes[locale]);
+
+    const pauseAttempt = (taskId, attemptId) => {
+        const data = {
+            date: new Date(),
+        };
+        instance.post(api.attempt.measurementSave(taskId, attemptId), data).then(() => {
+            setDashboardData(({ attempts, ...restState }) => {
+                return {
+                    ...restState,
+                    attempts: attempts.filter(item => item.id !== attemptId),
+                };
+            });
+        });
+    };
 
     useCancellableEffect(
         () => {
@@ -52,6 +66,7 @@ const UserDashboard = () => {
             <Container variant={['smallItems']} className={styles.wrapper}>
                 <CardDashboard
                     titleId="model.tag.plural"
+                    subtitleId="lastEdited"
                     icon={faTag}
                     buttons={[
                         {
@@ -66,7 +81,6 @@ const UserDashboard = () => {
                         },
                     ]}
                 >
-                    <AccentSubtitle messageId="lastEdited" />
                     <ListCaptionAndColor>
                         {dashboardData.tags.map(tag => (
                             <ListCaptionAndColor.Item
@@ -87,6 +101,7 @@ const UserDashboard = () => {
                 </CardDashboard>
                 <CardDashboard
                     titleId="model.task.plural"
+                    subtitleId="lastEdited"
                     icon={faCheckSquare}
                     buttons={[
                         {
@@ -101,7 +116,6 @@ const UserDashboard = () => {
                         },
                     ]}
                 >
-                    <AccentSubtitle messageId="lastEdited" />
                     <ListCaptionAndColor>
                         {dashboardData.tasks.map(task => (
                             <ListCaptionAndColor.Item
@@ -120,6 +134,7 @@ const UserDashboard = () => {
                 </CardDashboard>
                 <CardDashboard
                     titleId="model.attempt.plural"
+                    subtitleId="active"
                     icon={faClock}
                     buttons={[
                         {
@@ -134,7 +149,6 @@ const UserDashboard = () => {
                         },
                     ]}
                 >
-                    <AccentSubtitle messageId="active" />
                     <ListCaptionAndColor>
                         {dashboardData.attempts.map(attempt => (
                             <ListCaptionAndColor.Item
@@ -147,11 +161,20 @@ const UserDashboard = () => {
                                     </>
                                 }
                                 text={attempt.short_description}
-                            />
+                            >
+                                <ButtonRoundIcon
+                                    icon={faPause}
+                                    size="small"
+                                    onClick={e => {
+                                        e.preventDefault();
+                                        pauseAttempt(attempt.task.id, attempt.id);
+                                    }}
+                                />
+                            </ListCaptionAndColor.Item>
                         ))}
                     </ListCaptionAndColor>
                 </CardDashboard>
-                {!loading && <Quote author={quote.author} content={quote.content} className={styles.quote} />}
+                <Quote author={quote.author} content={quote.content} className={styles.quote} />
             </Container>
         </UserPanelTemplate>
     );

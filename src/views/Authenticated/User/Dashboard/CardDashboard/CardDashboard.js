@@ -7,8 +7,9 @@ import styles from './CardDashboard.module.scss';
 import ButtonRoundIcon from '../../../../../components/buttons/ButtonRoundIcon/ButtonRoundIcon';
 import Card from '../../../../../components/Card/Card';
 import customPropTypes from '../../../../../customPropTypes';
+import AccentSubtitle from '../../../../../components/typography/AccentSubtitle/AccentSubtitle';
 
-const CardDashboard = ({ icon, titleId, buttons, children }) => {
+const CardDashboard = ({ icon, titleId, subtitleId, buttons, children }) => {
     const { formatMessage } = useIntl();
 
     return (
@@ -29,6 +30,7 @@ const CardDashboard = ({ icon, titleId, buttons, children }) => {
                     ))}
                 </div>
             )}
+            <AccentSubtitle messageId={subtitleId} />
             {children}
         </Card>
     );
@@ -37,6 +39,7 @@ const CardDashboard = ({ icon, titleId, buttons, children }) => {
 CardDashboard.propTypes = {
     icon: customPropTypes.fontAwesomeIcon.isRequired,
     titleId: PropTypes.string.isRequired,
+    subtitleId: PropTypes.string.isRequired,
     buttons: PropTypes.arrayOf(
         PropTypes.shape({
             icon: customPropTypes.fontAwesomeIcon.isRequired,

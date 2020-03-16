@@ -6,7 +6,7 @@ import styles from './ListCaptionAndColorItem.module.scss';
 import ColorPill from '../../ColorPill/ColorPill';
 import Caption from '../../typography/Caption/Caption';
 
-const ListCaptionAndColorItem = ({ text, caption, color, to, className, onClick }) => {
+const ListCaptionAndColorItem = ({ text, children, caption, color, to, className, onClick }) => {
     return (
         <li className={cn(styles.item, className)}>
             <Link to={to} onClick={onClick}>
@@ -18,6 +18,7 @@ const ListCaptionAndColorItem = ({ text, caption, color, to, className, onClick 
                 <div className={styles.fonts}>
                     <span>{text}</span>
                     {caption && <Caption>{caption}</Caption>}
+                    {children}
                 </div>
             </Link>
         </li>
@@ -28,6 +29,7 @@ ListCaptionAndColorItem.propTypes = {
     text: PropTypes.node.isRequired,
     caption: PropTypes.node,
     to: PropTypes.string.isRequired,
+    children: PropTypes.node,
     color: PropTypes.string,
     className: PropTypes.string,
     onClick: PropTypes.func,
@@ -38,6 +40,7 @@ ListCaptionAndColorItem.defaultProps = {
     color: null,
     className: null,
     onClick: null,
+    children: undefined,
 };
 
 export default ListCaptionAndColorItem;
