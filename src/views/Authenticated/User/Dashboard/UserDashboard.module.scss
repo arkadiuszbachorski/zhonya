@@ -12,6 +12,17 @@
   }
 }
 
+@keyframes quoteAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .quote {
   margin: 0;
   left: 0;
@@ -19,6 +30,7 @@
   min-width: 100%;
   position: absolute;
   justify-content: center;
+  animation: quoteAnimation .6s;
 }
 
 .captionLowercase {

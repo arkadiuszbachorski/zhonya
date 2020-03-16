@@ -151,7 +151,7 @@ const UserDashboard = () => {
                         ))}
                     </ListCaptionAndColor>
                 </CardDashboard>
-                <Quote author={quote.author} content={quote.content} className={styles.quote} />
+                {!loading && <Quote author={quote.author} content={quote.content} className={styles.quote} />}
             </Container>
         </UserPanelTemplate>
     );
