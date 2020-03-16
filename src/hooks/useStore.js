@@ -17,4 +17,5 @@ export const storeKeys = {
     useModelTitle: 'modelTitle',
     useTimePreference: 'timePreference',
     useDatePreference: 'datePreference',
+    useStatisticsPreference: 'statisticsPreference',
 };

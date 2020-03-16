@@ -45,6 +45,7 @@ import AuthenticatedRoute from './middleware/AuthenticatedRoute';
 import ForgotPassword from './views/Guest/ForgotPassword';
 import FallbackRoute from './middleware/FallbackRoute';
 import TaskData from './views/Authenticated/Task/Data/TaskData';
+import { useStatisticsPreferenceProvider } from './hooks/useStatisticsPreference';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -53,6 +54,7 @@ const App = () => {
     const modelTitle = useModelTitleProvider();
     const timePreference = useTimePreferenceProvider();
     const datePreference = useDatePreferenceProvider();
+    const statisticsPreference = useStatisticsPreferenceProvider();
 
     return (
         <IntlProvider locale={currentLocale} messages={locale[currentLocale]}>
@@ -64,6 +66,7 @@ const App = () => {
                     [storeKeys.useModelTitle]: modelTitle,
                     [storeKeys.useTimePreference]: timePreference,
                     [storeKeys.useDatePreference]: datePreference,
+                    [storeKeys.useStatisticsPreference]: statisticsPreference,
                 }}
             >
                 <ToastContainer newestOnTop position="bottom-right" transition={Slide} />

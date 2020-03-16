@@ -5,6 +5,7 @@ import ChangeLocaleForm from './ChangeLocaleForm';
 import UserPanelTemplate from '../UserPanelTemplate';
 import ChangeTimePreferenceForm from './ChangeTimePreferenceForm';
 import ChangeDatePreferenceForm from './ChangeDatePreferenceForm';
+import ChangeStatisticsPreferenceForm from './ChangeStatisticsPreferenceForm';
 
 const UserSettings = () => {
     return (
@@ -13,6 +14,7 @@ const UserSettings = () => {
             <ChangeLocaleForm />
             <ChangeTimePreferenceForm />
             <ChangeDatePreferenceForm />
+            <ChangeStatisticsPreferenceForm />
         </UserPanelTemplate>
     );
 };
