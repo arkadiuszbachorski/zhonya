@@ -36,7 +36,7 @@ const TaskData = () => {
         () => {
             instance.get(api.task.data(taskId)).then(response => {
                 const attempts = response.data.attempts.map(item => {
-                    item.shortDate = formatDate(item.updated_at, {
+                    item.shortDate = formatDate(item.created_at, {
                         day: 'numeric',
                         month: 'numeric',
                     });
@@ -76,6 +76,9 @@ const TaskData = () => {
                                     <Time time={data.timeStatistics?.range} cutMeaninglessData />
                                 </CardData>
                             )}
+                            <CardData titleId="attemptsCount" descriptionId="data.description.amount">
+                                {length}
+                            </CardData>
                         </Container>
                         <AccentTitle messageId="data.average" />
                         <Container variant={['smallItems']} className={styles.dataContainer}>

@@ -27,6 +27,7 @@ export default {
         'quartile.lower': 'Kwartyl dolny',
         'quartile.upper': 'Kwartyl górny',
         median: 'Mediana',
+        attemptsCount: 'Liczba prób',
         'forgotPassword.text': 'Jeśli straciłeś hasło - podaj email, a wyślemy Ci nowe.',
         'forWho.title': 'Dla kogo?',
         'forWho.text1': 'Zhonya została zaprojektowana dla tych, dla których liczy się czas.',
@@ -227,7 +228,9 @@ export default {
         'data.description.median': '50% wszystkich czasów jest szybsze od wartości mediany',
         'data.description.quartile.upper': '25% wszystkich czasów jest wolniejsza od wartości kwartyla górnego',
         'data.description.average': 'Suma czasów podzielona przez ich ilość',
-        'data.tooLessAttempts': 'Musisz wykonać przynajmniej dwie próby by wyświetlić statystyki',
+        'data.description.amount': 'Liczba prób zaliczanych do statystyk, czyli nieaktywnych i o czasie większym niż 0',
+        'data.tooLessAttempts':
+            'Musisz wykonać przynajmniej dwie próby by wyświetlić statystyki. Próby muszą być nieaktywne, a ich czas większy niż 0.',
         'verificationEmail.text':
             'By przejść dalej musisz zweryfikować swój adres e-mail. Kliknij by otrzymać wiadomość z linkiem aktywującym na podany adres.',
         'placeholder.title': 'Pellentesque tortor',
@@ -260,6 +263,7 @@ export default {
         'quartile.lower': 'Lower quartile',
         'quartile.upper': 'Upper quartile',
         median: 'Median',
+        attemptsCount: 'Number of attempts',
         'forgotPassword.text':
             'If you have lost your password, please enter your Email address and new password will be sent to you',
         'forWho.title': 'For who?',
@@ -455,7 +459,10 @@ export default {
         'data.description.median': '50% of all times is faster than median value',
         'data.description.quartile.upper': '25% of all times is slower than upper quartile value',
         'data.description.average': 'The sum of times divided by their number',
-        'data.tooLessAttempts': 'You must create at least two attempts to display the data',
+        'data.description.amount':
+            'Number of attempts included in the statistics, i.e. inactive and with time greater than 0',
+        'data.tooLessAttempts':
+            'You must create at least two Attempts to display the statistics. Attempts must be inactive and with time greater than 0.',
         'verificationEmail.text':
             'You must verify your email address to proceed. Click on the button below to receive message with verification link.',
         'placeholder.title': 'Pellentesque tortor',
