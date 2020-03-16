@@ -17,9 +17,12 @@ import styles from './TaskData.module.scss';
 import CoefficientOfVariation from './CoefficientOfVariation/CoefficientOfVariation';
 import AccentTitle from '../../../../components/typography/AccentTitle/AccentTitle';
 import Empty from '../../../../components/typography/Empty/Empty';
+import useStatisticsPreference from '../../../../hooks/useStatisticsPreference';
 
 const TaskData = () => {
     const [data, setData] = useState({});
+
+    const { statisticsPreference } = useStatisticsPreference();
 
     const { taskId } = useParams();
 
@@ -68,18 +71,25 @@ const TaskData = () => {
                             <CardData titleId="slowest">
                                 <Time time={data.timeStatistics?.max} cutMeaninglessData />
                             </CardData>
-                            <CardData titleId="range" descriptionId="data.description.range">
-                                <Time time={data.timeStatistics?.range} cutMeaninglessData />
-                            </CardData>
+                            {statisticsPreference.full && (
+                                <CardData titleId="range" descriptionId="data.description.range">
+                                    <Time time={data.timeStatistics?.range} cutMeaninglessData />
+                                </CardData>
+                            )}
                         </Container>
                         <AccentTitle messageId="data.average" />
                         <Container variant={['smallItems']} className={styles.dataContainer}>
                             <CardData titleId="average" descriptionId="data.description.average">
                                 <Time time={data.timeStatistics?.avg} cutMeaninglessData />
                             </CardData>
-                            <CardData titleId="standardDeviation" descriptionId="data.description.standardDeviation">
-                                <Time time={data.timeStatistics?.standardDeviation} cutMeaninglessData />
-                            </CardData>
+                            {statisticsPreference.full && (
+                                <CardData
+                                    titleId="standardDeviation"
+                                    descriptionId="data.description.standardDeviation"
+                                >
+                                    <Time time={data.timeStatistics?.standardDeviation} cutMeaninglessData />
+                                </CardData>
+                            )}
                             <CardData
                                 titleId="coefficientOfVariation"
                                 descriptionId="data.description.coefficientOfVariation"
@@ -88,7 +98,7 @@ const TaskData = () => {
                                 {}
                             </CardData>
                         </Container>
-                        {length > 3 && (
+                        {length > 3 && statisticsPreference.full && (
                             <>
                                 <AccentTitle messageId="data.quartiles" />
                                 {(data.timeStatistics?.quartiles.q1 ?? null) !== null && (
@@ -112,18 +122,20 @@ const TaskData = () => {
                                 )}
                             </>
                         )}
-                        <ResponsiveContainer height={500} className={styles.chartContainer}>
-                            <AreaChart data={data.attempts}>
-                                <XAxis dataKey="shortDate" />
-                                <YAxis domain={['dataMin', 'dataMax']} unit="s" />
-                                <Tooltip content={<TaskTooltip data={data} />} />
-                                <Area type="monotone" stroke={null} dataKey="relative_time" />
-                                <ReferenceLine
-                                    y={data.timeStatistics?.avg}
-                                    label={formatMessage({ id: 'data.average' })}
-                                />
-                            </AreaChart>
-                        </ResponsiveContainer>
+                        {statisticsPreference.chart && (
+                            <ResponsiveContainer height={500} className={styles.chartContainer}>
+                                <AreaChart data={data.attempts}>
+                                    <XAxis dataKey="shortDate" />
+                                    <YAxis domain={['dataMin', 'dataMax']} unit="s" />
+                                    <Tooltip content={<TaskTooltip data={data} />} />
+                                    <Area type="monotone" stroke={null} dataKey="relative_time" />
+                                    <ReferenceLine
+                                        y={data.timeStatistics?.avg}
+                                        label={formatMessage({ id: 'data.average' })}
+                                    />
+                                </AreaChart>
+                            </ResponsiveContainer>
+                        )}
                     </>
                 )}
             </LoadingOrChildren>
