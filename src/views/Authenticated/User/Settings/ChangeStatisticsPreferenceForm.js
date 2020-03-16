@@ -29,7 +29,6 @@ const ChangeStatisticsPreferenceForm = () => {
                             }
                             name={`statisticsPreference-${key}`}
                             id={`statisticsPreference-${key}`}
-                            value={value}
                             checked={value}
                             onChange={e => {
                                 const { checked } = e.target;

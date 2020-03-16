@@ -91,7 +91,7 @@ const TaskData = () => {
                                 </CardData>
                             )}
                             <CardData titleId="attemptsCount" descriptionId="data.description.amount">
-                                {length}
+                                {length ?? 0}
                             </CardData>
                         </Container>
                         <AccentTitle messageId="data.average" />
@@ -112,7 +112,6 @@ const TaskData = () => {
                                 descriptionId="data.description.coefficientOfVariation"
                             >
                                 <CoefficientOfVariation value={data.timeStatistics?.coefficientOfVariation} />
-                                {}
                             </CardData>
                         </Container>
                         {length > 3 && statisticsPreference.full && (
