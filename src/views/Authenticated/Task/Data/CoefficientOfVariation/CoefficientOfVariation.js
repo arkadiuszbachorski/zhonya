@@ -7,11 +7,11 @@ const CoefficientOfVariation = ({ value }) => {
     const { coefficient, variant } = useMemo(() => {
         let rounded = roundTo(value, 3);
         let className;
-        if (rounded < 0.2) {
+        if (rounded < 0.25) {
             className = 'low';
-        } else if (rounded < 0.4) {
+        } else if (rounded < 0.5) {
             className = 'medium';
-        } else if (rounded < 0.6) {
+        } else if (rounded < 1) {
             className = 'high';
         } else {
             className = 'veryHigh';

@@ -68,19 +68,22 @@ const TaskData = () => {
                             <CardData titleId="slowest">
                                 <Time time={data.timeStatistics?.max} cutMeaninglessData />
                             </CardData>
-                            <CardData titleId="range">
+                            <CardData titleId="range" descriptionId="data.description.range">
                                 <Time time={data.timeStatistics?.range} cutMeaninglessData />
                             </CardData>
                         </Container>
                         <AccentTitle messageId="data.average" />
                         <Container variant={['smallItems']} className={styles.dataContainer}>
-                            <CardData titleId="average">
+                            <CardData titleId="average" descriptionId="data.description.average">
                                 <Time time={data.timeStatistics?.avg} cutMeaninglessData />
                             </CardData>
-                            <CardData titleId="standardDeviation">
+                            <CardData titleId="standardDeviation" descriptionId="data.description.standardDeviation">
                                 <Time time={data.timeStatistics?.standardDeviation} cutMeaninglessData />
                             </CardData>
-                            <CardData titleId="coefficientOfVariation">
+                            <CardData
+                                titleId="coefficientOfVariation"
+                                descriptionId="data.description.coefficientOfVariation"
+                            >
                                 <CoefficientOfVariation value={data.timeStatistics?.coefficientOfVariation} />
                                 {}
                             </CardData>
@@ -90,20 +93,25 @@ const TaskData = () => {
                                 <AccentTitle messageId="data.quartiles" />
                                 {(data.timeStatistics?.quartiles.q1 ?? null) !== null && (
                                     <Container variant={['smallItems']} className={styles.dataContainer}>
-                                        <CardData titleId="quartile.lower">
+                                        <CardData
+                                            titleId="quartile.lower"
+                                            descriptionId="data.description.quartile.lower"
+                                        >
                                             <Time time={data.timeStatistics.quartiles.q1} cutMeaninglessData />
                                         </CardData>
-                                        <CardData titleId="median">
+                                        <CardData titleId="median" descriptionId="data.description.median">
                                             <Time time={data.timeStatistics.quartiles.q2} cutMeaninglessData />
                                         </CardData>
-                                        <CardData titleId="quartile.upper">
+                                        <CardData
+                                            titleId="quartile.upper"
+                                            descriptionId="data.description.quartile.upper"
+                                        >
                                             <Time time={data.timeStatistics.quartiles.q3} cutMeaninglessData />
                                         </CardData>
                                     </Container>
                                 )}
                             </>
                         )}
-
                         <ResponsiveContainer height={500} className={styles.chartContainer}>
                             <AreaChart data={data.attempts}>
                                 <XAxis dataKey="shortDate" />

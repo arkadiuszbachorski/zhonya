@@ -214,6 +214,15 @@ export default {
         'data.values': 'Wartości',
         'data.average': 'Średnia',
         'data.quartiles': 'Kwartyle',
+        'data.description.range': 'Różnica między najszybszym a najwolniejszym czasem wykonania',
+        'data.description.standardDeviation':
+            'Miara określająca przeciętną wartość rozproszenia czasu wykonania wokół średniej',
+        'data.description.coefficientOfVariation':
+            'Względna miara zróżnicowania czasów. Wartości do 25% wskazują na małą zmienność, 25-50% przeciętną zmienność, 50%-100% silną, a powyżej 100% bardzo silną zmienność.',
+        'data.description.quartile.lower': '25% wszystkich czasów jest szybsza od wartości kwartyla dolnego',
+        'data.description.median': '50% wszystkich czasów jest szybsze od wartości mediany',
+        'data.description.quartile.upper': '25% wszystkich czasów jest wolniejsza od wartości kwartyla górnego',
+        'data.description.average': 'Suma czasów podzielona przez ich ilość',
         'data.tooLessAttempts': 'Musisz wykonać przynajmniej dwie próby by wyświetlić statystyki',
         'verificationEmail.text':
             'By przejść dalej musisz zweryfikować swój adres e-mail. Kliknij by otrzymać wiadomość z linkiem aktywującym na podany adres.',
@@ -429,6 +438,15 @@ export default {
         'data.values': 'Values',
         'data.average': 'Average',
         'data.quartiles': 'Quartiles',
+        'data.description.range': 'Difference between quickest and slowest time',
+        'data.description.standardDeviation':
+            'Quantity expressing by how much specific time differ from the mean value of times',
+        'data.description.coefficientOfVariation':
+            'Measure of the dispersion of time around the mean. The value lower than 25% indicates low variability, 25-50% average variability, 50%-100% high variability and above 100% very high variability.',
+        'data.description.quartile.lower': '25% of all times is quicker than lower quartile value',
+        'data.description.median': '50% of all times is faster than median value',
+        'data.description.quartile.upper': '25% of all times is slower than upper quartile value',
+        'data.description.average': 'The sum of times divided by their number',
         'data.tooLessAttempts': 'You must create at least two attempts to display the data',
         'verificationEmail.text':
             'You must verify your email address to proceed. Click on the button below to receive message with verification link.',
