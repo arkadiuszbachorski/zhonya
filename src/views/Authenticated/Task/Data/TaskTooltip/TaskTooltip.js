@@ -14,7 +14,7 @@ const TaskTooltip = ({ active, payload }) => {
                 </p>
                 <p className={styles.description}>{item.short_description}</p>
                 <p className={styles.date}>
-                    <DateDisplay date={item.updated_at} preference="short" />
+                    <DateDisplay date={item.created_at} preference="short" />
                 </p>
             </div>
         );

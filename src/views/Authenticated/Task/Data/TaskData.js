@@ -63,6 +63,20 @@ const TaskData = () => {
                     <Empty messageId="data.tooLessAttempts" />
                 ) : (
                     <>
+                        {statisticsPreference.chart && (
+                            <ResponsiveContainer height={400} className={styles.chartContainer}>
+                                <AreaChart data={data.attempts}>
+                                    <XAxis dataKey="shortDate" />
+                                    <YAxis domain={['dataMin', 'dataMax']} unit="s" />
+                                    <Tooltip content={<TaskTooltip data={data} />} />
+                                    <Area type="monotone" stroke={null} dataKey="relative_time" />
+                                    <ReferenceLine
+                                        y={data.timeStatistics?.avg}
+                                        label={formatMessage({ id: 'data.average' })}
+                                    />
+                                </AreaChart>
+                            </ResponsiveContainer>
+                        )}
                         <AccentTitle messageId="data.values" />
                         <Container variant={['smallItems']} className={styles.dataContainer}>
                             <CardData titleId="fastest">
@@ -124,20 +138,6 @@ const TaskData = () => {
                                     </Container>
                                 )}
                             </>
-                        )}
-                        {statisticsPreference.chart && (
-                            <ResponsiveContainer height={500} className={styles.chartContainer}>
-                                <AreaChart data={data.attempts}>
-                                    <XAxis dataKey="shortDate" />
-                                    <YAxis domain={['dataMin', 'dataMax']} unit="s" />
-                                    <Tooltip content={<TaskTooltip data={data} />} />
-                                    <Area type="monotone" stroke={null} dataKey="relative_time" />
-                                    <ReferenceLine
-                                        y={data.timeStatistics?.avg}
-                                        label={formatMessage({ id: 'data.average' })}
-                                    />
-                                </AreaChart>
-                            </ResponsiveContainer>
                         )}
                     </>
                 )}
