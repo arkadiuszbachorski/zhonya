@@ -25,7 +25,11 @@
         width: 6rem;
         height: 6rem;
         border-radius: 100%;
-        background-color: var(--accent);
+
+        img {
+          width: 100%;
+          height: auto;
+        }
       }
 
       .textWrapper {
