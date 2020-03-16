@@ -16,6 +16,7 @@ export default {
     task: {
         index: '/task',
         create: '/task/create',
+        data: (taskId = ':taskId') => `/task/${taskId}/data`,
         edit: (taskId = ':taskId') => `/task/${taskId}/edit`,
         delete: (taskId = ':taskId') => `/task/${taskId}/delete`,
         tags: (taskId = ':taskId') => `/task/${taskId}/attach-tags`,

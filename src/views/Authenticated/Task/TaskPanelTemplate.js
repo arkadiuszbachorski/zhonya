@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { faClock, faPen, faTag, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faChartBar, faClock, faPen, faTag, faTrash } from '@fortawesome/free-solid-svg-icons';
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router';
 import routes from '../../../routes';
@@ -8,6 +8,11 @@ import useModelTitle from '../../../hooks/useModelTitle';
 import api from '../../../api';
 
 const generateSideMenuItems = taskId => [
+    {
+        to: routes.task.data(taskId),
+        messageId: 'data',
+        icon: faChartBar,
+    },
     {
         to: routes.attempt.index(taskId),
         messageId: 'model.attempt.plural',

@@ -1,0 +1,29 @@
+.recharts-curve.recharts-area-area {
+  fill: var(--primary);
+  stroke: 1px solid var(--primary);
+}
+
+.recharts-reference-line  {
+  tspan {
+    fill: var(--primary-font);
+  }
+
+  line {
+    stroke: var(--danger);
+  }
+}
+
+.recharts-cartesian-axis-tick {
+  text {
+    fill: var(--accent);
+  }
+  line {
+    stroke: var(--accent);
+  }
+}
+
+.recharts-cartesian-axis {
+  line {
+    stroke: var(--accent);
+  }
+}

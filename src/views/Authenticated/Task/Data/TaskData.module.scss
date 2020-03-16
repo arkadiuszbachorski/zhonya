@@ -1,0 +1,26 @@
+@import '../../../../scss/package';
+
+.dataContainer {
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+
+  > * {
+    max-width: 300px;
+    margin: 2rem 1rem;
+  }
+}
+
+.chartContainer {
+  margin-bottom: 4rem;
+}
+
+.noQuartiles {
+  text-align: center;
+}
+
+@include media-breakpoint-down(md) {
+  .chartContainer {
+    margin-top: 3rem;
+  }
+}

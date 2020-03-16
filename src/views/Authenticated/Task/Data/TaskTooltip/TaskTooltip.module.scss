@@ -1,0 +1,14 @@
+.container {
+  background: var(--background);
+  padding: .5rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--primary);
+
+  .time {
+    font-weight: bold;
+  }
+
+  .date {
+    font-style: italic;
+  }
+}

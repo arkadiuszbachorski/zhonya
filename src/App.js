@@ -44,6 +44,8 @@ import GuestRoute from './middleware/GuestRoute';
 import AuthenticatedRoute from './middleware/AuthenticatedRoute';
 import ForgotPassword from './views/Guest/ForgotPassword';
 import FallbackRoute from './middleware/FallbackRoute';
+import TaskData from './views/Authenticated/Task/Data/TaskData';
+import { useStatisticsPreferenceProvider } from './hooks/useStatisticsPreference';
 
 const App = () => {
     const auth = useAuthProvider();
@@ -52,6 +54,7 @@ const App = () => {
     const modelTitle = useModelTitleProvider();
     const timePreference = useTimePreferenceProvider();
     const datePreference = useDatePreferenceProvider();
+    const statisticsPreference = useStatisticsPreferenceProvider();
 
     return (
         <IntlProvider locale={currentLocale} messages={locale[currentLocale]}>
@@ -63,6 +66,7 @@ const App = () => {
                     [storeKeys.useModelTitle]: modelTitle,
                     [storeKeys.useTimePreference]: timePreference,
                     [storeKeys.useDatePreference]: datePreference,
+                    [storeKeys.useStatisticsPreference]: statisticsPreference,
                 }}
             >
                 <ToastContainer newestOnTop position="bottom-right" transition={Slide} />
@@ -96,6 +100,7 @@ const App = () => {
                         <AuthenticatedRoute exact path={routes.tag.delete()} component={TagDelete} />
                         <AuthenticatedRoute exact path={routes.task.index} component={TaskIndex} />
                         <AuthenticatedRoute exact path={routes.task.create} component={TaskCreate} />
+                        <AuthenticatedRoute exact path={routes.task.data()} component={TaskData} />
                         <AuthenticatedRoute exact path={routes.task.edit()} component={TaskEdit} />
                         <AuthenticatedRoute exact path={routes.task.tags()} component={TaskTags} />
                         <AuthenticatedRoute exact path={routes.task.delete()} component={TaskDelete} />
