@@ -6,6 +6,7 @@ import Container from '../../../components/Container/Container';
 import styles from './AttemptForm.module.scss';
 import Checkbox from '../../../components/forms/Checkbox/Checkbox';
 import Errors from '../../../components/forms/Errors/Errors';
+import customPropTypes from '../../../customPropTypes';
 
 const availableParagraphIds = {
     create: ['attempt.form.text1', 'attempt.form.text2'],
@@ -100,10 +101,10 @@ AttemptForm.propTypes = {
         seconds: PropTypes.number,
         changeTime: PropTypes.bool,
     }).isRequired,
-    errors: PropTypes.shape({
-        description: PropTypes.arrayOf(PropTypes.string),
-        task: PropTypes.arrayOf(PropTypes.string),
-        saved_relative_time: PropTypes.arrayOf(PropTypes.string),
+    errors: customPropTypes.errors({
+        description: PropTypes.string,
+        task: PropTypes.string,
+        saved_relative_time: PropTypes.string,
     }).isRequired,
     variant: PropTypes.oneOf(['create', 'edit']).isRequired,
     tasks: PropTypes.arrayOf(
