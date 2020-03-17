@@ -95,10 +95,10 @@ AttemptForm.propTypes = {
     form: PropTypes.shape({
         description: PropTypes.string.isRequired,
         task: PropTypes.string,
-        days: PropTypes.number,
-        hours: PropTypes.number,
-        minutes: PropTypes.number,
-        seconds: PropTypes.number,
+        days: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        hours: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        minutes: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        seconds: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         changeTime: PropTypes.bool,
     }).isRequired,
     errors: customPropTypes.errors({
