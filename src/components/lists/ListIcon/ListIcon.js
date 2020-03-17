@@ -14,8 +14,4 @@ ListIcon.propTypes = {
     className: PropTypes.string,
 };
 
-ListIcon.defaultProps = {
-    className: null,
-};
-
 export default ListIcon;

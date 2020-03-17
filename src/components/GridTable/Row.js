@@ -23,8 +23,6 @@ Row.propTypes = {
 };
 
 Row.defaultProps = {
-    to: null,
-    className: null,
     header: false,
 };
 

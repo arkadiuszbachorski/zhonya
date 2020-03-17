@@ -32,8 +32,4 @@ Quote.propTypes = {
     className: PropTypes.string,
 };
 
-Quote.defaultProps = {
-    className: null,
-};
-
 export default Quote;

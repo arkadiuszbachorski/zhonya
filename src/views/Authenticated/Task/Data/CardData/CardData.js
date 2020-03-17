@@ -29,8 +29,4 @@ CardData.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-CardData.defaultProps = {
-    descriptionId: null,
-};
-
 export default CardData;

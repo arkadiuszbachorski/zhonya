@@ -24,9 +24,4 @@ Group.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-Group.defaultProps = {
-    className: null,
-    groupSize: null,
-};
-
 export default Group;

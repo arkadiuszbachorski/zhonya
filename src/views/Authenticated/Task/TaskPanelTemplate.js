@@ -62,9 +62,4 @@ TaskPanelTemplate.propTypes = {
     actionButton: PropTypes.node,
 };
 
-TaskPanelTemplate.defaultProps = {
-    children: null,
-    actionButton: null,
-};
-
 export default TaskPanelTemplate;

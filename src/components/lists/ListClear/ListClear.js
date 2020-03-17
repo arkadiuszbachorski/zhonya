@@ -12,8 +12,4 @@ ListClear.propTypes = {
     className: PropTypes.string,
 };
 
-ListClear.defaultProps = {
-    className: null,
-};
-
 export default ListClear;

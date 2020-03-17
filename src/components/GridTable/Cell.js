@@ -14,9 +14,7 @@ Cell.propTypes = {
 };
 
 Cell.defaultProps = {
-    children: null,
     header: false,
-    className: null,
 };
 
 export default Cell;

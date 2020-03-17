@@ -40,16 +40,12 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-    to: null,
     type: 'button',
     children: '',
     variant: 'primary',
+    to: null,
     round: false,
-    className: null,
-    onClick: null,
-    size: null,
     disabled: false,
-    title: null,
 };
 
 export default Button;

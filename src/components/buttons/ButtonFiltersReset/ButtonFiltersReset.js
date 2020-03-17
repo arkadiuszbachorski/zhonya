@@ -17,8 +17,4 @@ ButtonFiltersReset.propTypes = {
     visible: PropTypes.bool,
 };
 
-ButtonFiltersReset.defaultProps = {
-    className: null,
-};
-
 export default ButtonFiltersReset;

@@ -17,12 +17,11 @@ const LoadingOrChildren = ({ loading, children }) => {
 
 LoadingOrChildren.propTypes = {
     loading: PropTypes.bool,
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
 };
 
 LoadingOrChildren.defaultProps = {
     loading: false,
-    children: null,
 };
 
 export default LoadingOrChildren;

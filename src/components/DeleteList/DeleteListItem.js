@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './DeleteList.module.scss';
 import cn from 'classnames';
+import styles from './DeleteList.module.scss';
 import ButtonDelete from '../buttons/ButtonDelete/ButtonDelete';
 
 const DeleteListItem = ({ onClick, children }) => {
@@ -16,11 +16,6 @@ const DeleteListItem = ({ onClick, children }) => {
 DeleteListItem.propTypes = {
     children: PropTypes.node,
     onClick: PropTypes.func,
-};
-
-DeleteListItem.defaultProps = {
-    children: null,
-    onClick: null,
 };
 
 export default DeleteListItem;

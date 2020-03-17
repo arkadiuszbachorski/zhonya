@@ -21,7 +21,6 @@ InputIcon.propTypes = {
 };
 
 InputIcon.defaultProps = {
-    icon: null,
     select: false,
 };
 

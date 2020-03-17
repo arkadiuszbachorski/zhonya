@@ -72,7 +72,6 @@ Time.propTypes = {
 
 Time.defaultProps = {
     time: null,
-    timePreference: null,
     cutMeaninglessData: false,
 };
 

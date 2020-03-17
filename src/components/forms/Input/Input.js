@@ -103,7 +103,7 @@ Input.propTypes = {
     textarea: PropTypes.bool,
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     labelId: PropTypes.string,
     label: PropTypes.string,
     name: PropTypes.string.isRequired,
@@ -122,20 +122,12 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-    children: null,
-    onChange: null,
     type: 'text',
     textarea: false,
     disabled: false,
     readOnly: false,
     select: false,
-    className: null,
     errors: [],
-    icon: null,
-    id: null,
-    groupSize: null,
-    labelId: null,
-    label: null,
     options: [],
 };
 

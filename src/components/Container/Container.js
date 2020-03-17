@@ -14,8 +14,4 @@ Container.propTypes = {
     className: PropTypes.string,
 };
 
-Container.defaultProps = {
-    className: null,
-};
-
 export default Container;

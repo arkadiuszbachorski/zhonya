@@ -53,9 +53,4 @@ AttemptPanelTemplate.propTypes = {
     actionButton: PropTypes.node,
 };
 
-AttemptPanelTemplate.defaultProps = {
-    children: null,
-    actionButton: null,
-};
-
 export default AttemptPanelTemplate;

@@ -17,10 +17,4 @@ Header.propTypes = {
     className: PropTypes.string,
 };
 
-Header.defaultProps = {
-    children: null,
-    messageId: null,
-    className: null,
-};
-
 export default Header;

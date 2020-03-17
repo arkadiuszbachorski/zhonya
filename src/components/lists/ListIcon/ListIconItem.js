@@ -28,11 +28,4 @@ ListIconItem.propTypes = {
     icon: customPropTypes.fontAwesomeIcon.isRequired,
 };
 
-ListIconItem.defaultProps = {
-    messageId: null,
-    children: null,
-    onClick: null,
-    to: null,
-};
-
 export default ListIconItem;

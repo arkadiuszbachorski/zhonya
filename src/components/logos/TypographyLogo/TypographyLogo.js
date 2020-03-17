@@ -14,8 +14,4 @@ TypographyLogo.propTypes = {
     className: PropTypes.string,
 };
 
-TypographyLogo.defaultProps = {
-    className: undefined,
-};
-
 export default TypographyLogo;

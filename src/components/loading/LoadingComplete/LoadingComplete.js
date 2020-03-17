@@ -30,7 +30,6 @@ LoadingComplete.propTypes = {
 LoadingComplete.defaultProps = {
     empty: false,
     loading: false,
-    className: null,
     emptyId: 'notFound',
 };
 

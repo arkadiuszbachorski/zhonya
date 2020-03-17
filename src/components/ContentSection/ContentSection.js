@@ -27,8 +27,6 @@ ContentSection.propTypes = {
 
 ContentSection.defaultProps = {
     variant: 'blank',
-    className: null,
-    containerClassName: null,
 };
 
 export default ContentSection;

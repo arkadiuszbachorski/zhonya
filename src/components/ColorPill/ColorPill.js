@@ -21,8 +21,6 @@ ColorPill.propTypes = {
 
 ColorPill.defaultProps = {
     color: '#fff',
-    className: undefined,
-    variant: undefined,
 };
 
 export default ColorPill;

@@ -15,9 +15,4 @@ FormattedOrChildren.propTypes = {
     messageId: PropTypes.string,
 };
 
-FormattedOrChildren.defaultProps = {
-    children: null,
-    messageId: null,
-};
-
 export default FormattedOrChildren;

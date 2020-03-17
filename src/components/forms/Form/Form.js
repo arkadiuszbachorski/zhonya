@@ -30,8 +30,6 @@ Form.propTypes = {
 
 Form.defaultProps = {
     noPrevent: false,
-    className: null,
-    onSubmit: undefined,
     loading: false,
 };
 

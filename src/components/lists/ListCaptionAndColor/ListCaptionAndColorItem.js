@@ -35,12 +35,4 @@ ListCaptionAndColorItem.propTypes = {
     onClick: PropTypes.func,
 };
 
-ListCaptionAndColorItem.defaultProps = {
-    caption: null,
-    color: null,
-    className: null,
-    onClick: null,
-    children: undefined,
-};
-
 export default ListCaptionAndColorItem;

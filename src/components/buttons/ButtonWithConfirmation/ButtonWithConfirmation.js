@@ -25,7 +25,6 @@ ButtonWithConfirmation.propTypes = {
 
 ButtonWithConfirmation.defaultProps = {
     loading: false,
-    className: undefined,
 };
 
 export default ButtonWithConfirmation;
