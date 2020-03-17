@@ -52,7 +52,6 @@ CardDashboard.propTypes = {
 
 CardDashboard.defaultProps = {
     buttons: [],
-    children: undefined,
 };
 
 export default CardDashboard;

@@ -48,8 +48,4 @@ UserPanelTemplate.propTypes = {
     children: PropTypes.node,
 };
 
-UserPanelTemplate.defaultProps = {
-    children: null,
-};
-
 export default UserPanelTemplate;

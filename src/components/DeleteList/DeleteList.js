@@ -15,8 +15,4 @@ DeleteList.propTypes = {
     className: PropTypes.string,
 };
 
-DeleteList.defaultProps = {
-    className: null,
-};
-
 export default DeleteList;

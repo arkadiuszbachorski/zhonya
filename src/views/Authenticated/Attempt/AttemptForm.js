@@ -6,6 +6,7 @@ import Container from '../../../components/Container/Container';
 import styles from './AttemptForm.module.scss';
 import Checkbox from '../../../components/forms/Checkbox/Checkbox';
 import Errors from '../../../components/forms/Errors/Errors';
+import customPropTypes from '../../../customPropTypes';
 
 const availableParagraphIds = {
     create: ['attempt.form.text1', 'attempt.form.text2'],
@@ -94,16 +95,16 @@ AttemptForm.propTypes = {
     form: PropTypes.shape({
         description: PropTypes.string.isRequired,
         task: PropTypes.string,
-        days: PropTypes.number,
-        hours: PropTypes.number,
-        minutes: PropTypes.number,
-        seconds: PropTypes.number,
+        days: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        hours: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        minutes: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        seconds: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         changeTime: PropTypes.bool,
     }).isRequired,
-    errors: PropTypes.shape({
-        description: PropTypes.arrayOf(PropTypes.string),
-        task: PropTypes.arrayOf(PropTypes.string),
-        saved_relative_time: PropTypes.arrayOf(PropTypes.string),
+    errors: customPropTypes.errors({
+        description: PropTypes.string,
+        task: PropTypes.string,
+        saved_relative_time: PropTypes.string,
     }).isRequired,
     variant: PropTypes.oneOf(['create', 'edit']).isRequired,
     tasks: PropTypes.arrayOf(

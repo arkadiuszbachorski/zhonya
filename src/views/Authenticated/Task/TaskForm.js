@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import FormWithCard from '../../../components/forms/FormWithCard/FormWithCard';
 import Input from '../../../components/forms/Input/Input';
 import Container from '../../../components/Container/Container';
+import customPropTypes from '../../../customPropTypes';
 
 const TaskForm = ({ submit, loading, form, errors, handleChange, variant }) => {
     return (
@@ -42,9 +43,9 @@ TaskForm.propTypes = {
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
     }).isRequired,
-    errors: PropTypes.shape({
-        name: PropTypes.arrayOf(PropTypes.string),
-        description: PropTypes.arrayOf(PropTypes.string),
+    errors: customPropTypes.errors({
+        name: PropTypes.string,
+        description: PropTypes.string,
     }).isRequired,
     variant: PropTypes.oneOf(['create', 'edit']).isRequired,
 };

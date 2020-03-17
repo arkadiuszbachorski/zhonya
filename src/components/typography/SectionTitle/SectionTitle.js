@@ -14,6 +14,7 @@ SectionTitle.propTypes = {
 
 SectionTitle.defaultProps = {
     light: false,
+    // eslint-disable-next-line react/default-props-match-prop-types
     tag: 'h3',
 };
 

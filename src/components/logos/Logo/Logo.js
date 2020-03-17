@@ -32,8 +32,6 @@ Logo.propTypes = {
 
 Logo.defaultProps = {
     inverted: false,
-    className: null,
-    linkClassName: null,
     stroke: 3,
     to: '/',
 };

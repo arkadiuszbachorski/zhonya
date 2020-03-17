@@ -31,8 +31,4 @@ CoefficientOfVariation.propTypes = {
     value: PropTypes.number,
 };
 
-CoefficientOfVariation.defaultProps = {
-    value: null,
-};
-
 export default CoefficientOfVariation;

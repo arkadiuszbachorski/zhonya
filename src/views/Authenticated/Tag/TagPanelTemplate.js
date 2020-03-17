@@ -50,8 +50,4 @@ TagPanelTemplate.propTypes = {
     children: PropTypes.node,
 };
 
-TagPanelTemplate.defaultProps = {
-    children: null,
-};
-
 export default TagPanelTemplate;

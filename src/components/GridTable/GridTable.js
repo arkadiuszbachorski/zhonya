@@ -26,7 +26,6 @@ GridTable.propTypes = {
 GridTable.defaultProps = {
     empty: false,
     loading: false,
-    className: null,
     emptyId: 'notFound',
 };
 

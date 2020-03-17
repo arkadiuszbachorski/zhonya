@@ -4,6 +4,7 @@ import FormWithCard from '../../../components/forms/FormWithCard/FormWithCard';
 import Input from '../../../components/forms/Input/Input';
 import Container from '../../../components/Container/Container';
 import start from '../../../utils/start';
+import customPropTypes from '../../../customPropTypes';
 
 const TagForm = ({ submit, loading, form, errors, handleChange, variant }) => {
     return (
@@ -52,10 +53,10 @@ TagForm.propTypes = {
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
     }).isRequired,
-    errors: PropTypes.shape({
-        color: PropTypes.arrayOf(PropTypes.string),
-        name: PropTypes.arrayOf(PropTypes.string),
-        description: PropTypes.arrayOf(PropTypes.string),
+    errors: customPropTypes.errors({
+        color: PropTypes.string,
+        name: PropTypes.string,
+        description: PropTypes.string,
     }).isRequired,
     variant: PropTypes.oneOf(['create', 'edit']).isRequired,
 };

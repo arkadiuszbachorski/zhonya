@@ -45,8 +45,4 @@ DateDisplay.propTypes = {
     preference: PropTypes.oneOf(availableDatePreferences),
 };
 
-DateDisplay.defaultProps = {
-    preference: null,
-};
-
 export default DateDisplay;

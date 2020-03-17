@@ -39,8 +39,6 @@ FormWithCard.propTypes = {
 };
 
 FormWithCard.defaultProps = {
-    onSubmit: undefined,
-    children: null,
     paragraphIds: [],
     loading: false,
     buttonSwitch: true,

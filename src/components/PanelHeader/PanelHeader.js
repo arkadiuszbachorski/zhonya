@@ -23,11 +23,4 @@ PanelHeader.propTypes = {
     actionButton: PropTypes.element,
 };
 
-PanelHeader.defaultProps = {
-    title: null,
-    actionButton: null,
-    titleId: null,
-    secondaryTitleId: null,
-};
-
 export default PanelHeader;

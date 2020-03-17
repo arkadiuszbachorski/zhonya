@@ -12,10 +12,6 @@ ListCaptionAndColor.propTypes = {
     className: PropTypes.string,
 };
 
-ListCaptionAndColor.defaultProps = {
-    className: null,
-};
-
 ListCaptionAndColor.Item = ListCaptionAndColorItem;
 
 export default ListCaptionAndColor;

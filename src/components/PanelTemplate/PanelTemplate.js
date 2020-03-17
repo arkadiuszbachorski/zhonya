@@ -61,7 +61,6 @@ PanelTemplate.propTypes = {
 };
 
 PanelTemplate.defaultProps = {
-    children: null,
     sideMenuItems: null,
     titleId: null,
     title: null,

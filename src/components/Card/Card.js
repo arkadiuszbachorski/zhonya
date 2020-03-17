@@ -10,7 +10,7 @@ const Card = ({ children, variant, className, inverted }) => (
 );
 
 Card.propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     variant: PropTypes.oneOf(['primary', 'danger']),
     className: PropTypes.string,
     inverted: PropTypes.bool,
@@ -19,8 +19,6 @@ Card.propTypes = {
 Card.defaultProps = {
     variant: 'primary',
     inverted: false,
-    className: null,
-    children: null,
 };
 
 export default Card;

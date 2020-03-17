@@ -68,17 +68,8 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
     radio: false,
-    onChange: null,
     disabled: false,
-    className: null,
     errors: [],
-    id: null,
-    groupSize: null,
-    labelId: null,
-    label: null,
-    value: undefined,
-    checked: undefined,
-    finalValue: undefined,
 };
 
 export default Checkbox;

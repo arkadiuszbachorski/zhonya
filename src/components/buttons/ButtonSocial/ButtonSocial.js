@@ -30,8 +30,4 @@ ButtonSocial.propTypes = {
     className: PropTypes.string,
 };
 
-ButtonSocial.defaultProps = {
-    className: null,
-};
-
 export default ButtonSocial;

@@ -20,10 +20,4 @@ Label.propTypes = {
     label: PropTypes.node,
 };
 
-Label.defaultProps = {
-    id: null,
-    labelId: null,
-    label: null,
-};
-
 export default Label;

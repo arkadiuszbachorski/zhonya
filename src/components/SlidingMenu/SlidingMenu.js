@@ -37,7 +37,7 @@ const SlidingMenu = ({ children, titleId, visible, toggle }) => {
                     <ButtonRoundIcon variant="blank" icon={faArrowLeft} onClick={toggle} />
                     <AccentTitle messageId={titleId} />
                     <div className={styles.content}>{children}</div>
-                    <TypographyLogo classNames={styles.typographyLogo} />
+                    <TypographyLogo className={styles.typographyLogo} />
                 </div>
                 <button type="button" onClick={toggle} className={cn(styles.menuClose, visible ? styles.active : null)}>
                     hide
