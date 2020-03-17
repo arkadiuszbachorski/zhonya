@@ -9,9 +9,10 @@ import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useI
 import AttemptForm from '../AttemptForm';
 import AttemptPanelTemplate from '../AttemptPanelTemplate';
 import nullToEmptyString from '../../../../utils/nullToEmptyString';
-import pick from '../../../../utils/pick';
 import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 import routes from '../../../../routes';
+import secondsToTime from '../../../../utils/secondsToTime';
+import timeToSeconds from '../../../../utils/timeToSeconds';
 
 const AttemptEdit = () => {
     const { taskId, attemptId } = useParams();
@@ -24,10 +25,21 @@ const AttemptEdit = () => {
 
     const [form, handleChange, , setForm] = useForm({
         description: '',
+        days: '',
+        hours: '',
+        minutes: '',
+        seconds: '',
+        changeTime: false,
     });
 
     const submit = () => {
-        instance.put(api.attempt.update(taskId, attemptId), form).then(() => {
+        const data = {
+            description: form.description,
+        };
+        if (form.changeTime) {
+            data.saved_relative_time = timeToSeconds(form.days, form.hours, form.minutes, form.seconds);
+        }
+        instance.put(api.attempt.update(taskId, attemptId), data).then(() => {
             toast.success(formatMessage({ id: 'toast.success.attempt.update' }));
         });
     };
@@ -36,7 +48,12 @@ const AttemptEdit = () => {
         () => {
             instance.get(api.attempt.edit(taskId, attemptId)).then(response => {
                 const { data: attempt } = response;
-                setForm(nullToEmptyString(pick(attempt, ['description'])));
+                setForm(
+                    nullToEmptyString({
+                        description: attempt.description,
+                        ...secondsToTime(attempt.relative_time, false),
+                    }),
+                );
             });
         },
         [taskId, attemptId],

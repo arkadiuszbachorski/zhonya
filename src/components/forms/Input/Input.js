@@ -69,12 +69,12 @@ const Input = ({
 
     return (
         <Group
-            value={value}
             groupSize={groupSize}
             className={cn([
                 styles.group,
-                value ? styles.active : null,
+                value !== undefined && value !== null && value !== '' ? styles.active : null,
                 errors.length > 0 ? styles.hasErrors : null,
+                disabled ? styles.disabled : null,
                 typeColor ? styles.color : null,
                 input ? styles.hasIcon : null,
                 textarea ? styles.isTextarea : null,

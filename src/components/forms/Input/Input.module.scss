@@ -1,6 +1,8 @@
 @import '../../../scss/package';
 
 .group {
+  transition: opacity .3s;
+
   input, textarea, select {
     background: var(--background);
     color: var(--primary-font);
@@ -111,7 +113,10 @@
       background: var(--background);
     }
   }
+}
 
+.disabled {
+  opacity: .5;
 }
 
 

@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import FormWithCard from '../../../components/forms/FormWithCard/FormWithCard';
 import Input from '../../../components/forms/Input/Input';
 import Container from '../../../components/Container/Container';
+import styles from './AttemptForm.module.scss';
+import Checkbox from '../../../components/forms/Checkbox/Checkbox';
+import Errors from '../../../components/forms/Errors/Errors';
+
+const availableParagraphIds = {
+    create: ['attempt.form.text1', 'attempt.form.text2'],
+    edit: ['attempt.form.text1', 'attempt.form.text2', 'attempt.form.text3'],
+};
 
 const AttemptForm = ({ submit, loading, form, errors, handleChange, variant, tasks, renderTasks }) => {
     return (
@@ -12,7 +20,7 @@ const AttemptForm = ({ submit, loading, form, errors, handleChange, variant, tas
                 loading={loading}
                 variant={variant}
                 titleId={`attempt.${variant}.title`}
-                paragraphIds={['attempt.form.text1', 'attempt.form.text2']}
+                paragraphIds={availableParagraphIds[variant]}
             >
                 {renderTasks && (
                     <Input
@@ -33,6 +41,47 @@ const AttemptForm = ({ submit, loading, form, errors, handleChange, variant, tas
                     errors={errors.description}
                     onChange={handleChange}
                 />
+                {variant === 'edit' && (
+                    <>
+                        <Checkbox
+                            labelId="input.changeTime"
+                            name="changeTime"
+                            checked={form.changeTime}
+                            onChange={handleChange}
+                        />
+                        <div className={styles.timeContainer}>
+                            <Input
+                                labelId="timer.days.medium"
+                                name="days"
+                                value={form.days}
+                                onChange={handleChange}
+                                disabled={!form.changeTime}
+                            />
+                            <Input
+                                labelId="timer.hours.medium"
+                                name="hours"
+                                value={form.hours}
+                                onChange={handleChange}
+                                disabled={!form.changeTime}
+                            />
+                            <Input
+                                labelId="timer.minutes.medium"
+                                name="minutes"
+                                value={form.minutes}
+                                onChange={handleChange}
+                                disabled={!form.changeTime}
+                            />
+                            <Input
+                                labelId="timer.seconds.medium"
+                                name="seconds"
+                                value={form.seconds}
+                                onChange={handleChange}
+                                disabled={!form.changeTime}
+                            />
+                        </div>
+                        <Errors errors={errors.saved_relative_time ?? []} />
+                    </>
+                )}
             </FormWithCard>
         </Container>
     );
@@ -45,10 +94,16 @@ AttemptForm.propTypes = {
     form: PropTypes.shape({
         description: PropTypes.string.isRequired,
         task: PropTypes.string,
+        days: PropTypes.number,
+        hours: PropTypes.number,
+        minutes: PropTypes.number,
+        seconds: PropTypes.number,
+        changeTime: PropTypes.bool,
     }).isRequired,
     errors: PropTypes.shape({
         description: PropTypes.arrayOf(PropTypes.string),
         task: PropTypes.arrayOf(PropTypes.string),
+        saved_relative_time: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     variant: PropTypes.oneOf(['create', 'edit']).isRequired,
     tasks: PropTypes.arrayOf(

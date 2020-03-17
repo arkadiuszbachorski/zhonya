@@ -1,0 +1,18 @@
+.timeContainer {
+  max-width: 25rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  > div {
+    width: calc(25% - 1rem);
+  }
+
+  @media (max-width: 320px) {
+    flex-wrap: wrap;
+
+    > div {
+      width: calc(50% - 1rem);
+    }
+  }
+}
