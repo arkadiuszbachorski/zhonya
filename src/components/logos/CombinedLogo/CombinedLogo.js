@@ -6,7 +6,7 @@ import TypographyLogo from '../TypographyLogo/TypographyLogo';
 const CombinedLogo = () => (
     <h1 className={styles.logo}>
         <Logo className={styles.logo} linkClassName={styles.logo} />
-        <TypographyLogo classNames={[styles.typographyLogo]} />
+        <TypographyLogo className={styles.typographyLogo} />
     </h1>
 );
 

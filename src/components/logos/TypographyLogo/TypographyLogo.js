@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './TypographyLogo.module.scss';
 import { Link } from 'react-router-dom';
 import cs from 'classnames';
+import styles from './TypographyLogo.module.scss';
 
-const TypographyLogo = ({ classNames }) => (
-    <Link to="/" className={cs(styles.typographyLogo, classNames)}>
+const TypographyLogo = ({ className }) => (
+    <Link to="/" className={cs(styles.typographyLogo, className)}>
         Zhonya
     </Link>
 );
 
 TypographyLogo.propTypes = {
-    classNames: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.array]),
+    className: PropTypes.string,
 };
 
 TypographyLogo.defaultProps = {
-    classNames: null,
+    className: undefined,
 };
 
 export default TypographyLogo;
