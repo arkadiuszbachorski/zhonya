@@ -47,7 +47,12 @@ const Contact = () => {
                     </p>
                 </div>
                 <div className={styles.creator}>
-                    <div className={styles.imageWrapper}>{/*  todo: image here  */}</div>
+                    <div className={styles.imageWrapper}>
+                        <img
+                            src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/man5-512.png"
+                            alt="icon"
+                        />
+                    </div>
                     <div className={styles.textWrapper}>
                         <p>
                             <strong>Arkadiusz Bachorski</strong>
