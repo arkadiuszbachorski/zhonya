@@ -3,10 +3,12 @@
 .wrapper {
   display: flex;
   align-items: center;
+  height: 500px;
+  max-width: 1300px !important;
 
   .text {
     text-align: justify;
-    width: 45%;
+    width: 40%;
     line-height: 140%;
     font-size: 1.2rem;
 
@@ -16,11 +18,17 @@
     }
   }
 
-  .image {
+  .imageWrapper {
     margin-left: 2rem;
-    width: calc(55% - 2rem);
+    width: calc(60% - 2rem);
+    height: 100%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   }
 }
 
@@ -28,14 +36,16 @@
 {
   .wrapper {
     flex-wrap: wrap;
+    height: auto;
 
     .text {
       width: 100%;
     }
 
-    .image {
+    .imageWrapper {
       margin: 1rem 0 0;
       width: 100%;
+
     }
   }
 

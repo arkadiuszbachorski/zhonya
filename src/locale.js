@@ -272,7 +272,7 @@ export default {
         'forWho.title': 'For who?',
         'forWho.text1': 'Zhonya was designed for those for whom time matters.',
         'forWho.text2':
-            'With Zhonya, you can create statistics that will help you plan your day, save time, stop being late overestimate your capabilities.',
+            'With Zhonya, you can create statistics that will help you plan your day, save time, stop being late and overestimate your capabilities.',
         'forWho.text3': 'Check if your morning shower is really as speed as you assume!',
         'howItWorks.title': 'How does it work?',
         'howItWorks.instruction.tasks': 'Create tasks',
