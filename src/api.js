@@ -1,4 +1,4 @@
-const url = 'http://localhost:8000/api';
+const url = process.env.API_URL;
 
 export default {
     user: {
