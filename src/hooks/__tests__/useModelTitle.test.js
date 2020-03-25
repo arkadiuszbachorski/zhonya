@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, act } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { IntlProvider } from 'react-intl';
 import { Slide, ToastContainer } from 'react-toastify';
@@ -8,9 +8,23 @@ import useModelTitle, { useModelTitleProvider } from '../useModelTitle';
 import { useAuthProvider } from '../useAuth';
 import { useLocaleProvider } from '../useLocale';
 import locale from '../../locale';
+import * as useInstanceWithToastsAndLoading from '../api/useInstanceWithToastsAndLoading';
+
+useInstanceWithToastsAndLoading.default = jest.fn(() => {
+    const instance = {
+        get: jest.fn(),
+    };
+    instance.get.mockResolvedValue({
+        data: 'Fetched name',
+    });
+    const loading = false;
+    const cancel = () => null;
+
+    return [instance, loading, cancel];
+});
 
 const Changer = () => {
-    const [tagName, setTagName] = useModelTitle('tag', 1);
+    const [tagName, setTagName] = useModelTitle('tag', 1, 'test.com');
     return (
         <>
             <h1>Tag name: {tagName || 'none'}</h1>
@@ -48,10 +62,19 @@ describe('Hooks - useModelTitle, useModelTitleProvider both', () => {
         expect(getByText('Tag name: none')).toBeInTheDocument();
     });
 
-    it('name can be set', () => {
+    it('fetches data automatically', async () => {
+        const { getByText } = render(<SimulatedApp />);
+        await setTimeout(() => {
+            expect(getByText('Tag name: Fetched name')).toBeInTheDocument();
+        }, 500);
+    });
+
+    it('name can be set manually', () => {
         const { getByText } = render(<SimulatedApp />);
         const button = document.getElementById('button');
-        fireEvent.click(button);
+        act(() => {
+            fireEvent.click(button);
+        });
         expect(getByText('Tag name: Lorem ipsum')).toBeInTheDocument();
     });
 });
