@@ -1,5 +1,5 @@
 import axios from 'axios';
-import routes from '../routes';
+import routes from '../../routes';
 
 const params = type => {
     const url = `${process.env.REACT_APP_API_URL}/e2e/${type}`;
@@ -18,12 +18,8 @@ export const wipeUser = () => {
     return axios.post(...params('wipe'));
 };
 
-export const appUrl = (path = '') => {
-    return process.env.REACT_APP_URL + path;
-};
-
 export const loginUser = async page => {
-    await page.goto(appUrl(routes.logIn));
+    await page.route(routes.logIn);
     await page.focus('input#email');
     await page.keyboard.type('test@test.com');
     await page.focus('input#password');
