@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
-import { createUser, wipeUser } from './utils';
+import { appUrl, createUser, wipeUser } from './utils';
+import routes from '../routes';
 
 let page;
 let browser;
@@ -9,7 +10,7 @@ beforeAll(async () => {
         args: ['--lang=en-EN'],
     });
     page = await browser.newPage();
-    await page.goto('http://localhost:3000/log-in');
+    await page.goto(appUrl(routes.logIn));
     await createUser();
 });
 

@@ -1,4 +1,6 @@
 import puppeteer from 'puppeteer';
+import { appUrl } from './utils';
+import routes from '../routes';
 
 let page;
 let browser;
@@ -8,7 +10,7 @@ beforeAll(async () => {
         args: ['--lang=en-EN'],
     });
     page = await browser.newPage();
-    await page.goto('http://localhost:3000');
+    await page.goto(appUrl(routes.index));
 });
 
 afterAll(async () => {
