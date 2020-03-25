@@ -1,16 +1,13 @@
-import puppeteer from 'puppeteer';
-import { appUrl } from './utils';
 import routes from '../routes';
+import createBrowser from './utils/createBrowser';
 
 let page;
 let browser;
 
 beforeAll(async () => {
-    browser = await puppeteer.launch({
-        args: ['--lang=en-EN'],
-    });
+    browser = await createBrowser();
     page = await browser.newPage();
-    await page.goto(appUrl(routes.index));
+    await page.route(routes.index);
 });
 
 afterAll(async () => {
@@ -24,8 +21,8 @@ describe('e2e - MainPage', () => {
     });
 
     it('has call-to-action', async () => {
-        const callToAction = await page.$x('//a[contains(.,"Try now for free") and contains(@class, "button")]');
-        expect(callToAction[0]).toBeTruthy();
+        const [callToAction] = await page.$x('//a[contains(.,"Try now for free") and contains(@class, "button")]');
+        expect(callToAction).toBeTruthy();
     });
 
     it('has contact form', async () => {
@@ -36,9 +33,9 @@ describe('e2e - MainPage', () => {
     });
 
     it('has logIn and signUp links', async () => {
-        const logIn = await page.$x('//a[contains(.,"Log In")]');
-        const signUp = await page.$x('//a[contains(.,"Sign Up")]');
-        expect(logIn[0]).toBeTruthy();
-        expect(signUp[0]).toBeTruthy();
+        const [logIn] = await page.$x('//a[contains(.,"Log In")]');
+        const [signUp] = await page.$x('//a[contains(.,"Sign Up")]');
+        expect(logIn).toBeTruthy();
+        expect(signUp).toBeTruthy();
     });
 });

@@ -1,17 +1,19 @@
-import puppeteer from 'puppeteer';
-import { appUrl, createUser, wipeUser } from './utils';
+import { createUser, wipeUser } from './utils/manageUser';
 import routes from '../routes';
+import extendPage from './utils/extendPage';
+import createBrowser from './utils/createBrowser';
 
 let page;
 let browser;
+let user;
 
 beforeAll(async () => {
-    browser = await puppeteer.launch({
-        args: ['--lang=en-EN'],
-    });
+    browser = await createBrowser();
     page = await browser.newPage();
-    await page.goto(appUrl(routes.logIn));
-    await createUser();
+    extendPage(page);
+    await page.route(routes.logIn);
+    const response = await createUser();
+    user = response.data;
 });
 
 afterAll(async () => {
@@ -21,11 +23,9 @@ afterAll(async () => {
 
 describe('e2e - LogIn', () => {
     it('login process', async () => {
-        await page.focus('input#email');
-        await page.keyboard.type('test@test.com');
-        await page.focus('input#password');
-        await page.keyboard.type('test1234');
-        await page.$eval('button[type="submit"]', button => button.click());
+        await page.typeInput('#email', user.email);
+        await page.typeInput('#password', user.password);
+        await page.clickSubmit();
         await page.waitForNavigation();
         expect(page.url()).toContain('dashboard');
     });
