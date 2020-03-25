@@ -7,11 +7,11 @@ import { defaultLocale } from '../../locale';
 
 // eslint-disable-next-line react/prop-types
 const Display = ({ localeToSet }) => {
-    const [lang, setLang] = useLocale();
+    const { locale, setLocale } = useLocale();
     return (
         <>
-            <p>Lang: {lang}</p>
-            <button id="button" type="button" onClick={() => setLang(localeToSet)}>
+            <p>Lang: {locale}</p>
+            <button id="button" type="button" onClick={() => setLocale(localeToSet)}>
                 Locale setter
             </button>
         </>
