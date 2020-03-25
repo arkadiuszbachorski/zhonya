@@ -46,8 +46,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --testPathIgnorePatterns=src/e2e",
+    "eject": "react-scripts eject",
+    "e2e": "react-scripts test --fit=src/e2e"
   },
   "eslintConfig": {
     "extends": "react-app"
