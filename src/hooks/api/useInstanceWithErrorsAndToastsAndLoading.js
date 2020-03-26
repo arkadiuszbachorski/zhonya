@@ -9,6 +9,8 @@ import useAuth from '../useAuth';
 import addBearerToken from './modifiers/addBearerToken';
 import addCancelToken from './modifiers/addCancelToken';
 import getCancelToken from './getCancelToken';
+import useLocale from '../useLocale';
+import addLocaleHeader from './modifiers/addLocaleHeader';
 
 const useInstanceWithErrorsAndToastsAndLoading = (userMessages = null) => {
     const { formatMessage } = useIntl();
@@ -17,6 +19,7 @@ const useInstanceWithErrorsAndToastsAndLoading = (userMessages = null) => {
     const auth = useAuth();
     const history = useHistory();
     const [cancel, cancelToken] = getCancelToken();
+    const { locale } = useLocale();
 
     const instance = useMemo(() => {
         const inst = axios.create();
@@ -24,6 +27,7 @@ const useInstanceWithErrorsAndToastsAndLoading = (userMessages = null) => {
         handleLoading(inst, setLoading);
         handleErrors(inst, setErrors);
         addBearerToken(inst, auth.data.token);
+        addLocaleHeader(inst, locale);
 
         return inst;
     }, [userMessages, auth.data.token]);
