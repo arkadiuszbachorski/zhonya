@@ -18,13 +18,11 @@ export const wipeUser = () => {
     return axios.post(...params('wipe'));
 };
 
-export const loginUser = async page => {
+export const loginUser = async (page, credits) => {
     await page.route(routes.logIn);
-    await page.focus('input#email');
-    await page.keyboard.type('test@test.com');
-    await page.focus('input#password');
-    await page.keyboard.type('test1234');
-    await page.$eval('input#rememberMe', checkbox => checkbox.click());
-    await page.$eval('button[type="submit"]', button => button.click());
+    await page.typeInput('#email', credits.email);
+    await page.typeInput('#password', credits.password);
+    await page.click('label[for="rememberMe"]');
+    await page.clickSubmit();
     await page.waitForNavigation();
 };
