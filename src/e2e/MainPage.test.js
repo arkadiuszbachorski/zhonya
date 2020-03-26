@@ -1,5 +1,6 @@
 import routes from '../routes';
 import createBrowser from './utils/createBrowser';
+import extendPage from './utils/extendPage';
 
 let page;
 let browser;
@@ -7,6 +8,7 @@ let browser;
 beforeAll(async () => {
     browser = await createBrowser();
     page = await browser.newPage();
+    extendPage(page);
     await page.route(routes.index);
 });
 
