@@ -16,6 +16,7 @@
     "node-sass": "^4.13.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
+    "puppeteer": "^2.1.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-facebook-login": "^4.1.1",
@@ -45,8 +46,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --testPathIgnorePatterns=src/e2e",
+    "eject": "react-scripts eject",
+    "e2e": "react-scripts test --fit=src/e2e"
   },
   "eslintConfig": {
     "extends": "react-app"

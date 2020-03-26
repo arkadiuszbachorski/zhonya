@@ -3,17 +3,17 @@ import { useHistory, useLocation } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import MainTemplate from '../../components/MainTemplate/MainTemplate';
-import Input from '../../components/forms/Input/Input';
-import FormInCard from '../../components/forms/FormInCard/FormInCard';
-import Container from '../../components/Container/Container';
-import useForm from '../../hooks/useForm';
-import api from '../../api';
-import useAuth from '../../hooks/useAuth';
-import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
-import Checkbox from '../../components/forms/Checkbox/Checkbox';
-import routes from '../../routes';
-import ButtonSocial from '../../components/buttons/ButtonSocial/ButtonSocial';
+import MainTemplate from '../../../components/MainTemplate/MainTemplate';
+import Input from '../../../components/forms/Input/Input';
+import FormInCard from '../../../components/forms/FormInCard/FormInCard';
+import Container from '../../../components/Container/Container';
+import useForm from '../../../hooks/useForm';
+import api from '../../../api';
+import useAuth from '../../../hooks/useAuth';
+import useInstanceWithErrorsAndToastsAndLoading from '../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import Checkbox from '../../../components/forms/Checkbox/Checkbox';
+import routes from '../../../routes';
+import ButtonSocial from '../../../components/buttons/ButtonSocial/ButtonSocial';
 
 const LogIn = () => {
     const [form, handleChange] = useForm({

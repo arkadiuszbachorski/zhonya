@@ -2,14 +2,14 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
 import { FormattedMessage, useIntl } from 'react-intl';
-import MainTemplate from '../../components/MainTemplate/MainTemplate';
-import Input from '../../components/forms/Input/Input';
-import FormInCard from '../../components/forms/FormInCard/FormInCard';
-import Container from '../../components/Container/Container';
-import useForm from '../../hooks/useForm';
-import api from '../../api';
-import useInstanceWithErrorsAndToastsAndLoading from '../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
-import routes from '../../routes';
+import MainTemplate from '../../../components/MainTemplate/MainTemplate';
+import Input from '../../../components/forms/Input/Input';
+import FormInCard from '../../../components/forms/FormInCard/FormInCard';
+import Container from '../../../components/Container/Container';
+import useForm from '../../../hooks/useForm';
+import api from '../../../api';
+import useInstanceWithErrorsAndToastsAndLoading from '../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import routes from '../../../routes';
 
 const ForgotPassword = () => {
     const [form, handleChange] = useForm({
