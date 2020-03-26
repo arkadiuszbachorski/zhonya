@@ -23,7 +23,7 @@ afterAll(async () => {
 
 const name = 'Lorem ipsum';
 
-describe('e2e - Manage Task', () => {
+describe('e2e - Task', () => {
     it('fails task creation when no data provided', async () => {
         await page.createTask('', '');
         await page.waitForLoadingToEnd();
