@@ -34,7 +34,6 @@ describe('e2e - Task', () => {
     it('creates task', async () => {
         const description = 'Not very long description';
         await page.createTask(name, description);
-        await page.waitForNavigation();
         await page.route(routes.task.index);
         expect(await page.queryTableCellWithContent(name)).toBeTruthy();
         expect(await page.queryTableCellWithContent(description)).toBeTruthy();
