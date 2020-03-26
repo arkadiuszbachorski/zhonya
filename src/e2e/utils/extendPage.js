@@ -1,3 +1,5 @@
+import routes from '../../routes';
+
 export default function extendPage(page) {
     page.clickSubmit = async () => {
         await page.click('button[type="submit"]');
@@ -33,5 +35,17 @@ export default function extendPage(page) {
         if (waitForLoading) {
             await page.waitForLoadingToEnd();
         }
+    };
+
+    page.createTask = async (name, description) => {
+        await page.route(routes.task.create);
+        await page.typeInput('#name', name);
+        await page.typeInput('#description', description);
+        await page.clickSubmit();
+        await page.waitForLoadingToEnd();
+    };
+
+    page.clickTableLink = async () => {
+        return page.click('a[href*="/task/"][class*="GridTable_row"]');
     };
 }

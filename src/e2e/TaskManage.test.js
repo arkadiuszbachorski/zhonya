@@ -21,22 +21,11 @@ afterAll(async () => {
     await wipeUser();
 });
 
-const createTask = async (name, description) => {
-    await page.route(routes.task.create);
-    await page.typeInput('#name', name);
-    await page.typeInput('#description', description);
-    await page.clickSubmit();
-};
-
-const clickTableLink = async () => {
-    return page.click('a[href*="/task/"][class*="GridTable_row"]');
-};
-
 const name = 'Lorem ipsum';
 
 describe('e2e - Manage Task', () => {
     it('fails task creation when no data provided', async () => {
-        await createTask('', '');
+        await page.createTask('', '');
         await page.waitForLoadingToEnd();
         const error = await page.queryValidationError();
         expect(error).toBeTruthy();
@@ -44,7 +33,7 @@ describe('e2e - Manage Task', () => {
 
     it('creates task', async () => {
         const description = 'Not very long description';
-        await createTask(name, description);
+        await page.createTask(name, description);
         await page.waitForNavigation();
         await page.route(routes.task.index);
         expect(await page.queryTableCellWithContent(name)).toBeTruthy();
@@ -70,7 +59,7 @@ describe('e2e - Manage Task', () => {
     it('updates task name', async () => {
         const newName = 'New name';
         await page.route(routes.task.index);
-        await clickTableLink();
+        await page.clickTableLink();
         const [element] = await page.$x(
             '//a[contains(@href, "task") and contains(@href, "edit") and contains(.,"Edit")]',
         );
@@ -89,7 +78,7 @@ describe('e2e - Manage Task', () => {
 
     it('deletes task', async () => {
         await page.route(routes.task.index);
-        await clickTableLink();
+        await page.clickTableLink();
         const [element] = await page.$x(
             '//a[contains(@href, "task") and contains(@href, "delete") and contains(.,"Delete")]',
         );
