@@ -48,4 +48,11 @@ export default function extendPage(page) {
     page.clickTableLink = async () => {
         return page.click('a[href*="/task/"][class*="GridTable_row"]');
     };
+
+    page.selectFirstOption = async selector => {
+        await page.focus(selector);
+        await page.keyboard.press('Enter');
+        await page.keyboard.press('ArrowDown');
+        await page.keyboard.press('Enter');
+    };
 }
