@@ -7,6 +7,8 @@ let page;
 let browser;
 let user;
 
+jest.setTimeout(60000);
+
 beforeAll(async () => {
     browser = await createBrowser();
     page = await browser.newPage();

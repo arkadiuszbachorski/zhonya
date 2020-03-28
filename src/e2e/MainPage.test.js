@@ -5,6 +5,8 @@ import extendPage from './utils/extendPage';
 let page;
 let browser;
 
+jest.setTimeout(60000);
+
 beforeAll(async () => {
     browser = await createBrowser();
     page = await browser.newPage();
