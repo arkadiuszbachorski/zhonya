@@ -1,5 +1,4 @@
-import { createUser, wipeUser } from './utils/manageUser';
-import routes from '../routes';
+import { createUser, wipeUser, loginUser } from './utils/manageUser';
 import extendPage from './utils/extendPage';
 import createBrowser from './utils/createBrowser';
 
@@ -13,7 +12,6 @@ beforeAll(async () => {
     browser = await createBrowser();
     page = await browser.newPage();
     extendPage(page);
-    await page.route(routes.logIn);
     const response = await createUser();
     user = response.data;
 });
@@ -25,10 +23,7 @@ afterAll(async () => {
 
 describe('e2e - LogIn', () => {
     it('login process', async () => {
-        await page.typeInput('#email', user.email);
-        await page.typeInput('#password', user.password);
-        await page.clickSubmit();
-        await page.waitForNavigation();
-        expect(page.url()).toContain('dashboard');
+        await loginUser(page, user);
+        expect(await page.url()).toContain('dashboard');
     });
 });
