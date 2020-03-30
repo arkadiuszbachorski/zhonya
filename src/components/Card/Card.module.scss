@@ -1,17 +1,21 @@
 @import '../../scss/package';
 
 .card {
-  padding: 1rem $falling-border-radius - 2rem;
+  padding: 1rem 3rem;
   border: 1px solid transparent;
-  border-bottom-left-radius: $falling-border-radius - 1rem;
-  border-top-right-radius: $falling-border-radius - 1rem;
+  border-bottom-left-radius: 4rem;
+  border-top-right-radius: 4rem;
+
+  @include media-breakpoint-down(sm) {
+    padding: 2rem;
+  }
 }
 
 .bordersInverted {
   border-bottom-left-radius: 0;
   border-top-right-radius: 0;
-  border-top-left-radius: $falling-border-radius - 1rem;
-  border-bottom-right-radius: $falling-border-radius - 1rem;
+  border-top-left-radius: 4rem;
+  border-bottom-right-radius: 4rem;
 }
 
 .primary {
