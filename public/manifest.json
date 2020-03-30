@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Zhonya",
+  "name": "Zhonya",
+  "description": "For those for whom time matters",
   "icons": [
     {
       "src": "favicon.ico",
