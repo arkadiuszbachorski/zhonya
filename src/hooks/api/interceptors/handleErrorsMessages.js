@@ -11,7 +11,7 @@ const defaultSettings = {
     server: 'toast.error.server',
     client: 'toast.error.client',
     redirectPath: null,
-    unauthorizedPath: routes.signUp,
+    unauthorizedPath: routes.logIn,
 };
 
 export default (instance, formatMessage, history, auth, userSettings = null) => {

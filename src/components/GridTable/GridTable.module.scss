@@ -1,9 +1,15 @@
+@import '../../scss/package';
+
 .table {
   position: relative;
   display: flex;
   flex-direction: column;
   overflow-x: auto;
-  max-height: 60vh;
+  max-height: calc(100vh - 280px);
+
+  @include media-breakpoint-down(sm) {
+    max-height: 75vh;
+  }
 }
 
 .row {
