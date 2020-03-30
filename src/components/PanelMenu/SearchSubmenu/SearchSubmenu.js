@@ -65,7 +65,7 @@ const SearchSubmenu = ({ toggle, active }) => {
                 {debouncedFilters.search !== '' && (
                     <LoadingComplete loading={loading} empty={tasksEmpty && tagsEmpty && attemptsEmpty}>
                         {!tagsEmpty && (
-                            <>
+                            <div className={styles.groupWrapper}>
                                 <AccentSubtitle messageId="model.tag.plural" />
                                 <ListCaptionAndColor>
                                     {data.tags.map(tag => (
@@ -84,10 +84,10 @@ const SearchSubmenu = ({ toggle, active }) => {
                                         />
                                     ))}
                                 </ListCaptionAndColor>
-                            </>
+                            </div>
                         )}
                         {!tasksEmpty && (
-                            <>
+                            <div className={styles.groupWrapper}>
                                 <AccentSubtitle messageId="model.task.plural" />
                                 <ListCaptionAndColor>
                                     {data.tasks.map(task => (
@@ -106,10 +106,10 @@ const SearchSubmenu = ({ toggle, active }) => {
                                         />
                                     ))}
                                 </ListCaptionAndColor>
-                            </>
+                            </div>
                         )}
                         {!attemptsEmpty && (
-                            <>
+                            <div className={styles.groupWrapper}>
                                 <AccentSubtitle messageId="model.attempt.plural" />
                                 <ListCaptionAndColor>
                                     {data.attempts.map(attempt => (
@@ -135,7 +135,7 @@ const SearchSubmenu = ({ toggle, active }) => {
                                         />
                                     ))}
                                 </ListCaptionAndColor>
-                            </>
+                            </div>
                         )}
                     </LoadingComplete>
                 )}
