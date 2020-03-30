@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Zhonya",
+  "name": "Zhonya",
+  "description": "App built for those for whom time matters. Measure your everyday tasks and plan your day better",
   "icons": [
     {
       "src": "favicon.ico",
