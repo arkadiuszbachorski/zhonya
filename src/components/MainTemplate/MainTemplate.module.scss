@@ -2,7 +2,14 @@
 
 
 .wrapper {
-  padding: 0 2rem;
+  padding: 0 1rem;
+}
+
+
+@include media-breakpoint-up(sm) {
+  .wrapper {
+    padding: 0 2rem;
+  }
 }
 
 @include media-breakpoint-up(md) {
