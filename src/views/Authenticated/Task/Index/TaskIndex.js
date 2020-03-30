@@ -81,7 +81,7 @@ const TaskIndex = () => {
                     name="tag"
                     value={filters.tag}
                     onChange={handleChange}
-                    options={tags.map(({ id, name }) => ({ value: id, label: name }))}
+                    options={tags.map(({ id, name }) => ({ value: id, label: name ?? formatMessage({id: 'noName'}) }))}
                 />
                 <Checkbox labelId="input.active" name="active" checked={filters.active} onChange={handleChange} />
                 <ButtonFiltersReset onClick={resetFilters} visible={hasChanged} />
