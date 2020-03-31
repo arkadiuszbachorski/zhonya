@@ -25,7 +25,13 @@
       }
     }
   }
+}
 
+.loader {
+  position: sticky;
+  bottom: 30vh;
+  top: unset;
+  height: 100px;
 }
 
 .headerRow {
