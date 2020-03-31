@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useIntl } from 'react-intl';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
-
 import api from '../../../../api';
 import routes from '../../../../routes';
 import ButtonCreate from '../../../../components/buttons/ButtonCreate/ButtonCreate';
@@ -33,29 +33,39 @@ const AttemptIndependentIndex = () => {
 
     const [instance, loading, cancel] = useInstanceWithToastsAndLoading();
 
-    const [attempts, setAttempts] = useState([]);
+    const [attempts, setAttempts] = useState({
+        data: [],
+        nextPage: api.attemptIndependent.index,
+    });
 
     const [tasks, setTasks] = useState([]);
 
-    useCancellableEffect(
-        () => {
+    const fetchAttempts = useCallback(
+        (loadMore = false) => {
+            const url = loadMore ? attempts.nextPage : api.attemptIndependent.index;
             const hasNoTasks = tasks.length === 0;
             instance
-                .get(api.attemptIndependent.index, {
+                .get(url, {
                     params: params.prepare(debouncedFilters, {
                         withTasks: hasNoTasks ? true : undefined,
                     }),
                 })
-                .then(response => {
-                    setAttempts(response.data.attempts);
+                .then(({ data }) => {
+                    setAttempts(oldAttempts => {
+                        return {
+                            data: loadMore ? [...oldAttempts.data, ...data.attempts.data] : data.attempts.data,
+                            nextPage: data.attempts.nextPage,
+                        };
+                    });
                     if (hasNoTasks) {
-                        setTasks(response.data.tasks);
+                        setTasks(data.tasks);
                     }
                 });
         },
-        [debouncedFilters],
-        cancel,
+        [debouncedFilters, attempts.nextPage],
     );
+
+    useCancellableEffect(fetchAttempts, [debouncedFilters], cancel);
 
     const hasChanged = useMemo(() => {
         return params.hasChanged(debouncedFilters);
@@ -90,31 +100,46 @@ const AttemptIndependentIndex = () => {
                 <Checkbox labelId="input.active" name="active" checked={filters.active} onChange={handleChange} />
                 <ButtonFiltersReset onClick={resetFilters} visible={hasChanged} />
             </Container>
-            <GridTable loading={loading} empty={!attempts.length}>
-                <GridTable.Row header className={styles.row}>
-                    <GridTable.Header messageId="attempt.index.header.taskName" />
-                    <GridTable.Header messageId="attempt.index.header.description" />
-                    <GridTable.Header messageId="attempt.index.header.time" />
-                    <GridTable.Header messageId="attempt.index.header.lastUpdated" />
-                </GridTable.Row>
-                {attempts.map(attempt => (
-                    <GridTable.Row
-                        className={styles.row}
-                        key={attempt.id}
-                        to={routes.attempt.timer(attempt.task.id, attempt.id)}
-                    >
-                        <GridTable.Cell>{attempt.task.name}</GridTable.Cell>
-                        <GridTable.Cell>{attempt.short_description}</GridTable.Cell>
-                        <GridTable.Cell>
-                            <Time time={attempt.relative_time} />
-                        </GridTable.Cell>
-                        <GridTable.Cell>
-                            {attempt.active && <Active />}
-                            {!attempt.active && <DateDisplay date={attempt.updated_at} />}
-                        </GridTable.Cell>
-                    </GridTable.Row>
-                ))}
-            </GridTable>
+            {useMemo(
+                () => (
+                    <GridTable loading={loading} empty={!attempts.data.length}>
+                        <InfiniteScroll
+                            next={() => fetchAttempts(true)}
+                            hasMore={attempts.nextPage !== null}
+                            hasChildren
+                            scrollThreshold={1}
+                            loader={<GridTable.Loader />}
+                            dataLength={attempts.data.length}
+                            scrollableTarget="gridTable"
+                        >
+                            <GridTable.Row header className={styles.row}>
+                                <GridTable.Header messageId="attempt.index.header.taskName" />
+                                <GridTable.Header messageId="attempt.index.header.description" />
+                                <GridTable.Header messageId="attempt.index.header.time" />
+                                <GridTable.Header messageId="attempt.index.header.lastUpdated" />
+                            </GridTable.Row>
+                            {attempts.data.map(attempt => (
+                                <GridTable.Row
+                                    className={styles.row}
+                                    key={attempt.id}
+                                    to={routes.attempt.timer(attempt.task.id, attempt.id)}
+                                >
+                                    <GridTable.Cell>{attempt.task.name}</GridTable.Cell>
+                                    <GridTable.Cell>{attempt.short_description}</GridTable.Cell>
+                                    <GridTable.Cell>
+                                        <Time time={attempt.relative_time} />
+                                    </GridTable.Cell>
+                                    <GridTable.Cell>
+                                        {attempt.active && <Active />}
+                                        {!attempt.active && <DateDisplay date={attempt.updated_at} />}
+                                    </GridTable.Cell>
+                                </GridTable.Row>
+                            ))}
+                        </InfiniteScroll>
+                    </GridTable>
+                ),
+                [attempts.data, loading],
+            )}
         </PanelTemplate>
     );
 };

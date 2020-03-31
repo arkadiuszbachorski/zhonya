@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useIntl } from 'react-intl';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
-
 import api from '../../../../api';
 import routes from '../../../../routes';
 import ButtonCreate from '../../../../components/buttons/ButtonCreate/ButtonCreate';
@@ -34,29 +34,39 @@ const TaskIndex = () => {
 
     const [instance, loading, cancel] = useInstanceWithToastsAndLoading();
 
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState({
+        data: [],
+        nextPage: api.task.index,
+    });
 
     const [tags, setTags] = useState([]);
 
-    useCancellableEffect(
-        () => {
+    const fetchTasks = useCallback(
+        (loadMore = false) => {
             const hasNoTags = tags.length === 0;
+            const url = loadMore ? tasks.nextPage : api.task.index;
             instance
-                .get(api.task.index, {
+                .get(url, {
                     params: params.prepare(debouncedFilters, {
                         withTags: hasNoTags ? true : undefined,
                     }),
                 })
-                .then(response => {
-                    setTasks(response.data.tasks);
+                .then(({ data }) => {
+                    setTasks(oldTasks => {
+                        return {
+                            data: loadMore ? [...oldTasks.data, ...data.tasks.data] : data.tasks.data,
+                            nextPage: data.tasks.nextPage,
+                        };
+                    });
                     if (hasNoTags) {
-                        setTags(response.data.tags);
+                        setTags(data.tags);
                     }
                 });
         },
-        [debouncedFilters],
-        cancel,
+        [debouncedFilters, tasks.nextPage],
     );
+
+    useCancellableEffect(fetchTasks, [debouncedFilters], cancel);
 
     const hasChanged = useMemo(() => {
         return params.hasChanged(debouncedFilters);
@@ -81,49 +91,67 @@ const TaskIndex = () => {
                     name="tag"
                     value={filters.tag}
                     onChange={handleChange}
-                    options={tags.map(({ id, name }) => ({ value: id, label: name ?? formatMessage({id: 'noName'}) }))}
+                    options={tags.map(({ id, name }) => ({
+                        value: id,
+                        label: name ?? formatMessage({ id: 'noName' }),
+                    }))}
                 />
                 <Checkbox labelId="input.active" name="active" checked={filters.active} onChange={handleChange} />
                 <ButtonFiltersReset onClick={resetFilters} visible={hasChanged} />
             </Container>
-            <GridTable loading={loading} empty={!tasks.length}>
-                <GridTable.Row header className={styles.row}>
-                    <GridTable.Header messageId="task.index.header.name" />
-                    <GridTable.Header messageId="task.index.header.description" />
-                    <GridTable.Header messageId="average" />
-                    <GridTable.Header messageId="fastest" />
-                    <GridTable.Header messageId="slowest" />
-                    <GridTable.Header messageId="task.index.header.lastUpdated" />
-                </GridTable.Row>
-                {tasks.map(task => (
-                    <GridTable.Row className={styles.row} key={task.id} to={routes.attempt.index(task.id)}>
-                        <GridTable.Cell className={styles.name}>
-                            {task.tags_colors.length > 0 && (
-                                <div className={styles.pills}>
-                                    {task.tags_colors.map(color => (
-                                        <ColorPill key={color} color={`#${color}`} variant="vertical" />
-                                    ))}
-                                </div>
-                            )}
-                            {task.name}
-                        </GridTable.Cell>
-                        <GridTable.Cell>{task.short_description}</GridTable.Cell>
-                        <GridTable.Cell>
-                            <Time time={task.time_statistics.avg} />
-                        </GridTable.Cell>
-                        <GridTable.Cell>
-                            <Time time={task.time_statistics.min} />
-                        </GridTable.Cell>
-                        <GridTable.Cell>
-                            <Time time={task.time_statistics.max} />
-                        </GridTable.Cell>
-                        <GridTable.Cell>
-                            {task.active && <Active />}
-                            {!task.active && <DateDisplay date={task.updated_at} />}
-                        </GridTable.Cell>
-                    </GridTable.Row>
-                ))}
-            </GridTable>
+            {useMemo(
+                () => (
+                    <GridTable loading={loading} empty={!tasks.data.length}>
+                        <InfiniteScroll
+                            next={() => fetchTasks(true)}
+                            hasMore={tasks.nextPage !== null}
+                            scrollThreshold={1}
+                            hasChildren
+                            loader={<GridTable.Loader />}
+                            dataLength={tasks.data.length}
+                            scrollableTarget="gridTable"
+                        >
+                            <GridTable.Row header className={styles.row}>
+                                <GridTable.Header messageId="task.index.header.name" />
+                                <GridTable.Header messageId="task.index.header.description" />
+                                <GridTable.Header messageId="average" />
+                                <GridTable.Header messageId="fastest" />
+                                <GridTable.Header messageId="slowest" />
+                                <GridTable.Header messageId="task.index.header.lastUpdated" />
+                            </GridTable.Row>
+                            {tasks.data.map(task => (
+                                <GridTable.Row className={styles.row} key={task.id} to={routes.attempt.index(task.id)}>
+                                    <GridTable.Cell className={styles.name}>
+                                        {task.tags_colors.length > 0 && (
+                                            <div className={styles.pills}>
+                                                {task.tags_colors.map(color => (
+                                                    <ColorPill key={color} color={`#${color}`} variant="vertical" />
+                                                ))}
+                                            </div>
+                                        )}
+                                        {task.name}
+                                    </GridTable.Cell>
+                                    <GridTable.Cell>{task.short_description}</GridTable.Cell>
+                                    <GridTable.Cell>
+                                        <Time time={task.time_statistics.avg} />
+                                    </GridTable.Cell>
+                                    <GridTable.Cell>
+                                        <Time time={task.time_statistics.min} />
+                                    </GridTable.Cell>
+                                    <GridTable.Cell>
+                                        <Time time={task.time_statistics.max} />
+                                    </GridTable.Cell>
+                                    <GridTable.Cell>
+                                        {task.active && <Active />}
+                                        {!task.active && <DateDisplay date={task.updated_at} />}
+                                    </GridTable.Cell>
+                                </GridTable.Row>
+                            ))}
+                        </InfiniteScroll>
+                    </GridTable>
+                ),
+                [tasks.data, loading],
+            )}
         </PanelTemplate>
     );
 };
