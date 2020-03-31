@@ -28,10 +28,14 @@
 }
 
 .loader {
-  position: sticky;
-  bottom: 30vh;
-  top: unset;
-  height: 100px;
+  position: static;
+  overflow: visible;
+  height: 0;
+
+  > a {
+    position: relative;
+    top: -150px;
+  }
 }
 
 .headerRow {
