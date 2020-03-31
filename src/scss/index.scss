@@ -6,6 +6,9 @@
 @import 'scroll';
 @import 'recharts';
 
+.infinite-scroll-component {
+  overflow: unset !important;
+}
 
 *,
 *::before,

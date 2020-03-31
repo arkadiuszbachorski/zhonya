@@ -6,10 +6,17 @@ import Cell from './Cell';
 import Header from './Header';
 import Row from './Row';
 import LoadingComplete from '../loading/LoadingComplete/LoadingComplete';
+import Loader from './Loader';
 
 const GridTable = ({ children, empty, emptyId, loading, className }) => {
     return (
-        <LoadingComplete loading={loading} empty={empty} className={cs(className, styles.table)} emptyId={emptyId}>
+        <LoadingComplete
+            loading={loading}
+            empty={empty}
+            className={cs(className, styles.table)}
+            emptyId={emptyId}
+            wrapperProps={{ id: 'gridTable' }}
+        >
             {children}
         </LoadingComplete>
     );
@@ -34,5 +41,7 @@ GridTable.Cell = Cell;
 GridTable.Header = Header;
 
 GridTable.Row = Row;
+
+GridTable.Loader = Loader;
 
 export default GridTable;

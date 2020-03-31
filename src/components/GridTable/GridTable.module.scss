@@ -25,7 +25,17 @@
       }
     }
   }
+}
 
+.loader {
+  position: static;
+  overflow: visible;
+  height: 0;
+
+  > a {
+    position: relative;
+    top: -150px;
+  }
 }
 
 .headerRow {

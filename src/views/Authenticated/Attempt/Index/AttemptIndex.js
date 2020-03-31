@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router';
 import { useIntl } from 'react-intl';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import api from '../../../../api';
 import routes from '../../../../routes';
 import ButtonCreate from '../../../../components/buttons/ButtonCreate/ButtonCreate';
@@ -36,21 +37,27 @@ const AttemptIndex = () => {
         redirectPath: routes.task.index,
     });
 
-    const [attempts, setAttempts] = useState([]);
+    const [attempts, setAttempts] = useState({
+        data: [],
+        nextPage: api.attempt.index(taskId),
+    });
 
-    useCancellableEffect(
-        () => {
-            instance
-                .get(api.attempt.index(taskId), {
-                    params: params.prepare(debouncedFilters),
-                })
-                .then(response => {
-                    setAttempts(response.data);
+    const fetchAttempts = useCallback(
+        (loadMore = false) => {
+            const url = loadMore ? attempts.nextPage : api.attempt.index(taskId);
+            instance.get(url, { params: params.prepare(debouncedFilters) }).then(({ data }) => {
+                setAttempts(oldTags => {
+                    return {
+                        data: loadMore ? [...oldTags.data, ...data.data] : data.data,
+                        nextPage: data.nextPage,
+                    };
                 });
+            });
         },
-        [debouncedFilters, taskId],
-        cancel,
+        [debouncedFilters, attempts.nextPage],
     );
+
+    useCancellableEffect(fetchAttempts, [debouncedFilters, taskId], cancel);
 
     const hasChanged = useMemo(() => {
         return params.hasChanged(debouncedFilters);
@@ -76,29 +83,44 @@ const AttemptIndex = () => {
                 <Checkbox labelId="input.active" name="active" checked={filters.active} onChange={handleChange} />
                 <ButtonFiltersReset onClick={resetFilters} visible={hasChanged} />
             </Container>
-            <GridTable loading={loading} empty={!attempts.length}>
-                <GridTable.Row header className={styles.row}>
-                    <GridTable.Header messageId="attempt.index.header.description" />
-                    <GridTable.Header messageId="attempt.index.header.time" />
-                    <GridTable.Header messageId="attempt.index.header.lastUpdated" />
-                </GridTable.Row>
-                {attempts.map(attempt => (
-                    <GridTable.Row
-                        className={styles.row}
-                        key={attempt.id}
-                        to={routes.attempt.timer(taskId, attempt.id)}
-                    >
-                        <GridTable.Cell>{attempt.description}</GridTable.Cell>
-                        <GridTable.Cell>
-                            <Time time={attempt.relative_time} />
-                        </GridTable.Cell>
-                        <GridTable.Cell>
-                            {attempt.active && <Active />}
-                            {!attempt.active && <DateDisplay date={attempt.updated_at} />}
-                        </GridTable.Cell>
-                    </GridTable.Row>
-                ))}
-            </GridTable>
+            {useMemo(
+                () => (
+                    <GridTable loading={loading} empty={!attempts.data.length}>
+                        <InfiniteScroll
+                            next={() => fetchAttempts(true)}
+                            hasMore={attempts.nextPage !== null}
+                            hasChildren
+                            scrollThreshold={1}
+                            loader={<GridTable.Loader />}
+                            dataLength={attempts.data.length}
+                            scrollableTarget="gridTable"
+                        >
+                            <GridTable.Row header className={styles.row}>
+                                <GridTable.Header messageId="attempt.index.header.description" />
+                                <GridTable.Header messageId="attempt.index.header.time" />
+                                <GridTable.Header messageId="attempt.index.header.lastUpdated" />
+                            </GridTable.Row>
+                            {attempts.data.map(attempt => (
+                                <GridTable.Row
+                                    className={styles.row}
+                                    key={attempt.id}
+                                    to={routes.attempt.timer(taskId, attempt.id)}
+                                >
+                                    <GridTable.Cell>{attempt.description}</GridTable.Cell>
+                                    <GridTable.Cell>
+                                        <Time time={attempt.relative_time} />
+                                    </GridTable.Cell>
+                                    <GridTable.Cell>
+                                        {attempt.active && <Active />}
+                                        {!attempt.active && <DateDisplay date={attempt.updated_at} />}
+                                    </GridTable.Cell>
+                                </GridTable.Row>
+                            ))}
+                        </InfiniteScroll>
+                    </GridTable>
+                ),
+                [attempts.data, loading],
+            )}
         </TaskPanelTemplate>
     );
 };
