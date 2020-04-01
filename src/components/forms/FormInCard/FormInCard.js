@@ -7,12 +7,12 @@ import styles from './FormInCard.module.scss';
 import Form from '../Form/Form';
 import customPropTypes from '../../../customPropTypes';
 
-const FormInCard = ({ onSubmit, buttonMessageId, children, loading }) => {
+const FormInCard = ({ variant, onSubmit, buttonMessageId, children, loading }) => {
     return (
-        <Card className={styles.card}>
+        <Card variant={variant} className={styles.card}>
             <Form onSubmit={onSubmit} className={styles.formWrapper} loading={loading}>
                 {children}
-                <Button type="submit" className={styles.submitButton} disabled={loading}>
+                <Button variant={variant} type="submit" className={styles.submitButton} disabled={loading}>
                     <FormattedMessage id={buttonMessageId} />
                 </Button>
             </Form>
@@ -30,6 +30,7 @@ FormInCard.propTypes = {
 
 FormInCard.defaultProps = {
     loading: false,
+    variant: 'primary',
 };
 
 export default FormInCard;
