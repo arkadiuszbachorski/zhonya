@@ -10,8 +10,8 @@ export default {
         logout: '/user/logout',
         sendDeleteEmail: '/user/delete',
         delete: (token = ':token') => `/user/delete/${token}`,
-        sendVerificationEmail: '/user/verify',
-        verify: (token = ':token') => `/user/verify/${token}`,
+        sendVerificationEmail: '/user/verify/send',
+        verify: `/user/verify`,
     },
     task: {
         index: '/task',

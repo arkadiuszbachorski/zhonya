@@ -1,18 +1,18 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
-import { useHistory, useParams } from 'react-router';
+import { useHistory } from 'react-router';
 import Container from '../../../../components/Container/Container';
-import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import api from '../../../../api';
-import Loading from '../../../../components/loading/Loading/Loading';
 import useAuth from '../../../../hooks/useAuth';
-
 import routes from '../../../../routes';
 import { storeKeys } from '../../../../hooks/useStore';
-import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 import { cancelMessage } from '../../../../hooks/api/getCancelToken';
+import useForm from '../../../../hooks/useForm';
+import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import FormInCard from '../../../../components/forms/FormInCard/FormInCard';
+import Input from '../../../../components/forms/Input/Input';
 
 const Verify = () => {
     const history = useHistory();
@@ -21,40 +21,46 @@ const Verify = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, , cancel] = useInstanceWithToastsAndLoading({
+    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading({
         unauthorized: 'toast.error.verified',
     });
 
-    const { token } = useParams();
+    const [form, handleChange] = useForm({
+        token: '',
+    });
 
-    useCancellableEffect(
-        () => {
-            instance
-                .post(api.auth.verify, {
-                    verification_token: token,
-                })
-                .then(() => {
-                    if (!auth.rememberMe) {
-                        localStorage.removeItem(storeKeys.useAuth);
-                    }
-                    toast.success(formatMessage({ id: 'toast.success.verified' }));
-                    auth.setVerified(true, auth.data.rememberMe);
-                    history.push(routes.user.dashboard);
-                })
-                .catch(error => {
-                    if (error.message !== cancelMessage) {
-                        history.push(routes.user.sendVerificationEmail);
-                    }
-                });
-        },
-        [],
-        cancel,
-    );
+    const verify = () => {
+        instance
+            .post(api.auth.verify, {
+                verification_token: form.token,
+            })
+            .then(() => {
+                if (!auth.rememberMe) {
+                    localStorage.removeItem(storeKeys.useAuth);
+                }
+                toast.success(formatMessage({ id: 'toast.success.verified' }));
+                auth.setVerified(true, auth.data.rememberMe);
+                history.push(routes.user.dashboard);
+            })
+            .catch(error => {
+                if (error.message !== cancelMessage) {
+                    history.push(routes.user.sendVerificationEmail);
+                }
+            });
+    };
 
     return (
         <PanelTemplate>
-            <Container variant={['center', 'marginTopLarge']}>
-                <Loading loading />
+            <Container variant={['center', 'smallItems', 'marginTopLarge']}>
+                <FormInCard buttonMessageId="send" onSubmit={verify} loading={loading}>
+                    <Input
+                        labelId="input.verificationToken"
+                        name="token"
+                        value={form.token}
+                        errors={errors.token}
+                        onChange={handleChange}
+                    />
+                </FormInCard>
             </Container>
         </PanelTemplate>
     );

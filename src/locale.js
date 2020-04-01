@@ -107,6 +107,8 @@ export default {
         'input.contactEmail': 'E-mail kontaktowy',
         'input.firstName': 'Imię',
         'input.changeTime': 'Zmień czas',
+        'input.verificationToken': 'Kod weryfikacyjny',
+        'input.deleteToken': 'Kod usuwający',
         'toast.success.sendVerificationEmail': 'Pomyślnie wysłano maila weryfikacyjnego',
         'toast.success.sendPasswordResetEmail': 'Pomyślnie wysłano maila resetującego',
         'toast.success.sendContactEmail': 'Dziękujemy za kontakt!',
@@ -237,7 +239,7 @@ export default {
         'data.tooLessAttempts':
             'Musisz wykonać przynajmniej dwie próby by wyświetlić statystyki. Próby muszą być nieaktywne, a ich czas większy niż 0.',
         'verificationEmail.text':
-            'By przejść dalej musisz zweryfikować swój adres e-mail. Kliknij by otrzymać wiadomość z linkiem aktywującym na podany adres.',
+            'By przejść dalej musisz zweryfikować swój adres e-mail. Kliknij by otrzymać wiadomość z kodem weryfikującym na podany adres.',
         'placeholder.title': 'Pellentesque tortor',
         'placeholder.shortText':
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare mattis pellentesque.',
@@ -345,6 +347,8 @@ export default {
         'input.contactEmail': 'Contact E-mail',
         'input.firstName': 'First name',
         'input.changeTime': 'Change time',
+        'input.verificationToken': 'Verification code',
+        'input.deleteToken': 'Delete code',
         'toast.success.sendVerificationEmail': 'Verification email sent successfully',
         'toast.success.sendPasswordResetEmail': 'Password resetting email sent successfully',
         'toast.success.sendContactEmail': 'Thank you for your feedback!',
@@ -474,7 +478,7 @@ export default {
         'data.tooLessAttempts':
             'You must create at least two Attempts to display the statistics. Attempts must be inactive and with time greater than 0.',
         'verificationEmail.text':
-            'You must verify your email address to proceed. Click on the button below to receive message with verification link.',
+            'You must verify your email address to proceed. Click on the button below to receive message with verification code.',
         'placeholder.title': 'Pellentesque tortor',
         'placeholder.shortText':
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare mattis pellentesque.',
