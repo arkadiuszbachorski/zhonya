@@ -1,16 +1,17 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
-import { useHistory, useParams } from 'react-router';
+import { useHistory } from 'react-router';
 import Container from '../../../../components/Container/Container';
-import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWithToastsAndLoading';
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import api from '../../../../api';
-import Loading from '../../../../components/loading/Loading/Loading';
 import useAuth from '../../../../hooks/useAuth';
 import routes from '../../../../routes';
-import useCancellableEffect from '../../../../hooks/useCancellableEffect';
 import { cancelMessage } from '../../../../hooks/api/getCancelToken';
+import FormInCard from '../../../../components/forms/FormInCard/FormInCard';
+import Input from '../../../../components/forms/Input/Input';
+import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
+import useForm from '../../../../hooks/useForm';
 
 const Delete = () => {
     const history = useHistory();
@@ -19,36 +20,42 @@ const Delete = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, , cancel] = useInstanceWithToastsAndLoading({
+    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading({
         unauthorized: 'toast.error.delete',
     });
 
-    const { token } = useParams();
+    const [form, handleChange] = useForm({
+        token: '',
+    });
 
-    useCancellableEffect(
-        () => {
-            instance
-                .post(api.user.delete, {
-                    delete_token: token,
-                })
-                .then(() => {
-                    toast.success(formatMessage({ id: 'toast.success.delete' }));
-                    auth.logOut();
-                })
-                .catch(error => {
-                    if (error.message !== cancelMessage) {
-                        history.push(routes.user.sendDeleteEmail);
-                    }
-                });
-        },
-        [],
-        cancel,
-    );
+    const deleteAccount = () => {
+        instance
+            .post(api.user.delete, {
+                delete_token: form.token,
+            })
+            .then(() => {
+                toast.success(formatMessage({ id: 'toast.success.delete' }));
+                auth.logOut();
+            })
+            .catch(error => {
+                if (error.message !== cancelMessage) {
+                    history.push(routes.user.sendDeleteEmail);
+                }
+            });
+    };
 
     return (
         <PanelTemplate>
-            <Container variant={['center', 'marginTopLarge']}>
-                <Loading loading />
+            <Container variant={['center', 'smallItems', 'marginTopLarge']}>
+                <FormInCard variant="danger" buttonMessageId="send" onSubmit={deleteAccount} loading={loading}>
+                    <Input
+                        labelId="input.deleteToken"
+                        name="token"
+                        value={form.token}
+                        errors={errors.token}
+                        onChange={handleChange}
+                    />
+                </FormInCard>
             </Container>
         </PanelTemplate>
     );
