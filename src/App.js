@@ -85,10 +85,10 @@ const App = () => {
                         <AuthenticatedRoute
                             exact
                             settings={{ checkIfEmailNotVerified: true, checkIfEmailVerified: false }}
-                            path={routes.user.verify()}
+                            path={routes.user.verify}
                             component={UserVerify}
                         />
-                        <AuthenticatedRoute exact path={routes.user.delete()} component={UserDelete} />
+                        <AuthenticatedRoute exact path={routes.user.delete} component={UserDelete} />
                         <AuthenticatedRoute exact path={routes.user.dashboard} component={UserDashboard} />
                         <AuthenticatedRoute exact path={routes.user.settings} component={UserSettings} />
                         <AuthenticatedRoute exact path={routes.user.data} component={UserData} />

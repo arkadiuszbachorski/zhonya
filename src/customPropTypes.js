@@ -14,4 +14,5 @@ export default {
         });
         return PropTypes.shape(newProps);
     },
+    cardVariant: PropTypes.oneOf(['primary', 'danger']),
 };

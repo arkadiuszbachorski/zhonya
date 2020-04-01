@@ -5,13 +5,14 @@ import Card from '../../Card/Card';
 import Button from '../../buttons/Button/Button';
 import styles from './FormInCard.module.scss';
 import Form from '../Form/Form';
+import customPropTypes from '../../../customPropTypes';
 
-const FormInCard = ({ onSubmit, buttonMessageId, children, loading }) => {
+const FormInCard = ({ variant, onSubmit, buttonMessageId, children, loading }) => {
     return (
-        <Card className={styles.card}>
+        <Card variant={variant} className={styles.card}>
             <Form onSubmit={onSubmit} className={styles.formWrapper} loading={loading}>
                 {children}
-                <Button type="submit" className={styles.submitButton} disabled={loading}>
+                <Button variant={variant} type="submit" className={styles.submitButton} disabled={loading}>
                     <FormattedMessage id={buttonMessageId} />
                 </Button>
             </Form>
@@ -20,6 +21,7 @@ const FormInCard = ({ onSubmit, buttonMessageId, children, loading }) => {
 };
 
 FormInCard.propTypes = {
+    variant: customPropTypes.cardVariant,
     children: PropTypes.node.isRequired,
     onSubmit: PropTypes.func.isRequired,
     buttonMessageId: PropTypes.string.isRequired,
@@ -28,6 +30,7 @@ FormInCard.propTypes = {
 
 FormInCard.defaultProps = {
     loading: false,
+    variant: 'primary',
 };
 
 export default FormInCard;

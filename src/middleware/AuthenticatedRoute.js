@@ -25,7 +25,7 @@ const AuthenticatedRoute = ({ component: Component, settings, ...rest }) => {
                     return (
                         <Redirect
                             to={{
-                                pathname: routes.sendVerificationEmail,
+                                pathname: routes.user.sendVerificationEmail,
                                 state: { from: location },
                             }}
                         />
