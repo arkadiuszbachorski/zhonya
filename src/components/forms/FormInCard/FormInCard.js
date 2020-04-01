@@ -5,6 +5,7 @@ import Card from '../../Card/Card';
 import Button from '../../buttons/Button/Button';
 import styles from './FormInCard.module.scss';
 import Form from '../Form/Form';
+import customPropTypes from '../../../customPropTypes';
 
 const FormInCard = ({ onSubmit, buttonMessageId, children, loading }) => {
     return (
@@ -20,6 +21,7 @@ const FormInCard = ({ onSubmit, buttonMessageId, children, loading }) => {
 };
 
 FormInCard.propTypes = {
+    variant: customPropTypes.cardVariant,
     children: PropTypes.node.isRequired,
     onSubmit: PropTypes.func.isRequired,
     buttonMessageId: PropTypes.string.isRequired,
