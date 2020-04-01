@@ -8,6 +8,7 @@ import useInstanceWithToastsAndLoading from '../../../../hooks/api/useInstanceWi
 import PanelTemplate from '../../../../components/PanelTemplate/PanelTemplate';
 import api from '../../../../api';
 import routes from '../../../../routes';
+import useCheckIfUserIsVerified from '../../../../hooks/useCheckIfUserIsVerified';
 
 const SendVerificationEmail = () => {
     const { formatMessage } = useIntl();
@@ -27,6 +28,8 @@ const SendVerificationEmail = () => {
                 toast.error(formatMessage({ id: 'toast.error.sendVerificationEmail' }));
             });
     };
+
+    useCheckIfUserIsVerified();
 
     return (
         <PanelTemplate>

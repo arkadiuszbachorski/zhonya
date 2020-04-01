@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router';
@@ -13,6 +13,8 @@ import useForm from '../../../../hooks/useForm';
 import useInstanceWithErrorsAndToastsAndLoading from '../../../../hooks/api/useInstanceWithErrorsAndToastsAndLoading';
 import FormInCard from '../../../../components/forms/FormInCard/FormInCard';
 import Input from '../../../../components/forms/Input/Input';
+import useCancellableEffect from '../../../../hooks/useCancellableEffect';
+import useCheckIfUserIsVerified from '../../../../hooks/useCheckIfUserIsVerified';
 
 const Verify = () => {
     const history = useHistory();
@@ -21,7 +23,7 @@ const Verify = () => {
 
     const { formatMessage } = useIntl();
 
-    const [instance, loading, errors] = useInstanceWithErrorsAndToastsAndLoading({
+    const [instance, loading, errors, cancel] = useInstanceWithErrorsAndToastsAndLoading({
         unauthorized: 'toast.error.verified',
     });
 
@@ -48,6 +50,8 @@ const Verify = () => {
                 }
             });
     };
+
+    useCheckIfUserIsVerified();
 
     return (
         <PanelTemplate>

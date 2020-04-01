@@ -15,6 +15,7 @@ export default {
         forgotPassword: `${url}/auth/reset`,
         send: `${url}/auth/send`,
         verify: `${url}/auth/verify`,
+        data: `${url}/auth/data`,
     },
     tag: {
         index: `${url}/tag`,
