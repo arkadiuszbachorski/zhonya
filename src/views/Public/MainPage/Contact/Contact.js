@@ -60,7 +60,7 @@ const Contact = () => {
                             <FormattedMessage id="contact.creator" />
                             <br />
                             <br />
-                            email@kontakt.com
+                            contact@zhonya.hekko24.pl
                         </p>
                     </div>
                 </div>
