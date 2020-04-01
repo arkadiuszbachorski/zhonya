@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { faCheckSquare, faClock, faList, faPause, faPlus, faTag } from '@fortawesome/free-solid-svg-icons';
 import { FormattedMessage } from 'react-intl';
 import Container from '../../../../components/Container/Container';
@@ -45,6 +45,22 @@ const UserDashboard = () => {
             });
         });
     };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setDashboardData(oldData => ({
+                ...oldData,
+                attempts: oldData.attempts.map(attempt => {
+                    return {
+                        ...attempt,
+                        relative_time: attempt.relative_time + 1,
+                    };
+                }),
+            }));
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [dashboardData.attempts]);
 
     useCancellableEffect(
         () => {
