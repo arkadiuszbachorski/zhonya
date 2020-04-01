@@ -241,9 +241,6 @@ export default {
             'Musisz wykonać przynajmniej dwie próby by wyświetlić statystyki. Próby muszą być nieaktywne, a ich czas większy niż 0.',
         'verificationEmail.text':
             'By przejść dalej musisz zweryfikować swój adres e-mail. Kliknij by otrzymać wiadomość z kodem weryfikującym na podany adres.',
-        'placeholder.title': 'Pellentesque tortor',
-        'placeholder.shortText':
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare mattis pellentesque.',
     },
     en: {
         logIn: 'Log In',
@@ -278,7 +275,7 @@ export default {
         'forWho.text1': 'Zhonya was designed for those for whom time matters.',
         'forWho.text2':
             'With Zhonya, you can create statistics that will help you plan your day, save time, stop being late and overestimate your capabilities.',
-        'forWho.text3': 'Check if your morning shower is really as speed as you assume!',
+        'forWho.text3': 'Check if your morning shower is really as fast as you think!',
         'howItWorks.title': 'How does it work?',
         'howItWorks.instruction.tasks': 'Create tasks',
         'howItWorks.instruction.tags': 'Group them',
@@ -427,9 +424,9 @@ export default {
         'tag.index.header.taskCount': 'Tasks',
         'tag.create.title': 'Create a tag',
         'tag.edit.title': 'Edit a tag',
-        'tag.form.text1': 'Tags are great way to organise similar tasks',
+        'tag.form.text1': 'Creating a tag is a great way to organise similar tasks',
         'tag.form.text2':
-            'The most important element of tag is color. You should choose unique ones because you will recognize your tag with it',
+            'Color is important element of your tag. You should choose unique one to easily distinguish tags',
         'tag.delete.title': 'Delete a tag',
         'tag.assign.title': 'Assign tasks',
         'tag.assign.text': 'One tag can have many tags',
@@ -443,8 +440,8 @@ export default {
         'attempt.create.title': 'Create an attempt',
         'attempt.edit.title': 'Edit an attempt',
         'attempt.form.text1': 'Attempt is one isolated try of doing your task',
-        'attempt.form.text2': 'On the basis of the measured time of all attempts, statistics are calculated',
-        'attempt.form.text3': 'Changing time manually will stop attempt if it was active',
+        'attempt.form.text2': 'Statistics are calculated on the basis of measured time of all attempts, ',
+        'attempt.form.text3': 'Changing time stops the attempt if it was active',
         'attempt.delete.title': 'Delete an attempt',
         'user.settings.theme.title': 'Change theme',
         'user.settings.locale.title': 'Change language',
@@ -481,8 +478,5 @@ export default {
             'You must create at least two Attempts to display the statistics. Attempts must be inactive and with time greater than 0.',
         'verificationEmail.text':
             'You must verify your email address to proceed. Click on the button below to receive message with verification code.',
-        'placeholder.title': 'Pellentesque tortor',
-        'placeholder.shortText':
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare mattis pellentesque.',
     },
 };
