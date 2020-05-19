@@ -13,7 +13,7 @@ Zhonya is available online here:
 Clone or download repository:
 
 ```
-git clone https://bitbucket.org/arkadiuszbachorski/zhonya.git
+git clone https://github.com/arkadiuszbachorski/zhonya
 ```
 
 Install node_modules: 
